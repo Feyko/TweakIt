@@ -75,11 +75,11 @@ int LuaUClass::lua_ChangeDefaultValue(lua_State* L)
     if(IsRecursive) {GetDerivedClasses(self->Class, Classes);}
     for(auto Class: Classes)
     {
-        UProperty* Property = FReflectionHelper::FindPropertyByShortName<UProperty>(self->Class, *FString(PropertyName.c_str()));
+        UProperty* Property = FReflectionHelper::FindPropertyByShortName<UProperty>(Class, *FString(PropertyName.c_str()));
         if(Property)
         {
-            luaToProperty(L, Property, self->Class->GetDefaultObject(), 3);
-            self->Class->GetDefaultObject()->AddToRoot();
+            luaToProperty(L, Property, Class->GetDefaultObject(), 3);
+            Class->GetDefaultObject()->AddToRoot();
         }
         else
         {
