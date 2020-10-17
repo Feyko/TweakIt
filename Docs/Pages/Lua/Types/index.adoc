@@ -1,0 +1,13 @@
+= Custom Lua Types
+The mod introduces new types in Lua
+
+== Objects
+Objects are instances of a type. What is actually mean is that types are like blueprints for a house. They dictate how the house will look and function, but aren't a house. A house can be created from those blueprints, and those houses are objects
+This explanation is a bit janky so DM/ping me to give me feedback on it please
+
+== Methods
+Methods are member functions of a certain type. They can be called on objects by using the `:` operator and generally use or affect the object they're called on. Here's an example : `Object:GetDefaultValue("PropertyName")` +
+This will call the GetDefaultValue method and return the default value of a property of a class in the game (more info in the LuaUClass type documentation)
+
+=== Properties
+Properties are a very important notion in this mod. Properties are variables stored in each objects. That is important because it is what the Tweaker accesses in the game. When you will index (`Object.something`) certain objects of a custom type, the tweaker will go and find that something in the actual game, not in the Lua custom type. More on this in the LuaUClass type's documentation

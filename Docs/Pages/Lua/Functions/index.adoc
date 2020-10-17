@@ -1,0 +1,16 @@
+= Functions
+Documentation on Lua functions this Tweaker provides
+
+=== How to read the function documentation
+All functions are read like this : `Return Type` `Function's name`(`Argument Type` `Argument Name`) +
+ +
+This means that the function expects you to pass an argument of the argument type and it will return something of the return type or nil if something failed. Functions can have more that one argument. Argument names are just to indicate their use and you do not need to pass a variable with that exact name +
+
+== Functions
+
+==== `LuaUClass GetClass(string ClassName)`
+Gets a class by its name and returns it. +
+You can also pass a complete class package path to ensure the class can be loaded no matter what. That should not be required apart from debugging
+
+==== `nil Log(string Text)`
+Will log Text to the console, FactoryGame.log and SatisfactoryModLoader.log, using SML's logging
