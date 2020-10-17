@@ -1,4 +1,5 @@
 = Functions
+
 Documentation on Lua functions this Tweaker provides
 
 === How to read the function documentation

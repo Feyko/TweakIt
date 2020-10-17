@@ -1,5 +1,5 @@
-name: tweaker
-version: '0.0.1'
-title: 'Tweaker'
+name: satistweaker
+version: '0.1.2-dev'
+title: 'SatisTweaker'
 nav:
-- nav.adoc
+- modules/ROOT/nav.adoc

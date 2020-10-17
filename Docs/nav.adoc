@@ -1,5 +1,0 @@
-* xref:index.adoc[Presentation]
-* xref:Roadmap.adoc[Roadmap]
-* xref:Lua/index.adoc[Lua]
-** xref:Lua/Types/index.adoc[Custom Types]
-** xref:Lua/Functions/index.adoc[Functions]

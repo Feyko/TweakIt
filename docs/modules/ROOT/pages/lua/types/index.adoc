@@ -1,5 +1,6 @@
 = Custom Lua Types
-The mod introduces new types in Lua
+
+The mod introduces new types in Lua. Those are detailed in sub-categories, you can find them on the left. Below is documentation on type-related things
 
 == Objects
 Objects are instances of a type. What is actually mean is that types are like blueprints for a house. They dictate how the house will look and function, but aren't a house. A house can be created from those blueprints, and those houses are objects
