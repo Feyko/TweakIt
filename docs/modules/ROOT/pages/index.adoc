@@ -1,7 +1,7 @@
-= Tweaker
+= TweakIt
 
-=== What is this "Tweaker"
-Tweaker is a mod for Satisfactory. Its goal is to enable any user to tweak their game to their liking. It does so by giving you the ability to change values in the game. It cannot access all of them, but a lot. This is already implemented +
+=== What is TweakIt
+TweakIt is a mod for Satisfactory. Its goal is to enable any user to tweak their game to their liking. It does so by giving you the ability to change values in the game. It cannot access all of them, but a lot. This is already implemented +
 It will also allow users to create derivations of the game's content. For example, Mk2 machines or equipments. That is not currently implemented but is the next goal
 
 === Source

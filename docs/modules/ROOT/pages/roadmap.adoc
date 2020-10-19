@@ -3,6 +3,7 @@
 This is to show planned and implemented features and known bugs/quirks
 
 == Implemented Features
+* Reading a Lua script
 * Getting a class
 * Editing a class' default values
 ** Recursive edition. Meaning it edits the value in all child classes too
@@ -12,6 +13,7 @@ This is to show planned and implemented features and known bugs/quirks
 == Planned Features
 * Addition and removal of default components
 * Addition of procedurally generated content. For example, Mk2 machines and equipments
+* Possibility of running certain scripts at certain moments, including by commands
 
 == Known bugs
 * Recursive default value edition cannot take in account the value being edited. That means that you cannot, for example, halve the cost of all recipes, you can only set a static price for all of them

@@ -1,0 +1,31 @@
+= LuaUClass
+
+This type is the most important custom type of this mod. It is returned by functions like `GetClass`
+It represents a class in Satisfactory. This is where you will change values
+
+== Methods
+If you do not know what methods are, refer to this category's index
+
+==== `LuaUObject AddDefaultComponent(string ComponentName, LuaUClass ComponentClass)`
+Adds a default component of type ComponentClass and of name ComponentName to the class +
+This method will only work if the target class is an Actor (meaning it is something that can be placed in the world) and if the ComponentClass is a component class +
+Returns the created component if it was successful. Nil otherwise +
+ATTENTION : This method currently crashes the game
+
+==== `value ChangeDefaultValue(string PropertyName, value Value)`
+Changes the default value of the property named PropertyName in the target class to Value +
+It will interpret the passed value into the type the property holds +
+Returns the new value of the property or nil if the operation was unsuccessful
+
+==== `nil DumpProperties()`
+Logs the name of all the properties of that class
+
+==== `value GetDefaultValue(string PropertyName)`
+Gets the default value of the property named PropertyName in the target class +
+Returns that value or nil if the operation was unsuccessful
+
+==== `LuaUObject RemoveDefaultComponent(string ComponentName)`
+Removes a default component of name ComponentName from the class +
+This method will only work if the target class is an Actor (meaning it is something that can be placed in the world) +
+Returns the created component if it was successful. Nil otherwise +
+ATTENTION : This method was untested

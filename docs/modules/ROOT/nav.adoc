@@ -2,4 +2,5 @@
 * xref:roadmap.adoc[Roadmap]
 * xref:lua/index.adoc[Lua]
 ** xref:lua/types/index.adoc[Custom Types]
+*** xref:lua/types/luauclass.adoc[LuaUClass]
 ** xref:lua/functions/index.adoc[Functions]

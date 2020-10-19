@@ -1,5 +1,5 @@
-name: satistweaker
+name: tweakit
 version: '0.1.2-dev'
-title: 'SatisTweaker'
+title: 'TweakIt'
 nav:
 - modules/ROOT/nav.adoc
