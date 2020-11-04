@@ -1,0 +1,707 @@
+@page BlueprintsGameFactoryGameBuildableFactoryOilRefineryBuild_OilRefinerySpline Spline
+### Parent :
+<b><a href="_blueprints_game_factory_game_buildable_factory_oil_refinery_build__oil_refinery.html"><blockquote>Build_OilRefinery</blockquote></a></b>
+### Class:
+<b><a href="_class_script_spline_component.html"><blockquote>SplineComponent</blockquote></a></b>
+## Properties
+### SplineCurves
+@htmlonly
+<details>
+ <summary>Position</summary>
+<details>
+ <summary>Points</summary>
+<ol>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1279.921630859375</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>7.762887554996212e-16</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0.00048828125</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1279.921630859375</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>7.762887554996212e-16</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0.00048828125</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1279.921630859375</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>7.762887554996212e-16</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0.00048828125</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>213.40350341796875</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>213.40350341796875</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>bIsLooped</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>LoopKeyOffset</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>Rotation</summary>
+<details>
+ <summary>Points</summary>
+<ol>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>bIsLooped</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>LoopKeyOffset</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>Scale</summary>
+<details>
+ <summary>Points</summary>
+<ol>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>bIsLooped</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>LoopKeyOffset</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>ReparamTable</summary>
+<details>
+ <summary>Points</summary>
+<ol>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>137.5908203125</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.10000000149011612</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>290.1129150390625</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.20000000298023224</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>451.16717529296875</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.30000001192092896</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>614.3544311523438</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.4000000059604645</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>773.2755126953125</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.5</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>921.5316162109375</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.6000000238418579</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1052.7232666015625</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.699999988079071</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1160.4515380859375</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.800000011920929</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1238.3173828125</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.9000000357627869</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1279.9217529296875</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>bIsLooped</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>LoopKeyOffset</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+@endhtmlonly
+
+### RelativeLocation
+@htmlonly
+<details>
+ <summary>X</summary>
+<blockquote>50</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>9.232661193023405e-19</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>380.00054931640625</blockquote>
+</details>
+@endhtmlonly
+
+### RelativeRotation
+@htmlonly
+<details>
+ <summary>Pitch</summary>
+<blockquote>90</blockquote>
+</details>
+<details>
+ <summary>Yaw</summary>
+<blockquote>180</blockquote>
+</details>
+<details>
+ <summary>Roll</summary>
+<blockquote>180</blockquote>
+</details>
+@endhtmlonly
+
+### Mobility
+@htmlonly
+<blockquote>0</blockquote>
+@endhtmlonly
+

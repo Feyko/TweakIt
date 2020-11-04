@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameBuildMenuPrototypeWidget_BuildMenu_SubCategoryButton Widget_BuildMenu_SubCategoryButton
+## Widgets aren't supported by this documentation (yet)

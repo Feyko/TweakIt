@@ -1,0 +1,2 @@
+\page EnumsGameFactoryGameEquipment Equipment
+- \subpage EnumsGameFactoryGameEquipmentChainsaw

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableFactoryRadarTowerUIWidget_RadarTower_ScanLine Widget_RadarTower_ScanLine
+## Widgets aren't supported by this documentation (yet)

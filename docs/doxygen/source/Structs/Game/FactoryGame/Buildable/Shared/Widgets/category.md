@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameBuildableSharedWidgets Widgets
+- \subpage StructsGameFactoryGameBuildableSharedWidgetsGraphCurve

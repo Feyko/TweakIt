@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsUraniumPellet UraniumPellet
+- \subpage BlueprintsGameFactoryGameResourcePartsUraniumPelletDesc_UraniumPellet

@@ -1,0 +1,6 @@
+\page BlueprintsGameFactoryGameCharacterCreature Creature
+- \subpage BlueprintsGameFactoryGameCharacterCreatureBP_CreatureSeat
+- \subpage BlueprintsGameFactoryGameCharacterCreatureBP_CreatureSpawner
+- \subpage BlueprintsGameFactoryGameCharacterCreatureAI
+- \subpage BlueprintsGameFactoryGameCharacterCreatureEnemy
+- \subpage BlueprintsGameFactoryGameCharacterCreatureWildlife

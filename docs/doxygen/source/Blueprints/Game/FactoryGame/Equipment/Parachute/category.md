@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameEquipmentParachute Parachute
+- \subpage BlueprintsGameFactoryGameEquipmentParachuteEquip_Parachute
+- \subpage BlueprintsGameFactoryGameEquipmentParachuteMesh

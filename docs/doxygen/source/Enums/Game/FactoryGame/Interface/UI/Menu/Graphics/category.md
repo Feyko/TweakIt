@@ -1,0 +1,2 @@
+\page EnumsGameFactoryGameInterfaceUIMenuGraphics Graphics
+- \subpage EnumsGameFactoryGameInterfaceUIMenuGraphicsCredits

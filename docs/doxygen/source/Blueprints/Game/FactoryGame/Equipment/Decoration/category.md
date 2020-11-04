@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameEquipmentDecoration Decoration
+- \subpage BlueprintsGameFactoryGameEquipmentDecorationAttach_Decoration
+- \subpage BlueprintsGameFactoryGameEquipmentDecorationBP_Decoration
+- \subpage BlueprintsGameFactoryGameEquipmentDecorationEquip_Decoration

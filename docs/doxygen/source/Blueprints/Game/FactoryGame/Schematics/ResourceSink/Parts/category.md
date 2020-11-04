@@ -1,0 +1,9 @@
+\page BlueprintsGameFactoryGameSchematicsResourceSinkParts Parts
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsEquipment
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier1
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier2
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier3
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier4
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier5
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier6
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier7

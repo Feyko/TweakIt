@@ -1,0 +1,2 @@
+\page EnumsGameFactoryGameBuildableFactoryResourceSinkShop ResourceSinkShop
+- \subpage EnumsGameFactoryGameBuildableFactoryResourceSinkShopUI

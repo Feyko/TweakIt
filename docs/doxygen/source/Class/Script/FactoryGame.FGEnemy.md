@@ -1,0 +1,1611 @@
+\page ClassScriptFGEnemy FGEnemy
+### Asset Path :
+<b><blockquote>/Script/FactoryGame.FGEnemy</blockquote></b>
+@ref ClassScriptFGEnemymEyeLocationComponent
+
+@ref ClassScriptFGEnemymHealthComponent
+
+@ref ClassScriptFGEnemyMesh
+
+@ref ClassScriptFGEnemyCharacterMovement
+
+@ref ClassScriptFGEnemyCapsuleComponent
+
+@ref ClassScriptFGEnemyRootComponent
+
+## Properties
+
+### mCurrentAttack
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategoryObject</summary>
+<b><a href="_class_script_f_g_gameplay_task__attack.html"><blockquote>FGGameplayTask_Attack</blockquote></a></b>
+</details>
+@endhtmlonly
+
+### mCurrentAggroTarget
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategoryObject</summary>
+<b><a href="_class_script_actor.html"><blockquote>Actor</blockquote></a></b>
+</details>
+@endhtmlonly
+
+### mNavigationGenerationRadius
+@htmlonly
+<blockquote>7000</blockquote>
+@endhtmlonly
+
+### mNavigationRemovalRadius
+@htmlonly
+<blockquote>8000</blockquote>
+@endhtmlonly
+
+### mIsEnabled
+@htmlonly
+<blockquote>2</blockquote>
+@endhtmlonly
+
+### mShouldOptimizeMeshWhenVisible
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### mCanSpawnDuringDay
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### mCanSpawnDuringNight
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### mRotationSpeedMultiplier
+@htmlonly
+<blockquote>0.30000001192092896</blockquote>
+@endhtmlonly
+
+### mEyeLocationComponent
+@htmlonly
+<details>
+ <summary>AttachParent</summary>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_class_script_capsule_component.html"><blockquote>CapsuleComponent</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>262177</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>CollisionCylinder</blockquote>
+</details>
+<details>
+ <summary>CapsuleHalfHeight</summary>
+<blockquote>88</blockquote>
+</details>
+<details>
+ <summary>CapsuleRadius</summary>
+<blockquote>34</blockquote>
+</details>
+<details>
+ <summary>bDynamicObstacle</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CanCharacterStepUpOn</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>BodyInstance</summary>
+<details>
+ <summary>ObjectType</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>CollisionEnabled</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>SleepFamily</summary>
+<blockquote>ESleepFamily::Normal</blockquote>
+</details>
+<details>
+ <summary>DOFMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bUseCCD</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bNotifyRigidBodyCollision</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bSimulatePhysics</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bEnableGravity</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAutoWeld</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bStartAwake</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bGenerateWakeEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bUpdateMassWhenScaleChanges</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockTranslation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockRotation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockXTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockXRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxAngularVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxDepenetrationVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideWalkableSlopeOnInstance</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bInterpolateWhenSubStepping</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CollisionProfileName</summary>
+<blockquote>Pawn</blockquote>
+</details>
+<details>
+ <summary>CollisionResponses</summary>
+<details>
+ <summary>ResponseArray</summary>
+<ol>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Visibility</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>HologramClearance</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+<details>
+ <summary>MaxDepenetrationVelocity</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>MassInKgOverride</summary>
+<blockquote>100</blockquote>
+</details>
+<details>
+ <summary>LinearDamping</summary>
+<blockquote>0.009999999776482582</blockquote>
+</details>
+<details>
+ <summary>AngularDamping</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CustomDOFPlaneNormal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>COMNudge</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>MassScale</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>InertiaTensorScale</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>WalkableSlopeOverride</summary>
+<details>
+ <summary>WalkableSlopeBehavior</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>WalkableSlopeAngle</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>PhysMaterialOverride</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+<details>
+ <summary>MaxAngularVelocity</summary>
+<blockquote>3600</blockquote>
+</details>
+<details>
+ <summary>CustomSleepThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>StabilizationThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>PhysicsBlendWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>PositionSolverIterationCount</summary>
+<blockquote>8</blockquote>
+</details>
+<details>
+ <summary>VelocitySolverIterationCount</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>bShouldUpdatePhysicsVolume</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bCanEverAffectNavigation</summary>
+<blockquote>False</blockquote>
+</details>
+</details>
+@endhtmlonly
+
+### mSpawnWeight
+@htmlonly
+<blockquote>1</blockquote>
+@endhtmlonly
+
+### mNeedsSpawner
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### mSpawnDistance
+@htmlonly
+<blockquote>-1</blockquote>
+@endhtmlonly
+
+### mMaxFootstepParticleSpawnDistance
+@htmlonly
+<blockquote>2500</blockquote>
+@endhtmlonly
+
+### mMaxFootstepDecalSpawnDistance
+@htmlonly
+<blockquote>1250</blockquote>
+@endhtmlonly
+
+### mFootstepDecalSize
+@htmlonly
+<ol>
+<li>
+<details>
+ <summary>X</summary>
+<blockquote>-20</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>-20</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>-20</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X</summary>
+<blockquote>20</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>20</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>20</blockquote>
+</details>
+</li>
+</ol>
+@endhtmlonly
+
+### mFootstepDecalLifetime
+@htmlonly
+<blockquote>10</blockquote>
+@endhtmlonly
+
+### mHealthComponent
+@htmlonly
+<details>
+ <summary>mOnAdjustDamage</summary>
+<ol>
+<li>
+<blockquote>0</blockquote>
+</li>
+</ol>
+</details>
+<details>
+ <summary>mReplicateDamageEvents</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>mReplicateDeathEvents</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bNetAddressable</summary>
+<blockquote>True</blockquote>
+</details>
+@endhtmlonly
+
+### mMaxDeathStayTime
+@htmlonly
+<blockquote>60</blockquote>
+@endhtmlonly
+
+### mDeathRemoveCheckTime
+@htmlonly
+<blockquote>5</blockquote>
+@endhtmlonly
+
+### mEnemyTargetDesirability
+@htmlonly
+<blockquote>1</blockquote>
+@endhtmlonly
+
+### mMinVehiclePushVelocityForRagdoll
+@htmlonly
+<blockquote>400</blockquote>
+@endhtmlonly
+
+### mTimeToGetUpFromRagdoll
+@htmlonly
+<blockquote>3</blockquote>
+@endhtmlonly
+
+### mMaxDistanceMovedToGetUp
+@htmlonly
+<blockquote>9</blockquote>
+@endhtmlonly
+
+### mRagdollMeshLocBoneName
+@htmlonly
+<blockquote>Pelvis</blockquote>
+@endhtmlonly
+
+### mRagdollMeshPhysicsBoneName
+@htmlonly
+<blockquote>Pelvis</blockquote>
+@endhtmlonly
+
+### mSyncBodyMaxDistance
+@htmlonly
+<blockquote>6</blockquote>
+@endhtmlonly
+
+### mWeakspotMultiplier
+@htmlonly
+<blockquote>2</blockquote>
+@endhtmlonly
+
+### mNormalDamageMultiplier
+@htmlonly
+<blockquote>1</blockquote>
+@endhtmlonly
+
+### Mesh
+@htmlonly
+<details>
+ <summary>VisibilityBasedAnimTickOption</summary>
+<blockquote>EVisibilityBasedAnimTickOption::AlwaysTickPose</blockquote>
+</details>
+<details>
+ <summary>BodyInstance</summary>
+<details>
+ <summary>ObjectType</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>CollisionEnabled</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>SleepFamily</summary>
+<blockquote>ESleepFamily::Normal</blockquote>
+</details>
+<details>
+ <summary>DOFMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bUseCCD</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bNotifyRigidBodyCollision</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bSimulatePhysics</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bEnableGravity</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAutoWeld</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bStartAwake</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bGenerateWakeEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bUpdateMassWhenScaleChanges</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockTranslation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockRotation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockXTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockXRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxAngularVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxDepenetrationVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideWalkableSlopeOnInstance</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bInterpolateWhenSubStepping</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CollisionProfileName</summary>
+<blockquote>CharacterMesh</blockquote>
+</details>
+<details>
+ <summary>CollisionResponses</summary>
+<details>
+ <summary>ResponseArray</summary>
+<ol>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Pawn</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Visibility</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Vehicle</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>WeaponInstantHit</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+<details>
+ <summary>MaxDepenetrationVelocity</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>MassInKgOverride</summary>
+<blockquote>100</blockquote>
+</details>
+<details>
+ <summary>LinearDamping</summary>
+<blockquote>0.009999999776482582</blockquote>
+</details>
+<details>
+ <summary>AngularDamping</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CustomDOFPlaneNormal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>COMNudge</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>MassScale</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>InertiaTensorScale</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>WalkableSlopeOverride</summary>
+<details>
+ <summary>WalkableSlopeBehavior</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>WalkableSlopeAngle</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>PhysMaterialOverride</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+<details>
+ <summary>MaxAngularVelocity</summary>
+<blockquote>3600</blockquote>
+</details>
+<details>
+ <summary>CustomSleepThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>StabilizationThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>PhysicsBlendWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>PositionSolverIterationCount</summary>
+<blockquote>8</blockquote>
+</details>
+<details>
+ <summary>VelocitySolverIterationCount</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>AttachParent</summary>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_class_script_capsule_component.html"><blockquote>CapsuleComponent</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>262177</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>CollisionCylinder</blockquote>
+</details>
+<details>
+ <summary>CapsuleHalfHeight</summary>
+<blockquote>88</blockquote>
+</details>
+<details>
+ <summary>CapsuleRadius</summary>
+<blockquote>34</blockquote>
+</details>
+<details>
+ <summary>bDynamicObstacle</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CanCharacterStepUpOn</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>BodyInstance</summary>
+<details>
+ <summary>ObjectType</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>CollisionEnabled</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>SleepFamily</summary>
+<blockquote>ESleepFamily::Normal</blockquote>
+</details>
+<details>
+ <summary>DOFMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bUseCCD</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bNotifyRigidBodyCollision</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bSimulatePhysics</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bEnableGravity</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAutoWeld</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bStartAwake</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bGenerateWakeEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bUpdateMassWhenScaleChanges</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockTranslation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockRotation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockXTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockXRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxAngularVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxDepenetrationVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideWalkableSlopeOnInstance</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bInterpolateWhenSubStepping</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CollisionProfileName</summary>
+<blockquote>Pawn</blockquote>
+</details>
+<details>
+ <summary>CollisionResponses</summary>
+<details>
+ <summary>ResponseArray</summary>
+<ol>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Visibility</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>HologramClearance</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+<details>
+ <summary>MaxDepenetrationVelocity</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>MassInKgOverride</summary>
+<blockquote>100</blockquote>
+</details>
+<details>
+ <summary>LinearDamping</summary>
+<blockquote>0.009999999776482582</blockquote>
+</details>
+<details>
+ <summary>AngularDamping</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CustomDOFPlaneNormal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>COMNudge</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>MassScale</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>InertiaTensorScale</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>WalkableSlopeOverride</summary>
+<details>
+ <summary>WalkableSlopeBehavior</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>WalkableSlopeAngle</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>PhysMaterialOverride</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+<details>
+ <summary>MaxAngularVelocity</summary>
+<blockquote>3600</blockquote>
+</details>
+<details>
+ <summary>CustomSleepThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>StabilizationThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>PhysicsBlendWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>PositionSolverIterationCount</summary>
+<blockquote>8</blockquote>
+</details>
+<details>
+ <summary>VelocitySolverIterationCount</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>bShouldUpdatePhysicsVolume</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bCanEverAffectNavigation</summary>
+<blockquote>False</blockquote>
+</details>
+</details>
+@endhtmlonly
+
+### CharacterMovement
+@htmlonly
+<details>
+ <summary>bUseControllerDesiredRotation</summary>
+<blockquote>True</blockquote>
+</details>
+@endhtmlonly
+
+### CapsuleComponent
+@htmlonly
+<details>
+ <summary>CapsuleHalfHeight</summary>
+<blockquote>88</blockquote>
+</details>
+<details>
+ <summary>CapsuleRadius</summary>
+<blockquote>34</blockquote>
+</details>
+<details>
+ <summary>bDynamicObstacle</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CanCharacterStepUpOn</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>BodyInstance</summary>
+<details>
+ <summary>ObjectType</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>CollisionEnabled</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>SleepFamily</summary>
+<blockquote>ESleepFamily::Normal</blockquote>
+</details>
+<details>
+ <summary>DOFMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bUseCCD</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bNotifyRigidBodyCollision</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bSimulatePhysics</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bEnableGravity</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAutoWeld</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bStartAwake</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bGenerateWakeEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bUpdateMassWhenScaleChanges</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockTranslation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockRotation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockXTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockXRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxAngularVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxDepenetrationVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideWalkableSlopeOnInstance</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bInterpolateWhenSubStepping</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CollisionProfileName</summary>
+<blockquote>Pawn</blockquote>
+</details>
+<details>
+ <summary>CollisionResponses</summary>
+<details>
+ <summary>ResponseArray</summary>
+<ol>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Visibility</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>HologramClearance</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+<details>
+ <summary>MaxDepenetrationVelocity</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>MassInKgOverride</summary>
+<blockquote>100</blockquote>
+</details>
+<details>
+ <summary>LinearDamping</summary>
+<blockquote>0.009999999776482582</blockquote>
+</details>
+<details>
+ <summary>AngularDamping</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CustomDOFPlaneNormal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>COMNudge</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>MassScale</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>InertiaTensorScale</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>WalkableSlopeOverride</summary>
+<details>
+ <summary>WalkableSlopeBehavior</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>WalkableSlopeAngle</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>PhysMaterialOverride</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+<details>
+ <summary>MaxAngularVelocity</summary>
+<blockquote>3600</blockquote>
+</details>
+<details>
+ <summary>CustomSleepThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>StabilizationThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>PhysicsBlendWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>PositionSolverIterationCount</summary>
+<blockquote>8</blockquote>
+</details>
+<details>
+ <summary>VelocitySolverIterationCount</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>bShouldUpdatePhysicsVolume</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bCanEverAffectNavigation</summary>
+<blockquote>False</blockquote>
+</details>
+@endhtmlonly
+
+### RootComponent
+@htmlonly
+<details>
+ <summary>CapsuleHalfHeight</summary>
+<blockquote>88</blockquote>
+</details>
+<details>
+ <summary>CapsuleRadius</summary>
+<blockquote>34</blockquote>
+</details>
+<details>
+ <summary>bDynamicObstacle</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CanCharacterStepUpOn</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>BodyInstance</summary>
+<details>
+ <summary>ObjectType</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>CollisionEnabled</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>SleepFamily</summary>
+<blockquote>ESleepFamily::Normal</blockquote>
+</details>
+<details>
+ <summary>DOFMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bUseCCD</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bNotifyRigidBodyCollision</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bSimulatePhysics</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bEnableGravity</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAutoWeld</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bStartAwake</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bGenerateWakeEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bUpdateMassWhenScaleChanges</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockTranslation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockRotation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockXTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockXRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxAngularVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxDepenetrationVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideWalkableSlopeOnInstance</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bInterpolateWhenSubStepping</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CollisionProfileName</summary>
+<blockquote>Pawn</blockquote>
+</details>
+<details>
+ <summary>CollisionResponses</summary>
+<details>
+ <summary>ResponseArray</summary>
+<ol>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Visibility</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>HologramClearance</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+<details>
+ <summary>MaxDepenetrationVelocity</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>MassInKgOverride</summary>
+<blockquote>100</blockquote>
+</details>
+<details>
+ <summary>LinearDamping</summary>
+<blockquote>0.009999999776482582</blockquote>
+</details>
+<details>
+ <summary>AngularDamping</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CustomDOFPlaneNormal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>COMNudge</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>MassScale</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>InertiaTensorScale</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>WalkableSlopeOverride</summary>
+<details>
+ <summary>WalkableSlopeBehavior</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>WalkableSlopeAngle</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>PhysMaterialOverride</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+<details>
+ <summary>MaxAngularVelocity</summary>
+<blockquote>3600</blockquote>
+</details>
+<details>
+ <summary>CustomSleepThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>StabilizationThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>PhysicsBlendWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>PositionSolverIterationCount</summary>
+<blockquote>8</blockquote>
+</details>
+<details>
+ <summary>VelocitySolverIterationCount</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>bShouldUpdatePhysicsVolume</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bCanEverAffectNavigation</summary>
+<blockquote>False</blockquote>
+</details>
+@endhtmlonly
+

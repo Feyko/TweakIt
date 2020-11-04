@@ -1,0 +1,2 @@
+\page EnumsGameFactoryGameBuildableFactoryMinerMk2 MinerMk2
+- \subpage EnumsGameFactoryGameBuildableFactoryMinerMk2EMinerState

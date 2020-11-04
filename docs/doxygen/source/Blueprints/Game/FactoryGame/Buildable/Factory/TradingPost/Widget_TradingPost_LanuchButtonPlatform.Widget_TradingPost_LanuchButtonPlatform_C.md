@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableFactoryTradingPostWidget_TradingPost_LanuchButtonPlatform Widget_TradingPost_LanuchButtonPlatform
+## Widgets aren't supported by this documentation (yet)

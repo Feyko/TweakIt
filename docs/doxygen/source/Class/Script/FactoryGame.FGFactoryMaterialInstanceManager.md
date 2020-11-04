@@ -1,0 +1,151 @@
+\page ClassScriptFGFactoryMaterialInstanceManager FGFactoryMaterialInstanceManager
+### Asset Path :
+<b><blockquote>/Script/FactoryGame.FGFactoryMaterialInstanceManager</blockquote></b>
+## Properties
+
+### mInitializingFromInterface
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategoryObject</summary>
+<b><a href="_class_script_material_interface.html"><blockquote>MaterialInterface</blockquote></a></b>
+</details>
+@endhtmlonly
+
+### mMaterialInstances
+@htmlonly
+<ol>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</li>
+</ol>
+@endhtmlonly
+
+### mInstanceNames
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>string</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>string</blockquote>
+</details>
+<details>
+ <summary>ContainerType</summary>
+<blockquote>1</blockquote>
+</details>
+@endhtmlonly
+

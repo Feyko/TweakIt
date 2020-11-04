@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsPolymerResin PolymerResin
+- \subpage BlueprintsGameFactoryGameResourcePartsPolymerResinDesc_PolymerResin

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsGunPowder GunPowder
+- \subpage BlueprintsGameFactoryGameResourcePartsGunPowderDesc_Gunpowder

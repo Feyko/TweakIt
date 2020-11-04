@@ -1,0 +1,7 @@
+\page BlueprintsGameFactoryGameBuildableBuilding Building
+- \subpage BlueprintsGameFactoryGameBuildableBuildingFence
+- \subpage BlueprintsGameFactoryGameBuildableBuildingFoundation
+- \subpage BlueprintsGameFactoryGameBuildableBuildingRamp
+- \subpage BlueprintsGameFactoryGameBuildableBuildingStair
+- \subpage BlueprintsGameFactoryGameBuildableBuildingWalkway
+- \subpage BlueprintsGameFactoryGameBuildableBuildingWall

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsIronRod IronRod
+- \subpage BlueprintsGameFactoryGameResourcePartsIronRodDesc_IronRod

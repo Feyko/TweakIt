@@ -1,0 +1,5 @@
+\page BlueprintsGameFactoryGameEquipmentShockShank ShockShank
+- \subpage BlueprintsGameFactoryGameEquipmentShockShankAnim_ShockShank
+- \subpage BlueprintsGameFactoryGameEquipmentShockShankAttach_ShockShank
+- \subpage BlueprintsGameFactoryGameEquipmentShockShankDamageType_XenoZapper
+- \subpage BlueprintsGameFactoryGameEquipmentShockShankEquip_ShockShank

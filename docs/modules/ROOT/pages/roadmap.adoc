@@ -19,3 +19,14 @@ This is to show planned and implemented features and known bugs/quirks
 * Recursive default value edition cannot take in account the value being edited. That means that you cannot, for example, halve the cost of all recipes, you can only set a static price for all of them
 * Getting a class can be somewhat random, editing values can take effect too late. That will be fixed with the next SML release
 * Currently, editing the class' default value means it changes the default object of that class. That is not enough as it doesn't change any existing objects. That means that, for example, if you change the constructor's default manufacturing speed, any previously place constructor won't have that change. ATTENTION : I'm not 100% sure of that statement, it is to be verified
+
+== Documentation
+=== Mod
+* Better coverage of the custom types
+
+=== Game
+* Better search function
+* Navigation panel
+* Better pages
+* More information (Comments f.e.)
+* Better UI ?

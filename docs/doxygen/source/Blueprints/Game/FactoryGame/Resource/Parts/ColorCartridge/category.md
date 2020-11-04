@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsColorCartridge ColorCartridge
+- \subpage BlueprintsGameFactoryGameResourcePartsColorCartridgeDesc_ColorCartridge

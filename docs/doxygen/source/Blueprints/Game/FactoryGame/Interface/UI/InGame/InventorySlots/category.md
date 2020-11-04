@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameInventorySlots InventorySlots
+- \subpage BlueprintsGameFactoryGameInterfaceUIInGameInventorySlotsWidget_InventorySlot

@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameBuildableFactoryTrain Train
+- \subpage BlueprintsGameFactoryGameBuildableFactoryTrainStation
+- \subpage BlueprintsGameFactoryGameBuildableFactoryTrainSwitchControl
+- \subpage BlueprintsGameFactoryGameBuildableFactoryTrainTrack

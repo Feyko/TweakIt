@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableFactorySpaceElevatorWidget_SpaceElevator_TierInfo Widget_SpaceElevator_TierInfo
+## Widgets aren't supported by this documentation (yet)

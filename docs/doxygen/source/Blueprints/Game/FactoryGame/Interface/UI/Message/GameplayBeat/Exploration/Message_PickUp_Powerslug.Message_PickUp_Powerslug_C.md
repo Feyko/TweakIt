@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_PickUp_Powerslug Message_PickUp_Powerslug
+## Widgets aren't supported by this documentation (yet)

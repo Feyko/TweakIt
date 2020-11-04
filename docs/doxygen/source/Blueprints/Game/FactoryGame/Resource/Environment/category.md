@@ -1,0 +1,7 @@
+\page BlueprintsGameFactoryGameResourceEnvironment Environment
+- \subpage BlueprintsGameFactoryGameResourceEnvironmentAnimalParts
+- \subpage BlueprintsGameFactoryGameResourceEnvironmentBerry
+- \subpage BlueprintsGameFactoryGameResourceEnvironmentCrashSites
+- \subpage BlueprintsGameFactoryGameResourceEnvironmentCrystal
+- \subpage BlueprintsGameFactoryGameResourceEnvironmentDesertShroom
+- \subpage BlueprintsGameFactoryGameResourceEnvironmentNut

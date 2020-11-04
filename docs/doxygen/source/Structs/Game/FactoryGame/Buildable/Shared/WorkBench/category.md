@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameBuildableSharedWorkBench WorkBench
+- \subpage StructsGameFactoryGameBuildableSharedWorkBenchItemCategoryRecipeStruct

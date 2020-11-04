@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMinimapMapFiltersWidget_BeaconViewdistanceSlider Widget_BeaconViewdistanceSlider
+## Widgets aren't supported by this documentation (yet)

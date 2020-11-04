@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsAlumina Alumina
+- \subpage BlueprintsGameFactoryGameResourcePartsAluminaDesc_AluminaSolution

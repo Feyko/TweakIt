@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsQuantumOscillator QuantumOscillator
+- \subpage BlueprintsGameFactoryGameResourcePartsQuantumOscillatorDesc_QuantumOscillator

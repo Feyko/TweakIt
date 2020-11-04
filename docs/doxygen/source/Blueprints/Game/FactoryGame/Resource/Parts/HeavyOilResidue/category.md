@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameResourcePartsHeavyOilResidue HeavyOilResidue
+- \subpage BlueprintsGameFactoryGameResourcePartsHeavyOilResidueDesc_HeavyOilResidue
+- \subpage BlueprintsGameFactoryGameResourcePartsHeavyOilResidueDesc_PackagedOilResidue

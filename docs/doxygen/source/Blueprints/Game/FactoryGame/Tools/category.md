@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameTools Tools
+- \subpage BlueprintsGameFactoryGameToolsBP_GeneratedHInstanceActor

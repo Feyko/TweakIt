@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsNobeliskExplosive NobeliskExplosive
+- \subpage BlueprintsGameFactoryGameResourcePartsNobeliskExplosiveDesc_NobeliskExplosive

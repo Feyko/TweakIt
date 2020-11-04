@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourceEquipmentDowsingStick DowsingStick
+- \subpage BlueprintsGameFactoryGameResourceEquipmentDowsingStickDesc_DowsingStick

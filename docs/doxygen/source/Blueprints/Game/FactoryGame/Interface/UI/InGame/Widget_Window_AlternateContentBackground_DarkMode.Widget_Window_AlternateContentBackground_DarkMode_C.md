@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameWidget_Window_AlternateContentBackground_DarkMode Widget_Window_AlternateContentBackground_DarkMode
+## Widgets aren't supported by this documentation (yet)

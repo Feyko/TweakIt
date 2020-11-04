@@ -1,0 +1,14 @@
+\page BlueprintsGameFactoryGameResourceRawResources RawResources
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesCoal
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesCrudeOil
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesGeyser
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesOreBauxite
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesOreCopper
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesOreGold
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesOreIron
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesOreUranium
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesRawQuartz
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesSAM
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesStone
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesSulfur
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesWater

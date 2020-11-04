@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsRotor Rotor
+- \subpage BlueprintsGameFactoryGameResourcePartsRotorDesc_Rotor

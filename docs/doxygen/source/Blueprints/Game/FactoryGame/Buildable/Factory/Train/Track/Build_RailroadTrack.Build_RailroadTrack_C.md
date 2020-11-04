@@ -1,0 +1,1160 @@
+\page BlueprintsGameFactoryGameBuildableFactoryTrainTrackBuild_RailroadTrack Build_RailroadTrack
+### Parent Class :
+[FGBuildableRailroadTrack](@ref ClassScriptFGBuildableRailroadTrack)
+### Asset Path :
+<b><blockquote>/Game/FactoryGame/Buildable/Factory/Train/Track/Build_RailroadTrack.Build_RailroadTrack_C</blockquote></b>
+## Components
+
+@ref BlueprintsGameFactoryGameBuildableFactoryTrainTrackBuild_RailroadTrackmSplineComponent
+
+@ref BlueprintsGameFactoryGameBuildableFactoryTrainTrackBuild_RailroadTrackmInstancedSplineComponent
+
+@ref BlueprintsGameFactoryGameBuildableFactoryTrainTrackBuild_RailroadTrackmConnections
+
+@ref BlueprintsGameFactoryGameBuildableFactoryTrainTrackBuild_RailroadTrackRootComponent
+
+## Properties
+
+### mMesh
+@htmlonly
+<details>
+ <summary>$AssetPath</summary>
+<b><a href="_blueprints_game_factory_game_buildable_factory_train_track_mesh_s_m__train_track_02.html"><blockquote>SM_TrainTrack_02</blockquote></a></b>
+</details>
+@endhtmlonly
+
+### mMeshLength
+@htmlonly
+<blockquote>1200</blockquote>
+@endhtmlonly
+
+### mSplineComponent
+@htmlonly
+<details>
+ <summary>SplineCurves</summary>
+<details>
+ <summary>Position</summary>
+<details>
+ <summary>Points</summary>
+<ol>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>200</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>200</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>200</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>200</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>200</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>bIsLooped</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>LoopKeyOffset</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>Rotation</summary>
+<details>
+ <summary>Points</summary>
+<ol>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>W</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>bIsLooped</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>LoopKeyOffset</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>Scale</summary>
+<details>
+ <summary>Points</summary>
+<ol>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>bIsLooped</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>LoopKeyOffset</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>ReparamTable</summary>
+<details>
+ <summary>Points</summary>
+<ol>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>20</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.10000000149011612</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>40</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.20000000298023224</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>60.000003814697266</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.30000001192092896</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>80</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.4000000059604645</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>100</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.5</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>120.00000762939453</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.6000000238418579</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>140</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.699999988079071</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>160</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.800000011920929</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>180</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>0.9000000357627869</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InVal</summary>
+<blockquote>200</blockquote>
+</details>
+<details>
+ <summary>OutVal</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>bIsLooped</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>LoopKeyOffset</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+</details>
+<details>
+ <summary>bGenerateOverlapEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>BodyInstance</summary>
+<details>
+ <summary>ObjectType</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CollisionEnabled</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>SleepFamily</summary>
+<blockquote>ESleepFamily::Normal</blockquote>
+</details>
+<details>
+ <summary>DOFMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bUseCCD</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bNotifyRigidBodyCollision</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bSimulatePhysics</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bEnableGravity</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAutoWeld</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bStartAwake</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bGenerateWakeEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bUpdateMassWhenScaleChanges</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockTranslation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockRotation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockXTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockXRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxAngularVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxDepenetrationVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideWalkableSlopeOnInstance</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bInterpolateWhenSubStepping</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CollisionProfileName</summary>
+<blockquote>BlockAll</blockquote>
+</details>
+<details>
+ <summary>CollisionResponses</summary>
+<details>
+ <summary>ResponseArray</summary>
+<ol>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>BuildGun</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>WeaponInstantHit</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>VehicleWheelQuery</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+<details>
+ <summary>MaxDepenetrationVelocity</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>MassInKgOverride</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LinearDamping</summary>
+<blockquote>0.009999999776482582</blockquote>
+</details>
+<details>
+ <summary>AngularDamping</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CustomDOFPlaneNormal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>COMNudge</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>MassScale</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>InertiaTensorScale</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>WalkableSlopeOverride</summary>
+<details>
+ <summary>WalkableSlopeBehavior</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>WalkableSlopeAngle</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>PhysMaterialOverride</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+<details>
+ <summary>MaxAngularVelocity</summary>
+<blockquote>3600</blockquote>
+</details>
+<details>
+ <summary>CustomSleepThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>StabilizationThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>PhysicsBlendWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>PositionSolverIterationCount</summary>
+<blockquote>8</blockquote>
+</details>
+<details>
+ <summary>VelocitySolverIterationCount</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>AttachParent</summary>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_class_script_scene_component.html"><blockquote>SceneComponent</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2883617</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>RootComponent</blockquote>
+</details>
+<details>
+ <summary>Mobility</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>Mobility</summary>
+<blockquote>0</blockquote>
+</details>
+@endhtmlonly
+
+### mInstancedSplineComponent
+@htmlonly
+<details>
+ <summary>AttachParent</summary>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_class_script_scene_component.html"><blockquote>SceneComponent</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2883617</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>RootComponent</blockquote>
+</details>
+<details>
+ <summary>Mobility</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+@endhtmlonly
+
+### mConnections
+@htmlonly
+<details>
+ <summary>AttachParent</summary>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_class_script_scene_component.html"><blockquote>SceneComponent</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2883617</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>RootComponent</blockquote>
+</details>
+<details>
+ <summary>Mobility</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>Mobility</summary>
+<blockquote>0</blockquote>
+</details>
+@endhtmlonly
+
+### mHologramClass
+@htmlonly
+<b><a href="_blueprints_game_factory_game_buildable_factory_train_track_holo__railroad_track.html"><blockquote>Holo_RailroadTrack</blockquote></a></b>
+@endhtmlonly
+
+### mDisplayName
+@htmlonly
+<blockquote>NSLOCTEXT("", "A99FD448401EE8273142B19004C59912", "Railway")</blockquote>
+@endhtmlonly
+
+### mDescription
+@htmlonly
+<blockquote>NSLOCTEXT("", "C8D98C1649559E700DCDC49B0EF3CE3C", "Used to transport trains in a reliable and fast manner.\r\nHas a wide turn angle so make sure to plan it out properly.")</blockquote>
+@endhtmlonly
+
+### MaxRenderDistance
+@htmlonly
+<blockquote>-1</blockquote>
+@endhtmlonly
+
+### mPrimaryColor
+@htmlonly
+<details>
+ <summary>R</summary>
+<blockquote>-1</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>-1</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>-1</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+@endhtmlonly
+
+### mSecondaryColor
+@htmlonly
+<details>
+ <summary>R</summary>
+<blockquote>-1</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>-1</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>-1</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+@endhtmlonly
+
+### mDismantleEffectClassName
+@htmlonly
+<details>
+ <summary>AssetPathName</summary>
+<b><a href="_blueprints_game_factory_game_buildable_factory-shared_b_p__material_effect__dismantle.html"><blockquote>BP_MaterialEffect_Dismantle</blockquote></a></b>
+</details>
+<details>
+ <summary>SubPathString</summary>
+<blockquote></blockquote>
+</details>
+@endhtmlonly
+
+### mBuildEffectClassName
+@htmlonly
+<details>
+ <summary>AssetPathName</summary>
+<b><a href="_blueprints_game_factory_game_buildable_factory-shared_b_p__material_effect__train_track.html"><blockquote>BP_MaterialEffect_TrainTrack</blockquote></a></b>
+</details>
+<details>
+ <summary>SubPathString</summary>
+<blockquote></blockquote>
+</details>
+@endhtmlonly
+
+### mHighlightParticleClassName
+@htmlonly
+<details>
+ <summary>AssetPathName</summary>
+<b><a href="_blueprints_game_factory_game_buildable-shared_particle_new_building_ping.html"><blockquote>NewBuildingPing</blockquote></a></b>
+</details>
+<details>
+ <summary>SubPathString</summary>
+<blockquote></blockquote>
+</details>
+@endhtmlonly
+
+### mCameraDistanceSq
+@htmlonly
+<blockquote>100000000376832</blockquote>
+@endhtmlonly
+
+### mBuildingID
+@htmlonly
+<blockquote>-1</blockquote>
+@endhtmlonly
+
+### bReplicates
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### RemoteRole
+@htmlonly
+<blockquote>1</blockquote>
+@endhtmlonly
+
+### NetDormancy
+@htmlonly
+<blockquote>4</blockquote>
+@endhtmlonly
+
+### NetCullDistanceSquared
+@htmlonly
+<blockquote>5624999936</blockquote>
+@endhtmlonly
+
+### RootComponent
+@htmlonly
+<details>
+ <summary>Mobility</summary>
+<blockquote>0</blockquote>
+</details>
+@endhtmlonly
+

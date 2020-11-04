@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameEquipmentObjectScannerWidget_ObjectScannerDescription Widget_ObjectScannerDescription
+## Widgets aren't supported by this documentation (yet)

@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameCharacterCreatureWildlifeManta Manta
+- \subpage BlueprintsGameFactoryGameCharacterCreatureWildlifeMantaBP_Manta
+- \subpage BlueprintsGameFactoryGameCharacterCreatureWildlifeMantaBP_MantaAnim

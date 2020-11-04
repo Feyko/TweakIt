@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameEquipmentResourceScannerUI UI
+- \subpage BlueprintsGameFactoryGameEquipmentResourceScannerUIWidget_ResourceScanner

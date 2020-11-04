@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameBuildableFactoryMinerMk2 MinerMk2
+- \subpage StructsGameFactoryGameBuildableFactoryMinerMk2ParticleMap

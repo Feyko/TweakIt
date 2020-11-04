@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourceEquipmentGemstoneScanner GemstoneScanner
+- \subpage BlueprintsGameFactoryGameResourceEquipmentGemstoneScannerBP_EquipmentDescriptorObjectScanner

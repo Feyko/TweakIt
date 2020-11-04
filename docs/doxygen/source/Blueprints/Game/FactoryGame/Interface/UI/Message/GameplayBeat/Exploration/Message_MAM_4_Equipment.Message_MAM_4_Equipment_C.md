@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_MAM_4_Equipment Message_MAM_4_Equipment
+## Widgets aren't supported by this documentation (yet)

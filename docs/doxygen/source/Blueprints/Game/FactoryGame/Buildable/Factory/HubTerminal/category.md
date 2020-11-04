@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameBuildableFactoryHubTerminal HubTerminal
+- \subpage BlueprintsGameFactoryGameBuildableFactoryHubTerminalBuild_HubTerminal
+- \subpage BlueprintsGameFactoryGameBuildableFactoryHubTerminalDesc_HubTerminal

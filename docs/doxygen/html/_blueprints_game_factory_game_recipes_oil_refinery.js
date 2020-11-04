@@ -1,0 +1,27 @@
+var _blueprints_game_factory_game_recipes_oil_refinery =
+[
+    [ "Recipe_AluminaSolution", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__alumina_solution.html", null ],
+    [ "Recipe_AluminumScrap", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__aluminum_scrap.html", null ],
+    [ "Recipe_Fuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__fuel.html", null ],
+    [ "Recipe_LiquidBiofuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__liquid_biofuel.html", null ],
+    [ "Recipe_LiquidFuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__liquid_fuel.html", null ],
+    [ "Recipe_PackagedBiofuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__packaged_biofuel.html", null ],
+    [ "Recipe_PackagedCrudeOil", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__packaged_crude_oil.html", null ],
+    [ "Recipe_PackagedOilResidue", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__packaged_oil_residue.html", null ],
+    [ "Recipe_PackagedTurboFuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__packaged_turbo_fuel.html", null ],
+    [ "Recipe_PackagedWater", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__packaged_water.html", null ],
+    [ "Recipe_PetroleumCoke", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__petroleum_coke.html", null ],
+    [ "Recipe_Plastic", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__plastic.html", null ],
+    [ "Recipe_ResidualFuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__residual_fuel.html", null ],
+    [ "Recipe_ResidualPlastic", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__residual_plastic.html", null ],
+    [ "Recipe_ResidualRubber", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__residual_rubber.html", null ],
+    [ "Recipe_Rubber", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__rubber.html", null ],
+    [ "Recipe_SulfuricAcid", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__sulfuric_acid.html", null ],
+    [ "Recipe_UnpackageBioFuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__unpackage_bio_fuel.html", null ],
+    [ "Recipe_UnpackageFuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__unpackage_fuel.html", null ],
+    [ "Recipe_UnpackageOil", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__unpackage_oil.html", null ],
+    [ "Recipe_UnpackageOilResidue", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__unpackage_oil_residue.html", null ],
+    [ "Recipe_UnpackageTurboFuel", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__unpackage_turbo_fuel.html", null ],
+    [ "Recipe_UnpackageWater", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__unpackage_water.html", null ],
+    [ "Recipe_UraniumPellet", "_blueprints_game_factory_game_recipes_oil_refinery_recipe__uranium_pellet.html", null ]
+];

@@ -1,0 +1,4 @@
+\page StructsGameFactoryGameBuildableFactory Factory
+- \subpage StructsGameFactoryGameBuildableFactoryMinerMk2
+- \subpage StructsGameFactoryGameBuildableFactoryResourceSink
+- \subpage StructsGameFactoryGameBuildableFactoryResourceSinkShop

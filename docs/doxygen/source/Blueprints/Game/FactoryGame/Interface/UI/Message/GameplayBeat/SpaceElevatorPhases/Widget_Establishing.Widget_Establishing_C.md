@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatSpaceElevatorPhasesWidget_Establishing Widget_Establishing
+## Widgets aren't supported by this documentation (yet)

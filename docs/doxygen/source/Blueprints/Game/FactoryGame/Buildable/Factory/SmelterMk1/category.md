@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameBuildableFactorySmelterMk1 SmelterMk1
+- \subpage BlueprintsGameFactoryGameBuildableFactorySmelterMk1Anim_SmelterMk1
+- \subpage BlueprintsGameFactoryGameBuildableFactorySmelterMk1Build_SmelterMk1
+- \subpage BlueprintsGameFactoryGameBuildableFactorySmelterMk1Desc_SmelterMk1

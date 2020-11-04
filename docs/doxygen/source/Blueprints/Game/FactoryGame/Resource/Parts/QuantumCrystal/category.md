@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsQuantumCrystal QuantumCrystal
+- \subpage BlueprintsGameFactoryGameResourcePartsQuantumCrystalDesc_QuantumCrystal

@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameResourcePartsBioFuel BioFuel
+- \subpage BlueprintsGameFactoryGameResourcePartsBioFuelDesc_Biofuel
+- \subpage BlueprintsGameFactoryGameResourcePartsBioFuelDesc_LiquidBiofuel
+- \subpage BlueprintsGameFactoryGameResourcePartsBioFuelDesc_PackagedBiofuel

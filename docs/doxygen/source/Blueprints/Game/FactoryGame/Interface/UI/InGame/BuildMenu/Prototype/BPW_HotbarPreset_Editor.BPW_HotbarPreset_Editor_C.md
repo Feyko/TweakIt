@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameBuildMenuPrototypeBPW_HotbarPreset_Editor BPW_HotbarPreset_Editor
+## Widgets aren't supported by this documentation (yet)

@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameRecipesVehicleTrain Train
+- \subpage BlueprintsGameFactoryGameRecipesVehicleTrainRecipe_FreightWagon
+- \subpage BlueprintsGameFactoryGameRecipesVehicleTrainRecipe_Locomotive

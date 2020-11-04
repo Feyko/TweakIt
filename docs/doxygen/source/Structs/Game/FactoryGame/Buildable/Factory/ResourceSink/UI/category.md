@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameBuildableFactoryResourceSinkUI UI
+- \subpage StructsGameFactoryGameBuildableFactoryResourceSinkUIFloatArrayStruct

@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameBuildableFactoryMinerMk2 MinerMk2
+- \subpage BlueprintsGameFactoryGameBuildableFactoryMinerMk2Anim_MinerMk2
+- \subpage BlueprintsGameFactoryGameBuildableFactoryMinerMk2Build_MinerMk2
+- \subpage BlueprintsGameFactoryGameBuildableFactoryMinerMk2Desc_MinerMk2

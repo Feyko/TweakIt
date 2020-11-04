@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourceEquipmentMedkit Medkit
+- \subpage BlueprintsGameFactoryGameResourceEquipmentMedkitDesc_Medkit

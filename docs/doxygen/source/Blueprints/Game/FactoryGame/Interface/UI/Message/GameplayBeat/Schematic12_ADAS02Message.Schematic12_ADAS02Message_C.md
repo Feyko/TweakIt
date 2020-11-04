@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatSchematic12_ADAS02Message Schematic12_ADAS02Message
+## Widgets aren't supported by this documentation (yet)

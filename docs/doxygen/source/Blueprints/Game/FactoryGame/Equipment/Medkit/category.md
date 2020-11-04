@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameEquipmentMedkit Medkit
+- \subpage BlueprintsGameFactoryGameEquipmentMedkitAnim_Medkit
+- \subpage BlueprintsGameFactoryGameEquipmentMedkitAttach_MedKit
+- \subpage BlueprintsGameFactoryGameEquipmentMedkitEquip_MedKit

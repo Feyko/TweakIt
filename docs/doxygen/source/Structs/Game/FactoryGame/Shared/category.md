@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameShared Shared
+- \subpage StructsGameFactoryGameSharedBlueprint

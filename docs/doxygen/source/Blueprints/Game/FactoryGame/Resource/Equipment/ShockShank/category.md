@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourceEquipmentShockShank ShockShank
+- \subpage BlueprintsGameFactoryGameResourceEquipmentShockShankBP_EquipmentDescriptorShockShank

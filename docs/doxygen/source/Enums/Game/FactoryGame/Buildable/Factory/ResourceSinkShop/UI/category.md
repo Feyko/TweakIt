@@ -1,0 +1,2 @@
+\page EnumsGameFactoryGameBuildableFactoryResourceSinkShopUI UI
+- \subpage EnumsGameFactoryGameBuildableFactoryResourceSinkShopUIE_ResourceSinkShop_Item_State

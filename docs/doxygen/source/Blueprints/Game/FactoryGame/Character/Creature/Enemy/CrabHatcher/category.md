@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameCharacterCreatureEnemyCrabHatcher CrabHatcher
+- \subpage BlueprintsGameFactoryGameCharacterCreatureEnemyCrabHatcherChar_CrabHatcher
+- \subpage BlueprintsGameFactoryGameCharacterCreatureEnemyCrabHatcherController_CrabHatcher

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsCircuitBoard CircuitBoard
+- \subpage BlueprintsGameFactoryGameResourcePartsCircuitBoardDesc_CircuitBoard

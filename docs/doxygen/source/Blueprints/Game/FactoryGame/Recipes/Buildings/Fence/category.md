@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameRecipesBuildingsFence Fence
+- \subpage BlueprintsGameFactoryGameRecipesBuildingsFenceRecipe_Fence_01

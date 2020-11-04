@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameRecipesBuildingsStairs Stairs
+- \subpage BlueprintsGameFactoryGameRecipesBuildingsStairsRecipe_Stairs_Left_01
+- \subpage BlueprintsGameFactoryGameRecipesBuildingsStairsRecipe_Stairs_Right_01
+- \subpage BlueprintsGameFactoryGameRecipesBuildingsStairsRecipe_Stair_1b

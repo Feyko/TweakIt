@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourceEquipmentMachinegun Machinegun
+- \subpage BlueprintsGameFactoryGameResourceEquipmentMachinegunBP_EquipmentDescriptorMachinegun

@@ -1,0 +1,6 @@
+\page EnumsGameFactoryGameInterfaceUIMenu Menu
+- \subpage EnumsGameFactoryGameInterfaceUIMenuECanJoinInviteResult
+- \subpage EnumsGameFactoryGameInterfaceUIMenuECantInviteResult
+- \subpage EnumsGameFactoryGameInterfaceUIMenuLobbyTypeEnum
+- \subpage EnumsGameFactoryGameInterfaceUIMenuSocialMediaEnum
+- \subpage EnumsGameFactoryGameInterfaceUIMenuGraphics

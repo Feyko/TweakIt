@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameBuildableFactoryPowerPoleMk3 PowerPoleMk3
+- \subpage BlueprintsGameFactoryGameBuildableFactoryPowerPoleMk3Build_PowerPoleMk3
+- \subpage BlueprintsGameFactoryGameBuildableFactoryPowerPoleMk3Desc_PowerPoleMk3

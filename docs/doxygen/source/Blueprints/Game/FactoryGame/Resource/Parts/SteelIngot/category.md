@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsSteelIngot SteelIngot
+- \subpage BlueprintsGameFactoryGameResourcePartsSteelIngotDesc_SteelIngot

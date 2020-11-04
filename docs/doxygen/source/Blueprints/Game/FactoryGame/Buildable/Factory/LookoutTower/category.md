@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameBuildableFactoryLookoutTower LookoutTower
+- \subpage BlueprintsGameFactoryGameBuildableFactoryLookoutTowerBuild_LookoutTower
+- \subpage BlueprintsGameFactoryGameBuildableFactoryLookoutTowerDesc_LookoutTower

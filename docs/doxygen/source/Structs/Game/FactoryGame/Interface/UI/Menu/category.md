@@ -1,0 +1,3 @@
+\page StructsGameFactoryGameInterfaceUIMenu Menu
+- \subpage StructsGameFactoryGameInterfaceUIMenuKeyBindData
+- \subpage StructsGameFactoryGameInterfaceUIMenuStartingLocationsDataStruct

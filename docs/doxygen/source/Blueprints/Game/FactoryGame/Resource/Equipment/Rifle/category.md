@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameResourceEquipmentRifle Rifle
+- \subpage BlueprintsGameFactoryGameResourceEquipmentRifleBP_EquipmentDescriptorRifle
+- \subpage BlueprintsGameFactoryGameResourceEquipmentRifleBP_EquipmentDescriptorRifleMk2

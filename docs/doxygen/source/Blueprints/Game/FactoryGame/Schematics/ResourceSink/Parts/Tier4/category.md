@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier4 Tier4
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier4ResourceSink_EncasedIndustrialBeam
+- \subpage BlueprintsGameFactoryGameSchematicsResourceSinkPartsTier4ResourceSink_Stator

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableFactoryPowerPoleMk1UI UI
+- \subpage BlueprintsGameFactoryGameBuildableFactoryPowerPoleMk1UIWidget_PowerPole

@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameBuildableBuildingFence Fence
+- \subpage BlueprintsGameFactoryGameBuildableBuildingFenceBuild_Fence_01
+- \subpage BlueprintsGameFactoryGameBuildableBuildingFenceDesc_Fence_01

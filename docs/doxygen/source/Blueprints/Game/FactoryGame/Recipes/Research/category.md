@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameRecipesResearch Research
+- \subpage BlueprintsGameFactoryGameRecipesResearchBP_ResearchManager

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGamePostProcessBloodFX BloodFX
+- \subpage BlueprintsGameFactoryGamePostProcessBloodFXtakeDamageCameraShake

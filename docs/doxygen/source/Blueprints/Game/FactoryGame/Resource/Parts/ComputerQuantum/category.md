@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsComputerQuantum ComputerQuantum
+- \subpage BlueprintsGameFactoryGameResourcePartsComputerQuantumDesc_ComputerQuantum

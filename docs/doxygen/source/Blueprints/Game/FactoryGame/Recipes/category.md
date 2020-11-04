@@ -1,0 +1,13 @@
+\page BlueprintsGameFactoryGameRecipes Recipes
+- \subpage BlueprintsGameFactoryGameRecipesAlternateRecipes
+- \subpage BlueprintsGameFactoryGameRecipesAssembler
+- \subpage BlueprintsGameFactoryGameRecipesBuildings
+- \subpage BlueprintsGameFactoryGameRecipesConstructor
+- \subpage BlueprintsGameFactoryGameRecipesEquipment
+- \subpage BlueprintsGameFactoryGameRecipesManufacturer
+- \subpage BlueprintsGameFactoryGameRecipesOilRefinery
+- \subpage BlueprintsGameFactoryGameRecipesRawResources
+- \subpage BlueprintsGameFactoryGameRecipesResearch
+- \subpage BlueprintsGameFactoryGameRecipesSmelter
+- \subpage BlueprintsGameFactoryGameRecipesSpaceElevatorParts
+- \subpage BlueprintsGameFactoryGameRecipesVehicle

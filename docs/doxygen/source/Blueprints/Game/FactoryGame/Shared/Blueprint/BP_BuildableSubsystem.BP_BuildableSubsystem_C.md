@@ -1,0 +1,840 @@
+\page BlueprintsGameFactoryGameSharedBlueprintBP_BuildableSubsystem BP_BuildableSubsystem
+### Parent Class :
+[FGBuildableSubsystem](@ref ClassScriptFGBuildableSubsystem)
+### Asset Path :
+<b><blockquote>/Game/FactoryGame/-Shared/Blueprint/BP_BuildableSubsystem.BP_BuildableSubsystem_C</blockquote></b>
+## Components
+
+## Properties
+
+### mDistanceConsideredClose
+@htmlonly
+<blockquote>30000</blockquote>
+@endhtmlonly
+
+### mNumFactoriesNeededForCloseCheck
+@htmlonly
+<blockquote>1</blockquote>
+@endhtmlonly
+
+### mColorSlotsPrimary
+@htmlonly
+<details>
+ <summary>B</summary>
+<blockquote>17</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>77</blockquote>
+</details>
+<details>
+ <summary>R</summary>
+<blockquote>243</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>255</blockquote>
+</details>
+@endhtmlonly
+
+### mColorSlotsSecondary
+@htmlonly
+<details>
+ <summary>B</summary>
+<blockquote>67</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>34</blockquote>
+</details>
+<details>
+ <summary>R</summary>
+<blockquote>29</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>255</blockquote>
+</details>
+@endhtmlonly
+
+### mColorSlotsPrimary_Linear
+@htmlonly
+<ol>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.9529412388801575</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3019607961177826</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.06666667014360428</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.14901961386203766</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3921568989753723</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.6549019813537598</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.8000000715255737</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.2039215862751007</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.07450980693101883</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.125490203499794</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.12941177189350128</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.18431372940540314</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.7450980544090271</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.7647059559822083</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.8078432083129883</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.49803924560546875</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.729411780834198</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.2862745225429535</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3490196168422699</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.7921569347381592</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.45098042488098145</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.874509871006012</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.8431373238563538</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.4901961088180542</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3294117748737335</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.10196079313755035</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.9568628072738647</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.8431373238563538</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.6823529601097107</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.5843137502670288</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3294117748737335</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.9803922176361084</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.20000001788139343</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.6392157077789307</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.4862745404243469</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>0.9803922176361084</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.9254902601242065</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.8431373238563538</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.32156863808631897</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.30588236451148987</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.30980393290519714</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.2666666805744171</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.4705882668495178</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.09803922474384308</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.41568630933761597</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.22352942824363708</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.22352942824363708</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.22352942824363708</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.9529412388801575</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3019607961177826</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.06666667014360428</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+@endhtmlonly
+
+### mColorSlotsSecondary_Linear
+@htmlonly
+<ol>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.11372549831867218</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.13333334028720856</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.26274511218070984</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.33725491166114807</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.250980406999588</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.12156863510608673</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.30588236451148987</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3137255012989044</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.3803921937942505</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.2392157018184662</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3607843220233917</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.29411765933036804</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.11372549831867218</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.13333334028720856</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.26274511218070984</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.11372549831867218</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.13333334028720856</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.26274511218070984</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.11372549831867218</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.13333334028720856</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.26274511218070984</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.12941177189350128</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.25882354378700256</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.32549020648002625</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.3450980484485626</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.3450980484485626</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.12941177189350128</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.25882354378700256</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.12941177189350128</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.25882354378700256</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.12941177189350128</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.25882354378700256</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.12941177189350128</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.25882354378700256</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.12941177189350128</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.25882354378700256</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1098039299249649</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.12941177189350128</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.25882354378700256</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.7843137979507446</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.7921569347381592</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.874509871006012</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>0.1882353127002716</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0.1882353127002716</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.1882353127002716</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>R</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>G</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>B</summary>
+<blockquote>0.9294118285179138</blockquote>
+</details>
+<details>
+ <summary>A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+@endhtmlonly
+
+### mNbPlayerExposedSlots
+@htmlonly
+<blockquote>16</blockquote>
+@endhtmlonly
+
+### mUseFixedFactoryTick
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### mMinFactoryTickRate
+@htmlonly
+<blockquote>30</blockquote>
+@endhtmlonly
+
+### mMaxFactoryTickRate
+@htmlonly
+<blockquote>62</blockquote>
+@endhtmlonly
+
+### mDistanceBasedTickRate
+@htmlonly
+<ol>
+<li>
+<details>
+ <summary>Distance</summary>
+<blockquote>-1</blockquote>
+</details>
+<details>
+ <summary>TickRate</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Distance</summary>
+<blockquote>10000</blockquote>
+</details>
+<details>
+ <summary>TickRate</summary>
+<blockquote>0.3199999928474426</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Distance</summary>
+<blockquote>20000</blockquote>
+</details>
+<details>
+ <summary>TickRate</summary>
+<blockquote>0.6399999856948853</blockquote>
+</details>
+</li>
+</ol>
+@endhtmlonly
+
+### mFactoryOptimizationEnabled
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### mReplayEffectTimerDefault
+@htmlonly
+<blockquote>0.20000000298023224</blockquote>
+@endhtmlonly
+
+### mDefaultFactoryMaterial
+@htmlonly
+<details>
+ <summary>$AssetPath</summary>
+<b><a href="_blueprints_game_factory_game_buildable-shared_material_factory.html"><blockquote>Factory</blockquote></a></b>
+</details>
+@endhtmlonly
+
+### PrimaryActorTick
+@htmlonly
+<details>
+ <summary>TickGroup</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>EndTickGroup</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bTickEvenWhenPaused</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bCanEverTick</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bStartWithTickEnabled</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAllowTickOnDedicatedServer</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>TickInterval</summary>
+<blockquote>0</blockquote>
+</details>
+@endhtmlonly
+
+### bAlwaysRelevant
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### bReplicates
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### RemoteRole
+@htmlonly
+<blockquote>1</blockquote>
+@endhtmlonly
+

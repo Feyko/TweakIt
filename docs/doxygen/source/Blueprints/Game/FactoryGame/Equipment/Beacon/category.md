@@ -1,0 +1,6 @@
+\page BlueprintsGameFactoryGameEquipmentBeacon Beacon
+- \subpage BlueprintsGameFactoryGameEquipmentBeaconAnim_Beacon
+- \subpage BlueprintsGameFactoryGameEquipmentBeaconAttach_Beacon
+- \subpage BlueprintsGameFactoryGameEquipmentBeaconBP_Beacon
+- \subpage BlueprintsGameFactoryGameEquipmentBeaconEquip_Beacon
+- \subpage BlueprintsGameFactoryGameEquipmentBeaconUI

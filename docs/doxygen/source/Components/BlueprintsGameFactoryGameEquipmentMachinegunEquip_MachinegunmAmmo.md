@@ -1,0 +1,364 @@
+@page BlueprintsGameFactoryGameEquipmentMachinegunEquip_MachinegunmAmmo mAmmo
+### Parent :
+<b><a href="_blueprints_game_factory_game_equipment_machinegun_equip__machinegun.html"><blockquote>Equip_Machinegun</blockquote></a></b>
+### Class:
+<b><a href="_class_script_widget_component.html"><blockquote>WidgetComponent</blockquote></a></b>
+## Properties
+### WidgetClass
+@htmlonly
+<b><a href="_blueprints_game_factory_game_equipment_machinegun_widget__machinegun.html"><blockquote>Widget_Machinegun</blockquote></a></b>
+@endhtmlonly
+
+### DrawSize
+@htmlonly
+<details>
+ <summary>X</summary>
+<blockquote>100</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>100</blockquote>
+</details>
+@endhtmlonly
+
+### BodyInstance
+@htmlonly
+<details>
+ <summary>ObjectType</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>CollisionEnabled</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>SleepFamily</summary>
+<blockquote>ESleepFamily::Normal</blockquote>
+</details>
+<details>
+ <summary>DOFMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bUseCCD</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bNotifyRigidBodyCollision</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bSimulatePhysics</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bEnableGravity</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAutoWeld</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bStartAwake</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bGenerateWakeEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bUpdateMassWhenScaleChanges</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockTranslation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockRotation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockXTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockXRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxAngularVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxDepenetrationVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideWalkableSlopeOnInstance</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bInterpolateWhenSubStepping</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CollisionProfileName</summary>
+<blockquote>UI</blockquote>
+</details>
+<details>
+ <summary>CollisionResponses</summary>
+<details>
+ <summary>ResponseArray</summary>
+<ol>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>WorldStatic</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>WorldDynamic</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Pawn</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Camera</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>PhysicsBody</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Vehicle</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>Destructible</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+<details>
+ <summary>MaxDepenetrationVelocity</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>MassInKgOverride</summary>
+<blockquote>2.6073219776153564</blockquote>
+</details>
+<details>
+ <summary>LinearDamping</summary>
+<blockquote>0.009999999776482582</blockquote>
+</details>
+<details>
+ <summary>AngularDamping</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CustomDOFPlaneNormal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>COMNudge</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>MassScale</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>InertiaTensorScale</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>WalkableSlopeOverride</summary>
+<details>
+ <summary>WalkableSlopeBehavior</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>WalkableSlopeAngle</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>PhysMaterialOverride</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+<details>
+ <summary>MaxAngularVelocity</summary>
+<blockquote>3600</blockquote>
+</details>
+<details>
+ <summary>CustomSleepThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>StabilizationThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>PhysicsBlendWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>PositionSolverIterationCount</summary>
+<blockquote>8</blockquote>
+</details>
+<details>
+ <summary>VelocitySolverIterationCount</summary>
+<blockquote>1</blockquote>
+</details>
+@endhtmlonly
+
+### RelativeLocation
+@htmlonly
+<details>
+ <summary>X</summary>
+<blockquote>7.958871841430664</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>9.765741348266602</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>9.947200775146484</blockquote>
+</details>
+@endhtmlonly
+
+### RelativeRotation
+@htmlonly
+<details>
+ <summary>Pitch</summary>
+<blockquote>30.00008201599121</blockquote>
+</details>
+<details>
+ <summary>Yaw</summary>
+<blockquote>-90.00021362304688</blockquote>
+</details>
+<details>
+ <summary>Roll</summary>
+<blockquote>1.5773657651152462e-05</blockquote>
+</details>
+@endhtmlonly
+
+### RelativeScale3D
+@htmlonly
+<details>
+ <summary>X</summary>
+<blockquote>0.02500000037252903</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0.024999847635626793</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0.02500000223517418</blockquote>
+</details>
+@endhtmlonly
+

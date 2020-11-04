@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsCopperSheet CopperSheet
+- \subpage BlueprintsGameFactoryGameResourcePartsCopperSheetDesc_CopperSheet

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableFactoryAutomatedWorkBench AutomatedWorkBench
+- \subpage BlueprintsGameFactoryGameBuildableFactoryAutomatedWorkBenchBuild_AutomatedWorkBench

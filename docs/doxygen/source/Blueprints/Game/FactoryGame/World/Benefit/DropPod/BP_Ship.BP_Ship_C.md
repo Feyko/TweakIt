@@ -1,0 +1,28 @@
+\page BlueprintsGameFactoryGameWorldBenefitDropPodBP_Ship BP_Ship
+### Parent Class :
+Actor### Asset Path :
+<b><blockquote>/Game/FactoryGame/World/Benefit/DropPod/BP_Ship.BP_Ship_C</blockquote></b>
+## Components
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipSparks_013
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipSparks_012
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipElectricSpark_02
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipSmoke_02
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipSparks_014
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipFireBig_01
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipScene
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipStaticMesh
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipDecal
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipDecal1
+
+@ref BlueprintsGameFactoryGameWorldBenefitDropPodBP_ShipDecal2
+

@@ -1,0 +1,3 @@
+\page StructsGameFactoryGameBuildableShared Shared
+- \subpage StructsGameFactoryGameBuildableSharedWidgets
+- \subpage StructsGameFactoryGameBuildableSharedWorkBench

@@ -1,0 +1,376 @@
+\page ClassScriptFGWheeledVehicleMovementComponent4W FGWheeledVehicleMovementComponent4W
+### Asset Path :
+<b><blockquote>/Script/FactoryGame.FGWheeledVehicleMovementComponent4W</blockquote></b>
+## Properties
+
+### mUseDSOLGearbox
+@htmlonly
+<blockquote>True</blockquote>
+@endhtmlonly
+
+### mDSOLMaxSlopeAngleLimit
+@htmlonly
+<blockquote>33</blockquote>
+@endhtmlonly
+
+### mSlopeShiftRatio
+@htmlonly
+<blockquote>0.30000001192092896</blockquote>
+@endhtmlonly
+
+### mDownShiftLatency
+@htmlonly
+<blockquote>2</blockquote>
+@endhtmlonly
+
+### EngineSetup
+@htmlonly
+<details>
+ <summary>TorqueCurve</summary>
+<details>
+ <summary>EditorCurveData</summary>
+<details>
+ <summary>Keys</summary>
+<ol>
+<li>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentWeightMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Time</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Value</summary>
+<blockquote>400</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentWeightMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Time</summary>
+<blockquote>1890.7607421875</blockquote>
+</details>
+<details>
+ <summary>Value</summary>
+<blockquote>500</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentWeightMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Time</summary>
+<blockquote>5729.57763671875</blockquote>
+</details>
+<details>
+ <summary>Value</summary>
+<blockquote>400</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>PreInfinityExtrap</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>PostInfinityExtrap</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>DefaultValue</summary>
+<blockquote>3.4028234663852886e+38</blockquote>
+</details>
+</details>
+<details>
+ <summary>ExternalCurve</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+</details>
+<details>
+ <summary>MaxRPM</summary>
+<blockquote>5729.57763671875</blockquote>
+</details>
+<details>
+ <summary>MOI</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>DampingRateFullThrottle</summary>
+<blockquote>0.15000000596046448</blockquote>
+</details>
+<details>
+ <summary>DampingRateZeroThrottleClutchEngaged</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>DampingRateZeroThrottleClutchDisengaged</summary>
+<blockquote>0.3499999940395355</blockquote>
+</details>
+@endhtmlonly
+
+### SteeringCurve
+@htmlonly
+<details>
+ <summary>EditorCurveData</summary>
+<details>
+ <summary>Keys</summary>
+<ol>
+<li>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentWeightMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Time</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Value</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentWeightMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Time</summary>
+<blockquote>20</blockquote>
+</details>
+<details>
+ <summary>Value</summary>
+<blockquote>0.8999999761581421</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentWeightMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Time</summary>
+<blockquote>60</blockquote>
+</details>
+<details>
+ <summary>Value</summary>
+<blockquote>0.800000011920929</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>InterpMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>TangentWeightMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Time</summary>
+<blockquote>120</blockquote>
+</details>
+<details>
+ <summary>Value</summary>
+<blockquote>0.699999988079071</blockquote>
+</details>
+<details>
+ <summary>ArriveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>ArriveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangent</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>LeaveTangentWeight</summary>
+<blockquote>0</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>PreInfinityExtrap</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>PostInfinityExtrap</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>DefaultValue</summary>
+<blockquote>3.4028234663852886e+38</blockquote>
+</details>
+</details>
+<details>
+ <summary>ExternalCurve</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+@endhtmlonly
+

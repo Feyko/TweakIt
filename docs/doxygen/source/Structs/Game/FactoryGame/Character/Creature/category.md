@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameCharacterCreature Creature
+- \subpage StructsGameFactoryGameCharacterCreatureEnemy

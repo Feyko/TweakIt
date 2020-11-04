@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsHighSpeedWire HighSpeedWire
+- \subpage BlueprintsGameFactoryGameResourcePartsHighSpeedWireDesc_HighSpeedWire

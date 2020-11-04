@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsAluminumScrap AluminumScrap
+- \subpage BlueprintsGameFactoryGameResourcePartsAluminumScrapDesc_AluminumScrap

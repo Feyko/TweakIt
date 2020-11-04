@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsNuclearWaste NuclearWaste
+- \subpage BlueprintsGameFactoryGameResourcePartsNuclearWasteDesc_NuclearWaste

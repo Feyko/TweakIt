@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourceEnvironmentDesertShroom DesertShroom
+- \subpage BlueprintsGameFactoryGameResourceEnvironmentDesertShroomDesc_Shroom

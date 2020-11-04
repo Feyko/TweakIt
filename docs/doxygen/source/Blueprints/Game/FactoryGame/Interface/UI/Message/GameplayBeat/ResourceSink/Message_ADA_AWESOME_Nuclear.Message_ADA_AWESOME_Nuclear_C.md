@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatResourceSinkMessage_ADA_AWESOME_Nuclear Message_ADA_AWESOME_Nuclear
+## Widgets aren't supported by this documentation (yet)

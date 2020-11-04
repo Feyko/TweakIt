@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameSchematicsAlternate Alternate
+- \subpage BlueprintsGameFactoryGameSchematicsAlternateNew_Update3
+- \subpage BlueprintsGameFactoryGameSchematicsAlternateParts
+- \subpage BlueprintsGameFactoryGameSchematicsAlternateUpgrades

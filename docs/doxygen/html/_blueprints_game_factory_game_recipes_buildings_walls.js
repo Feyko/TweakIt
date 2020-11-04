@@ -1,0 +1,25 @@
+var _blueprints_game_factory_game_recipes_buildings_walls =
+[
+    [ "Recipe_Wall_8x4_01", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall_8x4_01.html", null ],
+    [ "Recipe_Wall_8x4_02", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall_8x4_02.html", null ],
+    [ "Recipe_Wall_Conveyor_8x4_01", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__conveyor_8x4_01.html", null ],
+    [ "Recipe_Wall_Conveyor_8x4_01_Steel", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__conveyor_8x4_01__steel.html", null ],
+    [ "Recipe_Wall_Conveyor_8x4_02", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__conveyor_8x4_02.html", null ],
+    [ "Recipe_Wall_Conveyor_8x4_02_Steel", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__conveyor_8x4_02__steel.html", null ],
+    [ "Recipe_Wall_Conveyor_8x4_03", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__conveyor_8x4_03.html", null ],
+    [ "Recipe_Wall_Conveyor_8x4_03_Steel", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__conveyor_8x4_03__steel.html", null ],
+    [ "Recipe_Wall_Conveyor_8x4_04", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__conveyor_8x4_04.html", null ],
+    [ "Recipe_Wall_Conveyor_8x4_04_Steel", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__conveyor_8x4_04__steel.html", null ],
+    [ "Recipe_Wall_Door_8x4_01", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__door_8x4_01.html", null ],
+    [ "Recipe_Wall_Door_8x4_01_Steel", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__door_8x4_01__steel.html", null ],
+    [ "Recipe_Wall_Door_8x4_02", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__door_8x4_02.html", null ],
+    [ "Recipe_Wall_Door_8x4_02_Steel", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__door_8x4_02__steel.html", null ],
+    [ "Recipe_Wall_Door_8x4_03", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__door_8x4_03.html", null ],
+    [ "Recipe_Wall_Door_8x4_03_Steel", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__door_8x4_03__steel.html", null ],
+    [ "Recipe_Wall_Gate_8x4_01", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__gate_8x4_01.html", null ],
+    [ "Recipe_Wall_Window_8x4_01", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__window_8x4_01.html", null ],
+    [ "Recipe_Wall_Window_8x4_02", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__window_8x4_02.html", null ],
+    [ "Recipe_Wall_Window_8x4_03", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__window_8x4_03.html", null ],
+    [ "Recipe_Wall_Window_8x4_03_Steel", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__window_8x4_03__steel.html", null ],
+    [ "Recipe_Wall_Window_8x4_04", "_blueprints_game_factory_game_recipes_buildings_walls_recipe__wall__window_8x4_04.html", null ]
+];

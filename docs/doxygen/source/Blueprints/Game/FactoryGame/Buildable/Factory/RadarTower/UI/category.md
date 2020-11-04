@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameBuildableFactoryRadarTowerUI UI
+- \subpage BlueprintsGameFactoryGameBuildableFactoryRadarTowerUIWidget_RadarTower
+- \subpage BlueprintsGameFactoryGameBuildableFactoryRadarTowerUIWidget_RadarTower_ScanLine

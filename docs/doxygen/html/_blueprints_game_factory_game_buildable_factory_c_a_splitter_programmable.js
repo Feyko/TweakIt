@@ -1,0 +1,5 @@
+var _blueprints_game_factory_game_buildable_factory_c_a_splitter_programmable =
+[
+    [ "BuildonveyorAttachmentSplitterProgrammable", "_blueprints_game_factory_game_buildable_factory_c_a_splitter_programmable_buildonveyor_attachment_splitter_programmable.html", null ],
+    [ "DesconveyorAttachmentSplitterProgrammable", "_blueprints_game_factory_game_buildable_factory_c_a_splitter_programmable_desconveyor_attachment_splitter_programmable.html", null ]
+];

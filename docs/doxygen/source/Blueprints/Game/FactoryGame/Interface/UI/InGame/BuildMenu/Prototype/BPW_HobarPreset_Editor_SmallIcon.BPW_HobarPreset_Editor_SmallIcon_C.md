@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameBuildMenuPrototypeBPW_HobarPreset_Editor_SmallIcon BPW_HobarPreset_Editor_SmallIcon
+## Widgets aren't supported by this documentation (yet)

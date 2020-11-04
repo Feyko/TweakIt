@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameBuildMenuPrototypeBPW_AddHotbarPreset_Button BPW_AddHotbarPreset_Button
+## Widgets aren't supported by this documentation (yet)

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameDirectionalSubtitlesWidget_DirectionalSubtitles Widget_DirectionalSubtitles
+## Widgets aren't supported by this documentation (yet)

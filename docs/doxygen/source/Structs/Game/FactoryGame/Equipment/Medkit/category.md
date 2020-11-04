@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameEquipmentMedkit Medkit
+- \subpage StructsGameFactoryGameEquipmentMedkitMedkitAnimationData

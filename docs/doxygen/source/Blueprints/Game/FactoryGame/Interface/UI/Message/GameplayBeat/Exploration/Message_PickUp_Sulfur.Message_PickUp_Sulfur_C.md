@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_PickUp_Sulfur Message_PickUp_Sulfur
+## Widgets aren't supported by this documentation (yet)

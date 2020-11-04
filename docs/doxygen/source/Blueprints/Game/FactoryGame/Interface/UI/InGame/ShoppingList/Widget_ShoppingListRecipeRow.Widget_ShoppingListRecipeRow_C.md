@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameShoppingListWidget_ShoppingListRecipeRow Widget_ShoppingListRecipeRow
+## Widgets aren't supported by this documentation (yet)

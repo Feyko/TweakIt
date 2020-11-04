@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameBuildableFactoryAssemblerMk1 AssemblerMk1
+- \subpage BlueprintsGameFactoryGameBuildableFactoryAssemblerMk1Anim_AssemblerMk1
+- \subpage BlueprintsGameFactoryGameBuildableFactoryAssemblerMk1Build_AssemblerMk1
+- \subpage BlueprintsGameFactoryGameBuildableFactoryAssemblerMk1Desc_AssemblerMk1

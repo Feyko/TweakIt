@@ -1,0 +1,5 @@
+\page BlueprintsGameFactoryGameBuildableFactoryResourceSink ResourceSink
+- \subpage BlueprintsGameFactoryGameBuildableFactoryResourceSinkBPA_ResourceSink
+- \subpage BlueprintsGameFactoryGameBuildableFactoryResourceSinkBuild_ResourceSink
+- \subpage BlueprintsGameFactoryGameBuildableFactoryResourceSinkDesc_ResourceSink
+- \subpage BlueprintsGameFactoryGameBuildableFactoryResourceSinkUI

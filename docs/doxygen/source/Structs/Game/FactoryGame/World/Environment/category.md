@@ -1,0 +1,3 @@
+\page StructsGameFactoryGameWorldEnvironment Environment
+- \subpage StructsGameFactoryGameWorldEnvironmentDayNight
+- \subpage StructsGameFactoryGameWorldEnvironmentRock

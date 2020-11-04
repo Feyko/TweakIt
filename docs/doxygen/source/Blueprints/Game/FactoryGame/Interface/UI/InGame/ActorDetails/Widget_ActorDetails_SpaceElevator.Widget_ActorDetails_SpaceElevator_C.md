@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameActorDetailsWidget_ActorDetails_SpaceElevator Widget_ActorDetails_SpaceElevator
+## Widgets aren't supported by this documentation (yet)

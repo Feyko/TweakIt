@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableFactoryTrainStationBPA_TrainDockingStationLiquid BPA_TrainDockingStationLiquid
+## Animation Blueprints aren't supported by this documentation (yet)

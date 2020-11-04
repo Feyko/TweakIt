@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourceRawResourcesOreUranium OreUranium
+- \subpage BlueprintsGameFactoryGameResourceRawResourcesOreUraniumDesc_OreUranium

@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameResourcePartsFuel Fuel
+- \subpage BlueprintsGameFactoryGameResourcePartsFuelDesc_Fuel
+- \subpage BlueprintsGameFactoryGameResourcePartsFuelDesc_LiquidFuel

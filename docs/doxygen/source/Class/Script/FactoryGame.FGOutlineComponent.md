@@ -1,0 +1,451 @@
+\page ClassScriptFGOutlineComponent FGOutlineComponent
+### Asset Path :
+<b><blockquote>/Script/FactoryGame.FGOutlineComponent</blockquote></b>
+@ref ClassScriptFGOutlineComponentmOutlineProxy
+
+## Properties
+
+### mOutlineProxy
+@htmlonly
+<details>
+ <summary>bRenderInMainPass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>CastShadow</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>BodyInstance</summary>
+<details>
+ <summary>ObjectType</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>CollisionEnabled</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>SleepFamily</summary>
+<blockquote>ESleepFamily::Normal</blockquote>
+</details>
+<details>
+ <summary>DOFMode</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>bUseCCD</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bNotifyRigidBodyCollision</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bSimulatePhysics</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMass</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bEnableGravity</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bAutoWeld</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bStartAwake</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bGenerateWakeEvents</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bUpdateMassWhenScaleChanges</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockTranslation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockRotation</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>bLockXTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZTranslation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockXRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockYRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bLockZRotation</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxAngularVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideMaxDepenetrationVelocity</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bOverrideWalkableSlopeOnInstance</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bInterpolateWhenSubStepping</summary>
+<blockquote>True</blockquote>
+</details>
+<details>
+ <summary>CollisionProfileName</summary>
+<blockquote>Custom</blockquote>
+</details>
+<details>
+ <summary>CollisionResponses</summary>
+<details>
+ <summary>ResponseArray</summary>
+<ol>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>BuildGun</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>WeaponInstantHit</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>Channel</summary>
+<blockquote>VehicleWheelQuery</blockquote>
+</details>
+<details>
+ <summary>Response</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+<details>
+ <summary>MaxDepenetrationVelocity</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>MassInKgOverride</summary>
+<blockquote>100</blockquote>
+</details>
+<details>
+ <summary>LinearDamping</summary>
+<blockquote>0.009999999776482582</blockquote>
+</details>
+<details>
+ <summary>AngularDamping</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>CustomDOFPlaneNormal</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>COMNudge</summary>
+<details>
+ <summary>X</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>MassScale</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>InertiaTensorScale</summary>
+<details>
+ <summary>X</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Y</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>Z</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>WalkableSlopeOverride</summary>
+<details>
+ <summary>WalkableSlopeBehavior</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>WalkableSlopeAngle</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>PhysMaterialOverride</summary>
+<details>
+ <summary>$Empty</summary>
+<blockquote>True</blockquote>
+</details>
+</details>
+<details>
+ <summary>MaxAngularVelocity</summary>
+<blockquote>3600</blockquote>
+</details>
+<details>
+ <summary>CustomSleepThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>StabilizationThresholdMultiplier</summary>
+<blockquote>1</blockquote>
+</details>
+<details>
+ <summary>PhysicsBlendWeight</summary>
+<blockquote>0</blockquote>
+</details>
+<details>
+ <summary>PositionSolverIterationCount</summary>
+<blockquote>8</blockquote>
+</details>
+<details>
+ <summary>VelocitySolverIterationCount</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>AttachParent</summary>
+<details>
+ <summary>$ObjectRef</summary>
+<blockquote>0</blockquote>
+</details>
+</details>
+<details>
+ <summary>bVisible</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>bCanEverAffectNavigation</summary>
+<blockquote>False</blockquote>
+</details>
+@endhtmlonly
+
+### mActiveOutlineActor
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategoryObject</summary>
+<b><a href="_class_script_actor.html"><blockquote>Actor</blockquote></a></b>
+</details>
+@endhtmlonly
+
+### mActiveMultiOutlineActors
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategoryObject</summary>
+<b><a href="_class_script_actor.html"><blockquote>Actor</blockquote></a></b>
+</details>
+<details>
+ <summary>ContainerType</summary>
+<blockquote>1</blockquote>
+</details>
+@endhtmlonly
+
+### mCachedActorMaterials
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategoryObject</summary>
+<b><a href="_class_script_actor.html"><blockquote>Actor</blockquote></a></b>
+</details>
+<details>
+ <summary>PinValueType</summary>
+<details>
+ <summary>TerminalCategory</summary>
+<blockquote>struct</blockquote>
+</details>
+<details>
+ <summary>TerminalSubCategory</summary>
+<blockquote>None</blockquote>
+</details>
+<details>
+ <summary>TerminalSubCategoryObject</summary>
+<b><a href="_class_script_cached_mesh_to_material_object.html"><blockquote>CachedMeshToMaterialObject</blockquote></a></b>
+</details>
+<details>
+ <summary>TerminalIsConst</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>TerminalIsWeakPointer</summary>
+<blockquote>False</blockquote>
+</details>
+</details>
+<details>
+ <summary>ContainerType</summary>
+<blockquote>3</blockquote>
+</details>
+@endhtmlonly
+
+### mCachedSplineComponentMaterials
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategoryObject</summary>
+<b><a href="_class_script_f_g_spline_component.html"><blockquote>FGSplineComponent</blockquote></a></b>
+</details>
+<details>
+ <summary>PinValueType</summary>
+<details>
+ <summary>TerminalCategory</summary>
+<blockquote>struct</blockquote>
+</details>
+<details>
+ <summary>TerminalSubCategory</summary>
+<blockquote>None</blockquote>
+</details>
+<details>
+ <summary>TerminalSubCategoryObject</summary>
+<b><a href="_class_script_cached_spline_mesh_to_material_object.html"><blockquote>CachedSplineMeshToMaterialObject</blockquote></a></b>
+</details>
+<details>
+ <summary>TerminalIsConst</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>TerminalIsWeakPointer</summary>
+<blockquote>False</blockquote>
+</details>
+</details>
+<details>
+ <summary>ContainerType</summary>
+<blockquote>3</blockquote>
+</details>
+@endhtmlonly
+
+### mCachedProxyMeshMaterials
+@htmlonly
+<details>
+ <summary>PinCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategory</summary>
+<blockquote>Object</blockquote>
+</details>
+<details>
+ <summary>PinSubCategoryObject</summary>
+<b><a href="_class_script_proxy_instanced_static_mesh_component.html"><blockquote>ProxyInstancedStaticMeshComponent</blockquote></a></b>
+</details>
+<details>
+ <summary>PinValueType</summary>
+<details>
+ <summary>TerminalCategory</summary>
+<blockquote>struct</blockquote>
+</details>
+<details>
+ <summary>TerminalSubCategory</summary>
+<blockquote>None</blockquote>
+</details>
+<details>
+ <summary>TerminalSubCategoryObject</summary>
+<b><a href="_class_script_cached_material_interface_array.html"><blockquote>CachedMaterialInterfaceArray</blockquote></a></b>
+</details>
+<details>
+ <summary>TerminalIsConst</summary>
+<blockquote>False</blockquote>
+</details>
+<details>
+ <summary>TerminalIsWeakPointer</summary>
+<blockquote>False</blockquote>
+</details>
+</details>
+<details>
+ <summary>ContainerType</summary>
+<blockquote>3</blockquote>
+</details>
+@endhtmlonly
+

@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameWorldEnvironmentDayNight DayNight
+- \subpage StructsGameFactoryGameWorldEnvironmentDayNightFBrightnessAdjustment

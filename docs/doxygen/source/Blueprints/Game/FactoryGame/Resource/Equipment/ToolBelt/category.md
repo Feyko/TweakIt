@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourceEquipmentToolBelt ToolBelt
+- \subpage BlueprintsGameFactoryGameResourceEquipmentToolBeltDesc_ToolBelt

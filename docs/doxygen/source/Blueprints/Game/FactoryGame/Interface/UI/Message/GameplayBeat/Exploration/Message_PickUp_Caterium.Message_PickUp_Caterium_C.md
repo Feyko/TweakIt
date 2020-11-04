@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_PickUp_Caterium Message_PickUp_Caterium
+## Widgets aren't supported by this documentation (yet)

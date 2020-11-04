@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameSharedWidget_StandardButton_Togglable Widget_StandardButton_Togglable
+## Widgets aren't supported by this documentation (yet)

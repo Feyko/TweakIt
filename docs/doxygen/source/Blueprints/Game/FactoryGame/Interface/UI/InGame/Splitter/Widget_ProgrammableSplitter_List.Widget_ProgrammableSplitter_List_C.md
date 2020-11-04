@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameSplitterWidget_ProgrammableSplitter_List Widget_ProgrammableSplitter_List
+## Widgets aren't supported by this documentation (yet)

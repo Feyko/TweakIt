@@ -1,0 +1,2 @@
+\page EnumsGameFactoryGameInterfaceUIInGameColorPicker ColorPicker
+- \subpage EnumsGameFactoryGameInterfaceUIInGameColorPickerEnum_ColorPickerSliderType

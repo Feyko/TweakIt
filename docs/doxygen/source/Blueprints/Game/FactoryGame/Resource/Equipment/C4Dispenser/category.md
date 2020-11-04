@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameResourceEquipmentC4Dispenser C4Dispenser
+- \subpage BlueprintsGameFactoryGameResourceEquipmentC4DispenserDesc_Nobelisk
+- \subpage BlueprintsGameFactoryGameResourceEquipmentC4DispenserDesc_NobeliskDetonator

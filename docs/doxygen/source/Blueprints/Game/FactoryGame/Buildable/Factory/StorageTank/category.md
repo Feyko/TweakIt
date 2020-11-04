@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameBuildableFactoryStorageTank StorageTank
+- \subpage BlueprintsGameFactoryGameBuildableFactoryStorageTankBuild_PipeStorageTank
+- \subpage BlueprintsGameFactoryGameBuildableFactoryStorageTankDesc_PipeStorageTank
+- \subpage BlueprintsGameFactoryGameBuildableFactoryStorageTankWidget_PipeStorageTank

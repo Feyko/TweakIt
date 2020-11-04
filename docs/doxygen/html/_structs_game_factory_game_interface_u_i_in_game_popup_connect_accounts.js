@@ -1,0 +1,4 @@
+var _structs_game_factory_game_interface_u_i_in_game_popup_connect_accounts =
+[
+    [ "Struct_BPW_PopupConnectAccounts_SelectionButton", "_structs_game_factory_game_interface_u_i_in_game_popup_connect_accounts_struct__b_p_w__popup_connect_accounts__selection_button.html", null ]
+];

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableFactoryTradingPostWidget_TradingPost_ActivateSchematicButton Widget_TradingPost_ActivateSchematicButton
+## Widgets aren't supported by this documentation (yet)

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameBuildMenuPrototypeWidget_BuildMenu_InfoBox Widget_BuildMenu_InfoBox
+## Widgets aren't supported by this documentation (yet)

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameShoppingListWidget_ActiveSchematicContainer Widget_ActiveSchematicContainer
+## Widgets aren't supported by this documentation (yet)

@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameBuildableVehicleCyberwagon Cyberwagon
+- \subpage BlueprintsGameFactoryGameBuildableVehicleCyberwagonBPA_Testa_Cybertruck
+- \subpage BlueprintsGameFactoryGameBuildableVehicleCyberwagonDesc_CyberWagon
+- \subpage BlueprintsGameFactoryGameBuildableVehicleCyberwagonTesta_BP_WB

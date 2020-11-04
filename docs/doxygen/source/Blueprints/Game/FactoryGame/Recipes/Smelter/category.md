@@ -1,0 +1,6 @@
+\page BlueprintsGameFactoryGameRecipesSmelter Smelter
+- \subpage BlueprintsGameFactoryGameRecipesSmelterRecipe_IngotAluminum
+- \subpage BlueprintsGameFactoryGameRecipesSmelterRecipe_IngotCaterium
+- \subpage BlueprintsGameFactoryGameRecipesSmelterRecipe_IngotCopper
+- \subpage BlueprintsGameFactoryGameRecipesSmelterRecipe_IngotIron
+- \subpage BlueprintsGameFactoryGameRecipesSmelterRecipe_IngotSteel

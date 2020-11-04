@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGamePopupConnectAccountsBPW_PopupConnectAccounts_SelectionButton_BulletPoint BPW_PopupConnectAccounts_SelectionButton_BulletPoint
+## Widgets aren't supported by this documentation (yet)

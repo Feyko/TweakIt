@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableVehicleTrainLocomotiveBP_FreightWagonAnim_Child BP_FreightWagonAnim_Child
+## Animation Blueprints aren't supported by this documentation (yet)

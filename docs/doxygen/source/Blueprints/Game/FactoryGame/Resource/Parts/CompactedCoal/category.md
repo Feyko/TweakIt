@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsCompactedCoal CompactedCoal
+- \subpage BlueprintsGameFactoryGameResourcePartsCompactedCoalDesc_CompactedCoal

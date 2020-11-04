@@ -1,0 +1,2 @@
+\page StructsGameFactoryGameInterfaceUIMinimapMapFilters MapFilters
+- \subpage StructsGameFactoryGameInterfaceUIMinimapMapFiltersMapFilterStruct

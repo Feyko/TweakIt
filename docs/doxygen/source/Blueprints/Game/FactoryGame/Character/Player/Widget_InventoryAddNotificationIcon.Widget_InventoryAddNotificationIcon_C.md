@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameCharacterPlayerWidget_InventoryAddNotificationIcon Widget_InventoryAddNotificationIcon
+## Widgets aren't supported by this documentation (yet)

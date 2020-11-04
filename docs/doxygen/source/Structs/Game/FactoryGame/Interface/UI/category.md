@@ -1,0 +1,4 @@
+\page StructsGameFactoryGameInterfaceUI UI
+- \subpage StructsGameFactoryGameInterfaceUIInGame
+- \subpage StructsGameFactoryGameInterfaceUIMenu
+- \subpage StructsGameFactoryGameInterfaceUIMinimap

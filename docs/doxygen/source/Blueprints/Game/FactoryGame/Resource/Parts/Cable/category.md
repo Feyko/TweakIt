@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsCable Cable
+- \subpage BlueprintsGameFactoryGameResourcePartsCableDesc_Cable

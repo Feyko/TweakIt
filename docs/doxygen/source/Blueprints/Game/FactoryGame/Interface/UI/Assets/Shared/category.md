@@ -1,0 +1,4 @@
+\page BlueprintsGameFactoryGameInterfaceUIAssetsShared Shared
+- \subpage BlueprintsGameFactoryGameInterfaceUIAssetsSharedWidget_CraftBench_Category
+- \subpage BlueprintsGameFactoryGameInterfaceUIAssetsSharedWidget_Label
+- \subpage BlueprintsGameFactoryGameInterfaceUIAssetsSharedWidget_SwitchButton

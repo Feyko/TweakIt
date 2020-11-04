@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameBuildableFactoryCA_Merger CA_Merger
+- \subpage BlueprintsGameFactoryGameBuildableFactoryCA_MergerBuild_ConveyorAttachmentMerger
+- \subpage BlueprintsGameFactoryGameBuildableFactoryCA_MergerDesc_ConveyorAttachmentMerger

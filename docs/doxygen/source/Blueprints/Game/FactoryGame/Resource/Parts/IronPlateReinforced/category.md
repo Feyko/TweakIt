@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsIronPlateReinforced IronPlateReinforced
+- \subpage BlueprintsGameFactoryGameResourcePartsIronPlateReinforcedDesc_IronPlateReinforced

@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatResourceSinkMessage_ADA_AWESOME_CyberWagon Message_ADA_AWESOME_CyberWagon
+## Widgets aren't supported by this documentation (yet)

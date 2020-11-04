@@ -1,0 +1,2 @@
+\page BlueprintsGameProceduralNaturePack ProceduralNaturePack
+- \subpage BlueprintsGameProceduralNaturePackSpline_BluePrints

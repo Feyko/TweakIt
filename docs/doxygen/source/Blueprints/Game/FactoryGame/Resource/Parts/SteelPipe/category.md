@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsSteelPipe SteelPipe
+- \subpage BlueprintsGameFactoryGameResourcePartsSteelPipeDesc_SteelPipe

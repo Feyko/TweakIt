@@ -1,0 +1,5 @@
+\page BlueprintsGameFactoryGameEquipmentMachinegun Machinegun
+- \subpage BlueprintsGameFactoryGameEquipmentMachinegunAttach_Machinegun
+- \subpage BlueprintsGameFactoryGameEquipmentMachinegunDamageType_Machinegun
+- \subpage BlueprintsGameFactoryGameEquipmentMachinegunEquip_Machinegun
+- \subpage BlueprintsGameFactoryGameEquipmentMachinegunWidget_Machinegun

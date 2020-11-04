@@ -1,0 +1,1096 @@
+\page BlueprintsGameFactoryGameSchematicsResearchBPD_ResearchTree_Quartz BPD_ResearchTree_Quartz
+### Parent Class :
+[FGResearchTree](@ref ClassScriptFGResearchTree)
+### Asset Path :
+<b><blockquote>/Game/FactoryGame/Schematics/Research/BPD_ResearchTree_Quartz.BPD_ResearchTree_Quartz_C</blockquote></b>
+## Properties
+
+### mPreUnlockDisplayName
+@htmlonly
+<blockquote>NSLOCTEXT("", "35EBF8914B23E094AB050BACDD382096", "Unknown Crystalline Mineral")</blockquote>
+@endhtmlonly
+
+### mDisplayName
+@htmlonly
+<blockquote>NSLOCTEXT("", "4D4A29EE46C7F9F37CF60F92FAF9F706", "Quartz")</blockquote>
+@endhtmlonly
+
+### mPreUnlockDescription
+@htmlonly
+<blockquote>NSLOCTEXT("", "977DBBF84C323E6CBD86F9A34267A5F9", "Initial planetary-scans indicate that an unknown crystalline mineral is present on Massage-2(AB)b. A sample is required to determine if useful applications are possible.")</blockquote>
+@endhtmlonly
+
+### mPostUnlockDescription
+@htmlonly
+<blockquote>NSLOCTEXT("", "904C8CB64B2DF18DD9F85281C2A8CD23", "This mineral shows purity levels akin to synthetic Quartz manufactured on earth. Thus R&D believes it maybe be used in similar fashion to produce communication and exploration technologies.")</blockquote>
+@endhtmlonly
+
+### mUnlockDependencies
+@htmlonly
+<ol>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_availability_dependencies_b_p__item_picked_up_dependency.html"><blockquote>BP_ItemPickedUpDependency</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621481</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BP_ItemPickedUpDependency_C_0</blockquote>
+</details>
+<details>
+ <summary>mItems</summary>
+<ol>
+<li>
+<b><a href="_blueprints_game_factory_game_resource_raw_resources_raw_quartz_desc__raw_quartz.html"><blockquote>Desc_RawQuartz</blockquote></a></b>
+</li>
+</ol>
+</details>
+</li>
+</ol>
+@endhtmlonly
+
+### mNodes
+@htmlonly
+<ol>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_49</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_3_1.html"><blockquote>Research_Quartz_3_1</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_50</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_4.html"><blockquote>Research_Quartz_4</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_51</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_3_2.html"><blockquote>Research_Quartz_3_2</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A</summary>
+<ol>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_52</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_3_3.html"><blockquote>Research_Quartz_3_3</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_53</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_3.html"><blockquote>Research_Quartz_3</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A</summary>
+<ol>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_54</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_0.html"><blockquote>Research_Quartz_0</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+</details>
+<details>
+ <summary>ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A</summary>
+<ol>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_55</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_1_1.html"><blockquote>Research_Quartz_1_1</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A</summary>
+<ol>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>2</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>2</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_56</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_1_2.html"><blockquote>Research_Quartz_1_2</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>4</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_57</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_2.html"><blockquote>Research_Quartz_2</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>2</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A</summary>
+<ol>
+<li>
+<details>
+ <summary>Key</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</details>
+<details>
+ <summary>Value</summary>
+<details>
+ <summary>Points_10_9533B9104470D8E053E7ACA5C4C9F865</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>1</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>3</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+<li>
+<details>
+ <summary>$ObjectClass</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_b_p_d__research_tree_node.html"><blockquote>BPD_ResearchTreeNode</blockquote></a></b>
+</details>
+<details>
+ <summary>$ObjectFlags</summary>
+<blockquote>2621442</blockquote>
+</details>
+<details>
+ <summary>$ObjectName</summary>
+<blockquote>BPD_ResearchTreeNode_C_58</blockquote>
+</details>
+<details>
+ <summary>mNodeDataStruct</summary>
+<details>
+ <summary>Schematic_27_3663A42446FDB4387D0C81AFC23E225B</summary>
+<b><a href="_blueprints_game_factory_game_schematics_research_quartz__r_s_research__quartz_4_1.html"><blockquote>Research_Quartz_4_1</blockquote></a></b>
+</details>
+<details>
+ <summary>Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292</summary>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>2</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>5</blockquote>
+</details>
+</details>
+<details>
+ <summary>Parents_20_7A099B96409362536B743BA1CC77C234</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+</ol>
+</details>
+<details>
+ <summary>UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63</summary>
+<ol>
+<li>
+<details>
+ <summary>X_2_3FF107F84D30EB52DD50898C7D2CAD67</summary>
+<blockquote>3</blockquote>
+</details>
+<details>
+ <summary>Y_4_F18C5B824136D7759146338CAA496F0A</summary>
+<blockquote>4</blockquote>
+</details>
+</li>
+</ol>
+</details>
+</details>
+</li>
+</ol>
+@endhtmlonly
+

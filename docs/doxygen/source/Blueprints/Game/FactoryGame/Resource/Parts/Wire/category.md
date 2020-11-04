@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsWire Wire
+- \subpage BlueprintsGameFactoryGameResourcePartsWireDesc_Wire

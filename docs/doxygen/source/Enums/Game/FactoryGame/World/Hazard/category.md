@@ -1,0 +1,2 @@
+\page EnumsGameFactoryGameWorldHazard Hazard
+- \subpage EnumsGameFactoryGameWorldHazardSporeCloudPlant

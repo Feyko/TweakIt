@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableFactoryTradingPostWidget_TradingPostPayOffSlot Widget_TradingPostPayOffSlot
+## Widgets aren't supported by this documentation (yet)

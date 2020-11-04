@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameEquipmentShared Shared
+- \subpage BlueprintsGameFactoryGameEquipmentSharedConsumeable

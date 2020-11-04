@@ -1,0 +1,2 @@
+\page EnumsGameFactoryGameCharacter Character
+- \subpage EnumsGameFactoryGameCharacterPlayer

@@ -1,0 +1,9 @@
+var _blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_forest =
+[
+    [ "AmbientSetting_Zone_DuneForest_DayNight_Atmos", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_forest_ambient_setting_cc7253a615206fb562bee07354459349.html", null ],
+    [ "AmbientSetting_Zone_DuneForest_Forest", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_forest_ambient_setting__zone__dune_forest__forest.html", null ],
+    [ "AmbientSetting_Zone_DuneForest_Grass", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_forest_ambient_setting__zone__dune_forest__grass.html", null ],
+    [ "AmbientSetting_Zone_DuneForest_NightQuad", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_forest_ambient_setting__zone__dune_forest__night_quad.html", null ],
+    [ "AmbientSetting_Zone_DuneForest_Wildlife", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_forest_ambient_setting__zone__dune_forest__wildlife.html", null ],
+    [ "Ambient_Setting_Zone_DuneForest_ForestDayMain", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_forest_ambient__settinga3ee41723223494115924711100fd836.html", null ]
+];

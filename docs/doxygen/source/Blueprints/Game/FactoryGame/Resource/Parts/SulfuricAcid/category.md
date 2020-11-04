@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsSulfuricAcid SulfuricAcid
+- \subpage BlueprintsGameFactoryGameResourcePartsSulfuricAcidDesc_SulfuricAcid

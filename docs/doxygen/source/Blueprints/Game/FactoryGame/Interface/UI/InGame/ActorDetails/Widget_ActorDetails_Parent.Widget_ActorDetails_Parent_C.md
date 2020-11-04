@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameInterfaceUIInGameActorDetailsWidget_ActorDetails_Parent Widget_ActorDetails_Parent
+## Widgets aren't supported by this documentation (yet)

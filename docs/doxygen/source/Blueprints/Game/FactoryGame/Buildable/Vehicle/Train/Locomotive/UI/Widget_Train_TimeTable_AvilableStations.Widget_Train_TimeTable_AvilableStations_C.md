@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameBuildableVehicleTrainLocomotiveUIWidget_Train_TimeTable_AvilableStations Widget_Train_TimeTable_AvilableStations
+## Widgets aren't supported by this documentation (yet)

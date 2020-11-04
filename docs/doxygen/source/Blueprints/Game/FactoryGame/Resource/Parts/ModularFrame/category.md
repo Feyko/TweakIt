@@ -1,0 +1,2 @@
+\page BlueprintsGameFactoryGameResourcePartsModularFrame ModularFrame
+- \subpage BlueprintsGameFactoryGameResourcePartsModularFrameDesc_ModularFrame

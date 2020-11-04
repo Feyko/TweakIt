@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameCharacterPlayerAnimation Animation
+- \subpage BlueprintsGameFactoryGameCharacterPlayerAnimationFirstPerson
+- \subpage BlueprintsGameFactoryGameCharacterPlayerAnimationThirdPerson

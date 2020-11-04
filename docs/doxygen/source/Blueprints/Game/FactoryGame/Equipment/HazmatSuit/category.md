@@ -1,0 +1,3 @@
+\page BlueprintsGameFactoryGameEquipmentHazmatSuit HazmatSuit
+- \subpage BlueprintsGameFactoryGameEquipmentHazmatSuitAttach_HazmatSuit
+- \subpage BlueprintsGameFactoryGameEquipmentHazmatSuitEquip_HazmatSuit
