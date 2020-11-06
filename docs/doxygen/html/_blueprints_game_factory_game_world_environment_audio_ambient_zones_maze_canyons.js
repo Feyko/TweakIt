@@ -1,6 +1,0 @@
-var _blueprints_game_factory_game_world_environment_audio_ambient_zones_maze_canyons =
-[
-    [ "AmbientSetting_MazeCanyons_Atmos_Main", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_maze_canyons_ambient_setting__maze_canyons__atmos__main.html", null ],
-    [ "AmbientSetting_MazeCanyons_Wildlife", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_maze_canyons_ambient_setting__maze_canyons__wildlife.html", null ],
-    [ "AmbientSetting_MazeCanyons_Wildlife_TreeLarks", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_maze_canyons_ambient_setting1b393f1bd613c0748f28fd80bb5283cb.html", null ]
-];

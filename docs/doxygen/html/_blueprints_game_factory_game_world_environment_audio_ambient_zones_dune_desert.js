@@ -1,8 +1,0 @@
-var _blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_desert =
-[
-    [ "AmbientSetting_Zone_DuneDesert_AnimatedWinds", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_desert_ambient_setting_f93d63d9865f5ba4663913031fcd06f0.html", null ],
-    [ "Ambient_Setting_Zone_DuneDesert_Crawlers", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_desert_ambient__setting__zone__dune_desert__crawlers.html", null ],
-    [ "Ambient_Setting_Zone_DuneDesert_Crickets", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_desert_ambient__setting__zone__dune_desert__crickets.html", null ],
-    [ "Ambient_Setting_Zone_DuneDesert_Main", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_desert_ambient__setting__zone__dune_desert__main.html", null ],
-    [ "Ambient_Setting_Zone_DuneDesert_Wildlife", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_dune_desert_ambient__setting__zone__dune_desert__wildlife.html", null ]
-];

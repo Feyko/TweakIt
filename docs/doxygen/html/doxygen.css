@@ -1,25 +1,5 @@
 /* The standard CSS for doxygen 1.8.20 */
 
-details {
-    border: 1px solid #aaa;
-    border-radius: 10px;
-    padding: 0.5em 0.5em 0;
-}
-
-summary {
-    font-weight: bold;
-    margin: -.5em -.5em 0;
-    padding: .5em;
-}
-
-details[open] {
-    padding: .5em;
-}
-
-details[open] summary {
-    margin-bottom: .5em;
-}
-
 body, table, div, p, dl {
 	font: 400 14px/22px Roboto,sans-serif;
 }

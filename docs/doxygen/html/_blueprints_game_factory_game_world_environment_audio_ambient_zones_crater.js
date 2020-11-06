@@ -1,5 +1,0 @@
-var _blueprints_game_factory_game_world_environment_audio_ambient_zones_crater =
-[
-    [ "AmbientSettings_Crater_DayNight_Atmos", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_crater_ambient_settings__crater__day_night__atmos.html", null ],
-    [ "Ambient_Settings_Crater_DayNight_Wildlife", "_blueprints_game_factory_game_world_environment_audio_ambient_zones_crater_ambient__settings__crater__day_night__wildlife.html", null ]
-];
