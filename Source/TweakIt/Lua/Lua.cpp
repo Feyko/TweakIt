@@ -3,21 +3,19 @@
 #include <string>
 #include "CoreMinimal.h"
 
-#include "AssetRegistryModule.h"
-#include "D:/SatisfactoryModding/SatisfactoryModLoader/Source/Tweaker/LuaLib/lua.hpp"
+#include "D:/SatisfactoryModding/SatisfactoryModLoader/Source/TweakIt/LuaLib/lua.hpp"
+#include "FGBuildableManufacturer.h"
 #include "IPlatformFilePak.h"
+#include "Reflection.h"
+#include "TweakItGameSubsystem.h"
 
 #include "UObjectIterator.h"
 #include "Engine/BlueprintGeneratedClass.h"
-#include "LuaUClass.h"
-#include "LuaUEnum.h"
-#include "LuaUObject.h"
-#include "TweakerSubsystem.h"
 #include "util/Logging.h"
 using namespace std;
 
 
-namespace Tweaker
+namespace TweakIt
 {
     namespace Lua
     {
@@ -35,7 +33,7 @@ namespace Tweaker
             }
         }
 
-        void stackDump (lua_State *L) {
+        void stackDump (lua_State* L) {
     
             int i;
             int top = lua_gettop(L);
@@ -62,9 +60,21 @@ namespace Tweaker
 			} else if (c & EClassCastFlags::CASTCLASS_UStrProperty) {
 				lua_pushstring(L, TCHAR_TO_UTF8(**p->ContainerPtrToValuePtr<FString>(data)));
 			} else if (c & EClassCastFlags::CASTCLASS_UClassProperty) {
-				LuaUClass::ConstructClass(L, *p->ContainerPtrToValuePtr<UClass*>(data));
+				LuaUClass::ConstructClass(L, p->ContainerPtrToValuePtr<UClass>(data));
+			} else if (c & EClassCastFlags::CASTCLASS_UStructProperty) {
+				UStructProperty* StructProperty = Cast<UStructProperty>(p);
+				UScriptStruct* ScriptStruct = StructProperty->Struct;
+				void* ScriptStructValue = StructProperty->ContainerPtrToValuePtr<void>(data);
+				check(ScriptStruct);
+				lua_newtable(L);
+				for (UProperty* NestedProperty = ScriptStruct->PropertyLink; NestedProperty; NestedProperty = NestedProperty->PropertyLinkNext) {
+					void* NestedPropertyValue = NestedProperty->ContainerPtrToValuePtr<void>(ScriptStructValue);
+					lua_pushstring(L, TCHAR_TO_UTF8(*NestedProperty->GetName()));
+					propertyToLua(L, NestedProperty, NestedPropertyValue);
+					lua_settable(L, -3);
+				}
 			} else if (c & EClassCastFlags::CASTCLASS_UObjectProperty) {
-				LuaUObject::ConstructObject(L, *p->ContainerPtrToValuePtr<UObject*>(data));
+				LuaUObject::ConstructObject(L, p->ContainerPtrToValuePtr<UObject>(data));
 			} else if (c & EClassCastFlags::CASTCLASS_UArrayProperty) {
 				UArrayProperty* prop = Cast<UArrayProperty>(p);
 				const FScriptArray& arr = prop->GetPropertyValue_InContainer(data);
@@ -99,6 +109,20 @@ namespace Tweaker
 			} else if (c & EClassCastFlags::CASTCLASS_UClassProperty) {
 				UClass* o = ((LuaUClass*)lua_touserdata(L, i))->Class;
 				*p->ContainerPtrToValuePtr<UClass*>(data) = o;
+			}  else if (c & EClassCastFlags::CASTCLASS_UClassProperty) {
+				UClass* o = ((LuaUClass*)lua_touserdata(L, i))->Class;
+				*p->ContainerPtrToValuePtr<UClass*>(data) = o;
+			} else if (c & EClassCastFlags::CASTCLASS_UStructProperty) {
+				UStructProperty* StructProperty = Cast<UStructProperty>(p);
+				UScriptStruct* ScriptStruct = StructProperty->Struct;
+				void* PropertyValue = StructProperty->ContainerPtrToValuePtr<void>(data);
+				lua_pushnil(L);
+				while (lua_next(L, i) != 0) {
+					FString key = lua_tostring(L, -2);
+					UProperty* NestedProperty = TweakIt::Reflection::FindPropertyByShortName(ScriptStruct, *key);
+					luaToProperty(L, NestedProperty, PropertyValue, -1);
+					lua_pop(L, 1);
+				}
 			} else if (c & EClassCastFlags::CASTCLASS_UArrayProperty) {
 				UArrayProperty* Property = Cast<UArrayProperty>(p);
 				const void* ArrayValue = Property->ContainerPtrToValuePtr<void>(data);
@@ -162,7 +186,16 @@ namespace Tweaker
             return 1;
         }
 
-
+		int lua_LoadObject(lua_State* L)
+        {
+        	LOG("Loading an object")
+        	FString path = lua_tostring(L, 1);
+        	UClass* Class = lua_isuserdata(L, 1) ? ((LuaUClass*)lua_touserdata(L, 2))->Class : UObject::StaticClass();
+        	UObject* object = StaticLoadObject(Class, nullptr, *path);
+        	LuaUObject::ConstructObject(L, object);
+	        return 1;
+        }
+    	
         int lua_Print(lua_State* L)
         {
             if( lua_isstring(L, -1))
@@ -175,51 +208,4 @@ namespace Tweaker
     }
 }
 
-using namespace Tweaker::Lua;
-
-void UFETLua::test()
-{
-    LOG("Starting the Lua test");
-    lua_State* L = luaL_newstate();
-    luaL_openlibs(L);
-
-    luaL_newmetatable(L, "LuaUClassMeTa");
-    lua_pushstring(L, "__index");
-    lua_pushcfunction(L, LuaUClass::lua_index);
-    lua_settable(L, -3);
-    lua_pushstring(L, "__newindex");
-    lua_pushcfunction(L, LuaUClass::lua_newindex);
-    lua_settable(L, -3);
-	lua_pushstring(L, "__call");
-	lua_pushcfunction(L, LuaUClass::lua__call);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__tostring");
-	lua_pushcfunction(L, LuaUClass::lua__tostring);
-	lua_settable(L, -3);
-
-	luaL_newmetatable(L, "LuaUEnumMeTa");
-	lua_pushstring(L, "__index");
-	lua_pushcfunction(L, LuaUEnum::lua_index);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__newindex");
-	lua_pushcfunction(L, LuaUEnum::lua_newindex);
-	lua_settable(L, -3);
-
-	luaL_newmetatable(L, "LuaUObjectMeTa");
-	lua_pushstring(L, "__index");
-	lua_pushcfunction(L, LuaUObject::lua_index);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__newindex");
-	lua_pushcfunction(L, LuaUObject::lua_newindex);
-	lua_settable(L, -3);
-	
-    lua_register(L, "GetClass", lua_GetClass);
-    lua_register(L, "Log", lua_Print);
-
-	LOGFS(SML::GetConfigDirectory())
-    if(CheckLua(L, luaL_dofile(L, TCHAR_TO_UTF8(*(SML::GetConfigDirectory() + FString("/Tweaker/script.lua"))))))
-    {
-
-    }
-}
-
+using namespace TweakIt::Lua;

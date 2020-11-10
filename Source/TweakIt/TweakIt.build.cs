@@ -2,9 +2,9 @@ using UnrealBuildTool;
 using System.IO;
 using System;
 
-public class Tweaker : ModuleRules
+public class TweakIt : ModuleRules
 {
-    public Tweaker(ReadOnlyTargetRules Target) : base(Target)
+    public TweakIt(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 

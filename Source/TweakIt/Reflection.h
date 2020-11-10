@@ -2,10 +2,16 @@
 #include "FGBuildable.h"
 #include "Lua/Lua.h"
 
-namespace Tweaker
+namespace TweakIt
 {
     namespace Reflection
     {
+        inline bool IsValueEqualDefault(UProperty* Property, UObject* Container) {
+            UObject* CDO = Property->GetOwnerClass()->GetDefaultObject();
+            const bool bRes = Property->Identical(Property->ContainerPtrToValuePtr<void>(Container), Property->ContainerPtrToValuePtr<void>(CDO));
+            return bRes;
+        }
+        
         inline UActorComponent* FindDefaultComponentByName(const TSubclassOf<AActor> InActorClass, const TSubclassOf<UActorComponent> InComponentClass, FString ComponentName)
         {
             FString GeneratedComponentName = ComponentName + "_GEN_VARIABLE";

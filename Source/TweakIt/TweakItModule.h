@@ -2,11 +2,9 @@
 
 #include "Modules/ModuleManager.h"
 
-class FTweakerModule : public FDefaultGameModuleImpl {
+class FTweakItModule : public FDefaultGameModuleImpl {
 public:
 	virtual void StartupModule() override;
 
 	virtual bool IsGameModule() const override { return true; }
-
-	virtual void PostLoadCallback() override;
 };

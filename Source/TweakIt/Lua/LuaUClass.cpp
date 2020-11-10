@@ -4,32 +4,32 @@
 #include "Reflection.h"
 #include <string>
 
+
+#include "AssetRegistryModule.h"
 #include "LuaUObject.h"
 using namespace std;
 
-using namespace Tweaker;
+using namespace TweakIt;
 using namespace Lua;
 
 int LuaUClass::lua_GetDefaultValue(lua_State* L)
 {
-    LOG("Getting a LuaUClass's default value")
-    stackDump(L);
     LuaUClass* self = (LuaUClass*)lua_touserdata(L, 1);
-    string PropertyName = lua_tostring(L, 2);
+    FString PropertyName = lua_tostring(L, 2);
+    LOGFS(FString::Printf(TEXT("Getting a LuaUClass's default value for %s"), *PropertyName));
     UProperty* Property = nullptr;
     UActorComponent* Component = nullptr;
     if(self->Class->IsChildOf(AActor::StaticClass()))
     {
         LOG("Class is an AActor, checking for component first")
-        Component = Reflection::FindDefaultComponentByName(self->Class, UActorComponent::StaticClass(), *FString(PropertyName.c_str()));
+        Component = Reflection::FindDefaultComponentByName(self->Class, UActorComponent::StaticClass(), *PropertyName);
         if(Component)
         {
             LOG("Found component")
             LuaUObject::ConstructObject(L, Component);
         }
-        else{lua_pushnil(L);}
     }
-    Property = Reflection::FindPropertyByShortName(self->Class, *FString(PropertyName.c_str()));
+    Property = Reflection::FindPropertyByShortName(self->Class, *PropertyName);
     if(!Component)
     {
         if(Property->IsValidLowLevel())
@@ -66,28 +66,36 @@ int LuaUClass::lua_index(lua_State* L)
 
 int LuaUClass::lua_ChangeDefaultValue(lua_State* L)
 {
-    LOG("Changing value ???")
     LuaUClass* self = (LuaUClass*)lua_touserdata(L, 1);
     std::string PropertyName = lua_tostring(L, 2);
     bool IsRecursive = (bool)lua_toboolean(L, 4);
+    LOGFS(FString::Printf(TEXT("Calling ChangeDefaultValue(%hs,value , %hhd) on class %s"), PropertyName.c_str(), IsRecursive, *self->Class->GetName()))
     TArray<UClass*> Classes;
     Classes.Add(self->Class);
     if(IsRecursive) {GetDerivedClasses(self->Class, Classes);}
     for(auto Class: Classes)
     {
+        LOG("Changing the default value of a class")
         UProperty* Property = FReflectionHelper::FindPropertyByShortName<UProperty>(Class, *FString(PropertyName.c_str()));
         if(Property)
         {
             luaToProperty(L, Property, Class->GetDefaultObject(), 3);
+            propertyToLua(L, Property, Class->GetDefaultObject());
             Class->GetDefaultObject()->AddToRoot();
+            LOG("Changed the class's CDO. Iterating over objects...")
+            for(FObjectIterator It = FObjectIterator(Class);It;++It)
+            {
+                luaToProperty(L, Property, *It, 3);
+            }
+            LOG("Finished iteration over objects")
         }
         else
         {
+            LOG("Couldn't find the property")
             lua_pushnil(L);
             return 1;
         }
     }
-    lua_pushvalue(L, 3);
     return 1;
 }
 
@@ -125,6 +133,34 @@ int LuaUClass::lua_RemoveDefaultComponent(lua_State* L)
     return 0;
 }
 
+int LuaUClass::lua_GetChildClasses(lua_State* L)
+{
+    LuaUClass* self = (LuaUClass*)lua_touserdata(L, 1);
+    TArray<UClass*> classes;
+    GetDerivedClasses(self->Class, classes);
+    lua_newtable(L);
+    for(int i = 0;i<classes.Num();i++)
+    {
+        LuaUClass::ConstructClass(L, classes[i]);
+        lua_seti(L, -2, i+1);
+    }
+    return 1;
+}
+
+int LuaUClass::Lua_GetObjects(lua_State* L)
+{
+    LuaUClass* self = (LuaUClass*)lua_touserdata(L, 1);
+    TArray<UObject*> objects;
+    GetObjectsOfClass(self->Class, objects);
+    lua_newtable(L);
+    for(int i = 0;i<objects.Num();i++)
+    {
+        LuaUObject::ConstructObject(L, objects[i]);
+        lua_seti(L, -2, i+1);
+    }
+    return 1;
+}
+
 int LuaUClass::lua_DumpProperties(lua_State* L)
 {
     LuaUClass* self = (LuaUClass*)lua_touserdata(L, 1);
@@ -159,6 +195,13 @@ int LuaUClass::lua__tostring(lua_State* L)
     return 1;
 }
 
+int LuaUClass::lua_gc(lua_State* L)
+{
+    LuaUClass* self = (LuaUClass*)lua_touserdata(L, 1);
+    self->~LuaUClass();
+    return 0;
+}
+
 int LuaUClass::ConstructClass(lua_State* L, UClass* Class)
 {
     if(Class->IsValidLowLevelFast())
@@ -170,7 +213,7 @@ int LuaUClass::ConstructClass(lua_State* L, UClass* Class)
     }
     else
     {
-        UE_LOG(LogScript, Warning, TEXT("[TWEAKER] Trying to construct a LuaUClass from an invalid class"))
+        UE_LOG(LogScript, Warning, TEXT("[TweakIt] Trying to construct a LuaUClass from an invalid class"))
         LOG("Super")
         lua_pushnil(L);
     }
