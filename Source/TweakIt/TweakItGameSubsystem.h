@@ -18,6 +18,5 @@ public:
 	bool RegisterCommands(UObject* WorldContext);
 	static UTweakItGameSubsystem* Get(UObject* WorldContext);
 private:
-	TSharedRef<FJsonObject> Config;
 	lua_State* LuaState;
 };

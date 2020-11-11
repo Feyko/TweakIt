@@ -8,7 +8,6 @@
 #include "util/Logging.h"
 #include "LuaUClass.h"
 #include "LuaUObject.h"
-#include "Lua.generated.h"
 
 #define LOG(x) UE_LOG(LogTemp, Log, TEXT(x)); SML::Logging::warning(TEXT(x));
 #define LOGC(x, level) UE_LOG(LogTemp, level, TEXT(x)); SML::Logging::warning(TEXT(x));

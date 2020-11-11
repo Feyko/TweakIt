@@ -59,8 +59,25 @@ namespace TweakIt
 				lua_pushnumber(L, *p->ContainerPtrToValuePtr<float>(data));
 			} else if (c & EClassCastFlags::CASTCLASS_UStrProperty) {
 				lua_pushstring(L, TCHAR_TO_UTF8(**p->ContainerPtrToValuePtr<FString>(data)));
+			} else if (c & EClassCastFlags::CASTCLASS_UNameProperty) {
+				lua_pushstring(L, TCHAR_TO_UTF8(**p->ContainerPtrToValuePtr<FName>(data)->ToString()));
 			} else if (c & EClassCastFlags::CASTCLASS_UClassProperty) {
 				LuaUClass::ConstructClass(L, p->ContainerPtrToValuePtr<UClass>(data));
+			} else if (c & EClassCastFlags::CASTCLASS_UEnumProperty) {
+				UEnumProperty* EnumProperty = Cast<UEnumProperty>(p);
+				int64 EnumValue = static_cast<int64>(*EnumProperty->ContainerPtrToValuePtr<uint8>(data));
+				UEnum* Enum = EnumProperty->GetEnum();
+				if(Enum->IsValidEnumValue(EnumValue))
+				{
+					FName Name = Enum->GetNameByValue(EnumValue);
+					FString StringName = Name.ToString();
+					lua_pushstring(L, TCHAR_TO_UTF8(*StringName));
+				}
+				else
+				{
+					LOG("Enum value wasn't valid. Please report this to Feyko")
+					lua_pushnil(L);
+				}
 			} else if (c & EClassCastFlags::CASTCLASS_UStructProperty) {
 				UStructProperty* StructProperty = Cast<UStructProperty>(p);
 				UScriptStruct* ScriptStruct = StructProperty->Struct;
@@ -109,9 +126,14 @@ namespace TweakIt
 			} else if (c & EClassCastFlags::CASTCLASS_UClassProperty) {
 				UClass* o = ((LuaUClass*)lua_touserdata(L, i))->Class;
 				*p->ContainerPtrToValuePtr<UClass*>(data) = o;
-			}  else if (c & EClassCastFlags::CASTCLASS_UClassProperty) {
-				UClass* o = ((LuaUClass*)lua_touserdata(L, i))->Class;
-				*p->ContainerPtrToValuePtr<UClass*>(data) = o;
+			} else if (c & EClassCastFlags::CASTCLASS_UEnumProperty) {
+				FName NameEnumValue = lua_tostring(L, i);
+				UEnum* Enum = Cast<UEnumProperty>(p)->GetEnum();
+				if(Enum->IsValidEnumName(NameEnumValue))
+				{
+					int64 EnumValue = Enum->GetValueByName(NameEnumValue);
+					*p->ContainerPtrToValuePtr<uint8>(data) = static_cast<uint8>(EnumValue);
+				}
 			} else if (c & EClassCastFlags::CASTCLASS_UStructProperty) {
 				UStructProperty* StructProperty = Cast<UStructProperty>(p);
 				UScriptStruct* ScriptStruct = StructProperty->Struct;
