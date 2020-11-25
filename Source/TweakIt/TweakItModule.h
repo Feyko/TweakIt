@@ -2,7 +2,8 @@
 
 #include "Modules/ModuleManager.h"
 
-class FTweakItModule : public FDefaultGameModuleImpl {
+class FTweakItModule : public FDefaultGameModuleImpl
+{
 public:
 	virtual void StartupModule() override;
 

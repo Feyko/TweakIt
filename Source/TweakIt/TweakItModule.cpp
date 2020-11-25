@@ -1,15 +1,11 @@
 #include "TweakItModule.h"
 
-
 #include "AssetRegistryModule.h"
 #include "FGBuildGunDismantle.h"
 #include "Lua/Lua.h"
 #include "Lua/LuaUClass.h"
 #include "SML/mod/hooking.h"
 #include "util/Logging.h"
-
-
-
 
 void FTweakItModule::StartupModule() {
 }

@@ -8,7 +8,8 @@ public class TweakIt : ModuleRules
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] {
+        PublicDependencyModuleNames.AddRange(new string[]
+        {
             "Core", "CoreUObject",
             "Engine",
             "InputCore",
@@ -25,14 +26,15 @@ public class TweakIt : ModuleRules
             "AnimGraphRuntime",
             "Slate", "SlateCore",
             "Json"
-            });
+        });
 
 
-        if (Target.Type == TargetRules.TargetType.Editor) {
-			PublicDependencyModuleNames.AddRange(new string[] {"OnlineBlueprintSupport", "AnimGraph"});
-		}
+        if (Target.Type == TargetRules.TargetType.Editor)
+        {
+            PublicDependencyModuleNames.AddRange(new string[] {"OnlineBlueprintSupport", "AnimGraph"});
+        }
+
         PublicDependencyModuleNames.AddRange(new string[] {"FactoryGame", "SML"});
         PublicAdditionalLibraries.Add(Path.Combine(ModuleDirectory, "LuaLib/Lua54.lib"));
-
     }
 }
