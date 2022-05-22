@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryGeneratorBiomassAnim_GeneratorIntegratedBiomass Anim_GeneratorIntegratedBiomass
-## Animation Blueprints aren't supported by this documentation (yet)

@@ -1,5 +1,0 @@
-\page BlueprintsGameFactoryGameCharacterCreatureWildlife Wildlife
-- \subpage BlueprintsGameFactoryGameCharacterCreatureWildlifeManta
-- \subpage BlueprintsGameFactoryGameCharacterCreatureWildlifeNonFlyingBird
-- \subpage BlueprintsGameFactoryGameCharacterCreatureWildlifeSpaceGiraffe
-- \subpage BlueprintsGameFactoryGameCharacterCreatureWildlifeSpaceRabbit

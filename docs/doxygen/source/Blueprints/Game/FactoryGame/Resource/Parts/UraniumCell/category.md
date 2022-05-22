@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsUraniumCell UraniumCell
-- \subpage BlueprintsGameFactoryGameResourcePartsUraniumCellDesc_UraniumCell

@@ -1,2 +1,0 @@
-\page EnumsGameFactoryGameCharacterPlayer Player
-- \subpage EnumsGameFactoryGameCharacterPlayerAnimation

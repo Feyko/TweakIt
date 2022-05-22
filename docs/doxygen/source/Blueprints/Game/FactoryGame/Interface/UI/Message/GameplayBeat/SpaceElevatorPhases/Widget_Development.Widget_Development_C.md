@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatSpaceElevatorPhasesWidget_Development Widget_Development
-## Widgets aren't supported by this documentation (yet)

@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryConveyorLiftMk4 ConveyorLiftMk4
-- \subpage BlueprintsGameFactoryGameBuildableFactoryConveyorLiftMk4Build_ConveyorLiftMk4
-- \subpage BlueprintsGameFactoryGameBuildableFactoryConveyorLiftMk4Desc_ConveyorLiftMk4

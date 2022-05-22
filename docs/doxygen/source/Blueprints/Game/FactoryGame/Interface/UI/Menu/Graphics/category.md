@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMenuGraphics Graphics
-- \subpage BlueprintsGameFactoryGameInterfaceUIMenuGraphicsCredits

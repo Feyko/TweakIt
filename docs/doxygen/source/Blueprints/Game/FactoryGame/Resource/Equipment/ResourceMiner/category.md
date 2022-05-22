@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentResourceMiner ResourceMiner
-- \subpage BlueprintsGameFactoryGameResourceEquipmentResourceMinerBP_EquipmentDescriptorResourceMiner

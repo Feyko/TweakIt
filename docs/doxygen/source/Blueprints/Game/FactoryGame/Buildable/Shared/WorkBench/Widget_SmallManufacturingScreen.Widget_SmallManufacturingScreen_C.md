@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableSharedWorkBenchWidget_SmallManufacturingScreen Widget_SmallManufacturingScreen
-## Widgets aren't supported by this documentation (yet)

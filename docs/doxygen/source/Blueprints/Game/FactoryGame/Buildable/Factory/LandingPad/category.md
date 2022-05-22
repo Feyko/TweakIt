@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryLandingPad LandingPad
-- \subpage BlueprintsGameFactoryGameBuildableFactoryLandingPadAnim_LandingPad
-- \subpage BlueprintsGameFactoryGameBuildableFactoryLandingPadBuild_LandingPad
-- \subpage BlueprintsGameFactoryGameBuildableFactoryLandingPadDesc_LandingPad

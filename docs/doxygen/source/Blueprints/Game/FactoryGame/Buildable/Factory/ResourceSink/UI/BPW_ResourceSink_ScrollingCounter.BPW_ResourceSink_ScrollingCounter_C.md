@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryResourceSinkUIBPW_ResourceSink_ScrollingCounter BPW_ResourceSink_ScrollingCounter
-## Widgets aren't supported by this documentation (yet)

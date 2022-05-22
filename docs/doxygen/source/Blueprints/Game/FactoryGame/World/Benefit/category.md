@@ -1,7 +1,0 @@
-\page BlueprintsGameFactoryGameWorldBenefit Benefit
-- \subpage BlueprintsGameFactoryGameWorldBenefitBP_Edible
-- \subpage BlueprintsGameFactoryGameWorldBenefitBerryBush
-- \subpage BlueprintsGameFactoryGameWorldBenefitDropPod
-- \subpage BlueprintsGameFactoryGameWorldBenefitMushroom
-- \subpage BlueprintsGameFactoryGameWorldBenefitNutBush
-- \subpage BlueprintsGameFactoryGameWorldBenefitVineLadder

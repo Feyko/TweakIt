@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsRubber Rubber
-- \subpage BlueprintsGameFactoryGameResourcePartsRubberDesc_Rubber

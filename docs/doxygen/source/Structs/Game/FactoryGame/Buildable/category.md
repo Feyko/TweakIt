@@ -1,3 +1,0 @@
-\page StructsGameFactoryGameBuildable Buildable
-- \subpage StructsGameFactoryGameBuildableFactory
-- \subpage StructsGameFactoryGameBuildableShared

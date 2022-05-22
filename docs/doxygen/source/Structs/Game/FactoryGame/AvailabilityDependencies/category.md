@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameAvailabilityDependencies AvailabilityDependencies
-- \subpage StructsGameFactoryGameAvailabilityDependenciesFAvailabilityDependencyData

@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameSchematicsAlternateUpgrades Upgrades
-- \subpage BlueprintsGameFactoryGameSchematicsAlternateUpgradesSchematic_Alternate_InventorySlots1
-- \subpage BlueprintsGameFactoryGameSchematicsAlternateUpgradesSchematic_Alternate_InventorySlots2

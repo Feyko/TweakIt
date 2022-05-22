@@ -1,9 +1,0 @@
-\page StructsGameFactoryGameInterfaceUIInGame InGame
-- \subpage StructsGameFactoryGameInterfaceUIInGameOutputCostSlotData_Struct
-- \subpage StructsGameFactoryGameInterfaceUIInGameOutputSlotData_Struct
-- \subpage StructsGameFactoryGameInterfaceUIInGameRecipeAmountStruct
-- \subpage StructsGameFactoryGameInterfaceUIInGameCursorParticles
-- \subpage StructsGameFactoryGameInterfaceUIInGameInventoryAddNotification
-- \subpage StructsGameFactoryGameInterfaceUIInGameMAMTree
-- \subpage StructsGameFactoryGameInterfaceUIInGamePopupConnectAccounts
-- \subpage StructsGameFactoryGameInterfaceUIInGameShared

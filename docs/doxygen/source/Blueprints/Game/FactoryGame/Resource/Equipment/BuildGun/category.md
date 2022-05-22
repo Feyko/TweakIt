@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentBuildGun BuildGun
-- \subpage BlueprintsGameFactoryGameResourceEquipmentBuildGunBP_EquipmentDescriptorBuildGun

@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageNotification Notification
-- \subpage BlueprintsGameFactoryGameInterfaceUIMessageNotificationPowerCircuitFuseTriggered
-- \subpage BlueprintsGameFactoryGameInterfaceUIMessageNotificationWidget_ShipReturnMessage

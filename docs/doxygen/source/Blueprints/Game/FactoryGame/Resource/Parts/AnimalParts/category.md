@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsAnimalParts AnimalParts
-- \subpage BlueprintsGameFactoryGameResourcePartsAnimalPartsDesc_HogParts
-- \subpage BlueprintsGameFactoryGameResourcePartsAnimalPartsDesc_SpitterParts

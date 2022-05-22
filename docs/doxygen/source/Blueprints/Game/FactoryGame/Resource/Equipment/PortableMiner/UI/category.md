@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentPortableMinerUI UI
-- \subpage BlueprintsGameFactoryGameResourceEquipmentPortableMinerUIWidget_PortableMiner

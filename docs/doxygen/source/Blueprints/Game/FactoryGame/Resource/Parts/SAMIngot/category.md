@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsSAMIngot SAMIngot
-- \subpage BlueprintsGameFactoryGameResourcePartsSAMIngotDesc_SAMIngot

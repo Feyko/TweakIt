@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryTradingPostWidget_TradingPost_RecipePreview Widget_TradingPost_RecipePreview
-## Widgets aren't supported by this documentation (yet)

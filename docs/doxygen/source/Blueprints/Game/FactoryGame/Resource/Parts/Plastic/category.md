@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsPlastic Plastic
-- \subpage BlueprintsGameFactoryGameResourcePartsPlasticDesc_Plastic

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryWaterPumpUI UI
-- \subpage BlueprintsGameFactoryGameBuildableFactoryWaterPumpUIBPW_ExtractorPump

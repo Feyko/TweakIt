@@ -1,5 +1,0 @@
-\page BlueprintsGameFactoryGameBuildable Buildable
-- \subpage BlueprintsGameFactoryGameBuildableBuilding
-- \subpage BlueprintsGameFactoryGameBuildableFactory
-- \subpage BlueprintsGameFactoryGameBuildableShared
-- \subpage BlueprintsGameFactoryGameBuildableVehicle

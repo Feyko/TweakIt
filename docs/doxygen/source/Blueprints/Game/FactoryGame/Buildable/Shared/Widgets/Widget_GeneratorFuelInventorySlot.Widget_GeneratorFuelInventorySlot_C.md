@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableSharedWidgetsWidget_GeneratorFuelInventorySlot Widget_GeneratorFuelInventorySlot
-## Widgets aren't supported by this documentation (yet)

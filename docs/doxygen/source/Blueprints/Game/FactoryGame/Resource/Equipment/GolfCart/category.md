@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentGolfCart GolfCart
-- \subpage BlueprintsGameFactoryGameResourceEquipmentGolfCartDesc_GolfCart

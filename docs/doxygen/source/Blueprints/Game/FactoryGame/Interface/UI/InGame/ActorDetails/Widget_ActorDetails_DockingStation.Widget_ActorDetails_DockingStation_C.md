@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameActorDetailsWidget_ActorDetails_DockingStation Widget_ActorDetails_DockingStation
-## Widgets aren't supported by this documentation (yet)

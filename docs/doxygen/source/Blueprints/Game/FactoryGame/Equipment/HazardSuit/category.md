@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameEquipmentHazardSuit HazardSuit
-- \subpage BlueprintsGameFactoryGameEquipmentHazardSuitAttach_HazardSuit
-- \subpage BlueprintsGameFactoryGameEquipmentHazardSuitEquip_HazardSuit

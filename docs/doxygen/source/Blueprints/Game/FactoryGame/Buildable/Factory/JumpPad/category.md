@@ -1,5 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryJumpPad JumpPad
-- \subpage BlueprintsGameFactoryGameBuildableFactoryJumpPadBuild_JumpPad
-- \subpage BlueprintsGameFactoryGameBuildableFactoryJumpPadBuild_JumpPadTilted
-- \subpage BlueprintsGameFactoryGameBuildableFactoryJumpPadDesc_JumpPad
-- \subpage BlueprintsGameFactoryGameBuildableFactoryJumpPadDesc_JumpPadTilted

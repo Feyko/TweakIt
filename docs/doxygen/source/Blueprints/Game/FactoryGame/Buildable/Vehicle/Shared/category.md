@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableVehicleShared Shared
-- \subpage BlueprintsGameFactoryGameBuildableVehicleSharedAI
-- \subpage BlueprintsGameFactoryGameBuildableVehicleSharedPassengerSeat
-- \subpage BlueprintsGameFactoryGameBuildableVehicleSharedUI

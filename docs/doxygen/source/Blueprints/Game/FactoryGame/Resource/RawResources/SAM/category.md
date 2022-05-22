@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceRawResourcesSAM SAM
-- \subpage BlueprintsGameFactoryGameResourceRawResourcesSAMDesc_SAM

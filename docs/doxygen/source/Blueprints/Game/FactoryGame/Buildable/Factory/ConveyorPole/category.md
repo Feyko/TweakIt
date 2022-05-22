@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryConveyorPole ConveyorPole
-- \subpage BlueprintsGameFactoryGameBuildableFactoryConveyorPoleBuild_ConveyorPole
-- \subpage BlueprintsGameFactoryGameBuildableFactoryConveyorPoleDesc_ConveyorPole

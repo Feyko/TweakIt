@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryTrainSwitchControl SwitchControl
-- \subpage BlueprintsGameFactoryGameBuildableFactoryTrainSwitchControlBuild_RailroadSwitchControl

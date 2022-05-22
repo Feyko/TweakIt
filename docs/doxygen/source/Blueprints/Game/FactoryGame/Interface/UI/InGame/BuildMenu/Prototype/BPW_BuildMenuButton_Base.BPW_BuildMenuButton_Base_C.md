@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameBuildMenuPrototypeBPW_BuildMenuButton_Base BPW_BuildMenuButton_Base
-## Widgets aren't supported by this documentation (yet)

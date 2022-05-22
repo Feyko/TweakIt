@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsCartridgeStandard CartridgeStandard
-- \subpage BlueprintsGameFactoryGameResourcePartsCartridgeStandardDesc_CartridgeStandard

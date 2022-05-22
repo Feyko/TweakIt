@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameWorldBenefitBerryBush BerryBush
-- \subpage StructsGameFactoryGameWorldBenefitBerryBushBerryAlternatives

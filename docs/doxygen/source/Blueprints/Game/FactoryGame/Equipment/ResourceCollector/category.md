@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameEquipmentResourceCollector ResourceCollector
-- \subpage BlueprintsGameFactoryGameEquipmentResourceCollectorAnim_ResourceMiner
-- \subpage BlueprintsGameFactoryGameEquipmentResourceCollectorAttach_ResourceMiner
-- \subpage BlueprintsGameFactoryGameEquipmentResourceCollectorEquip_ResourceMiner

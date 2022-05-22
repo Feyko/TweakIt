@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameChat Chat
-- \subpage BlueprintsGameFactoryGameInterfaceUIInGameChatWidget_ChatInputNew
-- \subpage BlueprintsGameFactoryGameInterfaceUIInGameChatWidget_ChatMessageRow
-- \subpage BlueprintsGameFactoryGameInterfaceUIInGameChatWidget_ChatWindow

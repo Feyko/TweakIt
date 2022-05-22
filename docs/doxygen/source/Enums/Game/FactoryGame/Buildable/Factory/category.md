@@ -1,3 +1,0 @@
-\page EnumsGameFactoryGameBuildableFactory Factory
-- \subpage EnumsGameFactoryGameBuildableFactoryMinerMk2
-- \subpage EnumsGameFactoryGameBuildableFactoryResourceSinkShop

@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameTestingSplineConstructor SplineConstructor
-- \subpage BlueprintsGameFactoryGameTestingSplineConstructorBP_ProfileSpline
-- \subpage BlueprintsGameFactoryGameTestingSplineConstructorBP_ProfileSplineAbstract

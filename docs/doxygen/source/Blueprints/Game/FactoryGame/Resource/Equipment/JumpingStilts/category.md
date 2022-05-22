@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentJumpingStilts JumpingStilts
-- \subpage BlueprintsGameFactoryGameResourceEquipmentJumpingStiltsBP_EquipmentDescriptorJumpingStilts

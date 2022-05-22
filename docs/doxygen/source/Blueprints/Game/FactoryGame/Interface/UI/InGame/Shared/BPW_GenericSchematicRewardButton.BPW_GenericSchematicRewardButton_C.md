@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameSharedBPW_GenericSchematicRewardButton BPW_GenericSchematicRewardButton
-## Widgets aren't supported by this documentation (yet)

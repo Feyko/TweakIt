@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryRadarTower RadarTower
-- \subpage BlueprintsGameFactoryGameBuildableFactoryRadarTowerBuild_RadarTower
-- \subpage BlueprintsGameFactoryGameBuildableFactoryRadarTowerDesc_RadarTower
-- \subpage BlueprintsGameFactoryGameBuildableFactoryRadarTowerUI

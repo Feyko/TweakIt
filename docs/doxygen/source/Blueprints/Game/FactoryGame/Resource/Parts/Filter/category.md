@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsFilter Filter
-- \subpage BlueprintsGameFactoryGameResourcePartsFilterDesc_Filter

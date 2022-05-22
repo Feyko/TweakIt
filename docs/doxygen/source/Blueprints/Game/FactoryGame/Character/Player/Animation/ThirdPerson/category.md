@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameCharacterPlayerAnimationThirdPerson ThirdPerson
-- \subpage BlueprintsGameFactoryGameCharacterPlayerAnimationThirdPersonBPA_3pHypertube
-- \subpage BlueprintsGameFactoryGameCharacterPlayerAnimationThirdPersonBPA_3pLadder

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameDirectionalSubtitlesWidget_DirectionalSubtitlesContainer Widget_DirectionalSubtitlesContainer
-## Widgets aren't supported by this documentation (yet)

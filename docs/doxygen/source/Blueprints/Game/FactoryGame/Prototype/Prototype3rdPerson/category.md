@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGamePrototypePrototype3rdPerson Prototype3rdPerson
-- \subpage BlueprintsGameFactoryGamePrototypePrototype3rdPersonBP_PlayerCameraManager

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameInventoryAddNotificationWidget_ItemNotification Widget_ItemNotification
-## Widgets aren't supported by this documentation (yet)

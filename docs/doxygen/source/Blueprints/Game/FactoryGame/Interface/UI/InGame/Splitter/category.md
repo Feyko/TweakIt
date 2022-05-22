@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameSplitter Splitter
-- \subpage BlueprintsGameFactoryGameInterfaceUIInGameSplitterWidget_ProgrammableSplitter_List

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameBuildMenuPrototypeWidget_BuildMenu_PowerProduction Widget_BuildMenu_PowerProduction
-## Widgets aren't supported by this documentation (yet)

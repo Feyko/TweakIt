@@ -1,5 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableShared Shared
-- \subpage BlueprintsGameFactoryGameBuildableSharedLadder
-- \subpage BlueprintsGameFactoryGameBuildableSharedSharedParts
-- \subpage BlueprintsGameFactoryGameBuildableSharedWidgets
-- \subpage BlueprintsGameFactoryGameBuildableSharedWorkBench

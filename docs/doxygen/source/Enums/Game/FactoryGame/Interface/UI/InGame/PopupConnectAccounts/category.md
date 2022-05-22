@@ -1,2 +1,0 @@
-\page EnumsGameFactoryGameInterfaceUIInGamePopupConnectAccounts PopupConnectAccounts
-- \subpage EnumsGameFactoryGameInterfaceUIInGamePopupConnectAccountsEPopupConnectAccounts_Selection

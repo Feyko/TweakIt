@@ -1,2 +1,0 @@
-\page EnumsGameFactoryGameInterfaceUIInGamePopupConnectAccountsEPopupConnectAccounts_Selection EPopupConnectAccounts_Selection
-## Structs and Enums aren't supported by this documentation (yet)

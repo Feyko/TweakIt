@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentPortableMiner PortableMiner
-- \subpage BlueprintsGameFactoryGameResourceEquipmentPortableMinerBP_ItemDescriptorPortableMiner
-- \subpage BlueprintsGameFactoryGameResourceEquipmentPortableMinerUI

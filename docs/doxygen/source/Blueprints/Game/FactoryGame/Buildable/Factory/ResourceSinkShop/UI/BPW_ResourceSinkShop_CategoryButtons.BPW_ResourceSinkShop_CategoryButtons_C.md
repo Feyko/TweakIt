@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryResourceSinkShopUIBPW_ResourceSinkShop_CategoryButtons BPW_ResourceSinkShop_CategoryButtons
-## Widgets aren't supported by this documentation (yet)

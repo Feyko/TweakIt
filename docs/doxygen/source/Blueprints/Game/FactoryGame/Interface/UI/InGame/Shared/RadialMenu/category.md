@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameSharedRadialMenu RadialMenu
-- \subpage BlueprintsGameFactoryGameInterfaceUIInGameSharedRadialMenuWidget_RadialMenu
-- \subpage BlueprintsGameFactoryGameInterfaceUIInGameSharedRadialMenuWidget_RadialMenuButton

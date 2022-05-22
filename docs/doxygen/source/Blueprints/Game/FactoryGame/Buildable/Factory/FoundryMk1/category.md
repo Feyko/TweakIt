@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryFoundryMk1 FoundryMk1
-- \subpage BlueprintsGameFactoryGameBuildableFactoryFoundryMk1Anim_FoundryMk1
-- \subpage BlueprintsGameFactoryGameBuildableFactoryFoundryMk1Build_FoundryMk1
-- \subpage BlueprintsGameFactoryGameBuildableFactoryFoundryMk1Desc_FoundryMk1

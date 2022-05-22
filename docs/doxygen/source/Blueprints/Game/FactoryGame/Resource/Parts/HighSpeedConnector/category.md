@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsHighSpeedConnector HighSpeedConnector
-- \subpage BlueprintsGameFactoryGameResourcePartsHighSpeedConnectorDesc_HighSpeedConnector

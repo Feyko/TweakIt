@@ -1,9 +1,0 @@
-\page StructsGameFactoryGame FactoryGame
-- \subpage StructsGameFactoryGameAvailabilityDependencies
-- \subpage StructsGameFactoryGameBuildable
-- \subpage StructsGameFactoryGameCharacter
-- \subpage StructsGameFactoryGameEquipment
-- \subpage StructsGameFactoryGameInterface
-- \subpage StructsGameFactoryGameShared
-- \subpage StructsGameFactoryGameUnlocks
-- \subpage StructsGameFactoryGameWorld

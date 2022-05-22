@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageTutorial Tutorial
-- \subpage BlueprintsGameFactoryGameInterfaceUIMessageTutorialIntroTutorial
-- \subpage BlueprintsGameFactoryGameInterfaceUIMessageTutorialTutorialMails

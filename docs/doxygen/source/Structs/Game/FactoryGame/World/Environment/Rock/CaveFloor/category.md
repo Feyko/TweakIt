@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameWorldEnvironmentRockCaveFloor CaveFloor
-- \subpage StructsGameFactoryGameWorldEnvironmentRockCaveFloorCaveData

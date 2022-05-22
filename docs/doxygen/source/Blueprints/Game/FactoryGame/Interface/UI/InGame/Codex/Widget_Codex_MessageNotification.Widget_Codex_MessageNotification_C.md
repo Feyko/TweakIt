@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameCodexWidget_Codex_MessageNotification Widget_Codex_MessageNotification
-## Widgets aren't supported by this documentation (yet)

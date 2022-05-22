@@ -1,6 +1,0 @@
-= Lua
-
-Lua is the scripting language used in this mod. I chose it because it is easily embeddable in any system, it was made for that. You will need a bit of programming/Lua knowledge to work with TweakIt, but nothing that can't be learned very quickly +
- +
-I suggest you learn about variables, functions, and Lua's basic types, including tables before you continue. Do not be frightened ! This may seem like a lot but it is very accessible, anyone can learn it. You can find information on the official Lua https://lua.org/[website].
-There's also a lot of different tutorials out there

@@ -1,7 +1,0 @@
-\page BlueprintsGameFactoryGameEquipmentRifle Rifle
-- \subpage BlueprintsGameFactoryGameEquipmentRifleAnim_Rifle
-- \subpage BlueprintsGameFactoryGameEquipmentRifleAttach_Rifle
-- \subpage BlueprintsGameFactoryGameEquipmentRifleAttach_Rifle_Mk2
-- \subpage BlueprintsGameFactoryGameEquipmentRifleDamageType_Rifle
-- \subpage BlueprintsGameFactoryGameEquipmentRifleEquip_Rifle
-- \subpage BlueprintsGameFactoryGameEquipmentRifleEquip_Rifle_Mk2

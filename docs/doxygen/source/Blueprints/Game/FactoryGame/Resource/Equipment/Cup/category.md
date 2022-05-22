@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentCup Cup
-- \subpage BlueprintsGameFactoryGameResourceEquipmentCupBP_EquipmentDescriptorCup

@@ -1,2 +1,0 @@
-\page EnumsGameFactoryGameInterfaceUIMenuGraphicsCredits Credits
-- \subpage EnumsGameFactoryGameInterfaceUIMenuGraphicsCreditsECreditType

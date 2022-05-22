@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameCharacterCreatureEnemy Enemy
-- \subpage StructsGameFactoryGameCharacterCreatureEnemy_Shared

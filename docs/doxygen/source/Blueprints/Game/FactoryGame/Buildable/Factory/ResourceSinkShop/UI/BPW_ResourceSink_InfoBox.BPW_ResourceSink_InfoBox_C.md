@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryResourceSinkShopUIBPW_ResourceSink_InfoBox BPW_ResourceSink_InfoBox
-## Widgets aren't supported by this documentation (yet)

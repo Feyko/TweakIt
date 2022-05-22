@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryTradingPostWidget_TradingPost_PayOffGrid Widget_TradingPost_PayOffGrid
-## Widgets aren't supported by this documentation (yet)

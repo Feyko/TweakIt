@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableSharedWidgetsBPW_Train_DockingStation_Fluid BPW_Train_DockingStation_Fluid
-## Widgets aren't supported by this documentation (yet)

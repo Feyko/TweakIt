@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameSharedBlueprint Blueprint
-- \subpage StructsGameFactoryGameSharedBlueprintFCompactPresence

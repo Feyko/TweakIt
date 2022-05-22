@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsSteelPlateReinforced SteelPlateReinforced
-- \subpage BlueprintsGameFactoryGameResourcePartsSteelPlateReinforcedDesc_SteelPlateReinforced

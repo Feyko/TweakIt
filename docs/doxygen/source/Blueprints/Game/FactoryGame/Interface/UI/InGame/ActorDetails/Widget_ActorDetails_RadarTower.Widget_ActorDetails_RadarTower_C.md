@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameActorDetailsWidget_ActorDetails_RadarTower Widget_ActorDetails_RadarTower
-## Widgets aren't supported by this documentation (yet)

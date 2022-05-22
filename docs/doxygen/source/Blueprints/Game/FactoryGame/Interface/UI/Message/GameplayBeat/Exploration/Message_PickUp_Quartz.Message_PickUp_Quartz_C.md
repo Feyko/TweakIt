@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_PickUp_Quartz Message_PickUp_Quartz
-## Widgets aren't supported by this documentation (yet)

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameCinematics Cinematics
-- \subpage BlueprintsGameFactoryGameCinematicsMainMenu

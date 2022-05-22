@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsCircuitBoardHighSpeed CircuitBoardHighSpeed
-- \subpage BlueprintsGameFactoryGameResourcePartsCircuitBoardHighSpeedDesc_CircuitBoardHighSpeed

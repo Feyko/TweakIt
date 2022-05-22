@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsComputer Computer
-- \subpage BlueprintsGameFactoryGameResourcePartsComputerDesc_Computer

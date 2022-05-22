@@ -1,3 +1,0 @@
-\page EnumsGameFactoryGameWorldHazardSporeCloudPlant SporeCloudPlant
-- \subpage EnumsGameFactoryGameWorldHazardSporeCloudPlantESporeFlowerGasState
-- \subpage EnumsGameFactoryGameWorldHazardSporeCloudPlantESporeFlowerState

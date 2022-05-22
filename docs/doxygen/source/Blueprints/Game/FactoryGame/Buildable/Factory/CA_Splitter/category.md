@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryCA_Splitter CA_Splitter
-- \subpage BlueprintsGameFactoryGameBuildableFactoryCA_SplitterBuild_ConveyorAttachmentSplitter
-- \subpage BlueprintsGameFactoryGameBuildableFactoryCA_SplitterDesc_ConveyorAttachmentSplitter

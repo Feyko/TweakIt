@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameEquipmentBeaconUI UI
-- \subpage BlueprintsGameFactoryGameEquipmentBeaconUIWidget_Beacon

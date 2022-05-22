@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameCharacterCreatureEnemyWalker Walker
-- \subpage BlueprintsGameFactoryGameCharacterCreatureEnemyWalkerAttack_Walker
-- \subpage BlueprintsGameFactoryGameCharacterCreatureEnemyWalkerDamageType_WalkerHit

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsSpaceElevatorBlocker SpaceElevatorBlocker
-- \subpage BlueprintsGameFactoryGameResourcePartsSpaceElevatorBlockerDesc_SpaceElevatorBlocker

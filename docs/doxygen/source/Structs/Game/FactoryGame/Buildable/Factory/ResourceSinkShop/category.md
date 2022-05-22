@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameBuildableFactoryResourceSinkShop ResourceSinkShop
-- \subpage StructsGameFactoryGameBuildableFactoryResourceSinkShopUI

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableVehicleSharedUI UI
-- \subpage BlueprintsGameFactoryGameBuildableVehicleSharedUIWidget_Vehicle

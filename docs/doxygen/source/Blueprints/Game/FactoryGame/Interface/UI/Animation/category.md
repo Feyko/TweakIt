@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIAnimation Animation
-- \subpage BlueprintsGameFactoryGameInterfaceUIAnimationWidget_Anim_Up_Slide

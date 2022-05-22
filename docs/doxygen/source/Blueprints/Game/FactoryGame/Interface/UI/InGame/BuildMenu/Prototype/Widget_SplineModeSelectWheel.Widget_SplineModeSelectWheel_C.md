@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameBuildMenuPrototypeWidget_SplineModeSelectWheel Widget_SplineModeSelectWheel
-## Widgets aren't supported by this documentation (yet)

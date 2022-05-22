@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameHotbar Hotbar
-- \subpage BlueprintsGameFactoryGameInterfaceUIInGameHotbarWidget_HotbarContainer
-- \subpage BlueprintsGameFactoryGameInterfaceUIInGameHotbarWidget_HotbarEntry

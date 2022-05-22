@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableSharedSharedParts SharedParts
-- \subpage BlueprintsGameFactoryGameBuildableSharedSharedPartsBP_BuildingPointLight
-- \subpage BlueprintsGameFactoryGameBuildableSharedSharedPartsBP_BuildingSpotLight

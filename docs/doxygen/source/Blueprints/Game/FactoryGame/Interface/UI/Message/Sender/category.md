@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageSender Sender
-- \subpage BlueprintsGameFactoryGameInterfaceUIMessageSenderSender_ADA
-- \subpage BlueprintsGameFactoryGameInterfaceUIMessageSenderSender_CEO
-- \subpage BlueprintsGameFactoryGameInterfaceUIMessageSenderSender_Checkit

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryPipePumpUI UI
-- \subpage BlueprintsGameFactoryGameBuildableFactoryPipePumpUIWidget_PipelinePump

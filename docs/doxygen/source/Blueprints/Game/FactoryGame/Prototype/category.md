@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGamePrototype Prototype
-- \subpage BlueprintsGameFactoryGamePrototypePrototype3rdPerson
-- \subpage BlueprintsGameFactoryGamePrototypeWAT

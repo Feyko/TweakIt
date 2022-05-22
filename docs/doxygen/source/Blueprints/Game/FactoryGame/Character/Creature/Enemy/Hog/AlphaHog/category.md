@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameCharacterCreatureEnemyHogAlphaHog AlphaHog
-- \subpage BlueprintsGameFactoryGameCharacterCreatureEnemyHogAlphaHogChar_AlphaHog
-- \subpage BlueprintsGameFactoryGameCharacterCreatureEnemyHogAlphaHogController_AlphaHog

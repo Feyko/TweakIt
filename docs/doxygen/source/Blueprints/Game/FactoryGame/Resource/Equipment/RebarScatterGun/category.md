@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentRebarScatterGun RebarScatterGun
-- \subpage BlueprintsGameFactoryGameResourceEquipmentRebarScatterGunDesc_RebarScatterGunProjectile

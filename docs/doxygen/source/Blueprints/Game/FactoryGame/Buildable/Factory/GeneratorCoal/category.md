@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryGeneratorCoal GeneratorCoal
-- \subpage BlueprintsGameFactoryGameBuildableFactoryGeneratorCoalAnim_GeneratorCoal
-- \subpage BlueprintsGameFactoryGameBuildableFactoryGeneratorCoalBuild_GeneratorCoal
-- \subpage BlueprintsGameFactoryGameBuildableFactoryGeneratorCoalDesc_GeneratorCoal

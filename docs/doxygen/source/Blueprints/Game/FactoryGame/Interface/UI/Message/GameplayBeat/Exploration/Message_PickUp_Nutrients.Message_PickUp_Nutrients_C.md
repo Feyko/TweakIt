@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_PickUp_Nutrients Message_PickUp_Nutrients
-## Widgets aren't supported by this documentation (yet)

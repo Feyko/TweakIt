@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameRecipesAlternateRecipes AlternateRecipes
-- \subpage BlueprintsGameFactoryGameRecipesAlternateRecipesNew_Update3
-- \subpage BlueprintsGameFactoryGameRecipesAlternateRecipesParts

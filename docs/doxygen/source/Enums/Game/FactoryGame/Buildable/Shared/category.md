@@ -1,2 +1,0 @@
-\page EnumsGameFactoryGameBuildableShared Shared
-- \subpage EnumsGameFactoryGameBuildableSharedWidgets

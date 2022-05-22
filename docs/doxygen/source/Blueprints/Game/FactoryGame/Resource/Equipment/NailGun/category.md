@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentNailGun NailGun
-- \subpage BlueprintsGameFactoryGameResourceEquipmentNailGunDesc_RebarGun
-- \subpage BlueprintsGameFactoryGameResourceEquipmentNailGunDesc_RebarGunProjectile

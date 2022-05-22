@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameEquipment Equipment
-- \subpage StructsGameFactoryGameEquipmentMedkit

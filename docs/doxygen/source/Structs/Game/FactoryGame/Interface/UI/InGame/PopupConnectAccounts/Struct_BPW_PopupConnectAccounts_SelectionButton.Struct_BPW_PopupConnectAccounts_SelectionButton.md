@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameInterfaceUIInGamePopupConnectAccountsStruct_BPW_PopupConnectAccounts_SelectionButton Struct_BPW_PopupConnectAccounts_SelectionButton
-## Structs and Enums aren't supported by this documentation (yet)

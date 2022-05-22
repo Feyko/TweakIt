@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentJetPack JetPack
-- \subpage BlueprintsGameFactoryGameResourceEquipmentJetPackBP_EquipmentDescriptorJetPack
-- \subpage BlueprintsGameFactoryGameResourceEquipmentJetPackBP_EquipmentDescriptorJetPackMk2

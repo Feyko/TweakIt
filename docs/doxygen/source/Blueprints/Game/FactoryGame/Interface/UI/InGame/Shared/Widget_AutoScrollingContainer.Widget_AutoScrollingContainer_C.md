@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameSharedWidget_AutoScrollingContainer Widget_AutoScrollingContainer
-## Widgets aren't supported by this documentation (yet)

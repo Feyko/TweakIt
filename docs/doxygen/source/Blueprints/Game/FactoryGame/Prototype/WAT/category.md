@@ -1,5 +1,0 @@
-\page BlueprintsGameFactoryGamePrototypeWAT WAT
-- \subpage BlueprintsGameFactoryGamePrototypeWATBP_WAT1
-- \subpage BlueprintsGameFactoryGamePrototypeWATBP_WAT2
-- \subpage BlueprintsGameFactoryGamePrototypeWATDesc_WAT1
-- \subpage BlueprintsGameFactoryGamePrototypeWATDesc_WAT2

@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsElectromagneticControlRod ElectromagneticControlRod
-- \subpage BlueprintsGameFactoryGameResourcePartsElectromagneticControlRodDesc_ElectromagneticControlRod

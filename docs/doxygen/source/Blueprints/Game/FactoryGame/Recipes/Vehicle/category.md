@@ -1,7 +1,0 @@
-\page BlueprintsGameFactoryGameRecipesVehicle Vehicle
-- \subpage BlueprintsGameFactoryGameRecipesVehicleRecipe_CyberWagon
-- \subpage BlueprintsGameFactoryGameRecipesVehicleRecipe_Explorer
-- \subpage BlueprintsGameFactoryGameRecipesVehicleRecipe_FactoryCart
-- \subpage BlueprintsGameFactoryGameRecipesVehicleRecipe_Tractor
-- \subpage BlueprintsGameFactoryGameRecipesVehicleRecipe_Truck
-- \subpage BlueprintsGameFactoryGameRecipesVehicleTrain

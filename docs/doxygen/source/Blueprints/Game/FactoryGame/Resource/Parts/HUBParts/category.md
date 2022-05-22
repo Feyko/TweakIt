@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsHUBParts HUBParts
-- \subpage BlueprintsGameFactoryGameResourcePartsHUBPartsDesc_HUBParts

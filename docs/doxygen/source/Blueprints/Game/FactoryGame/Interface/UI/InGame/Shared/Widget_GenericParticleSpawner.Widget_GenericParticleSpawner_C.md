@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameSharedWidget_GenericParticleSpawner Widget_GenericParticleSpawner
-## Widgets aren't supported by this documentation (yet)

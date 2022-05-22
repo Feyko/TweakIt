@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_Pickup_FlowerPetals Message_Pickup_FlowerPetals
-## Widgets aren't supported by this documentation (yet)

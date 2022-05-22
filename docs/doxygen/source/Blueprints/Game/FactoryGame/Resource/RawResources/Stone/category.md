@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceRawResourcesStone Stone
-- \subpage BlueprintsGameFactoryGameResourceRawResourcesStoneDesc_Stone

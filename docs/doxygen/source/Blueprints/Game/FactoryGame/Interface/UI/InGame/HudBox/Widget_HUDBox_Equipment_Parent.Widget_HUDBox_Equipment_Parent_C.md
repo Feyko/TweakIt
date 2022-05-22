@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIInGameHudBoxWidget_HUDBox_Equipment_Parent Widget_HUDBox_Equipment_Parent
-## Widgets aren't supported by this documentation (yet)

@@ -1,5 +1,0 @@
-\page StructsGameFactoryGameInterfaceUIInGameShared Shared
-- \subpage StructsGameFactoryGameInterfaceUIInGameSharedImageAndText
-- \subpage StructsGameFactoryGameInterfaceUIInGameSharedIntVector2D
-- \subpage StructsGameFactoryGameInterfaceUIInGameSharedStandardButton_Struct
-- \subpage StructsGameFactoryGameInterfaceUIInGameSharedStruct_KeybindingHint

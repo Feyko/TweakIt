@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameWorldEnvironmentShared Shared
-- \subpage BlueprintsGameFactoryGameWorldEnvironmentSharedPostprocess

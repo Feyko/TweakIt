@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsStator Stator
-- \subpage BlueprintsGameFactoryGameResourcePartsStatorDesc_Stator

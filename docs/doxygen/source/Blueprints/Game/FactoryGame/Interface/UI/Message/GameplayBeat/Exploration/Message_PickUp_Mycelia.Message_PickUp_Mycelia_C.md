@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_PickUp_Mycelia Message_PickUp_Mycelia
-## Widgets aren't supported by this documentation (yet)

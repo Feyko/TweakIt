@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsBattery Battery
-- \subpage BlueprintsGameFactoryGameResourcePartsBatteryDesc_Battery

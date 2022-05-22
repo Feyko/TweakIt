@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryTradingPostWidget_TradingPost_TierButton Widget_TradingPost_TierButton
-## Widgets aren't supported by this documentation (yet)

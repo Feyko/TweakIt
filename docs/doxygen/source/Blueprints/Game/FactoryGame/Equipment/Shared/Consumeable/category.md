@@ -1,3 +1,0 @@
-\page BlueprintsGameFactoryGameEquipmentSharedConsumeable Consumeable
-- \subpage BlueprintsGameFactoryGameEquipmentSharedConsumeableBP_ConsumeableEquipment
-- \subpage BlueprintsGameFactoryGameEquipmentSharedConsumeableBP_ConsumeableEquipmentAttachment

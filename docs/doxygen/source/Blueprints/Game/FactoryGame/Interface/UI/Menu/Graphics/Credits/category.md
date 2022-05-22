@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMenuGraphicsCredits Credits
-- \subpage BlueprintsGameFactoryGameInterfaceUIMenuGraphicsCreditsWidget_Credit_Trademark

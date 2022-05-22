@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryTradingPostWidget_RewardBuildingProductivity Widget_RewardBuildingProductivity
-## Widgets aren't supported by this documentation (yet)

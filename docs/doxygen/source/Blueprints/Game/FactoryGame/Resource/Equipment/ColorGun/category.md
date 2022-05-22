@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentColorGun ColorGun
-- \subpage BlueprintsGameFactoryGameResourceEquipmentColorGunBP_EquipmentDescriptorColorGun

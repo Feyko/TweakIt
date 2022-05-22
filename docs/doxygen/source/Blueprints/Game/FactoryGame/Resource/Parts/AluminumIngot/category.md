@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourcePartsAluminumIngot AluminumIngot
-- \subpage BlueprintsGameFactoryGameResourcePartsAluminumIngotDesc_AluminumIngot

@@ -1,4 +1,0 @@
-\page BlueprintsGameFactoryGameWorld World
-- \subpage BlueprintsGameFactoryGameWorldBenefit
-- \subpage BlueprintsGameFactoryGameWorldEnvironment
-- \subpage BlueprintsGameFactoryGameWorldHazard

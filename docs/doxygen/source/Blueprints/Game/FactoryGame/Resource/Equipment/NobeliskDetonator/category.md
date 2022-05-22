@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameResourceEquipmentNobeliskDetonator NobeliskDetonator
-- \subpage BlueprintsGameFactoryGameResourceEquipmentNobeliskDetonatorBP_EquipmentDescriptorNobeliskDetonator

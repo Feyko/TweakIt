@@ -1,2 +1,0 @@
-\page StructsGameFactoryGameInterfaceUIInGameInventoryAddNotification InventoryAddNotification
-- \subpage StructsGameFactoryGameInterfaceUIInGameInventoryAddNotificationInventoryAddTimes

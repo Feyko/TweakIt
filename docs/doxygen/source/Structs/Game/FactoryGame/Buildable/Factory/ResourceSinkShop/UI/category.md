@@ -1,3 +1,0 @@
-\page StructsGameFactoryGameBuildableFactoryResourceSinkShopUI UI
-- \subpage StructsGameFactoryGameBuildableFactoryResourceSinkShopUIResourceSinkShop_Banner_Struct
-- \subpage StructsGameFactoryGameBuildableFactoryResourceSinkShopUIResourceSinkShop_CartItem_Struct

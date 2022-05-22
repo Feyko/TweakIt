@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIMessageGameplayBeatExplorationMessage_PickUp_AlienCarapace Message_PickUp_AlienCarapace
-## Widgets aren't supported by this documentation (yet)

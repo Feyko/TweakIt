@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameInterfaceUIAssets Assets
-- \subpage BlueprintsGameFactoryGameInterfaceUIAssetsShared

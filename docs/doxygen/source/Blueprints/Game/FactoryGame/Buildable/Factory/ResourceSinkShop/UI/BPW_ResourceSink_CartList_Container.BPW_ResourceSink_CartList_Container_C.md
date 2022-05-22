@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryResourceSinkShopUIBPW_ResourceSink_CartList_Container BPW_ResourceSink_CartList_Container
-## Widgets aren't supported by this documentation (yet)

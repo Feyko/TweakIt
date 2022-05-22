@@ -1,2 +1,0 @@
-\page BlueprintsGameFactoryGameBuildableFactoryTradingPostWidget_TradingPostSchematicCostInfo Widget_TradingPostSchematicCostInfo
-## Widgets aren't supported by this documentation (yet)
