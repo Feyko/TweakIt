@@ -3,7 +3,9 @@
 #include "LuaUClass.h"
 #include "Lua.h"
 #include <string>
-#include "TIReflection.h"
+
+#include "TweakIt/TweakItModule.h"
+#include "TweakIt/Helpers/TIReflection.h"
 using namespace std;
 
 using namespace TweakIt;

@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "D:\SatisfactoryModding\SatisfactoryModLoader\Source\TweakIt\LuaLib\lua.hpp"
+#include "TweakIt\LuaLib\lua.hpp"
 
 namespace TweakIt
 {

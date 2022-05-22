@@ -1,9 +1,8 @@
 ﻿#pragma once
 #include "CoreMinimal.h"
 
-#include <string>
 
-#include "D:\SatisfactoryModding\SatisfactoryModLoader\Source\TweakIt\LuaLib\lua.hpp"
+#include "TweakIt\LuaLib\lua.hpp"
 
 namespace TweakIt
 {
@@ -11,8 +10,8 @@ namespace TweakIt
 	{
 		struct LuaUStruct
 		{
-			UStructProperty* ScriptProperty;
-			void* Container;
+			UStruct* Struct;
+			void* Values;
 
 			static int lua_index(lua_State* L);
 
@@ -21,7 +20,7 @@ namespace TweakIt
 			static int lua__tostring(lua_State* L);
 			static int lua_gc(lua_State* L);
 
-			static int ConstructStruct(lua_State* L, UStructProperty* StructProperty, void* Container);
+			static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values);
 		};
 	}
 }

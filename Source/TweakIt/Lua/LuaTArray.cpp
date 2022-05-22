@@ -1,9 +1,7 @@
 ﻿#include "LuaTArray.h"
 #include "Lua.h"
-#include "util/ReflectionHelper.h"
-#include "TiReflection.h"
 #include <string>
-#include "LuaUObject.h"
+#include "TweakIt/TweakItModule.h"
 using namespace std;
 
 using namespace TweakIt;
@@ -13,13 +11,12 @@ int LuaTArray::lua_index(lua_State* L) {
 	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
 	int index = lua_tointeger(L, 2)-1;
 	LOGFS(FString::Printf(TEXT("Indexing a LuaTArray with %d"), index))
-	void* ArrayValue = self->ArrayProperty->ContainerPtrToValuePtr<void>(self->Container);
-	FScriptArrayHelper Helper = FScriptArrayHelper(self->ArrayProperty, ArrayValue);
-	if(Helper.IsValidIndex(index)) {
-		propertyToLua(L, self->ArrayProperty->Inner, Helper.GetRawPtr(index));
+	FScriptArray* ArrayValue = self->ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(self->Container);
+	if(ArrayValue->IsValidIndex(index)) {
+		propertyToLua(L, self->ArrayProperty->Inner, (uint8*)ArrayValue->GetData() + self->ArrayProperty->Inner->ElementSize * index);
 	}
 	else {
-		LOGF("Index %d isn't valid, the array is %d long", index, Helper.Num())
+		LOGF("Index %d isn't valid, the array is %d long", index, ArrayValue->Num())
 		lua_pushnil(L);
 	}
 	return 1;
@@ -29,16 +26,14 @@ int LuaTArray::lua_newindex(lua_State* L) {
 	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
 	int index = lua_tointeger(L, 2)-1;
 	LOGF("Newindexing a LuaTArray with %d", index)
-	void* ArrayValue = self->ArrayProperty->ContainerPtrToValuePtr<void>(self->Container);
-	FScriptArrayHelper Helper = FScriptArrayHelper(self->ArrayProperty, ArrayValue);
-	if(Helper.IsValidIndex(index)) {
-		luaToProperty(L, self->ArrayProperty->Inner, Helper.GetRawPtr(index), 3);
+	FScriptArray* ArrayValue = self->ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(self->Container);
+	if(!ArrayValue->IsValidIndex(index)) {
+		int appendCount = (index + 1) - ArrayValue->Num();
+		LOGF("Creating %d values", appendCount)
+		ArrayValue->Add(appendCount, self->ArrayProperty->Inner->ElementSize);
 	}
-	else {
-		LOGF("Index %d isn't valid, the array is %d long", index, Helper.Num())
-        lua_pushnil(L);
-	}
-	return 1;
+	luaToProperty(L, self->ArrayProperty->Inner, (uint8*)ArrayValue->GetData() + self->ArrayProperty->Inner->ElementSize * index, 3);
+	return 0;
 }
 
 int LuaTArray::lua__tostring(lua_State* L) {

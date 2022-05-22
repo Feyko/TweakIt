@@ -1,9 +1,9 @@
 ﻿#include "LuaUClass.h"
 #include "Lua.h"
-#include "util/ReflectionHelper.h"
-#include "TiReflection.h"
+#include "TweakIt/Helpers/TiReflection.h"
 #include <string>
 #include "LuaUObject.h"
+#include "TweakIt/TweakItModule.h"
 using namespace std;
 
 using namespace TweakIt;
@@ -30,7 +30,7 @@ int LuaUClass::lua_GetDefaultValue(lua_State* L) {
 	}
 	UProperty* Property = FTIReflection::FindPropertyByName(self->Class, *PropertyName);
 	if (Property->IsValidLowLevel()) {
-		LOG("Found property")
+		LOGF("Found property %s", *Property->GetName())
 		propertyToLua(L, Property, self->Class->GetDefaultObject());
 		self->Class->GetDefaultObject()->AddToRoot();
 	} else {lua_pushnil(L);}
@@ -49,6 +49,8 @@ int LuaUClass::lua_index(lua_State* L) {
 		lua_pushcfunction(L, lua_GetChildClasses);
 	} else if (index == "GetObjects") {
 		lua_pushcfunction(L, lua_GetObjects);
+	} else if (index == "MakeSubclass") {
+		lua_pushcfunction(L, lua_MakeSubclass);
 	} else if (index == "AddDefaultComponent") {
 		lua_pushcfunction(L, lua_AddDefaultComponent);
 	} else if (index == "RemoveDefaultComponent") {
@@ -72,7 +74,7 @@ int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {
 	if (IsRecursive) { GetDerivedClasses(self->Class, Classes); }
 	for (auto Class : Classes) {
 		LOG("Changing the default value of a class")
-		UProperty* Property = FReflectionHelper::FindPropertyByShortName<UProperty>(Class, *FString(PropertyName.c_str()));
+		UProperty* Property = FTIReflection::FindPropertyByName(Class, *FString(PropertyName.c_str()));
 		if (Property) {
 			luaToProperty(L, Property, Class->GetDefaultObject(), 3);
 			propertyToLua(L, Property, Class->GetDefaultObject());

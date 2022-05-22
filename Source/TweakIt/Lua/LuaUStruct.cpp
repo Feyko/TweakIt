@@ -1,9 +1,9 @@
 ﻿#include "LuaUStruct.h"
 #include "Lua.h"
-#include "util/ReflectionHelper.h"
-#include "TiReflection.h"
+#include "TweakIt/Helpers/TiReflection.h"
 #include <string>
 #include "LuaUObject.h"
+#include "TweakIt/TweakItModule.h"
 using namespace std;
 
 using namespace TweakIt;
@@ -13,11 +13,14 @@ int LuaUStruct::lua_index(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
 	FString index = lua_tostring(L, 2);
 	LOGFS(FString::Printf(TEXT("Indexing a LuaUStruct with %s"), *index))
-	void* ScriptValue = self->ScriptProperty->ContainerPtrToValuePtr<void>(self->Container);
-	UScriptStruct* ScriptStruct = self->ScriptProperty->Struct;
-	UProperty* NestedProperty = FTIReflection::FindPropertyByName(ScriptStruct, *index);
+	if(index == "MakeStructInstance") {
+		lua_pushcfunction(L, lua_MakeStructInstance);
+		return 1;
+	}
+	UProperty* NestedProperty = FTIReflection::FindPropertyByName(self->Struct, *index);
 	if(NestedProperty->IsValidLowLevel()) {
-		propertyToLua(L, NestedProperty, ScriptValue);
+		void* Value = NestedProperty->ContainerPtrToValuePtr<void>(self->Values);
+		propertyToLua(L, NestedProperty, Value);
 	}
 	else {
 		LOGF("The struct doesn't have a %s field", *index)
@@ -30,11 +33,11 @@ int LuaUStruct::lua_newindex(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
 	FString index = lua_tostring(L, 2);
 	LOGFS(FString::Printf(TEXT("Newindexing a LuaUStruct with %s"), *index))
-    void* ScriptValue = self->ScriptProperty->ContainerPtrToValuePtr<void>(self->Container);
-	UScriptStruct* ScriptStruct = self->ScriptProperty->Struct;
-	UProperty* NestedProperty = FTIReflection::FindPropertyByName(ScriptStruct, *index);
+	UProperty* NestedProperty = FTIReflection::FindPropertyByName(self->Struct, *index);
 	if(NestedProperty->IsValidLowLevel()) {
-		luaToProperty(L, NestedProperty, ScriptValue, 3);
+		void* Value = NestedProperty->ContainerPtrToValuePtr<void>(self->Values);
+		luaToProperty(L, NestedProperty, Value, 3);
+		self->Struct->AddToRoot();
 	}
 	else {
 		LOGF("The struct doesn't have a %s field", *index)
@@ -45,7 +48,7 @@ int LuaUStruct::lua_newindex(lua_State* L) {
 
 int LuaUStruct::lua__tostring(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
-	lua_pushstring(L, TCHAR_TO_UTF8(*self->ScriptProperty->GetName()));
+	lua_pushstring(L, TCHAR_TO_UTF8(*self->Struct->GetName()));
 	return 1;
 }
 
@@ -55,11 +58,11 @@ int LuaUStruct::lua_gc(lua_State* L) {
 	return 0;
 }
 
-int LuaUStruct::ConstructStruct(lua_State* L, UStructProperty* StructProperty, void* Container) {
-	if (StructProperty && StructProperty->IsValidLowLevel()) {
-		LOGF("Constructing a LuaUStruct from %s", *StructProperty->GetName())
+int LuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {
+	if (Struct->IsValidLowLevel()) {
+		LOGF("Constructing a LuaUStruct from %s", *Struct->GetName())
 		LuaUStruct* ReturnedInstance = static_cast<LuaUStruct*>(lua_newuserdata(L, sizeof(LuaUStruct)));
-		new(ReturnedInstance) LuaUStruct{StructProperty, Container};
+		new(ReturnedInstance) LuaUStruct{Struct, Values};
 		luaL_getmetatable(L, "LuaUStructMeTa");
 		lua_setmetatable(L, -2);
 	} else {
