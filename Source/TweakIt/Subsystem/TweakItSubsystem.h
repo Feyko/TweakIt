@@ -21,13 +21,10 @@ public:
 	static void RegisterLuaUStructMetadata(lua_State* L);
 
 	UFUNCTION(BlueprintCallable)
-	void RunAllScripts();
+	bool RunAllScripts();
 
 	UFUNCTION(BlueprintCallable)
 	bool RunScript(FString name);
-
-	UFUNCTION(BlueprintCallable)
-	bool RegisterCommands();
 
 	static ATweakItSubsystem* Get(UObject* WorldContext);
 

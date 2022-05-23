@@ -1,18 +1,20 @@
-﻿#include "TIRunScriptCommand.h"
+﻿#include "TIRunAllScriptsCommand.h"
+
+#include "TIRunScriptCommand.h"
 
 
 #include "FGPlayerController.h"
 #include "Command/CommandSender.h"
 #include "TweakIt/Subsystem/TweakItSubsystem.h"
-ATIRunScriptCommand::ATIRunScriptCommand() {
-	CommandName = TEXT("runscript");
-	Usage = TEXT("/runscript [Script Name] - Runs a script");
-	MinNumberOfArguments = 1;
+
+ATIRunAllScriptsCommand::ATIRunAllScriptsCommand() {
+	CommandName = TEXT("runallscripts");
+	Usage = TEXT("/runallscripts - Runs every script in the TweakIt folder");
 	bOnlyUsableByPlayer = false;
-	Aliases.Add(TEXT("rs"));
+	Aliases.Add(TEXT("ras"));
 }
 
-EExecutionStatus ATIRunScriptCommand::ExecuteCommand_Implementation(
+EExecutionStatus ATIRunAllScriptsCommand::ExecuteCommand_Implementation(
 	UCommandSender* Sender,
 	const TArray<FString>& Arguments,
 	const FString& Label
@@ -21,9 +23,9 @@ EExecutionStatus ATIRunScriptCommand::ExecuteCommand_Implementation(
 		Sender->SendChatMessage("You do not have the sufficient rights to do this.");
 		return EExecutionStatus::INSUFFICIENT_PERMISSIONS;
 	}
-	bool OK = ATweakItSubsystem::Get(this)->RunScript(Arguments[0]);
+	bool OK = ATweakItSubsystem::Get(this)->RunAllScripts();
 	if (!OK) {
-		Sender->SendChatMessage("Failed to run the script. Check the log for more info");
+		Sender->SendChatMessage("Failed to run the scripts. Check the log for more info");
 		return EExecutionStatus::UNCOMPLETED;
 	}
 	Sender->SendChatMessage("Success !");

@@ -18,7 +18,6 @@
 void ATweakItSubsystem::BeginPlay() {
 	LOG("TweakIt Version 0.4.0-dev is now loaded")
 	InitialiseLuaState();
-	RegisterCommands();
 	RunAllScripts();
 }
 
@@ -128,7 +127,7 @@ void ATweakItSubsystem::InitialiseLuaState() {
 	
 }
 
-void ATweakItSubsystem::RunAllScripts() {
+bool ATweakItSubsystem::RunAllScripts() {
 	LOG("[TweakIt] Running all scripts")
 	IFileManager& manager = FFileManagerGeneric::Get();
 	FString configDir = UConfigManager::GetConfigurationFolderPath().Append("/TweakIt/");
@@ -145,8 +144,13 @@ void ATweakItSubsystem::RunAllScripts() {
 		FString FilenamePart;
 		FString ExtensionPart;
 		LOGFS(filename);
-		RunScript(filename);
+		bool OK = RunScript(filename);
+		if (!OK)
+		{
+			return false;
+		}
 	}
+	return true;
 }
 
 bool ATweakItSubsystem::RunScript(FString name) {
@@ -154,15 +158,4 @@ bool ATweakItSubsystem::RunScript(FString name) {
 	FString path = UConfigManager::GetConfigurationFolderPath() + FString("/TweakIt/") + name;
 	if (!FPaths::FileExists(path)) { return false; }
 	return CheckLua(LuaState, luaL_dofile(LuaState, TCHAR_TO_UTF8(*path)));
-}
-
-bool ATweakItSubsystem::RegisterCommands() {
-	LOG("[TweakIt] Registering the commands")
-	AChatCommandSubsystem* Subsystem = AChatCommandSubsystem::Get(this);
-	if (!Subsystem->IsValidLowLevel()) {
-		LOG("The Chat Command Subsystem was invalid")
-		return false;
-	}
-	Subsystem->RegisterCommand("TweakIt",ATIRunScriptCommand::StaticClass());
-	return true;
 }

@@ -24,7 +24,6 @@ bool CheckLua(lua_State* L, int r) {
 }
 
 void StackDump(lua_State* L) {
-
 	int i;
 	int top = lua_gettop(L);
 	for (i = 1; i <= top; i++) {
