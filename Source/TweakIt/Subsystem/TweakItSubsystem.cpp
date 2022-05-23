@@ -1,14 +1,11 @@
-﻿#include "TweakItSubsystem.h"
+#include "TweakItSubsystem.h"
 
 #include <Subsystem/SubsystemActorManager.h>
 
-#include "SatisfactoryModLoader.h"
 #include "FGGameInstance.h"
-#include "FGGameMode.h"
-#include "TweakIt/Helpers/TIReflection.h"
+#include "TweakIt/Lua/lib/lua.hpp"
 #include "TweakIt/Commands/TIRunScriptCommand.h"
 #include "Configuration/ConfigManager.h"
-#include "Configuration/ModConfiguration.h"
 #include "HAL/FileManagerGeneric.h"
 #include "TweakIt/Lua/Lua.h"
 #include "SML/Public/Patching/NativeHookManager.h"
@@ -17,7 +14,6 @@
 #include "TweakIt/TweakItModule.h"
 #include "TweakIt/Lua/LuaUClass.h"
 #include "TweakIt/Lua/LuaUObject.h"
-using namespace TweakIt::Lua;
 
 void ATweakItSubsystem::BeginPlay() {
 	LOG("TweakIt Version 0.4.0-dev is now loaded")

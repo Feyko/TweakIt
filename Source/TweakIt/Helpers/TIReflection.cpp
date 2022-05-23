@@ -1,4 +1,4 @@
-﻿#include "TIReflection.h"
+#include "TIReflection.h"
 
 
 #include "Engine/SCS_Node.h"
@@ -78,7 +78,8 @@ UActorComponent* FTIReflection::FindDefaultComponentByName(
 	}
 	// Check CDO.
 	AActor* ActorCDO = InActorClass->GetDefaultObject<AActor>();
-	TArray<UActorComponent*> FoundComponents = ActorCDO->GetComponentsByClass(InComponentClass);
+	TArray<UActorComponent*> FoundComponents;
+	ActorCDO->GetComponents(InComponentClass,FoundComponents);
 
 	for (auto Component : FoundComponents) {
 		LOGFS(Component->GetName())

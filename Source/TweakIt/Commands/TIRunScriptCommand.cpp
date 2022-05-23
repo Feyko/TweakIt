@@ -4,7 +4,6 @@
 #include "FGPlayerController.h"
 #include "Command/CommandSender.h"
 #include "TweakIt/Subsystem/TweakItSubsystem.h"
-// TODO Fix command
 ATIRunScriptCommand::ATIRunScriptCommand() {
 	CommandName = TEXT("runscript");
 	Usage = TEXT("/runscript [Script Name] - Runs a script");
@@ -18,7 +17,7 @@ EExecutionStatus ATIRunScriptCommand::ExecuteCommand_Implementation(
 	const TArray<FString>& Arguments,
 	const FString& Label
 ) {
-	if (Sender->GetPlayer()->GetLocalPlayer()->GetControllerId() != 0) {
+	if (!Sender->GetPlayer()->HasAuthority()) {
 		Sender->SendChatMessage("You do not have the sufficient rights to do this.");
 		return EExecutionStatus::INSUFFICIENT_PERMISSIONS;
 	}

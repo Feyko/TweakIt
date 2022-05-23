@@ -4,8 +4,8 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTweakIt, Log, Log);
 
-#define LOG(x) UE_LOG(LogTweakIt, Log, TEXT(x));
-#define LOGC(x, level) UE_LOG(LogTweakIt, level, TEXT(x));
+#define LOGL(x, level) UE_LOG(LogTweakIt, level, TEXT(x));
+#define LOG(x) LOGL(x, Log);
 #define LOGS(x) UE_LOG(LogTweakIt, Log, TEXT("%s"), *FString(x.c_str()));
 #define LOGFS(x) UE_LOG(LogTweakIt, Log, TEXT("%s"), *x);
 #define LOGF(x, ...) LOGFS(FString::Printf(TEXT(x), __VA_ARGS__))

@@ -1,13 +1,11 @@
-﻿#include "LuaUClass.h"
+#include "LuaUClass.h"
 #include "Lua.h"
+#include "TweakIt/Lua/lib/lua.hpp"
 #include "TweakIt/Helpers/TiReflection.h"
 #include <string>
 #include "LuaUObject.h"
 #include "TweakIt/TweakItModule.h"
 using namespace std;
-
-using namespace TweakIt;
-using namespace Lua;
 
 int LuaUClass::lua_GetDefaultValue(lua_State* L) {
 	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
@@ -31,7 +29,7 @@ int LuaUClass::lua_GetDefaultValue(lua_State* L) {
 	UProperty* Property = FTIReflection::FindPropertyByName(self->Class, *PropertyName);
 	if (Property->IsValidLowLevel()) {
 		LOGF("Found property %s", *Property->GetName())
-		propertyToLua(L, Property, self->Class->GetDefaultObject());
+		PropertyToLua(L, Property, self->Class->GetDefaultObject());
 		self->Class->GetDefaultObject()->AddToRoot();
 	} else {lua_pushnil(L);}
 	return 1;
@@ -64,6 +62,7 @@ int LuaUClass::lua_index(lua_State* L) {
 }
 
 int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {
+	
 	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
 	const std::string PropertyName = lua_tostring(L, 2);
 	const bool IsRecursive = static_cast<bool>(lua_toboolean(L, 4));
@@ -76,12 +75,12 @@ int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {
 		LOG("Changing the default value of a class")
 		UProperty* Property = FTIReflection::FindPropertyByName(Class, *FString(PropertyName.c_str()));
 		if (Property) {
-			luaToProperty(L, Property, Class->GetDefaultObject(), 3);
-			propertyToLua(L, Property, Class->GetDefaultObject());
+			LuaToProperty(L, Property, Class->GetDefaultObject(), 3);
+			PropertyToLua(L, Property, Class->GetDefaultObject());
 			Class->GetDefaultObject()->AddToRoot();
 			LOG("Changed the class's CDO. Iterating over objects...")
 			for (FObjectIterator It = FObjectIterator(Class); It; ++It) {
-				luaToProperty(L, Property, *It, 3);
+				LuaToProperty(L, Property, *It, 3);
 			}
 			LOG("Finished iteration over objects")
 		} else {

@@ -1,24 +1,18 @@
-﻿#pragma once
+#pragma once
 
-#include "TweakIt\LuaLib\lua.hpp"
+#include "TweakIt\Lua\lib\lua.hpp"
 
-namespace TweakIt
+struct LuaTArray
 {
-	namespace Lua
-	{
-		struct LuaTArray
-		{
-			UArrayProperty* ArrayProperty;
-			void* Container;
+	UArrayProperty* ArrayProperty;
+	void* Container;
 
-			static int lua_index(lua_State* L);
+	static int lua_index(lua_State* L);
 
-			static int lua_newindex(lua_State* L);
+	static int lua_newindex(lua_State* L);
 
-			static int lua__tostring(lua_State* L);
-			static int lua_gc(lua_State* L);
+	static int lua__tostring(lua_State* L);
+	static int lua_gc(lua_State* L);
 
-			static int ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container);
-		};
-	}
-}
+	static int ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container);
+};

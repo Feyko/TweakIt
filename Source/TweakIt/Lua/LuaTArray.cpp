@@ -1,11 +1,8 @@
-﻿#include "LuaTArray.h"
+#include "LuaTArray.h"
 #include "Lua.h"
 #include <string>
 #include "TweakIt/TweakItModule.h"
 using namespace std;
-
-using namespace TweakIt;
-using namespace Lua;
 
 int LuaTArray::lua_index(lua_State* L) {
 	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
@@ -13,7 +10,7 @@ int LuaTArray::lua_index(lua_State* L) {
 	LOGFS(FString::Printf(TEXT("Indexing a LuaTArray with %d"), index))
 	FScriptArray* ArrayValue = self->ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(self->Container);
 	if(ArrayValue->IsValidIndex(index)) {
-		propertyToLua(L, self->ArrayProperty->Inner, (uint8*)ArrayValue->GetData() + self->ArrayProperty->Inner->ElementSize * index);
+		PropertyToLua(L, self->ArrayProperty->Inner, (uint8*)ArrayValue->GetData() + self->ArrayProperty->Inner->ElementSize * index);
 	}
 	else {
 		LOGF("Index %d isn't valid, the array is %d long", index, ArrayValue->Num())
@@ -32,7 +29,7 @@ int LuaTArray::lua_newindex(lua_State* L) {
 		LOGF("Creating %d values", appendCount)
 		ArrayValue->Add(appendCount, self->ArrayProperty->Inner->ElementSize);
 	}
-	luaToProperty(L, self->ArrayProperty->Inner, (uint8*)ArrayValue->GetData() + self->ArrayProperty->Inner->ElementSize * index, 3);
+	LuaToProperty(L, self->ArrayProperty->Inner, (uint8*)ArrayValue->GetData() + self->ArrayProperty->Inner->ElementSize * index, 3);
 	return 0;
 }
 

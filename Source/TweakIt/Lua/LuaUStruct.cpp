@@ -1,13 +1,10 @@
-﻿#include "LuaUStruct.h"
+#include "LuaUStruct.h"
 #include "Lua.h"
 #include "TweakIt/Helpers/TiReflection.h"
 #include <string>
-#include "LuaUObject.h"
+#include "TweakIt/Lua/lib/lua.hpp"
 #include "TweakIt/TweakItModule.h"
 using namespace std;
-
-using namespace TweakIt;
-using namespace Lua;
 
 int LuaUStruct::lua_index(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
@@ -20,7 +17,7 @@ int LuaUStruct::lua_index(lua_State* L) {
 	UProperty* NestedProperty = FTIReflection::FindPropertyByName(self->Struct, *index);
 	if(NestedProperty->IsValidLowLevel()) {
 		void* Value = NestedProperty->ContainerPtrToValuePtr<void>(self->Values);
-		propertyToLua(L, NestedProperty, Value);
+		PropertyToLua(L, NestedProperty, Value);
 	}
 	else {
 		LOGF("The struct doesn't have a %s field", *index)
@@ -36,7 +33,7 @@ int LuaUStruct::lua_newindex(lua_State* L) {
 	UProperty* NestedProperty = FTIReflection::FindPropertyByName(self->Struct, *index);
 	if(NestedProperty->IsValidLowLevel()) {
 		void* Value = NestedProperty->ContainerPtrToValuePtr<void>(self->Values);
-		luaToProperty(L, NestedProperty, Value, 3);
+		LuaToProperty(L, NestedProperty, Value, 3);
 		self->Struct->AddToRoot();
 	}
 	else {

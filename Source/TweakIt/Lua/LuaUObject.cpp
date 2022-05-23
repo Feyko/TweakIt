@@ -1,15 +1,13 @@
-﻿#include "LuaUObject.h"
+#include "LuaUObject.h"
 
 #include "LuaUClass.h"
 #include "Lua.h"
+#include "TweakIt/Lua/lib/lua.hpp"
 #include <string>
 
 #include "TweakIt/TweakItModule.h"
 #include "TweakIt/Helpers/TIReflection.h"
 using namespace std;
-
-using namespace TweakIt;
-using namespace Lua;
 
 int LuaUObject::lua_index(lua_State* L) {
 
@@ -24,7 +22,7 @@ int LuaUObject::lua_index(lua_State* L) {
 	UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *PropertyName);
 	if (Property->IsValidLowLevel()) {
 		LOG("Found property")
-		propertyToLua(L, Property, self->Object);
+		PropertyToLua(L, Property, self->Object);
 	} else { lua_pushnil(L); }
 	return 1;
 }
@@ -37,7 +35,7 @@ int LuaUObject::lua_newindex(lua_State* L) {
 		UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *PropertyName);
 		if (Property->IsValidLowLevel()) {
 			LOG("Found property")
-			luaToProperty(L, Property, self->Object, 3);
+			LuaToProperty(L, Property, self->Object, 3);
 		} else { lua_pushnil(L); }
 		return 0;
 	}
