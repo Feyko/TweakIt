@@ -27,71 +27,12 @@ ATweakItSubsystem* ATweakItSubsystem::Get(UObject* WorldContext) {
 	return WorldContext->GetWorld()->GetSubsystem<USubsystemActorManager>()->GetSubsystemActor<ATweakItSubsystem>();
 }
 
-void ATweakItSubsystem::RegisterLuaUClassMetadata(lua_State* L) {
-	luaL_newmetatable(L, "LuaUClassMeTa");
-	lua_pushstring(L, "__index");
-	lua_pushcfunction(L, LuaUClass::lua_index);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__newindex");
-	lua_pushcfunction(L, LuaUClass::lua_newindex);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__call");
-	lua_pushcfunction(L, LuaUClass::lua__call);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__tostring");
-	lua_pushcfunction(L, LuaUClass::lua__tostring);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__gc");
-	lua_pushcfunction(L, LuaUClass::lua_gc);
-	lua_settable(L, -3);
-}
-
-void ATweakItSubsystem::RegisterLuaUObjectMetadata(lua_State* L) {
-	luaL_newmetatable(L, "LuaUObjectMeTa");
-	lua_pushstring(L, "__index");
-	lua_pushcfunction(L, LuaUObject::lua_index);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__newindex");
-	lua_pushcfunction(L, LuaUObject::lua_newindex);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__gc");
-	lua_pushcfunction(L, LuaUObject::lua_gc);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__tostring");
-	lua_pushcfunction(L, LuaUObject::lua__tostring);
-	lua_settable(L, -3);
-}
-
-void ATweakItSubsystem::RegisterLuaTArrayMetadata(lua_State* L) {
-	luaL_newmetatable(L, "LuaTArrayMeTa");
-	lua_pushstring(L, "__index");
-	lua_pushcfunction(L, LuaTArray::lua_index);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__newindex");
-	lua_pushcfunction(L, LuaTArray::lua_newindex);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__gc");
-	lua_pushcfunction(L, LuaTArray::lua_gc);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__tostring");
-	lua_pushcfunction(L, LuaTArray::lua__tostring);
-	lua_settable(L, -3);
-}
-
-void ATweakItSubsystem::RegisterLuaUStructMetadata(lua_State* L) {
-	luaL_newmetatable(L, "LuaUStructMeTa");
-	lua_pushstring(L, "__index");
-	lua_pushcfunction(L, LuaUStruct::lua_index);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__newindex");
-	lua_pushcfunction(L, LuaUStruct::lua_newindex);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__gc");
-	lua_pushcfunction(L, LuaUStruct::lua_gc);
-	lua_settable(L, -3);
-	lua_pushstring(L, "__tostring");
-	lua_pushcfunction(L, LuaUStruct::lua__tostring);
-	lua_settable(L, -3);
+void ATweakItSubsystem::RegisterMetadatas(lua_State* L)
+{
+	LuaUClass::RegisterMetadata(L);
+	LuaUObject::RegisterMetadata(L);
+	LuaTArray::RegisterMetadata(L);
+	LuaUStruct::RegisterMetadata(L);
 }
 
 void ATweakItSubsystem::RegisterGlobalFunctions(lua_State* L) {
@@ -108,10 +49,7 @@ void ATweakItSubsystem::InitialiseLuaState() {
 	if (LuaState) return;
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
-	RegisterLuaUClassMetadata(L);
-	RegisterLuaUObjectMetadata(L);
-	RegisterLuaTArrayMetadata(L);
-	RegisterLuaUStructMetadata(L);
+	RegisterMetadatas(L);
 	RegisterGlobalFunctions(L);
 	if(this->IsA(AActor::StaticClass())) {
 		LOG("This is an Actor")

@@ -45,6 +45,15 @@ int LuaTArray::lua_gc(lua_State* L) {
 	return 0;
 }
 
+void LuaTArray::RegisterMetadata(lua_State* L)
+{
+	luaL_newmetatable(L, "TArrayMeta");
+	RegisterMethod(L, "__index", lua_index);
+	RegisterMethod(L, "__newindex", lua_newindex);
+	RegisterMethod(L, "__tostring", lua__tostring);
+	RegisterMethod(L, "__gc", lua_gc);
+}
+
 int LuaTArray::ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container) {
 	if (ArrayProperty && ArrayProperty->IsValidLowLevel()) {
 		LOGF("Constructing a LuaTArray from %s", *ArrayProperty->GetName())

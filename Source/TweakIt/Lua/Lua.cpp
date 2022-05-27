@@ -14,6 +14,13 @@
 
 using namespace std;
 
+void RegisterMethod(lua_State* L, const char* Name, lua_CFunction Function)
+{
+	lua_pushstring(L, Name);
+	lua_pushcfunction(L, Function);
+	lua_settable(L, -3);
+}
+
 bool CheckLua(lua_State* L, int r) {
 	if (r != LUA_OK) {
 		string errormsg = lua_tostring(L, -1);

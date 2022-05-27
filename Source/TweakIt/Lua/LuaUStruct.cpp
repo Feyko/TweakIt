@@ -55,6 +55,15 @@ int LuaUStruct::lua_gc(lua_State* L) {
 	return 0;
 }
 
+void LuaUStruct::RegisterMetadata(lua_State* L)
+{
+	luaL_newmetatable(L, "UStructMeta");
+	RegisterMethod(L, "__index", lua_index);
+	RegisterMethod(L, "__newindex", lua_newindex);
+	RegisterMethod(L, "__tostring", lua__tostring);
+	RegisterMethod(L, "__gc", lua_gc);
+}
+
 int LuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {
 	if (Struct->IsValidLowLevel()) {
 		LOGF("Constructing a LuaUStruct from %s", *Struct->GetName())

@@ -17,5 +17,6 @@ struct LuaUStruct
 	static int lua__tostring(lua_State* L);
 	static int lua_gc(lua_State* L);
 
+	static void RegisterMetadata(lua_State* L);
 	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values);
 };

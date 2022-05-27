@@ -93,3 +93,12 @@ int LuaUObject::lua__tostring(lua_State* L) {
 	lua_pushstring(L, TCHAR_TO_UTF8(*self->Object->GetName()));
 	return 1;
 }
+
+void LuaUObject::RegisterMetadata(lua_State* L)
+{
+	luaL_newmetatable(L, "UObjectMeta");
+	RegisterMethod(L, "__index", lua_index);
+	RegisterMethod(L, "__newindex", lua_newindex);
+	RegisterMethod(L, "__tostring", lua__tostring);
+	RegisterMethod(L, "__gc", lua_gc);
+}

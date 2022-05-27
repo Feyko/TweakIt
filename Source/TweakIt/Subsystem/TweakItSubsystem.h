@@ -14,11 +14,8 @@ public:
 	virtual void BeginPlay() override;
 
 	void InitialiseLuaState();
-	static void RegisterLuaUClassMetadata(lua_State* L);
-	static void RegisterLuaUObjectMetadata(lua_State* L);
+	static void RegisterMetadatas(lua_State* L);
 	static void RegisterGlobalFunctions(lua_State* L);
-	static void RegisterLuaTArrayMetadata(lua_State* L);
-	static void RegisterLuaUStructMetadata(lua_State* L);
 
 	UFUNCTION(BlueprintCallable)
 	bool RunAllScripts();

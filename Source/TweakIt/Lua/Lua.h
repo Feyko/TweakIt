@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "lib/lua.h"
 
+void RegisterMethod(lua_State* L, const char* Name, lua_CFunction Function);
 
 bool CheckLua(lua_State* L, int r);
 

@@ -197,6 +197,16 @@ int LuaUClass::lua_gc(lua_State* L) {
 	return 0;
 }
 
+void LuaUClass::RegisterMetadata(lua_State* L)
+{
+	luaL_newmetatable(L, "UClassMeta");
+	RegisterMethod(L, "__index", lua_index);
+	RegisterMethod(L, "__newindex", lua_newindex);
+	RegisterMethod(L, "__call", lua__call);
+	RegisterMethod(L, "__tostring", lua__tostring);
+	RegisterMethod(L, "__gc", lua_gc);
+}
+
 int LuaUClass::ConstructClass(lua_State* L, UClass* Class) {
 	if (Class && Class->IsValidLowLevel()) {
 		LOGF("Constructing a LuaUClass from %s", *Class->GetName())
