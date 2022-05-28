@@ -2,7 +2,7 @@
 
 #include "FGSubsystem.h"
 #include "Subsystem/ModSubsystem.h"
-#include "TweakIt/Lua\lib/lua.hpp"
+#include "TweakIt/Lua/FLuaState.h"
 #include "TweakItSubsystem.generated.h"
 
 UCLASS()
@@ -12,12 +12,6 @@ class ATweakItSubsystem : public AModSubsystem
 public:
 	
 	virtual void BeginPlay() override;
-
-	void InitialiseLuaState();
-	void OpenLibs(lua_State* L);
-	static void RegisterMetadatas(lua_State* L);
-	static void RegisterGlobalFunctions(lua_State* L);
-	void RegisterWorldContext(lua_State* L);
 
 	UFUNCTION(BlueprintCallable)
 	bool RunAllScripts();
@@ -33,5 +27,5 @@ public:
 	static ATweakItSubsystem* Get(UObject* WorldContext);
 
 private:
-	lua_State* LuaState = nullptr;
+	FLuaState LuaState = FLuaState(this);
 };
