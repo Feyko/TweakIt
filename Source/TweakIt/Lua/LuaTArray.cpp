@@ -7,7 +7,7 @@ using namespace std;
 int LuaTArray::lua_index(lua_State* L) {
 	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
 	int index = lua_tointeger(L, 2)-1;
-	LOGFS(FString::Printf(TEXT("Indexing a LuaTArray with %d"), index))
+	LOGF("Indexing a LuaTArray with %d", index)
 	FScriptArray* ArrayValue = self->ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(self->Container);
 	if(ArrayValue->IsValidIndex(index)) {
 		PropertyToLua(L, self->ArrayProperty->Inner, (uint8*)ArrayValue->GetData() + self->ArrayProperty->Inner->ElementSize * index);

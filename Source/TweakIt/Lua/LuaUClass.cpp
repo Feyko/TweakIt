@@ -38,7 +38,7 @@ int LuaUClass::lua_GetDefaultValue(lua_State* L) {
 int LuaUClass::lua_index(lua_State* L) {
 	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
 	const FString index = lua_tostring(L, 2);
-	LOGFS(FString::Printf(TEXT("Indexing a LuaUClass that holds %s with %s"), *self->Class->GetName(), *index))
+	LOGF("Indexing a LuaUClass that holds %s with %s", *self->Class->GetName(), *index)
 	if (index == "GetDefaultValue") {
 		lua_pushcfunction(L, lua_GetDefaultValue);
 	} else if (index == "ChangeDefaultValue") {
@@ -66,8 +66,7 @@ int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {
 	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
 	const std::string PropertyName = lua_tostring(L, 2);
 	const bool IsRecursive = static_cast<bool>(lua_toboolean(L, 4));
-	LOGFS(FString::Printf(TEXT("Calling ChangeDefaultValue(%hs,value , %hhd) on class %s"),
-											PropertyName.c_str(), IsRecursive, *self->Class->GetName()))
+	LOGF("Calling ChangeDefaultValue(%hs,value , %hhd) on class %s", PropertyName.c_str(), IsRecursive, *self->Class->GetName())
 	TArray<UClass*> Classes;
 	Classes.Add(self->Class);
 	if (IsRecursive) { GetDerivedClasses(self->Class, Classes); }

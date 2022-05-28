@@ -44,7 +44,7 @@ void StackDump(lua_State* L) {
 
 // Mostly borrowed from FIN's source. Thanks Pana !
 void PropertyToLua(lua_State* L, UProperty* p, void* data) {
-	LOGFS(FString::Printf(TEXT("Transforming from Property %s to Lua"), *p->GetName()));
+	LOGF("Transforming from Property %s to Lua", *p->GetName());
 	auto c = p->GetClass()->GetCastFlags();
 	if (c & EClassCastFlags::CASTCLASS_FBoolProperty) {
 		lua_pushboolean(L, *p->ContainerPtrToValuePtr<bool>(data));
@@ -94,7 +94,7 @@ void PropertyToLua(lua_State* L, UProperty* p, void* data) {
 
 // Mostly borrowed from FIN's source. Thanks Pana !
 void LuaToProperty(lua_State* L, UProperty* p, void* data, int i) {
-	LOGFS(FString::Printf(TEXT("Transforming from Lua to Property %s"), *p->GetName()));
+	LOGF("Transforming from Lua to Property %s", *p->GetName());
 	auto c = p->GetClass()->GetCastFlags();
 	if (c & EClassCastFlags::CASTCLASS_FBoolProperty) {
 		*p->ContainerPtrToValuePtr<bool>(data) = static_cast<bool>(lua_toboolean(L, i));

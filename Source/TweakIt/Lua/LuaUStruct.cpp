@@ -9,7 +9,7 @@ using namespace std;
 int LuaUStruct::lua_index(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
 	FString index = lua_tostring(L, 2);
-	LOGFS(FString::Printf(TEXT("Indexing a LuaUStruct with %s"), *index))
+	LOGF("Indexing a LuaUStruct with %s", *index)
 	if(index == "MakeStructInstance") {
 		lua_pushcfunction(L, lua_MakeStructInstance);
 		return 1;
@@ -29,7 +29,7 @@ int LuaUStruct::lua_index(lua_State* L) {
 int LuaUStruct::lua_newindex(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
 	FString index = lua_tostring(L, 2);
-	LOGFS(FString::Printf(TEXT("Newindexing a LuaUStruct with %s"), *index))
+	LOGF("Newindexing a LuaUStruct with %s", *index)
 	UProperty* NestedProperty = FTIReflection::FindPropertyByName(self->Struct, *index);
 	if(NestedProperty->IsValidLowLevel()) {
 		void* Value = NestedProperty->ContainerPtrToValuePtr<void>(self->Values);

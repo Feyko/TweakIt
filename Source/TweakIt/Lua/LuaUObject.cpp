@@ -13,7 +13,7 @@ int LuaUObject::lua_index(lua_State* L) {
 
 	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
 	FString PropertyName = lua_tostring(L, 2);
-	LOGFS(FString::Printf(TEXT("Indexing a LuaUObject with %s"),*PropertyName))
+	LOGF("Indexing a LuaUObject with %s",*PropertyName)
 	if (PropertyName == "GetClass") {
 		lua_pushcfunction(L, lua_GetClass);
 	} else if (PropertyName == "DumpProperties") {
@@ -31,7 +31,7 @@ int LuaUObject::lua_newindex(lua_State* L) {
 	{
 		LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
 		FString PropertyName = lua_tostring(L, 2);
-		LOGFS(FString::Printf(TEXT("Newindexing a LuaUObject with %s"),*PropertyName))
+		LOGF("Newindexing a LuaUObject with %s",*PropertyName)
 		UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *PropertyName);
 		if (Property->IsValidLowLevel()) {
 			LOG("Found property")
