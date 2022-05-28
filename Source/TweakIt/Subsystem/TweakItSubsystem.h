@@ -14,15 +14,22 @@ public:
 	virtual void BeginPlay() override;
 
 	void InitialiseLuaState();
+	void OpenLibs(lua_State* L);
 	static void RegisterMetadatas(lua_State* L);
 	static void RegisterGlobalFunctions(lua_State* L);
+	void RegisterWorldContext(lua_State* L);
 
 	UFUNCTION(BlueprintCallable)
 	bool RunAllScripts();
 
 	UFUNCTION(BlueprintCallable)
-	bool RunScript(FString name);
+	bool RunScript(FString Name);
 
+	TArray<FString> GetAllScripts();
+	
+	void CreateDefaultScript();
+	FString GetConfigDirectory();
+	
 	static ATweakItSubsystem* Get(UObject* WorldContext);
 
 private:
