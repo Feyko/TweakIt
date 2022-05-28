@@ -69,7 +69,7 @@ int LuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {
 		LOGF("Constructing a LuaUStruct from %s", *Struct->GetName())
 		LuaUStruct* ReturnedInstance = static_cast<LuaUStruct*>(lua_newuserdata(L, sizeof(LuaUStruct)));
 		new(ReturnedInstance) LuaUStruct{Struct, Values};
-		luaL_getmetatable(L, "LuaUStructMeTa");
+		luaL_getmetatable(L, "UStructMeta");
 		lua_setmetatable(L, -2);
 	} else {
 		LOG("Trying to construct a LuaUStruct from an invalid property")

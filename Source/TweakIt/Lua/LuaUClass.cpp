@@ -212,7 +212,7 @@ int LuaUClass::ConstructClass(lua_State* L, UClass* Class) {
 		LOGF("Constructing a LuaUClass from %s", *Class->GetName())
 		LuaUClass* ReturnedInstance = static_cast<LuaUClass*>(lua_newuserdata(L, sizeof(LuaUClass)));
 		new(ReturnedInstance) LuaUClass{Class};
-		luaL_getmetatable(L, "LuaUClassMeTa");
+		luaL_getmetatable(L, "UClassMeta");
 		lua_setmetatable(L, -2);
 	} else {
 		LOG("Trying to construct a LuaUClass from an invalid class")

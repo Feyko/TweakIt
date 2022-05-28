@@ -67,7 +67,7 @@ int LuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 		LOG("Got instance")
 		new(ReturnedInstance) LuaUObject{Object};
 		LOG("Initialised")
-		luaL_getmetatable(L, "LuaUObjectMeTa");
+		luaL_getmetatable(L, "UObjectMeta");
 		lua_setmetatable(L, -2);
 	} else {
 		LOG("[TweakIt] Trying to construct a LuaUObject from an invalid object")

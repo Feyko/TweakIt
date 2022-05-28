@@ -59,7 +59,7 @@ int LuaTArray::ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void*
 		LOGF("Constructing a LuaTArray from %s", *ArrayProperty->GetName())
 		LuaTArray* ReturnedInstance = static_cast<LuaTArray*>(lua_newuserdata(L, sizeof(LuaTArray)));
 		new(ReturnedInstance) LuaTArray{ArrayProperty, Container};
-		luaL_getmetatable(L, "LuaTArrayMeTa");
+		luaL_getmetatable(L, "TArrayMeta");
 		lua_setmetatable(L, -2);
 	} else {
 		LOG("Trying to construct a LuaTArray from an invalid property")
