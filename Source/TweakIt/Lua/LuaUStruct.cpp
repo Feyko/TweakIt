@@ -6,7 +6,7 @@
 #include "TweakIt/TweakItModule.h"
 using namespace std;
 
-int LuaUStruct::lua_index(lua_State* L) {
+int LuaUStruct::lua__index(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
 	FString index = lua_tostring(L, 2);
 	LOGF("Indexing a LuaUStruct with %s", *index)
@@ -26,7 +26,7 @@ int LuaUStruct::lua_index(lua_State* L) {
 	return 1;
 }
 
-int LuaUStruct::lua_newindex(lua_State* L) {
+int LuaUStruct::lua__newindex(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
 	FString index = lua_tostring(L, 2);
 	LOGF("Newindexing a LuaUStruct with %s", *index)
@@ -49,7 +49,7 @@ int LuaUStruct::lua__tostring(lua_State* L) {
 	return 1;
 }
 
-int LuaUStruct::lua_gc(lua_State* L) {
+int LuaUStruct::lua__gc(lua_State* L) {
 	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
 	self->~LuaUStruct();
 	return 0;
@@ -58,10 +58,10 @@ int LuaUStruct::lua_gc(lua_State* L) {
 void LuaUStruct::RegisterMetadata(lua_State* L)
 {
 	luaL_newmetatable(L, "UStructMeta");
-	RegisterMethod(L, "__index", lua_index);
-	RegisterMethod(L, "__newindex", lua_newindex);
+	RegisterMethod(L, "__index", lua__index);
+	RegisterMethod(L, "__newindex", lua__newindex);
 	RegisterMethod(L, "__tostring", lua__tostring);
-	RegisterMethod(L, "__gc", lua_gc);
+	RegisterMethod(L, "__gc", lua__gc);
 }
 
 int LuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {

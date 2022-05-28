@@ -35,7 +35,7 @@ int LuaUClass::lua_GetDefaultValue(lua_State* L) {
 	return 1;
 }
 
-int LuaUClass::lua_index(lua_State* L) {
+int LuaUClass::lua__index(lua_State* L) {
 	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
 	const FString index = lua_tostring(L, 2);
 	LOGF("Indexing a LuaUClass that holds %s with %s", *self->Class->GetName(), *index)
@@ -170,7 +170,7 @@ int LuaUClass::lua_DumpProperties(lua_State* L) {
 	return 0;
 }
 
-int LuaUClass::lua_newindex(lua_State* L) {
+int LuaUClass::lua__newindex(lua_State* L) {
 	lua_ChangeDefaultValue(L);
 	return 1;
 }
@@ -190,7 +190,7 @@ int LuaUClass::lua__tostring(lua_State* L) {
 	return 1;
 }
 
-int LuaUClass::lua_gc(lua_State* L) {
+int LuaUClass::lua__gc(lua_State* L) {
 	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
 	self->~LuaUClass();
 	return 0;
@@ -199,11 +199,11 @@ int LuaUClass::lua_gc(lua_State* L) {
 void LuaUClass::RegisterMetadata(lua_State* L)
 {
 	luaL_newmetatable(L, "UClassMeta");
-	RegisterMethod(L, "__index", lua_index);
-	RegisterMethod(L, "__newindex", lua_newindex);
+	RegisterMethod(L, "__index", lua__index);
+	RegisterMethod(L, "__newindex", lua__newindex);
 	RegisterMethod(L, "__call", lua__call);
 	RegisterMethod(L, "__tostring", lua__tostring);
-	RegisterMethod(L, "__gc", lua_gc);
+	RegisterMethod(L, "__gc", lua__gc);
 }
 
 int LuaUClass::ConstructClass(lua_State* L, UClass* Class) {

@@ -4,7 +4,7 @@
 #include "TweakIt/TweakItModule.h"
 using namespace std;
 
-int LuaTArray::lua_index(lua_State* L) {
+int LuaTArray::lua__index(lua_State* L) {
 	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
 	int index = lua_tointeger(L, 2)-1;
 	LOGF("Indexing a LuaTArray with %d", index)
@@ -19,7 +19,7 @@ int LuaTArray::lua_index(lua_State* L) {
 	return 1;
 }
 
-int LuaTArray::lua_newindex(lua_State* L) {
+int LuaTArray::lua__newindex(lua_State* L) {
 	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
 	int index = lua_tointeger(L, 2)-1;
 	LOGF("Newindexing a LuaTArray with %d", index)
@@ -39,7 +39,7 @@ int LuaTArray::lua__tostring(lua_State* L) {
 	return 1;
 }
 
-int LuaTArray::lua_gc(lua_State* L) {
+int LuaTArray::lua__gc(lua_State* L) {
 	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
 	self->~LuaTArray();
 	return 0;
@@ -48,10 +48,10 @@ int LuaTArray::lua_gc(lua_State* L) {
 void LuaTArray::RegisterMetadata(lua_State* L)
 {
 	luaL_newmetatable(L, "TArrayMeta");
-	RegisterMethod(L, "__index", lua_index);
-	RegisterMethod(L, "__newindex", lua_newindex);
+	RegisterMethod(L, "__index", lua__index);
+	RegisterMethod(L, "__newindex", lua__newindex);
 	RegisterMethod(L, "__tostring", lua__tostring);
-	RegisterMethod(L, "__gc", lua_gc);
+	RegisterMethod(L, "__gc", lua__gc);
 }
 
 int LuaTArray::ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container) {

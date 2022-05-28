@@ -36,7 +36,6 @@ void FLuaState::OpenLibs()
 
 void FLuaState::RegisterMetadatas()
 {
-	LOG("AYO")
 	LuaUClass::RegisterMetadata(L);
 	LuaUObject::RegisterMetadata(L);
 	LuaTArray::RegisterMetadata(L);

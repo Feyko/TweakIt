@@ -9,7 +9,7 @@
 #include "TweakIt/Helpers/TIReflection.h"
 using namespace std;
 
-int LuaUObject::lua_index(lua_State* L) {
+int LuaUObject::lua__index(lua_State* L) {
 
 	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
 	FString PropertyName = lua_tostring(L, 2);
@@ -27,7 +27,7 @@ int LuaUObject::lua_index(lua_State* L) {
 	return 1;
 }
 
-int LuaUObject::lua_newindex(lua_State* L) {
+int LuaUObject::lua__newindex(lua_State* L) {
 	{
 		LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
 		FString PropertyName = lua_tostring(L, 2);
@@ -76,7 +76,7 @@ int LuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 	return 1;
 }
 
-int LuaUObject::lua_gc(lua_State* L) {
+int LuaUObject::lua__gc(lua_State* L) {
 	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
 	self->~LuaUObject();
 	return 0;
@@ -97,8 +97,8 @@ int LuaUObject::lua__tostring(lua_State* L) {
 void LuaUObject::RegisterMetadata(lua_State* L)
 {
 	luaL_newmetatable(L, "UObjectMeta");
-	RegisterMethod(L, "__index", lua_index);
-	RegisterMethod(L, "__newindex", lua_newindex);
+	RegisterMethod(L, "__index", lua__index);
+	RegisterMethod(L, "__newindex", lua__newindex);
 	RegisterMethod(L, "__tostring", lua__tostring);
-	RegisterMethod(L, "__gc", lua_gc);
+	RegisterMethod(L, "__gc", lua__gc);
 }
