@@ -1,8 +1,7 @@
 #include "LuaTArray.h"
-#include "Lua.h"
+#include "TweakIt/Lua/Lua.h"
 #include <string>
 
-#include "LuaUClass.h"
 #include "TweakIt/TweakItModule.h"
 using namespace std;
 

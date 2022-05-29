@@ -4,12 +4,8 @@
 #include "TweakIt/Lua/lib/lua.hpp"
 #include "FGRecipeManager.h"
 #include "IPlatformFilePak.h"
-#include "LuaUStruct.h"
 #include "TweakIt/TweakItModule.h"
 #include "TweakIt/Helpers/TIReflection.h"
-#include "TweakIt/Lua/LuaUClass.h"
-#include "TweakIt/Lua/LuaUObject.h"
-#include "TweakIt/Lua/LuaTArray.h"
 #include "TweakIt/Helpers/TIContentRegistration.h"
 
 using namespace std;

@@ -1,5 +1,5 @@
 #include "LuaUStruct.h"
-#include "Lua.h"
+#include "TweakIt/Lua/Lua.h"
 #include "TweakIt/Helpers/TiReflection.h"
 #include <string>
 #include "TweakIt/Lua/lib/lua.hpp"

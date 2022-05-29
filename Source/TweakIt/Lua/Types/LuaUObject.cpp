@@ -1,7 +1,7 @@
 #include "LuaUObject.h"
 
 #include "LuaUClass.h"
-#include "Lua.h"
+#include "TweakIt/Lua/Lua.h"
 #include "TweakIt/Lua/lib/lua.hpp"
 #include <string>
 
