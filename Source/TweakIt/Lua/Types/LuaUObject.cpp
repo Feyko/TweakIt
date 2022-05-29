@@ -10,7 +10,6 @@
 using namespace std;
 
 int LuaUObject::lua__index(lua_State* L) {
-
 	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
 	FString PropertyName = lua_tostring(L, 2);
 	LOGF("Indexing a LuaUObject with %s",*PropertyName)
@@ -20,10 +19,12 @@ int LuaUObject::lua__index(lua_State* L) {
 		lua_pushcfunction(L, lua_DumpProperties);
 	}
 	UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *PropertyName);
-	if (Property->IsValidLowLevel()) {
-		LOG("Found property")
-		PropertyToLua(L, Property, self->Object);
-	} else { lua_pushnil(L); }
+	if (!Property->IsValidLowLevel()) {
+		lua_pushnil(L);
+		return 1; 
+	}
+	LOG("Found property")
+	PropertyToLua(L, Property, self->Object);
 	return 1;
 }
 
@@ -33,10 +34,12 @@ int LuaUObject::lua__newindex(lua_State* L) {
 		FString PropertyName = lua_tostring(L, 2);
 		LOGF("Newindexing a LuaUObject with %s",*PropertyName)
 		UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *PropertyName);
-		if (Property->IsValidLowLevel()) {
-			LOG("Found property")
-			LuaToProperty(L, Property, self->Object, 3);
-		} else { lua_pushnil(L); }
+		if (!Property->IsValidLowLevel()) {
+			LOGF("No property '%s' found", *PropertyName)
+			return 0;
+		}
+		LOG("Found property")
+		LuaToProperty(L, Property, self->Object, 3);
 		return 0;
 	}
 }
@@ -61,18 +64,15 @@ int LuaUObject::lua_DumpProperties(lua_State* L) {
 
 int LuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 	LOG("Constructing a LuaUObject")
-	if (Object->IsValidLowLevel()) {
-		LOG("Actualling constructing")
-		LuaUObject* ReturnedInstance = static_cast<LuaUObject*>(lua_newuserdata(L, sizeof(LuaUObject)));
-		LOG("Got instance")
-		new(ReturnedInstance) LuaUObject{Object};
-		LOG("Initialised")
-		luaL_getmetatable(L, LuaUObject::Name);
-		lua_setmetatable(L, -2);
-	} else {
-		LOG("[TweakIt] Trying to construct a LuaUObject from an invalid object")
+	if (!Object->IsValidLowLevel()) {
+		LOG("Trying to construct a LuaUObject from an invalid object")
 		lua_pushnil(L);
+		return 1;
 	}
+	LuaUObject* ReturnedInstance = static_cast<LuaUObject*>(lua_newuserdata(L, sizeof(LuaUObject)));
+	new(ReturnedInstance) LuaUObject{Object};
+	luaL_getmetatable(L, LuaUObject::Name);
+	lua_setmetatable(L, -2);
 	return 1;
 }
 
