@@ -206,9 +206,8 @@ int lua_LoadObject(lua_State* L) {
 }
 
 int lua_Print(lua_State* L) {
-	if (lua_isstring(L, -1)) {
-		string s = lua_tostring(L, -1);
-		LOGS(s)
-	}
+	FString String = luaL_tolstring(L, -1, NULL);
+	lua_pop(L, -1);
+	LOGFS(String)
 	return 0;
 }
