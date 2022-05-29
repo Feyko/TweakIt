@@ -67,7 +67,7 @@ int LuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 		LOG("Got instance")
 		new(ReturnedInstance) LuaUObject{Object};
 		LOG("Initialised")
-		luaL_getmetatable(L, "UObjectMeta");
+		luaL_getmetatable(L, LuaUObject::Name);
 		lua_setmetatable(L, -2);
 	} else {
 		LOG("[TweakIt] Trying to construct a LuaUObject from an invalid object")
@@ -96,9 +96,5 @@ int LuaUObject::lua__tostring(lua_State* L) {
 
 void LuaUObject::RegisterMetadata(lua_State* L)
 {
-	luaL_newmetatable(L, "UObjectMeta");
-	RegisterMethod(L, "__index", lua__index);
-	RegisterMethod(L, "__newindex", lua__newindex);
-	RegisterMethod(L, "__tostring", lua__tostring);
-	RegisterMethod(L, "__gc", lua__gc);
+	RegisterMetatable(L, Name, Metadata);
 }

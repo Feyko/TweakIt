@@ -14,10 +14,19 @@
 
 using namespace std;
 
-void RegisterMethod(lua_State* L, const char* Name, lua_CFunction Function)
+void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg> Regs)
 {
-	lua_pushstring(L, Name);
-	lua_pushcfunction(L, Function);
+	luaL_newmetatable(L, Name);
+	for (auto Reg : Regs)
+	{
+		RegisterMethod(L, Reg);
+	}
+}
+
+void RegisterMethod(lua_State* L, luaL_Reg Reg)
+{
+	lua_pushstring(L, Reg.name);
+	lua_pushcfunction(L, Reg.func);
 	lua_settable(L, -3);
 }
 

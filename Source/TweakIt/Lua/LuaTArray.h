@@ -12,8 +12,14 @@ struct LuaTArray
 	static int lua__newindex(lua_State* L);
 
 	static int lua__tostring(lua_State* L);
-	static int lua__gc(lua_State* L);
 
 	static void RegisterMetadata(lua_State* L);
 	static int ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container);
+
+	inline static const char* Name = "TArray";
+	inline static TArray<luaL_Reg> Metadata = {
+		{"__index", lua__index},
+		{"__newindex", lua__newindex},
+		{"__tostring", lua__tostring},
+	};
 };

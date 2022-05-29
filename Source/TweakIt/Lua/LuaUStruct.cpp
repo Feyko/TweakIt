@@ -57,11 +57,7 @@ int LuaUStruct::lua__gc(lua_State* L) {
 
 void LuaUStruct::RegisterMetadata(lua_State* L)
 {
-	luaL_newmetatable(L, "UStructMeta");
-	RegisterMethod(L, "__index", lua__index);
-	RegisterMethod(L, "__newindex", lua__newindex);
-	RegisterMethod(L, "__tostring", lua__tostring);
-	RegisterMethod(L, "__gc", lua__gc);
+	RegisterMetatable(L, Name, Metadata);
 }
 
 int LuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {
@@ -69,7 +65,7 @@ int LuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {
 		LOGF("Constructing a LuaUStruct from %s", *Struct->GetName())
 		LuaUStruct* ReturnedInstance = static_cast<LuaUStruct*>(lua_newuserdata(L, sizeof(LuaUStruct)));
 		new(ReturnedInstance) LuaUStruct{Struct, Values};
-		luaL_getmetatable(L, "UStructMeta");
+		luaL_getmetatable(L, LuaUStruct::Name);
 		lua_setmetatable(L, -2);
 	} else {
 		LOG("Trying to construct a LuaUStruct from an invalid property")

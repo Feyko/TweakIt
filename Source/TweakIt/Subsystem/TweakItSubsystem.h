@@ -2,7 +2,7 @@
 
 #include "FGSubsystem.h"
 #include "Subsystem/ModSubsystem.h"
-#include "TweakIt/Lua/FLuaState.h"
+#include "TweakIt/Lua/LuaState.h"
 #include "TweakItSubsystem.generated.h"
 
 UCLASS()

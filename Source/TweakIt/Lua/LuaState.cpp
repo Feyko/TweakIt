@@ -1,11 +1,10 @@
-﻿#include "FLuaState.h"
+﻿#include "LuaState.h"
 
 #include "Lua.h"
 #include "LuaTArray.h"
 #include "LuaUClass.h"
 #include "LuaUObject.h"
 #include "LuaUStruct.h"
-#include "TweakIt/TweakItModule.h"
 
 FLuaState::FLuaState(UObject* WorldContext) {
 	L = luaL_newstate();

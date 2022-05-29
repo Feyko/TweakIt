@@ -7,6 +7,8 @@
 #include "TweakIt/TweakItModule.h"
 using namespace std;
 
+
+
 int LuaUClass::lua_GetDefaultValue(lua_State* L) {
 	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
 	const FString PropertyName = lua_tostring(L, 2);
@@ -190,20 +192,9 @@ int LuaUClass::lua__tostring(lua_State* L) {
 	return 1;
 }
 
-int LuaUClass::lua__gc(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
-	self->~LuaUClass();
-	return 0;
-}
-
 void LuaUClass::RegisterMetadata(lua_State* L)
 {
-	luaL_newmetatable(L, "UClassMeta");
-	RegisterMethod(L, "__index", lua__index);
-	RegisterMethod(L, "__newindex", lua__newindex);
-	RegisterMethod(L, "__call", lua__call);
-	RegisterMethod(L, "__tostring", lua__tostring);
-	RegisterMethod(L, "__gc", lua__gc);
+	RegisterMetatable(L, Name, Metadata);
 }
 
 int LuaUClass::ConstructClass(lua_State* L, UClass* Class) {
@@ -211,7 +202,7 @@ int LuaUClass::ConstructClass(lua_State* L, UClass* Class) {
 		LOGF("Constructing a LuaUClass from %s", *Class->GetName())
 		LuaUClass* ReturnedInstance = static_cast<LuaUClass*>(lua_newuserdata(L, sizeof(LuaUClass)));
 		new(ReturnedInstance) LuaUClass{Class};
-		luaL_getmetatable(L, "UClassMeta");
+		luaL_getmetatable(L, LuaUClass::Name);
 		lua_setmetatable(L, -2);
 	} else {
 		LOG("Trying to construct a LuaUClass from an invalid class")

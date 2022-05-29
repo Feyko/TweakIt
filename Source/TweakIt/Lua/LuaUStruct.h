@@ -19,4 +19,12 @@ struct LuaUStruct
 
 	static void RegisterMetadata(lua_State* L);
 	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values);
+
+	inline static const char* Name = "UStruct";
+	inline static TArray<luaL_Reg> Metadata = {
+		{"__index", lua__index},
+		{"__newindex", lua__newindex},
+		{"__tostring", lua__tostring},
+		{"__gc", lua__gc},
+	};
 };

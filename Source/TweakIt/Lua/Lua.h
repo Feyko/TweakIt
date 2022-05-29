@@ -1,9 +1,12 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+#include "lib/lauxlib.h"
 #include "lib/lua.h"
 
-void RegisterMethod(lua_State* L, const char* Name, lua_CFunction Function);
+void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg>);
+
+void RegisterMethod(lua_State* L, luaL_Reg Reg);
 
 bool CheckLua(lua_State* L, int r);
 
