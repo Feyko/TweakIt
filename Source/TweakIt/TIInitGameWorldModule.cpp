@@ -1,11 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
-
-#include "TIInitGameWorldModule.h"
-
-
-#include <cassert>
-#include <Subsystem/SubsystemActorManager.h>
-
+﻿#include "TIInitGameWorldModule.h"
 
 #include "Commands/TIRunAllScriptsCommand.h"
 #include "Commands/TIRunScriptCommand.h"

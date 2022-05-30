@@ -19,10 +19,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool RunScript(FString Name);
 
-	TArray<FString> GetAllScripts();
-	
-	void CreateDefaultScript();
-	FString GetConfigDirectory();
+	static TArray<FString> GetAllScripts();
+
+	static void CreateDefaultScript();
+	static FString GetConfigDirectory();
 	
 	static ATweakItSubsystem* Get(UObject* WorldContext);
 

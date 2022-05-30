@@ -1,26 +1,26 @@
 #pragma once
 
-#include "TweakIt\Lua\lib\lua.hpp"
+#include "TweakIt/Lua/lib/lua.hpp"
 
-struct LuaTArray
+struct FLuaTArray
 {
 	UArrayProperty* ArrayProperty;
 	void* Container;
+	
+	static int ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container);
+	static FLuaTArray* Get(lua_State* L, int Index = 1);
 
-	static int lua__index(lua_State* L);
-
-	static int lua__newindex(lua_State* L);
-
-	static int lua__tostring(lua_State* L);
+	static int Lua__index(lua_State* L);
+	static int Lua__newindex(lua_State* L);
+	static int Lua__tostring(lua_State* L);
 
 	static void RegisterMetadata(lua_State* L);
-	static int ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container);
-	static LuaTArray* Get(lua_State* L, int i = 1);
-
 	inline static const char* Name = "TArray";
+
+private:
 	inline static TArray<luaL_Reg> Metadata = {
-		{"__index", lua__index},
-		{"__newindex", lua__newindex},
-		{"__tostring", lua__tostring},
+		{"__index", Lua__index},
+		{"__newindex", Lua__newindex},
+		{"__tostring", Lua__tostring},
 	};
 };

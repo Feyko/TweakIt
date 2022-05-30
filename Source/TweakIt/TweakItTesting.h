@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "EngineGlobals.h"
 #include "FactoryGame/Public/Equipment/FGBuildGun.h"
 #include "FGRecipe.h"
 #include "ItemAmount.h"

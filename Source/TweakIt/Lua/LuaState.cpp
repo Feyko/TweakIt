@@ -29,10 +29,10 @@ void FLuaState::OpenLibs()
 
 void FLuaState::RegisterMetadatas()
 {
-	LuaUClass::RegisterMetadata(L);
-	LuaUObject::RegisterMetadata(L);
-	LuaTArray::RegisterMetadata(L);
-	LuaUStruct::RegisterMetadata(L);
+	FLuaUClass::RegisterMetadata(L);
+	FLuaUObject::RegisterMetadata(L);
+	FLuaTArray::RegisterMetadata(L);
+	FLuaUStruct::RegisterMetadata(L);
 }
 
 void FLuaState::RegisterGlobalFunctions() {
@@ -44,6 +44,6 @@ void FLuaState::RegisterGlobalFunctions() {
 
 void FLuaState::RegisterWorldContext(UObject* Context)
 {
-	LuaUObject::ConstructObject(L, Context);
+	FLuaUObject::ConstructObject(L, Context);
 	lua_setglobal(L, "WorldContext");
 }

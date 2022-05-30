@@ -3,10 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
-#include "Module/GameInstanceModule.h"
 #include "Module/GameWorldModule.h"
-#include "UObject/Object.h"
 #include "TIInitGameWorldModule.generated.h"
 
 UCLASS()

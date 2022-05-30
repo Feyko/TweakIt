@@ -7,96 +7,96 @@
 #include "TweakIt/Helpers/TIReflection.h"
 using namespace std;
 
-int LuaUObject::lua__index(lua_State* L) {
-	LuaUObject* self = Get(L);
-	FString Index = luaL_checkstring(L, 2);
-	LOGF("Indexing a LuaUObject with %s",*Index)
-	if(lua_CFunction* Method = Methods.Find(Index)) {
-		lua_pushcfunction(L, *Method);
-		return 1;
-	}
-	UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *Index);
-	if (!Property->IsValidLowLevel()) {
-		lua_pushnil(L);
-		return 1; 
-	}
-	LOG("Found property")
-	PropertyToLua(L, Property, self->Object);
-	return 1;
-}
-
-int LuaUObject::lua__newindex(lua_State* L) {
-	{
-		LuaUObject* self = Get(L);
-		FString PropertyName = luaL_checkstring(L, 2);
-		LOGF("Newindexing a LuaUObject with %s",*PropertyName)
-		UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *PropertyName);
-		if (!Property->IsValidLowLevel()) {
-			LOGF("No property '%s' found", *PropertyName)
-			return 0;
-		}
-		LOG("Found property")
-		LuaToProperty(L, Property, self->Object, 3);
-		return 0;
-	}
-}
-
-int LuaUObject::lua_DumpProperties(lua_State* L) {
-	LuaUObject* self = Get(L);
-	LOGFS(FString("Dumping the properties for " + self->Object->GetName()))
-	if (self->Object->IsA(AActor::StaticClass())) {
-		AActor* Actor = Cast<AActor>(self->Object);
-		TArray<UActorComponent*> components;
-		Actor->GetComponents(components);
-		for (auto component : components) {
-			LOGFS(component->GetName())
-		}
-	}
-	for (UProperty* Property = self->Object->GetClass()->PropertyLink; Property; Property = Property->PropertyLinkNext
-	) {
-		LOGFS(Property->GetName())
-	}
-	return 0;
-}
-
-int LuaUObject::ConstructObject(lua_State* L, UObject* Object) {
+int FLuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 	LOG("Constructing a LuaUObject")
 	if (!Object->IsValidLowLevel()) {
 		LOG("Trying to construct a LuaUObject from an invalid object")
 		lua_pushnil(L);
 		return 1;
 	}
-	LuaUObject* ReturnedInstance = static_cast<LuaUObject*>(lua_newuserdata(L, sizeof(LuaUObject)));
-	new(ReturnedInstance) LuaUObject{Object};
-	luaL_getmetatable(L, LuaUObject::Name);
+	FLuaUObject* ReturnedInstance = static_cast<FLuaUObject*>(lua_newuserdata(L, sizeof(FLuaUObject)));
+	new(ReturnedInstance) FLuaUObject{Object};
+	luaL_getmetatable(L, FLuaUObject::Name);
 	lua_setmetatable(L, -2);
 	return 1;
 }
 
-int LuaUObject::lua__gc(lua_State* L) {
-	LuaUObject* self = Get(L);
-	self->~LuaUObject();
+FLuaUObject* FLuaUObject::Get(lua_State* L, int Index)
+{
+	return static_cast<FLuaUObject*>(luaL_checkudata(L, Index, Name));
+}
+
+int FLuaUObject::Lua_DumpProperties(lua_State* L) {
+	FLuaUObject* Self = Get(L);
+	LOGFS(FString("Dumping the properties for " + Self->Object->GetName()))
+	if (Self->Object->IsA(AActor::StaticClass())) {
+		AActor* Actor = Cast<AActor>(Self->Object);
+		TArray<UActorComponent*> Components;
+		Actor->GetComponents(Components);
+		for (auto Component : Components) {
+			LOGFS(Component->GetName())
+		}
+	}
+	for (UProperty* Property = Self->Object->GetClass()->PropertyLink; Property; Property = Property->PropertyLinkNext
+	) {
+		LOGFS(Property->GetName())
+	}
 	return 0;
 }
 
-int LuaUObject::lua_GetClass(lua_State* L) {
-	LuaUObject* self = Get(L);
-	LuaUClass::ConstructClass(L, self->Object->GetClass());
+int FLuaUObject::Lua_GetClass(lua_State* L) {
+	FLuaUObject* Self = Get(L);
+	FLuaUClass::ConstructClass(L, Self->Object->GetClass());
 	return 1;
 }
 
-int LuaUObject::lua__tostring(lua_State* L) {
-	LuaUObject* self = Get(L);
-	lua_pushstring(L, TCHAR_TO_UTF8(*self->Object->GetName()));
+int FLuaUObject::Lua__index(lua_State* L) {
+	FLuaUObject* Self = Get(L);
+	FString Index = luaL_checkstring(L, 2);
+	LOGF("Indexing a LuaUObject with %s",*Index)
+	if(lua_CFunction* Method = Methods.Find(Index)) {
+		lua_pushcfunction(L, *Method);
+		return 1;
+	}
+	UProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *Index);
+	if (!Property->IsValidLowLevel()) {
+		lua_pushnil(L);
+		return 1; 
+	}
+	LOG("Found property")
+	PropertyToLua(L, Property, Self->Object);
 	return 1;
 }
 
-void LuaUObject::RegisterMetadata(lua_State* L)
+int FLuaUObject::Lua__newindex(lua_State* L) {
+	{
+		FLuaUObject* Self = Get(L);
+		FString PropertyName = luaL_checkstring(L, 2);
+		LOGF("Newindexing a LuaUObject with %s",*PropertyName)
+		UProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *PropertyName);
+		if (!Property->IsValidLowLevel()) {
+			LOGF("No property '%s' found", *PropertyName)
+			return 0;
+		}
+		LOG("Found property")
+		LuaToProperty(L, Property, Self->Object, 3);
+		return 0;
+	}
+}
+
+int FLuaUObject::Lua__tostring(lua_State* L) {
+	FLuaUObject* Self = Get(L);
+	lua_pushstring(L, TCHAR_TO_UTF8(*Self->Object->GetName()));
+	return 1;
+}
+
+int FLuaUObject::Lua__gc(lua_State* L) {
+	FLuaUObject* Self = Get(L);
+	Self->~FLuaUObject();
+	return 0;
+}
+
+void FLuaUObject::RegisterMetadata(lua_State* L)
 {
 	RegisterMetatable(L, Name, Metadata);
-}
-
-LuaUObject* LuaUObject::Get(lua_State* L, int i)
-{
-	return static_cast<LuaUObject*>(luaL_checkudata(L, i, Name));
 }

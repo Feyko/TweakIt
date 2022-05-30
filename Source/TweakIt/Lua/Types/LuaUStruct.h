@@ -3,33 +3,33 @@
 
 #include "TweakIt\Lua\Lua.h"
 
-int lua_MakeStructInstance(lua_State* L); // Forward declaration. I hate C++
+int Lua_MakeStructInstance(lua_State* L); // Forward declaration. I hate C++
 
-struct LuaUStruct
+struct FLuaUStruct
 {
 	UStruct* Struct;
 	void* Values;
+	
+	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values);
+	static FLuaUStruct* Get(lua_State* L, int Index = 1);
 
-	static int lua__index(lua_State* L);
-
-	static int lua__newindex(lua_State* L);
-
-	static int lua__tostring(lua_State* L);
-	static int lua__gc(lua_State* L);
+	static int Lua__index(lua_State* L);
+	static int Lua__newindex(lua_State* L);
+	static int Lua__tostring(lua_State* L);
+	static int Lua__gc(lua_State* L);
 
 	static void RegisterMetadata(lua_State* L);
-	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values);
-	static LuaUStruct* Get(lua_State* L, int i = 1);
-
 	inline static const char* Name = "UStruct";
-	inline static TArray<luaL_Reg> Metadata = {
-		{"__index", lua__index},
-		{"__newindex", lua__newindex},
-		{"__tostring", lua__tostring},
-		{"__gc", lua__gc},
-	};
 
+private:
 	inline static TMap<FString, lua_CFunction> Methods = {
-		{"MakeStructInstance", lua_MakeStructInstance},
+		{"MakeStructInstance", Lua_MakeStructInstance},
+	};
+	
+	inline static TArray<luaL_Reg> Metadata = {
+		{"__index", Lua__index},
+		{"__newindex", Lua__newindex},
+		{"__tostring", Lua__tostring},
+		{"__gc", Lua__gc},
 	};
 };

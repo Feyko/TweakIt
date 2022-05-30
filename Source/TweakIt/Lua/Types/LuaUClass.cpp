@@ -6,59 +6,60 @@
 #include "TweakIt/TweakItModule.h"
 using namespace std;
 
+int FLuaUClass::ConstructClass(lua_State* L, UClass* Class) {
+	if (!Class->IsValidLowLevel()) {
+		LOG("Trying to construct a LuaUClass from an invalid class")
+		lua_pushnil(L);
+		return 1;
+	}
+	LOGF("Constructing a LuaUClass from %s", *Class->GetName())
+	FLuaUClass* ReturnedInstance = static_cast<FLuaUClass*>(lua_newuserdata(L, sizeof(FLuaUClass)));
+	new(ReturnedInstance) FLuaUClass{Class};
+	luaL_getmetatable(L, FLuaUClass::Name);
+	lua_setmetatable(L, -2);
+	return 1;
+}
 
+FLuaUClass* FLuaUClass::Get(lua_State* L, int Index){
+	return static_cast<FLuaUClass*>(luaL_checkudata(L, Index, Name));
+}
 
-int LuaUClass::lua_GetDefaultValue(lua_State* L) {
-	LuaUClass* self = Get(L);
+int FLuaUClass::Lua_GetDefaultValue(lua_State* L) {
+	FLuaUClass* Self = Get(L);
 	const FString PropertyName = luaL_checkstring(L, 2);
 	LOGF("Getting a LuaUClass's default value for %s", *PropertyName);
-	UActorComponent* Component = nullptr;
-	if (self->Class->IsChildOf(AActor::StaticClass())) {
+	if (Self->Class->IsChildOf(AActor::StaticClass())) {
 		LOG("Class is an AActor, checking for component first")
-		Component = FTIReflection::FindDefaultComponentByName(self->Class,UActorComponent::StaticClass(),
-															*PropertyName);
-		if (Component) {
+		if (UActorComponent* Component = FTIReflection::FindDefaultComponentByName(Self->Class, UActorComponent::StaticClass(),
+			*PropertyName)) {
 			LOG("Found component")
 			Component->RegisterComponent();
 			LOGF("%hhd", Component->IsRegistered())
 			Component->AddToRoot();
-			self->Class->GetDefaultObject()->AddToRoot();
-			LuaUObject::ConstructObject(L, Component);
+			Self->Class->GetDefaultObject()->AddToRoot();
+			FLuaUObject::ConstructObject(L, Component);
 			return 1;
 		}
 	}
-	UProperty* Property = FTIReflection::FindPropertyByName(self->Class, *PropertyName);
+	UProperty* Property = FTIReflection::FindPropertyByName(Self->Class, *PropertyName);
 	if (!Property->IsValidLowLevel()) {
 		lua_pushnil(L);
 		return 1;
 	}
 	LOGF("Found property %s", *Property->GetName())
-	PropertyToLua(L, Property, self->Class->GetDefaultObject());
-	self->Class->GetDefaultObject()->AddToRoot();
+	PropertyToLua(L, Property, Self->Class->GetDefaultObject());
+	Self->Class->GetDefaultObject()->AddToRoot();
 	return 1;
 }
 
-int LuaUClass::lua__index(lua_State* L)
-{
-	LuaUClass* self = Get(L);
-	const FString index = luaL_checkstring(L, 2);
-	LOGF("Indexing a LuaUClass that holds %s with %s", *self->Class->GetName(), *index)
-	if (lua_CFunction* Method = Methods.Find(index))
-	{
-		lua_pushcfunction(L, *Method);
-		return 1;
-	}
-	return lua_GetDefaultValue(L);
-}
-
-int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {
-	LuaUClass* self = Get(L);
+int FLuaUClass::Lua_ChangeDefaultValue(lua_State* L) {
+	FLuaUClass* Self = Get(L);
 	const std::string PropertyName = luaL_checkstring(L, 2);
 	const bool IsRecursive = static_cast<bool>(lua_toboolean(L, 4));
-	LOGF("Calling ChangeDefaultValue(%hs,value , %hhd) on class %s", PropertyName.c_str(), IsRecursive, *self->Class->GetName())
+	LOGF("Calling ChangeDefaultValue(%hs,value , %hhd) on class %s", PropertyName.c_str(), IsRecursive, *Self->Class->GetName())
 	TArray<UClass*> Classes;
-	Classes.Add(self->Class);
-	if (IsRecursive) { GetDerivedClasses(self->Class, Classes); }
+	Classes.Add(Self->Class);
+	if (IsRecursive) { GetDerivedClasses(Self->Class, Classes); }
 	for (auto Class : Classes) {
 		LOG("Changing the default value of a class")
 		UProperty* Property = FTIReflection::FindPropertyByName(Class, *FString(PropertyName.c_str()));
@@ -79,12 +80,12 @@ int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {
 }
 
 // WIP Level : Fatal
-int LuaUClass::lua_AddDefaultComponent(lua_State* L) {
+int FLuaUClass::Lua_AddDefaultComponent(lua_State* L) {
 	LOG("Adding a default component")
-	LuaUClass* self = Get(L);
+	FLuaUClass* Self = Get(L);
 	const FString ComponentName = luaL_checkstring(L, 2);
-	LuaUClass* LuaComponent = Get(L, 3);
-	AActor* Actor = Cast<AActor>(self->Class->GetDefaultObject());
+	FLuaUClass* LuaComponent = Get(L, 3);
+	AActor* Actor = Cast<AActor>(Self->Class->GetDefaultObject());
 	if (!Actor->IsValidLowLevel()) {
 		LOG("Actor wasn't valid");
 		lua_pushnil(L);
@@ -100,20 +101,20 @@ int LuaUClass::lua_AddDefaultComponent(lua_State* L) {
 		SceneComponent->AttachToComponent(Actor->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
 	}
 	Actor->AddToRoot();
-	LuaUObject::ConstructObject(L, Component);
+	FLuaUObject::ConstructObject(L, Component);
 	return 1;
 }
 
 // WIP Level : Untested. Guessed level is Fatal
-int LuaUClass::lua_RemoveDefaultComponent(lua_State* L) {
-	LuaUClass* self = Get(L);
+int FLuaUClass::Lua_RemoveDefaultComponent(lua_State* L) {
+	FLuaUClass* Self = Get(L);
 	const FString ComponentName = luaL_checkstring(L, 2);
-	AActor* Actor = Cast<AActor>(self->Class->GetDefaultObject());
+	AActor* Actor = Cast<AActor>(Self->Class->GetDefaultObject());
 	if (!Actor->IsValidLowLevel()) {
 		return 0;
 	}
 	UActorComponent* Component = FTIReflection::FindDefaultComponentByName(
-		self->Class,
+		Self->Class,
 		UActorComponent::StaticClass(),
 		ComponentName);
 	if (Component->IsValidLowLevel()) {
@@ -123,10 +124,10 @@ int LuaUClass::lua_RemoveDefaultComponent(lua_State* L) {
 	return 0;
 }
 
-int LuaUClass::lua_GetChildClasses(lua_State* L) {
-	LuaUClass* self = Get(L);
+int FLuaUClass::Lua_GetChildClasses(lua_State* L) {
+	FLuaUClass* Self = Get(L);
 	TArray<UClass*> Classes;
-	GetDerivedClasses(self->Class, Classes);
+	GetDerivedClasses(Self->Class, Classes);
 	lua_newtable(L);
 	for (int i = 0; i < Classes.Num(); i++) {
 		ConstructClass(L, Classes[i]);
@@ -135,66 +136,61 @@ int LuaUClass::lua_GetChildClasses(lua_State* L) {
 	return 1;
 }
 
-int LuaUClass::lua_GetObjects(lua_State* L) {
-	LuaUClass* self = Get(L);
+int FLuaUClass::Lua_GetObjects(lua_State* L) {
+	FLuaUClass* Self = Get(L);
 	TArray<UObject*> Objects;
-	GetObjectsOfClass(self->Class, Objects);
+	GetObjectsOfClass(Self->Class, Objects);
 	lua_newtable(L);
 	for (int i = 0; i < Objects.Num(); i++) {
-		LuaUObject::ConstructObject(L, Objects[i]);
+		FLuaUObject::ConstructObject(L, Objects[i]);
 		lua_seti(L, -2, i + 1);
 	}
 	return 1;
 }
 
-int LuaUClass::lua_DumpProperties(lua_State* L) {
-	LuaUClass* self = Get(L);
-	LOGF("Dumping the properties for %s", *self->Class->GetName())
-	for (UProperty* Property = self->Class->PropertyLink; Property; Property = Property->PropertyLinkNext) {
+int FLuaUClass::Lua_DumpProperties(lua_State* L) {
+	FLuaUClass* Self = Get(L);
+	LOGF("Dumping the properties for %s", *Self->Class->GetName())
+	for (UProperty* Property = Self->Class->PropertyLink; Property; Property = Property->PropertyLinkNext) {
 		LOGFS(Property->GetName())
 	}
 	return 0;
 }
 
-int LuaUClass::lua__newindex(lua_State* L) {
-	lua_ChangeDefaultValue(L);
+int FLuaUClass::Lua__index(lua_State* L)
+{
+	FLuaUClass* Self = Get(L);
+	const FString Index = luaL_checkstring(L, 2);
+	LOGF("Indexing a LuaUClass that holds %s with %s", *Self->Class->GetName(), *Index)
+	if (lua_CFunction* Method = Methods.Find(Index))
+	{
+		lua_pushcfunction(L, *Method);
+		return 1;
+	}
+	return Lua_GetDefaultValue(L);
+}
+
+int FLuaUClass::Lua__newindex(lua_State* L) {
+	Lua_ChangeDefaultValue(L);
 	return 1;
 }
 
-int LuaUClass::lua__call(lua_State* L) {
+int FLuaUClass::Lua__call(lua_State* L) {
 	if (lua_isboolean(L, 4)) {
 		lua_pop(L, 1);
 	}
 	lua_pushboolean(L, true);
-	lua_ChangeDefaultValue(L);
+	Lua_ChangeDefaultValue(L);
 	return 0;
 }
 
-int LuaUClass::lua__tostring(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
-	lua_pushstring(L, TCHAR_TO_UTF8(*self->Class->GetName()));
+int FLuaUClass::Lua__tostring(lua_State* L) {
+	FLuaUClass* Self = static_cast<FLuaUClass*>(lua_touserdata(L, 1));
+	lua_pushstring(L, TCHAR_TO_UTF8(*Self->Class->GetName()));
 	return 1;
 }
 
-void LuaUClass::RegisterMetadata(lua_State* L)
+void FLuaUClass::RegisterMetadata(lua_State* L)
 {
 	RegisterMetatable(L, Name, Metadata);
-}
-
-int LuaUClass::ConstructClass(lua_State* L, UClass* Class) {
-	if (!Class->IsValidLowLevel()) {
-		LOG("Trying to construct a LuaUClass from an invalid class")
-		lua_pushnil(L);
-		return 1;
-	}
-	LOGF("Constructing a LuaUClass from %s", *Class->GetName())
-	LuaUClass* ReturnedInstance = static_cast<LuaUClass*>(lua_newuserdata(L, sizeof(LuaUClass)));
-	new(ReturnedInstance) LuaUClass{Class};
-	luaL_getmetatable(L, LuaUClass::Name);
-	lua_setmetatable(L, -2);
-	return 1;
-}
-
-LuaUClass* LuaUClass::Get(lua_State* L, int i){
-	return static_cast<LuaUClass*>(luaL_checkudata(L, i, Name));
 }

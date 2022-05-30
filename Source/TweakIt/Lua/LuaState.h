@@ -15,13 +15,13 @@ private:
 	void RegisterWorldContext(UObject* Context);
 
 	inline static TArray<luaL_Reg> GlobalFunctions = {
-		{"GetClass", lua_GetClass},
-		{"LoadObject", lua_LoadObject},
-		{"UnlockRecipe", lua_UnlockRecipe},
-		{"Log", lua_Print},
-		{"print", lua_Print},
-		{"MakeSubclass", lua_MakeSubclass},
-		{"MakeStructInstance", lua_MakeStructInstance},
-		{"Test", lua_Test},
+		{"GetClass", Lua_GetClass},
+		{"LoadObject", Lua_LoadObject},
+		{"UnlockRecipe", Lua_UnlockRecipe},
+		{"Log", Lua_Print},
+		{"print", Lua_Print},
+		{"MakeSubclass", Lua_MakeSubclass},
+		{"MakeStructInstance", Lua_MakeStructInstance},
+		{"Test", Lua_Test},
 	};
 };
