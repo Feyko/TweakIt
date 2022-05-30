@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 
-#include "TweakIt\Lua\lib\lua.hpp"
+#include "TweakIt\Lua\Lua.h"
 
 struct LuaUClass
 {

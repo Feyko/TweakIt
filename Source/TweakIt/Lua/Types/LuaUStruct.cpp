@@ -1,5 +1,4 @@
 #include "LuaUStruct.h"
-#include "TweakIt/Lua/Lua.h"
 #include "TweakIt/Helpers/TiReflection.h"
 #include <string>
 #include "TweakIt/TweakItModule.h"

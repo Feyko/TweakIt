@@ -1,7 +1,5 @@
 ﻿#include "LuaState.h"
 
-#include "TweakIt/Lua/Lua.h"
-
 FLuaState::FLuaState(UObject* WorldContext) {
 	L = luaL_newstate();
 	OpenLibs();
@@ -38,13 +36,10 @@ void FLuaState::RegisterMetadatas()
 }
 
 void FLuaState::RegisterGlobalFunctions() {
-	lua_register(L, "GetClass", lua_GetClass);
-	lua_register(L, "LoadObject", lua_LoadObject);
-	lua_register(L, "UnlockRecipe", lua_UnlockRecipe);
-	lua_register(L, "Log", lua_Print);
-	lua_register(L, "print", lua_Print);
-	lua_register(L, "MakeSubclass", lua_MakeSubclass);
-	lua_register(L, "MakeStructInstance", lua_MakeStructInstance);
+	for (auto Function : GlobalFunctions)
+	{
+		lua_register(L, Function.name, Function.func);
+	}
 }
 
 void FLuaState::RegisterWorldContext(UObject* Context)

@@ -1,5 +1,7 @@
 ﻿#pragma once
-#include "lib/lua.hpp"
+#include "Lua.h"
+
+#include "TweakIt\Lua\Lua.h"
 
 class FLuaState
 {
@@ -11,4 +13,15 @@ private:
 	void RegisterMetadatas();
 	void RegisterGlobalFunctions();
 	void RegisterWorldContext(UObject* Context);
+
+	inline static TArray<luaL_Reg> GlobalFunctions = {
+		{"GetClass", lua_GetClass},
+		{"LoadObject", lua_LoadObject},
+		{"UnlockRecipe", lua_UnlockRecipe},
+		{"Log", lua_Print},
+		{"print", lua_Print},
+		{"MakeSubclass", lua_MakeSubclass},
+		{"MakeStructInstance", lua_MakeStructInstance},
+		{"Test", lua_Test},
+	};
 };

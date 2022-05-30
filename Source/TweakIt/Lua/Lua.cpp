@@ -211,3 +211,16 @@ int lua_Print(lua_State* L) {
 	LOGFS(String)
 	return 0;
 }
+
+lua_Number GetNumber(lua_State* L)
+{
+	return luaL_checknumber(L, 1);
+}
+
+int lua_Test(lua_State* L)
+{
+	int N = GetNumber(L);
+	LOGF("%d", N)
+	return 0;
+}
+

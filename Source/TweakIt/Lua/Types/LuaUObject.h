@@ -1,9 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 
-#include <string>
-
-#include "TweakIt\Lua\lib\lua.hpp"
+#include "TweakIt\Lua\Lua.h"
 
 struct LuaUObject
 {
