@@ -9,8 +9,8 @@ using namespace std;
 
 
 int LuaUClass::lua_GetDefaultValue(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
-	const FString PropertyName = lua_tostring(L, 2);
+	LuaUClass* self = Get(L);
+	const FString PropertyName = luaL_checkstring(L, 2);
 	LOGF("Getting a LuaUClass's default value for %s", *PropertyName);
 	UActorComponent* Component = nullptr;
 	if (self->Class->IsChildOf(AActor::StaticClass())) {
@@ -39,8 +39,8 @@ int LuaUClass::lua_GetDefaultValue(lua_State* L) {
 }
 
 int LuaUClass::lua__index(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
-	const FString index = lua_tostring(L, 2);
+	LuaUClass* self = Get(L);
+	const FString index = luaL_checkstring(L, 2);
 	LOGF("Indexing a LuaUClass that holds %s with %s", *self->Class->GetName(), *index)
 	if (index == "GetDefaultValue") {
 		lua_pushcfunction(L, lua_GetDefaultValue);
@@ -65,8 +65,8 @@ int LuaUClass::lua__index(lua_State* L) {
 }
 
 int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
-	const std::string PropertyName = lua_tostring(L, 2);
+	LuaUClass* self = Get(L);
+	const std::string PropertyName = luaL_checkstring(L, 2);
 	const bool IsRecursive = static_cast<bool>(lua_toboolean(L, 4));
 	LOGF("Calling ChangeDefaultValue(%hs,value , %hhd) on class %s", PropertyName.c_str(), IsRecursive, *self->Class->GetName())
 	TArray<UClass*> Classes;
@@ -94,9 +94,9 @@ int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {
 // WIP Level : Fatal
 int LuaUClass::lua_AddDefaultComponent(lua_State* L) {
 	LOG("Adding a default component")
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
-	const FString ComponentName = lua_tostring(L, 2);
-	LuaUClass* LuaComponent = static_cast<LuaUClass*>(lua_touserdata(L, 3));
+	LuaUClass* self = Get(L);
+	const FString ComponentName = luaL_checkstring(L, 2);
+	LuaUClass* LuaComponent = Get(L, 3);
 	AActor* Actor = Cast<AActor>(self->Class->GetDefaultObject());
 	if (!Actor->IsValidLowLevel()) {
 		LOG("Actor wasn't valid");
@@ -119,8 +119,8 @@ int LuaUClass::lua_AddDefaultComponent(lua_State* L) {
 
 // WIP Level : Untested. Guessed level is Fatal
 int LuaUClass::lua_RemoveDefaultComponent(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
-	const FString ComponentName = lua_tostring(L, 2);
+	LuaUClass* self = Get(L);
+	const FString ComponentName = luaL_checkstring(L, 2);
 	AActor* Actor = Cast<AActor>(self->Class->GetDefaultObject());
 	if (!Actor->IsValidLowLevel()) {
 		return 0;
@@ -137,7 +137,7 @@ int LuaUClass::lua_RemoveDefaultComponent(lua_State* L) {
 }
 
 int LuaUClass::lua_GetChildClasses(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
+	LuaUClass* self = Get(L);
 	TArray<UClass*> Classes;
 	GetDerivedClasses(self->Class, Classes);
 	lua_newtable(L);
@@ -149,7 +149,7 @@ int LuaUClass::lua_GetChildClasses(lua_State* L) {
 }
 
 int LuaUClass::lua_GetObjects(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
+	LuaUClass* self = Get(L);
 	TArray<UObject*> Objects;
 	GetObjectsOfClass(self->Class, Objects);
 	lua_newtable(L);
@@ -161,7 +161,7 @@ int LuaUClass::lua_GetObjects(lua_State* L) {
 }
 
 int LuaUClass::lua_DumpProperties(lua_State* L) {
-	LuaUClass* self = static_cast<LuaUClass*>(lua_touserdata(L, 1));
+	LuaUClass* self = Get(L);
 	LOGF("Dumping the properties for %s", *self->Class->GetName())
 	for (UProperty* Property = self->Class->PropertyLink; Property; Property = Property->PropertyLinkNext) {
 		LOGFS(Property->GetName())
@@ -197,7 +197,8 @@ void LuaUClass::RegisterMetadata(lua_State* L)
 int LuaUClass::ConstructClass(lua_State* L, UClass* Class) {
 	if (!Class->IsValidLowLevel()) {
 		LOG("Trying to construct a LuaUClass from an invalid class")
-		lua_pushnil(L);	
+		lua_pushnil(L);
+		return 1;
 	}
 	LOGF("Constructing a LuaUClass from %s", *Class->GetName())
 	LuaUClass* ReturnedInstance = static_cast<LuaUClass*>(lua_newuserdata(L, sizeof(LuaUClass)));
@@ -205,4 +206,8 @@ int LuaUClass::ConstructClass(lua_State* L, UClass* Class) {
 	luaL_getmetatable(L, LuaUClass::Name);
 	lua_setmetatable(L, -2);
 	return 1;
+}
+
+LuaUClass* LuaUClass::Get(lua_State* L, int i){
+	return static_cast<LuaUClass*>(luaL_checkudata(L, i, Name));
 }

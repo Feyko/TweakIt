@@ -8,8 +8,8 @@
 using namespace std;
 
 int LuaUObject::lua__index(lua_State* L) {
-	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
-	FString PropertyName = lua_tostring(L, 2);
+	LuaUObject* self = Get(L);
+	FString PropertyName = luaL_checkstring(L, 2);
 	LOGF("Indexing a LuaUObject with %s",*PropertyName)
 	if (PropertyName == "GetClass") {
 		lua_pushcfunction(L, lua_GetClass);
@@ -28,8 +28,8 @@ int LuaUObject::lua__index(lua_State* L) {
 
 int LuaUObject::lua__newindex(lua_State* L) {
 	{
-		LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
-		FString PropertyName = lua_tostring(L, 2);
+		LuaUObject* self = Get(L);
+		FString PropertyName = luaL_checkstring(L, 2);
 		LOGF("Newindexing a LuaUObject with %s",*PropertyName)
 		UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *PropertyName);
 		if (!Property->IsValidLowLevel()) {
@@ -43,7 +43,7 @@ int LuaUObject::lua__newindex(lua_State* L) {
 }
 
 int LuaUObject::lua_DumpProperties(lua_State* L) {
-	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
+	LuaUObject* self = Get(L);
 	LOGFS(FString("Dumping the properties for " + self->Object->GetName()))
 	if (self->Object->IsA(AActor::StaticClass())) {
 		AActor* Actor = Cast<AActor>(self->Object);
@@ -75,19 +75,19 @@ int LuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 }
 
 int LuaUObject::lua__gc(lua_State* L) {
-	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
+	LuaUObject* self = Get(L);
 	self->~LuaUObject();
 	return 0;
 }
 
 int LuaUObject::lua_GetClass(lua_State* L) {
-	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
+	LuaUObject* self = Get(L);
 	LuaUClass::ConstructClass(L, self->Object->GetClass());
 	return 1;
 }
 
 int LuaUObject::lua__tostring(lua_State* L) {
-	LuaUObject* self = (LuaUObject*)lua_touserdata(L, 1);
+	LuaUObject* self = Get(L);
 	lua_pushstring(L, TCHAR_TO_UTF8(*self->Object->GetName()));
 	return 1;
 }
@@ -95,4 +95,9 @@ int LuaUObject::lua__tostring(lua_State* L) {
 void LuaUObject::RegisterMetadata(lua_State* L)
 {
 	RegisterMetatable(L, Name, Metadata);
+}
+
+LuaUObject* LuaUObject::Get(lua_State* L, int i)
+{
+	return static_cast<LuaUObject*>(luaL_checkudata(L, i, Name));
 }

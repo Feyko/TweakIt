@@ -17,6 +17,8 @@ struct LuaUObject
 	static int lua__tostring(lua_State* L);
 
 	static void RegisterMetadata(lua_State* L);
+	static LuaUObject* Get(lua_State* L, int i = 1);
+	
 	inline static const char* Name = "UObject";
 	inline static TArray<luaL_Reg> Metadata = {
 		{"__index", lua__index},

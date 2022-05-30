@@ -5,8 +5,8 @@
 using namespace std;
 
 int LuaUStruct::lua__index(lua_State* L) {
-	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
-	FString index = lua_tostring(L, 2);
+	LuaUStruct* self = Get(L);
+	FString index = luaL_checkstring(L, 2);
 	LOGF("Indexing a LuaUStruct with %s", *index)
 	if(index == "MakeStructInstance") {
 		lua_pushcfunction(L, lua_MakeStructInstance);
@@ -24,8 +24,8 @@ int LuaUStruct::lua__index(lua_State* L) {
 }
 
 int LuaUStruct::lua__newindex(lua_State* L) {
-	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
-	FString index = lua_tostring(L, 2);
+	LuaUStruct* self = Get(L);
+	FString index = luaL_checkstring(L, 2);
 	LOGF("Newindexing a LuaUStruct with %s", *index)
 	UProperty* NestedProperty = FTIReflection::FindPropertyByName(self->Struct, *index);
 	if(!NestedProperty->IsValidLowLevel()) {
@@ -40,13 +40,13 @@ int LuaUStruct::lua__newindex(lua_State* L) {
 }
 
 int LuaUStruct::lua__tostring(lua_State* L) {
-	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
+	LuaUStruct* self = Get(L);
 	lua_pushstring(L, TCHAR_TO_UTF8(*self->Struct->GetName()));
 	return 1;
 }
 
 int LuaUStruct::lua__gc(lua_State* L) {
-	LuaUStruct* self = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
+	LuaUStruct* self = Get(L);
 	self->~LuaUStruct();
 	return 0;
 }
@@ -69,4 +69,8 @@ int LuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {
 	luaL_getmetatable(L, LuaUStruct::Name);
 	lua_setmetatable(L, -2);
 	return 1;
+}
+
+LuaUStruct* LuaUStruct::Get(lua_State* L, int i){
+	return static_cast<LuaUStruct*>(luaL_checkudata(L, i, Name));
 }

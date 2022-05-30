@@ -6,8 +6,8 @@
 using namespace std;
 
 int LuaTArray::lua__index(lua_State* L) {
-	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
-	int index = lua_tointeger(L, 2)-1;
+	LuaTArray* self = Get(L);
+	int index = luaL_checkinteger(L, 2)-1;
 	LOGF("Indexing a LuaTArray with %d", index)
 	FScriptArray* ArrayValue = self->ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(self->Container);
 	if(!ArrayValue->IsValidIndex(index)) {
@@ -20,8 +20,8 @@ int LuaTArray::lua__index(lua_State* L) {
 }
 
 int LuaTArray::lua__newindex(lua_State* L) {
-	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
-	int index = lua_tointeger(L, 2)-1;
+	LuaTArray* self = Get(L);
+	int index = luaL_checkinteger(L, 2)-1;
 	LOGF("Newindexing a LuaTArray with %d", index)
 	FScriptArray* ArrayValue = self->ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(self->Container);
 	if(!ArrayValue->IsValidIndex(index)) {
@@ -34,7 +34,7 @@ int LuaTArray::lua__newindex(lua_State* L) {
 }
 
 int LuaTArray::lua__tostring(lua_State* L) {
-	LuaTArray* self = static_cast<LuaTArray*>(lua_touserdata(L, 1));
+	LuaTArray* self = Get(L);
 	lua_pushstring(L, TCHAR_TO_UTF8(*self->ArrayProperty->GetName()));
 	return 1;
 }
@@ -56,4 +56,8 @@ int LuaTArray::ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void*
 	luaL_getmetatable(L, LuaTArray::Name);
 	lua_setmetatable(L, -2);
 	return 1;
+}
+
+LuaTArray* LuaTArray::Get(lua_State* L, int i){
+	return static_cast<LuaTArray*>(luaL_checkudata(L, i, Name));
 }

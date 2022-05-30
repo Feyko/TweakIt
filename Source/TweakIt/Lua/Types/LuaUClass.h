@@ -23,6 +23,7 @@ struct LuaUClass
 
 	static void RegisterMetadata(lua_State* L);
 	static int ConstructClass(lua_State* L, UClass* Class);
+	static LuaUClass* Get(lua_State* L, int i = 1);
 
 	inline static const char* Name = "UClass";
 	inline static TArray<luaL_Reg> Metadata = {
