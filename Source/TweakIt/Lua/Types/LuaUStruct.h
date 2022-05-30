@@ -3,6 +3,8 @@
 
 #include "TweakIt\Lua\Lua.h"
 
+int lua_MakeStructInstance(lua_State* L); // Forward declaration. I hate C++
+
 struct LuaUStruct
 {
 	UStruct* Struct;
@@ -25,5 +27,9 @@ struct LuaUStruct
 		{"__newindex", lua__newindex},
 		{"__tostring", lua__tostring},
 		{"__gc", lua__gc},
+	};
+
+	inline static TMap<FString, lua_CFunction> Methods = {
+		{"MakeStructInstance", lua_MakeStructInstance},
 	};
 };

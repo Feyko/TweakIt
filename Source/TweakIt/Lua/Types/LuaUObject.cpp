@@ -9,14 +9,13 @@ using namespace std;
 
 int LuaUObject::lua__index(lua_State* L) {
 	LuaUObject* self = Get(L);
-	FString PropertyName = luaL_checkstring(L, 2);
-	LOGF("Indexing a LuaUObject with %s",*PropertyName)
-	if (PropertyName == "GetClass") {
-		lua_pushcfunction(L, lua_GetClass);
-	} else if (PropertyName == "DumpProperties") {
-		lua_pushcfunction(L, lua_DumpProperties);
+	FString Index = luaL_checkstring(L, 2);
+	LOGF("Indexing a LuaUObject with %s",*Index)
+	if(lua_CFunction* Method = Methods.Find(Index)) {
+		lua_pushcfunction(L, *Method);
+		return 1;
 	}
-	UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *PropertyName);
+	UProperty* Property = FTIReflection::FindPropertyByName(self->Object->GetClass(), *Index);
 	if (!Property->IsValidLowLevel()) {
 		lua_pushnil(L);
 		return 1; 

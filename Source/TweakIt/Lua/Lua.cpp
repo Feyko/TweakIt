@@ -150,7 +150,7 @@ void LuaToProperty(lua_State* L, UProperty* p, void* data, int i) {
 
 int lua_GetClass(lua_State* L) {
 	LOG("Getting a class");
-	FString ClassName = lua_tostring(L, 1);
+	FString ClassName = luaL_checkstring(L, 1);
 	FString Package = lua_isstring(L, 2) ? lua_tostring(L, 2) : "FactoryGame";
 	UClass* Class = FTIReflection::FindClassByName(ClassName, Package);
 	LuaUClass::ConstructClass(L, Class);
@@ -161,10 +161,10 @@ int lua_MakeStructInstance(lua_State* L) {
 	LOG("Making a struct instance")
 	UStruct* BaseStruct = nullptr;
 	if(lua_isuserdata(L, 1)) {
-		LuaUStruct* Struct = static_cast<LuaUStruct*>(lua_touserdata(L, 1));
+		LuaUStruct* Struct = LuaUStruct::Get(L);
 		BaseStruct = Struct->Struct;
 	} else {
-		FString StructName = lua_tostring(L, 1);
+		FString StructName = luaL_checkstring(L, 1);
 		FString Package = lua_isstring(L, 2) ? lua_tostring(L, 2) : "FactoryGame";
 		BaseStruct = FTIReflection::FindStructByName(StructName, Package);
 		if(!BaseStruct) {LOGF("Couldn't find a struct with the name %s", *StructName) return 1;}
@@ -179,19 +179,19 @@ int lua_MakeStructInstance(lua_State* L) {
 }
 
 int lua_MakeSubclass(lua_State* L) {
-	UClass* ParentClass = static_cast<LuaUClass*>(lua_touserdata(L, 1))->Class;
-	FString Name = lua_tostring(L, 2);
+	UClass* ParentClass = LuaUClass::Get(L)->Class;
+	FString Name = luaL_checkstring(L, 2);
 	UClass* GeneratedClass = FTIReflection::GenerateUniqueSimpleClass(*("/Game/TweakIt/Generated/" + Name), *Name, ParentClass);
 	LuaUClass::ConstructClass(L, GeneratedClass);
 	return 1;
 }
 
 int lua_UnlockRecipe(lua_State* L) {
-	UClass* Class = static_cast<LuaUClass*>(lua_touserdata(L, 1))->Class;
+	UClass* Class = LuaUClass::Get(L)->Class;
 	if(!lua_isuserdata(L, -2)) {
 		lua_getglobal(L, "WorldContext");
 	}
-	UObject* WorldContext = static_cast<LuaUObject*>(lua_touserdata(L, -1))->Object;
+	UObject* WorldContext = LuaUObject::Get(L)->Object;
 	FTIContentRegistration::UnlockRecipe(Class, WorldContext);
 	return 0;
 }
@@ -199,15 +199,14 @@ int lua_UnlockRecipe(lua_State* L) {
 int lua_LoadObject(lua_State* L) {
 	LOG("Loading an object")
 	FString path = lua_tostring(L, 1);
-	UClass* Class = lua_isuserdata(L, 1) ? ((LuaUClass*)lua_touserdata(L, 2))->Class : UObject::StaticClass();
+	UClass* Class = lua_isuserdata(L, 2) ? LuaUClass::Get(L, 2)->Class : UObject::StaticClass();
 	UObject* object = StaticLoadObject(Class, nullptr, *path);
 	LuaUObject::ConstructObject(L, object);
 	return 1;
 }
 
 int lua_Print(lua_State* L) {
-	FString String = luaL_tolstring(L, -1, NULL);
-	lua_pop(L, -1);
+	FString String = luaL_checkstring(L, 1);
 	LOGFS(String)
 	return 0;
 }

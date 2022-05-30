@@ -3,6 +3,8 @@
 
 #include "TweakIt\Lua\Lua.h"
 
+int lua_MakeSubclass(lua_State* L); // Forward declaration. I hate C++
+
 struct LuaUClass
 {
 	UClass* Class;
@@ -31,5 +33,16 @@ struct LuaUClass
 		{"__newindex", lua__newindex},
 		{"__call", lua__call},
 		{"__tostring", lua__tostring},
+	};
+
+	inline static TMap<FString, lua_CFunction> Methods = {
+		{"GetDefaultValue", lua_GetDefaultValue},
+		{"ChangeDefaultValue", lua_ChangeDefaultValue},
+		{"GetChildClasses", lua_GetChildClasses},
+		{"GetObjects", lua_GetObjects},
+		{"MakeSubclass", lua_MakeSubclass},
+		{"AddDefaultComponent", lua_AddDefaultComponent},
+		{"RemoveDefaultComponent", lua_RemoveDefaultComponent},
+		{"DumpProperties", lua_DumpProperties},
 	};
 };

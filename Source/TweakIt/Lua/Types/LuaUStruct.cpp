@@ -8,8 +8,8 @@ int LuaUStruct::lua__index(lua_State* L) {
 	LuaUStruct* self = Get(L);
 	FString index = luaL_checkstring(L, 2);
 	LOGF("Indexing a LuaUStruct with %s", *index)
-	if(index == "MakeStructInstance") {
-		lua_pushcfunction(L, lua_MakeStructInstance);
+	if(lua_CFunction* Method = Methods.Find(index)) {
+		lua_pushcfunction(L, *Method);
 		return 1;
 	}
 	UProperty* NestedProperty = FTIReflection::FindPropertyByName(self->Struct, *index);

@@ -38,30 +38,17 @@ int LuaUClass::lua_GetDefaultValue(lua_State* L) {
 	return 1;
 }
 
-int LuaUClass::lua__index(lua_State* L) {
+int LuaUClass::lua__index(lua_State* L)
+{
 	LuaUClass* self = Get(L);
 	const FString index = luaL_checkstring(L, 2);
 	LOGF("Indexing a LuaUClass that holds %s with %s", *self->Class->GetName(), *index)
-	if (index == "GetDefaultValue") {
-		lua_pushcfunction(L, lua_GetDefaultValue);
-	} else if (index == "ChangeDefaultValue") {
-		lua_pushcfunction(L, lua_ChangeDefaultValue);
-	} else if (index == "GetChildClasses") {
-		lua_pushcfunction(L, lua_GetChildClasses);
-	} else if (index == "GetObjects") {
-		lua_pushcfunction(L, lua_GetObjects);
-	} else if (index == "MakeSubclass") {
-		lua_pushcfunction(L, lua_MakeSubclass);
-	} else if (index == "AddDefaultComponent") {
-		lua_pushcfunction(L, lua_AddDefaultComponent);
-	} else if (index == "RemoveDefaultComponent") {
-		lua_pushcfunction(L, lua_RemoveDefaultComponent);
-	} else if (index == "DumpProperties") {
-		lua_pushcfunction(L, lua_DumpProperties);
-	} else {
-		lua_GetDefaultValue(L);
+	if (lua_CFunction* Method = Methods.Find(index))
+	{
+		lua_pushcfunction(L, *Method);
+		return 1;
 	}
-	return 1;
+	return lua_GetDefaultValue(L);
 }
 
 int LuaUClass::lua_ChangeDefaultValue(lua_State* L) {

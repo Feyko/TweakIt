@@ -26,4 +26,9 @@ struct LuaUObject
 		{"__tostring", lua__tostring},
 		{"__gc", lua__gc},
 	};
+
+	inline static TMap<FString, lua_CFunction> Methods = {
+		// {"GetClass", lua_GetClass},
+		{"DumpProperties", lua_DumpProperties},
+	};
 };
