@@ -36,7 +36,6 @@ int FLuaUClass::Lua_GetDefaultValue(lua_State* L) {
 			Component->RegisterComponent();
 			LOGF("%hhd", Component->IsRegistered())
 			Component->AddToRoot();
-			Self->Class->GetDefaultObject()->AddToRoot();
 			FLuaUObject::ConstructObject(L, Component);
 			return 1;
 		}
@@ -48,7 +47,6 @@ int FLuaUClass::Lua_GetDefaultValue(lua_State* L) {
 	}
 	LOGF("Found property %s", *Property->GetName())
 	PropertyToLua(L, Property, Self->Class->GetDefaultObject());
-	Self->Class->GetDefaultObject()->AddToRoot();
 	return 1;
 }
 
@@ -69,7 +67,6 @@ int FLuaUClass::Lua_ChangeDefaultValue(lua_State* L) {
 		}
 		LuaToProperty(L, Property, Class->GetDefaultObject(), 3);
 		PropertyToLua(L, Property, Class->GetDefaultObject());
-		Class->GetDefaultObject()->AddToRoot();
 		LOG("Changed the class's CDO. Iterating over objects...")
 		for (FObjectIterator It = FObjectIterator(Class); It; ++It) {
 			LuaToProperty(L, Property, *It, 3);
@@ -100,7 +97,6 @@ int FLuaUClass::Lua_AddDefaultComponent(lua_State* L) {
 	if (USceneComponent* SceneComponent = Cast<USceneComponent>(Component)) {
 		SceneComponent->AttachToComponent(Actor->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
 	}
-	Actor->AddToRoot();
 	FLuaUObject::ConstructObject(L, Component);
 	return 1;
 }

@@ -10,7 +10,6 @@ int FLuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bo
 		lua_pushnil(L);
 		return 1;
 	}
-	
 	LOGF("Constructing a LuaUStruct from %s", *Struct->GetName())
 	FLuaUStruct* ReturnedInstance = static_cast<FLuaUStruct*>(lua_newuserdata(L, sizeof(FLuaUStruct)));
 	new(ReturnedInstance) FLuaUStruct{Struct, Values, Owning};
@@ -54,7 +53,6 @@ int FLuaUStruct::Lua__newindex(lua_State* L) {
 	}
 	void* Value = NestedProperty->ContainerPtrToValuePtr<void>(Self->Values);
 	LuaToProperty(L, NestedProperty, Value, 3);
-	Self->Struct->AddToRoot();
 	return 1;
 }
 
