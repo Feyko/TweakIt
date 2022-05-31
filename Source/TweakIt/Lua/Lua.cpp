@@ -7,7 +7,6 @@
 #include "TweakIt/TweakItModule.h"
 #include "TweakIt/Helpers/TIReflection.h"
 #include "TweakIt/Helpers/TIContentRegistration.h"
-
 using namespace std;
 
 void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg> Regs)
@@ -158,20 +157,25 @@ int Lua_MakeStructInstance(lua_State* L) {
 	LOG("Making a struct instance")
 	UStruct* BaseStruct;
 	if(lua_isuserdata(L, 1)) {
-		FLuaUStruct* Struct = FLuaUStruct::Get(L);
-		BaseStruct = Struct->Struct;
+		BaseStruct = FLuaUStruct::Get(L)->Struct;
 	} else {
 		FString StructName = luaL_checkstring(L, 1);
 		FString Package = lua_isstring(L, 2) ? lua_tostring(L, 2) : "FactoryGame";
 		BaseStruct = FTIReflection::FindStructByName(StructName, Package);
-		if(!BaseStruct) {LOGF("Couldn't find a struct with the name %s", *StructName) return 1;}
+		if(!BaseStruct)
+		{
+			LOGF("Couldn't find a struct with the name %s", *StructName)
+			lua_pushnil(L);
+			return 1;
+		}
 	}
 	if(!BaseStruct->IsValidLowLevel()) {
 		LOG("Trying to make an instance of an invalid struct")
+		lua_pushnil(L);
 		return 1;
 	}
 	void* Instance = FTIReflection::MakeStructInstance(BaseStruct);
-	FLuaUStruct::ConstructStruct(L, BaseStruct, Instance);
+	FLuaUStruct::ConstructStruct(L, BaseStruct, Instance, true);
 	return 1;
 }
 
@@ -215,8 +219,6 @@ lua_Number GetNumber(lua_State* L)
 
 int Lua_Test(lua_State* L)
 {
-	int N = GetNumber(L);
-	LOGF("%d", N)
 	return 0;
 }
 

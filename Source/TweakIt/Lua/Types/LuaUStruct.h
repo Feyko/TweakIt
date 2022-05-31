@@ -9,8 +9,9 @@ struct FLuaUStruct
 {
 	UStruct* Struct;
 	void* Values;
+	bool Owning;
 	
-	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values);
+	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bool Owning = false);
 	static FLuaUStruct* Get(lua_State* L, int Index = 1);
 
 	static int Lua__index(lua_State* L);

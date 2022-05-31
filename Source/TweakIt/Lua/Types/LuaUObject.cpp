@@ -14,6 +14,7 @@ int FLuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 		lua_pushnil(L);
 		return 1;
 	}
+	Object->AddToRoot();
 	FLuaUObject* ReturnedInstance = static_cast<FLuaUObject*>(lua_newuserdata(L, sizeof(FLuaUObject)));
 	new(ReturnedInstance) FLuaUObject{Object};
 	luaL_getmetatable(L, FLuaUObject::Name);
@@ -92,7 +93,7 @@ int FLuaUObject::Lua__tostring(lua_State* L) {
 
 int FLuaUObject::Lua__gc(lua_State* L) {
 	FLuaUObject* Self = Get(L);
-	Self->~FLuaUObject();
+	Self->Object->RemoveFromRoot();
 	return 0;
 }
 

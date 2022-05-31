@@ -4,7 +4,7 @@
 #include "TweakIt/TweakItModule.h"
 using namespace std;
 
-int FLuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {
+int FLuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bool Owning) {
 	if (!Struct->IsValidLowLevel()) {
 		LOG("Trying to construct a LuaUStruct from an invalid property")
 		lua_pushnil(L);
@@ -13,7 +13,7 @@ int FLuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values) {
 	
 	LOGF("Constructing a LuaUStruct from %s", *Struct->GetName())
 	FLuaUStruct* ReturnedInstance = static_cast<FLuaUStruct*>(lua_newuserdata(L, sizeof(FLuaUStruct)));
-	new(ReturnedInstance) FLuaUStruct{Struct, Values};
+	new(ReturnedInstance) FLuaUStruct{Struct, Values, Owning};
 	luaL_getmetatable(L, FLuaUStruct::Name);
 	lua_setmetatable(L, -2);
 	return 1;
@@ -66,7 +66,10 @@ int FLuaUStruct::Lua__tostring(lua_State* L) {
 
 int FLuaUStruct::Lua__gc(lua_State* L) {
 	FLuaUStruct* Self = Get(L);
-	Self->~FLuaUStruct();
+	if (Self->Owning)
+	{
+		Self->Struct->DestroyStruct(Self->Values);
+	}
 	return 0;
 }
 

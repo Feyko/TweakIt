@@ -209,7 +209,7 @@ UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const
 }
 
 void* FTIReflection::MakeStructInstance(UStruct* Struct) {
-	void* instance = malloc(Struct->GetStructureSize());
+	void* instance = FMemory::Malloc(Struct->GetStructureSize());
 	Struct->InitializeStruct(instance);
 	return instance;
 }
