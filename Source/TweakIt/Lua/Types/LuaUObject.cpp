@@ -7,6 +7,11 @@
 #include "TweakIt/Helpers/TIReflection.h"
 using namespace std;
 
+FLuaUObject::FLuaUObject(UObject* Object) : Object(Object)
+{
+	CaptureObject();
+}
+
 int FLuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 	LOG("Constructing a LuaUObject")
 	if (!Object->IsValidLowLevel()) {
@@ -14,9 +19,8 @@ int FLuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 		lua_pushnil(L);
 		return 1;
 	}
-	Object->AddToRoot();
 	FLuaUObject* ReturnedInstance = static_cast<FLuaUObject*>(lua_newuserdata(L, sizeof(FLuaUObject)));
-	new(ReturnedInstance) FLuaUObject{Object};
+	new(ReturnedInstance) FLuaUObject(Object);
 	luaL_getmetatable(L, FLuaUObject::Name);
 	lua_setmetatable(L, -2);
 	return 1;
@@ -25,6 +29,23 @@ int FLuaUObject::ConstructObject(lua_State* L, UObject* Object) {
 FLuaUObject* FLuaUObject::Get(lua_State* L, int Index)
 {
 	return static_cast<FLuaUObject*>(luaL_checkudata(L, Index, Name));
+}
+
+void FLuaUObject::CaptureObject()
+{
+	if (!Object->IsRooted())
+	{
+		Object->AddToRoot();
+		MadeRoot = true;
+	}
+}
+
+void FLuaUObject::ReleaseObject()
+{
+	if (MadeRoot)
+	{
+		Object->RemoveFromRoot();
+	}
 }
 
 int FLuaUObject::Lua_DumpProperties(lua_State* L) {
@@ -93,7 +114,7 @@ int FLuaUObject::Lua__tostring(lua_State* L) {
 
 int FLuaUObject::Lua__gc(lua_State* L) {
 	FLuaUObject* Self = Get(L);
-	Self->Object->RemoveFromRoot();
+	Self->ReleaseObject();
 	return 0;
 }
 

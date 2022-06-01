@@ -3,7 +3,6 @@
 #include <string>
 #include "TweakIt/TweakItModule.h"
 using namespace std;
-
 int FLuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bool Owning) {
 	if (!Struct->IsValidLowLevel()) {
 		LOG("Trying to construct a LuaUStruct from an invalid property")
