@@ -14,6 +14,8 @@ struct FLuaUStruct
 	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bool Owning = false);
 	static FLuaUStruct* Get(lua_State* L, int Index = 1);
 
+	static int Lua_Copy(lua_State* L);
+	
 	static int Lua__index(lua_State* L);
 	static int Lua__newindex(lua_State* L);
 	static int Lua__tostring(lua_State* L);
@@ -25,6 +27,7 @@ struct FLuaUStruct
 private:
 	inline static TMap<FString, lua_CFunction> Methods = {
 		{"MakeStructInstance", Lua_MakeStructInstance},
+		{"Copy", Lua_Copy}
 	};
 	
 	inline static TArray<luaL_Reg> Metadata = {

@@ -21,6 +21,13 @@ FLuaUStruct* FLuaUStruct::Get(lua_State* L, int Index){
 	return static_cast<FLuaUStruct*>(luaL_checkudata(L, Index, Name));
 }
 
+int FLuaUStruct::Lua_Copy(lua_State* L)
+{
+	FLuaUStruct* Self = Get(L);
+	void* Copy = FTIReflection::CopyStruct(Self->Struct, Self->Values);
+	return ConstructStruct(L, Self->Struct, Copy);
+}
+
 int FLuaUStruct::Lua__index(lua_State* L) {
 	FLuaUStruct* Self = Get(L);
 	FString Index = luaL_checkstring(L, 2);

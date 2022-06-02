@@ -213,3 +213,13 @@ void* FTIReflection::MakeStructInstance(UStruct* Struct) {
 	Struct->InitializeStruct(instance);
 	return instance;
 }
+
+void* FTIReflection::CopyStruct(UStruct* Struct, void* Values)
+{
+	void* Copy = MakeStructInstance(Struct);
+	for (FProperty* Property = Struct->PropertyLink;Property; Property = Property->PropertyLinkNext)
+	{
+		Property->CopyCompleteValue_InContainer(Copy, Values);
+	}
+	return Copy;
+}
