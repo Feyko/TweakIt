@@ -13,10 +13,10 @@ bool CheckLua(lua_State* L, int Returned);
 void StackDump(lua_State* L);
 
 // Mostly borrowed from FIN's source. Thanks Pana !
-void PropertyToLua(lua_State* L, UProperty* Property, void* Data);
+void PropertyToLua(lua_State* L, UProperty* Property, void* Container);
 
 // Mostly borrowed from FIN's source. Thanks Pana !
-void LuaToProperty(lua_State* L, UProperty* Property, void* Data, int Index);
+void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index);
 
 int Lua_GetClass(lua_State* L);
 
