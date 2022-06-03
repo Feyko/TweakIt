@@ -131,7 +131,6 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 	if (Flags & CASTCLASS_FBoolProperty)
 	{
 		luaL_argexpected(L, lua_isboolean(L, Index),Index, "boolean");
-		LOG("MMMHHHHHHH")
 		*Property->ContainerPtrToValuePtr<bool>(Container) = static_cast<bool>(lua_toboolean(L, Index));
 	}
 	else if (Flags & CASTCLASS_FIntProperty)
@@ -193,7 +192,23 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 	}
 	else if (Flags & CASTCLASS_FArrayProperty)
 	{
-		luaL_error(L, "Array assignement isn't supported for now. Please edit the array's values instead");
+		luaL_argexpected(L, lua_istable(L, Index), Index, "array");
+		FArrayProperty* ArrayProperty = Cast<FArrayProperty>(Property);
+		FScriptArray* ArrayValue = ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(Container);
+		
+		int InputLen = luaL_len(L, Index);
+		int ElementSize = ArrayProperty->Inner->ElementSize;
+		ArrayValue->Empty(InputLen, ElementSize);
+		ArrayValue->AddZeroed(InputLen, ElementSize);
+		
+		uint8* Data = static_cast<uint8*>(ArrayValue->GetData());
+		for (int i = 0; i < InputLen; ++i)
+		{
+			lua_pushinteger(L, i+1);
+			lua_gettable(L, Index);
+			LuaToProperty(L, ArrayProperty->Inner, Data + ElementSize * i, Index+1);
+			lua_pop(L, 1);
+		}
 	}
 	else
 	{

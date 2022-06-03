@@ -57,6 +57,14 @@ int FLuaTArray::Lua__tostring(lua_State* L) {
 	return 1;
 }
 
+int FLuaTArray::Lua__len(lua_State* L)
+{
+	FLuaTArray* Self = Get(L);
+	FScriptArray* Value = Self->ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(Self->Container);
+	lua_pushinteger(L, Value->Num());
+	return 1;
+}
+
 void FLuaTArray::RegisterMetadata(lua_State* L)
 {
 	RegisterMetatable(L, Name, Metadata);

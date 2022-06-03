@@ -66,7 +66,6 @@ int FLuaUClass::Lua_ChangeDefaultValue(lua_State* L) {
 			return 0;
 		}
 		LuaToProperty(L, Property, Class->GetDefaultObject(), 3);
-		PropertyToLua(L, Property, Class->GetDefaultObject());
 		LOG("Changed the class's CDO. Iterating over objects...")
 		for (FObjectIterator It = FObjectIterator(Class); It; ++It) {
 			LuaToProperty(L, Property, *It, 3);
