@@ -189,6 +189,9 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 			return;
 		}
 		StructProperty->CopyCompleteValue(StructProperty, rStruct->Values);
+		void* NewValue = StructProperty->ContainerPtrToValuePtr<void>(Container);
+		rStruct->Values = NewValue;
+		rStruct->Owning = false;
 	}
 	else if (Flags & CASTCLASS_FArrayProperty)
 	{
