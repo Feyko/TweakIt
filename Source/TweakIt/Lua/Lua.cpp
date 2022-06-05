@@ -179,7 +179,6 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 	}
 	else if (Flags & CASTCLASS_FStructProperty)
 	{
-		
 		UStructProperty* StructProperty = Cast<UStructProperty>(Property);
 		FLuaUStruct* rStruct = FLuaUStruct::Get(L, Index);
 		if (!(StructProperty->Struct->GetFullName() == rStruct->Struct->GetFullName()))
@@ -265,7 +264,7 @@ int Lua_MakeSubclass(lua_State* L)
 {
 	UClass* ParentClass = FLuaUClass::Get(L)->Class;
 	FString Name = luaL_checkstring(L, 2);
-	UClass* GeneratedClass = FTIReflection::GenerateUniqueSimpleClass(*("/Game/TweakIt/Generated/" + Name), *Name,ParentClass);
+	UClass* GeneratedClass = FTIReflection::GenerateUniqueSimpleClass(*("/TweakIt/Generated/" + Name), *Name,ParentClass);
 	FLuaUClass::ConstructClass(L, GeneratedClass);
 	return 1;
 }
@@ -273,11 +272,11 @@ int Lua_MakeSubclass(lua_State* L)
 int Lua_UnlockRecipe(lua_State* L)
 {
 	UClass* Class = FLuaUClass::Get(L)->Class;
-	if (!lua_isuserdata(L, -2))
+	if (!lua_isuserdata(L, 2))
 	{
 		lua_getglobal(L, "WorldContext");
 	}
-	UObject* WorldContext = FLuaUObject::Get(L)->Object;
+	UObject* WorldContext = FLuaUObject::Get(L, 2)->Object;
 	FTIContentRegistration::UnlockRecipe(Class, WorldContext);
 	return 0;
 }
