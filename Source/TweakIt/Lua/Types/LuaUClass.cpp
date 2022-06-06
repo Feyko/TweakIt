@@ -52,15 +52,18 @@ int FLuaUClass::Lua_GetDefaultValue(lua_State* L) {
 
 int FLuaUClass::Lua_ChangeDefaultValue(lua_State* L) {
 	FLuaUClass* Self = Get(L);
-	const std::string PropertyName = luaL_checkstring(L, 2);
-	const bool IsRecursive = static_cast<bool>(lua_toboolean(L, 4));
-	LOGF("Calling ChangeDefaultValue(%hs,value , %hhd) on class %s", PropertyName.c_str(), IsRecursive, *Self->Class->GetName())
+	FString PropertyName = luaL_checkstring(L, 2);
+	bool IsRecursive = static_cast<bool>(lua_toboolean(L, 4));
+	LOGF("Calling ChangeDefaultValue(%s, <value>, %hhd) on class %s", *PropertyName, IsRecursive, *Self->Class->GetName())
 	TArray<UClass*> Classes;
 	Classes.Add(Self->Class);
-	if (IsRecursive) { GetDerivedClasses(Self->Class, Classes); }
+	if (IsRecursive)
+	{
+		GetDerivedClasses(Self->Class, Classes);
+	}
 	for (auto Class : Classes) {
 		LOG("Changing the default value of a class")
-		UProperty* Property = FTIReflection::FindPropertyByName(Class, *FString(PropertyName.c_str()));
+		UProperty* Property = FTIReflection::FindPropertyByName(Class, *PropertyName);
 		if (!Property->IsValidLowLevel()) {
 			LOG("Couldn't find the property")
 			return 0;
