@@ -9,6 +9,7 @@
 #include "TweakIt/Lua/Lua.h"
 #include "SML/Public/Patching/NativeHookManager.h"
 #include "TweakIt/TweakItModule.h"
+#include "TweakIt/Lua/Script.h"
 
 void ATweakItSubsystem::BeginPlay() {
 	LOG("TweakIt Version 0.6.0-dev is now loaded")
@@ -59,7 +60,8 @@ bool ATweakItSubsystem::RunScript(FString Name) {
 	LOGF("Running script \"%s\"", *Name)
 	FString Path = GetConfigDirectory() + Name;
 	if (!FPaths::FileExists(Path)) { return false; }
-	return CheckLua(LuaState.L, luaL_dofile(LuaState.L, TCHAR_TO_UTF8(*Path)));
+	FScript Script = FScript(LuaState.L, Path);
+	return CheckLua(LuaState.L, Script.Run());
 }
 
 TArray<FString> ATweakItSubsystem::GetAllScripts()
