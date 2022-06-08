@@ -60,8 +60,9 @@ bool ATweakItSubsystem::RunScript(FString Name) {
 	LOGF("Running script \"%s\"", *Name)
 	FString Path = GetConfigDirectory() + Name;
 	if (!FPaths::FileExists(Path)) { return false; }
-	FScript Script = FScript(LuaState.L, Path);
-	return CheckLua(LuaState.L, Script.Run());
+	FScript Script = FScript(Path);
+	Script.Run();
+	return true;
 }
 
 TArray<FString> ATweakItSubsystem::GetAllScripts()
