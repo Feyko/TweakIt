@@ -21,7 +21,7 @@ EExecutionStatus ATIRunScriptCommand::ExecuteCommand_Implementation(
 		Sender->SendChatMessage("You do not have the sufficient rights to do this.");
 		return EExecutionStatus::INSUFFICIENT_PERMISSIONS;
 	}
-	bool OK = ATweakItSubsystem::Get(this)->RunScript(Arguments[0]);
+	bool OK = ATweakItSubsystem::Get(this)->StartScript(Arguments[0]);
 	if (!OK) {
 		Sender->SendChatMessage("Failed to run the script. Check the log for more info");
 		return EExecutionStatus::UNCOMPLETED;

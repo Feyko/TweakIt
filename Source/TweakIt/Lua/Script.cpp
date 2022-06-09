@@ -1,65 +1,42 @@
 ﻿#include "Script.h"
 
 #include "Lua.h"
+#include "ModuleDescriptor.h"
 #include "TweakIt/TweakItModule.h"
 
-FScript::FScript(FString FileName) : FileName(FileName), Script(FRunnableScript(this))
-{
-	
-}
+FScript::FScript(FString FileName) : FileName(FileName), Script(FRunnableScript(this)) {}
 
-int FScript::Run()
+void FScript::Start()
 {
-	// LOG("Running")
 	Thread = FRunnableThread::Create(&Script, *("TweakIt Script: " + this->FileName));
-	return Result;
+	Script.Delegate.AddLambda([this](EScriptStopState StopReason)
+	{
+		this->StopReason = StopReason;
+	});
 }
 
-bool FRunnableScript::Init()
+EScriptStopState FScript::WaitForStop()
 {
-	// LOG("INIT")
-	return true;
+	while (StopReason == EScriptStopState::Not)
+	{
+		FPlatformProcess::Sleep(0);
+	}
+	return StopReason;
 }
 
-void FRunnableScript::Stop()
-{
-	// LOG("STOP")
-}
-
-void FRunnableScript::Exit()
-{
-	// LOG("EXIT")
-}
-
-FRunnableScript::~FRunnableScript()
-{
-	// LOG("DESTRUCT")
-}
-
-FRunnableScript::FRunnableScript(FScript* Script) : FileName(Script->FileName), Waiting(false), Result(&Script->Result)
-{
-	// LOG("CONSTRUCT")
-	// LOGFS(FileName)
-	// LOGFS(this->FileName)
-}
+FRunnableScript::FRunnableScript(FScript* Script) : FileName(Script->FileName), L(Script->L.L) {}
 
 uint32 FRunnableScript::Run()
 {
-	// LOG("Actually running")
-	// int r = luaL_dofile(L, TCHAR_TO_UTF8(*FileName));
-	int ayo = 0;
-	for (int i = 0; i < 1000000; ++i)
+	int Returned = luaL_dofile(L, TCHAR_TO_UTF8(*FileName));
+
+	EScriptStopState StopReason = EScriptStopState::Completed;
+	if (Returned != LUA_OK)
 	{
-		for (int j = 0; j < 10; ++j)
-		{
-			ayo = FMath::Pow(ayo, i);
-		}
+		FString ErrorMsg = lua_tostring(L, -1);
+		LOGFS(ErrorMsg)
+		StopReason = EScriptStopState::Errored;
 	}
-	LOG("done bro")
-	LOGF("%d", ayo)
-	// *Result = r;
-	// LOGFS(FileName)
-	// LOGFS(this->FileName)
-	// LOG("Finished running")
-	return 0;
+	Delegate.Broadcast(StopReason);
+	return Returned;
 }

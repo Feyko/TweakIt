@@ -25,15 +25,26 @@ ATweakItSubsystem* ATweakItSubsystem::Get(UObject* WorldContext) {
 
 bool ATweakItSubsystem::RunAllScripts() {
 	LOG("Running all scripts")
-	TArray<FString> Scripts = GetAllScripts();
-	for (FString& Filename : Scripts) {
-		bool OK = RunScript(Filename);
-		if (!OK)
+	bool Errored = false;
+	StartAllScripts();
+	for (auto Script : RunningScripts)
+	{
+		EScriptStopState State = Script->WaitForStop();
+		if (State == EScriptStopState::Errored)
 		{
-			return false;
+			Errored = true;
 		}
 	}
-	return true;
+	return Errored;
+}
+
+void ATweakItSubsystem::StartAllScripts()
+{
+	LOG("Starting all scripts")
+	TArray<FString> Scripts = GetAllScripts();
+	for (FString& Filename : Scripts) {
+		StartScript(Filename);
+	}
 }
 
 void ATweakItSubsystem::CreateDefaultScript()
@@ -56,12 +67,16 @@ FString ATweakItSubsystem::GetConfigDirectory()
 	return UConfigManager::GetConfigurationFolderPath().Append("/TweakIt/");
 }
 
-bool ATweakItSubsystem::RunScript(FString Name) {
+bool ATweakItSubsystem::StartScript(FString Name) {
 	LOGF("Running script \"%s\"", *Name)
 	FString Path = GetConfigDirectory() + Name;
-	if (!FPaths::FileExists(Path)) { return false; }
-	FScript Script = FScript(Path);
-	Script.Run();
+	if (!FPaths::FileExists(Path))
+	{
+		return false;
+	}
+	FScript* Script = new FScript(Path);
+	Script->Start();
+	RunningScripts.Add(Script);
 	return true;
 }
 

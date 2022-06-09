@@ -3,6 +3,7 @@
 #include "FGSubsystem.h"
 #include "Subsystem/ModSubsystem.h"
 #include "TweakIt/Lua/LuaState.h"
+#include "TweakIt/Lua/Script.h"
 #include "TweakItSubsystem.generated.h"
 
 UCLASS()
@@ -17,7 +18,10 @@ public:
 	bool RunAllScripts();
 
 	UFUNCTION(BlueprintCallable)
-	bool RunScript(FString Name);
+	void StartAllScripts();
+	
+	UFUNCTION(BlueprintCallable)
+	bool StartScript(FString Name);
 
 	static TArray<FString> GetAllScripts();
 
@@ -25,6 +29,8 @@ public:
 	static FString GetConfigDirectory();
 	
 	static ATweakItSubsystem* Get(UObject* WorldContext);
+
+	TArray<FScript*> RunningScripts;
 
 private:
 	FLuaState LuaState = FLuaState(this);

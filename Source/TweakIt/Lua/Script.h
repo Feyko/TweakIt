@@ -3,31 +3,29 @@
 #include "lib/lua.h"
 #include "TweakIt/TweakItModule.h"
 
+enum class EScriptStopState
+{
+	Not,
+	Completed,
+	Errored,
+	Waiting,
+};
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FScriptStoppedDelegate, EScriptStopState)
+
 class FScript;
 
 class FRunnableScript : public FRunnable
 {
 public:
-	virtual ~FRunnableScript() override;
 	FString FileName;
-	bool Waiting;
-	FString EventWaitedFor;
-	int* Result;
+	FScriptStoppedDelegate Delegate;
 	
 	explicit FRunnableScript(FScript* Script);
 	
 	virtual uint32 Run() override;
-	virtual bool Init() override;
-	virtual void Stop() override;
-	virtual void Exit() override;
 private:
-	lua_State* L = nullptr;
-};
-
-enum class EScriptCompletion
-{
-	Ok,
-	Error,
+	lua_State* L;
 };
 
 class FScript
@@ -37,10 +35,11 @@ public:
 	explicit FScript(FString FileName);
 	
 	FString FileName;
-	FLuaState* L = nullptr;
-	int Result = -1;
-	
-	int Run();
+	EScriptStopState StopReason = EScriptStopState::Not;
+	FLuaState L = FLuaState(nullptr);
+
+	void Start();
+	EScriptStopState WaitForStop();
 private:
 	FRunnableScript Script;
 	FRunnableThread* Thread = nullptr;
