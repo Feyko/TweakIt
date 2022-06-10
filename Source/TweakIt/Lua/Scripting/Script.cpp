@@ -54,8 +54,8 @@ uint32 FRunnableScript::Run()
 	if (Returned != LUA_OK)
 	{
 		FString ErrorMsg = lua_tostring(L, -1);
-		LOGFS(ErrorMsg)
 		StopReason = FScriptState::Errored;
+		StopReason.Payload = ErrorMsg;
 	}
 	Script->Completed(StopReason);
 	return Returned;
