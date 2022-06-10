@@ -3,13 +3,12 @@
 #include <Subsystem/SubsystemActorManager.h>
 
 #include "FGGameInstance.h"
-#include "TweakIt/Lua/lib/lua.hpp"
+#include "TweakIt/Lua/Lua.h"
 #include "Configuration/ConfigManager.h"
 #include "HAL/FileManagerGeneric.h"
-#include "TweakIt/Lua/Lua.h"
 #include "SML/Public/Patching/NativeHookManager.h"
 #include "TweakIt/TweakItModule.h"
-#include "TweakIt/Lua/Script.h"
+#include "TweakIt/Lua/Scripting/Script.h"
 
 void ATweakItSubsystem::BeginPlay() {
 	LOG("TweakIt Version 0.6.0-dev is now loaded")

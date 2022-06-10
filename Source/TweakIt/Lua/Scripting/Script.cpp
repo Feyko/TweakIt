@@ -1,26 +1,21 @@
 ﻿#include "Script.h"
 
-#include "Lua.h"
 #include "ModuleDescriptor.h"
 #include "TweakIt/TweakItModule.h"
 
-bool FScriptState::IsCompleted()
+FScript::FScript(FString FileName) : FileName(FileName)
 {
-	switch (V)
-	{
-	case Successful:
-	case Errored:
-		return true;
-	default:
-		return false;
-	}
+	Script = new FRunnableScript(this);
 }
 
-FScript::FScript(FString FileName) : FileName(FileName), Script(FRunnableScript(this)) {}
+FScript::~FScript()
+{
+	delete Script;
+}
 
 void FScript::Start()
 {
-	Thread = FRunnableThread::Create(&Script, *("TweakIt Script: " + this->FileName));
+	Thread = FRunnableThread::Create(Script, *("TweakIt Script: " + this->FileName));
 }
 
 FScriptState FScript::WaitForStop()
