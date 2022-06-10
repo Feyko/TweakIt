@@ -33,7 +33,7 @@ bool ATweakItSubsystem::RunAllScripts() {
 		{
 			Errored = true;
 		}
-		if (State == FScriptState::Successful)
+		if (State.IsCompleted())
 		{
 			RunningScripts.Remove(Script);
 			delete Script;
