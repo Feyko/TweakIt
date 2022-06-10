@@ -4,39 +4,63 @@
 #include "ModuleDescriptor.h"
 #include "TweakIt/TweakItModule.h"
 
+bool FScriptState::IsCompleted()
+{
+	switch (V)
+	{
+	case Successful:
+	case Errored:
+		return true;
+	default:
+		return false;
+	}
+}
+
 FScript::FScript(FString FileName) : FileName(FileName), Script(FRunnableScript(this)) {}
 
 void FScript::Start()
 {
 	Thread = FRunnableThread::Create(&Script, *("TweakIt Script: " + this->FileName));
-	Script.Delegate.AddLambda([this](EScriptStopState StopReason)
-	{
-		this->StopReason = StopReason;
-	});
 }
 
-EScriptStopState FScript::WaitForStop()
+FScriptState FScript::WaitForStop()
 {
-	while (StopReason == EScriptStopState::Not)
+	while (State == FScriptState::Running)
 	{
 		FPlatformProcess::Sleep(0);
 	}
-	return StopReason;
+	return State;
 }
 
-FRunnableScript::FRunnableScript(FScript* Script) : FileName(Script->FileName), L(Script->L.L) {}
+FScriptState FScript::WaitForCompletion()
+{
+	while (!State.IsCompleted())
+	{
+		FPlatformProcess::Sleep(0);
+	}
+	return State;
+}
+
+void FScript::Completed(FScriptState EndState)
+{
+	State = EndState;
+	CompletedDelegate.Broadcast(EndState);
+	StoppedDelegate.Broadcast(EndState);
+}
+
+FRunnableScript::FRunnableScript(FScript* Script) : Script(Script), L(Script->L.L) {}
 
 uint32 FRunnableScript::Run()
 {
-	int Returned = luaL_dofile(L, TCHAR_TO_UTF8(*FileName));
+	int Returned = luaL_dofile(L, TCHAR_TO_UTF8(*Script->FileName));
 
-	EScriptStopState StopReason = EScriptStopState::Completed;
+	FScriptState StopReason = FScriptState::Successful;
 	if (Returned != LUA_OK)
 	{
 		FString ErrorMsg = lua_tostring(L, -1);
 		LOGFS(ErrorMsg)
-		StopReason = EScriptStopState::Errored;
+		StopReason = FScriptState::Errored;
 	}
-	Delegate.Broadcast(StopReason);
+	Script->Completed(StopReason);
 	return Returned;
 }

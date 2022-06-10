@@ -29,10 +29,15 @@ bool ATweakItSubsystem::RunAllScripts() {
 	StartAllScripts();
 	for (auto Script : RunningScripts)
 	{
-		EScriptStopState State = Script->WaitForStop();
-		if (State == EScriptStopState::Errored)
+		FScriptState State = Script->WaitForStop();
+		if (State == FScriptState::Errored)
 		{
 			Errored = true;
+		}
+		if (State == FScriptState::Successful)
+		{
+			RunningScripts.Remove(Script);
+			delete Script;
 		}
 	}
 	return Errored;

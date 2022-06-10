@@ -1,30 +1,49 @@
 ﻿#pragma once
 #include "LuaState.h"
 #include "lib/lua.h"
-#include "TweakIt/TweakItModule.h"
 
-enum class EScriptStopState
+class FScriptState
 {
-	Not,
-	Completed,
-	Errored,
-	Waiting,
+public:
+	enum EScriptState
+	{
+		Running,
+		Waiting,
+		Successful,
+		Errored,
+	};
+
+	FString Payload;
+
+	bool IsCompleted();
+private:
+	EScriptState V;
+
+	// Bullshit needed for this to work as an enum
+public:
+	FScriptState() = default;
+	FScriptState(EScriptState State) : V(State) { }
+	explicit constexpr operator EScriptState() const { return V; }
+	explicit operator bool() const = delete;    
+	bool operator==(FScriptState Other) const { return V == Other.V; }
+	bool operator!=(FScriptState Other) const { return V != Other.V; }
+	bool operator==(EScriptState Other) const { return V == Other; }
+	bool operator!=(EScriptState Other) const { return V != Other; }
 };
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FScriptStoppedDelegate, EScriptStopState)
+DECLARE_MULTICAST_DELEGATE_OneParam(FScriptStateDelegate, FScriptState)
+DECLARE_MULTICAST_DELEGATE(FScriptCompletedDelegate)
 
 class FScript;
 
 class FRunnableScript : public FRunnable
 {
 public:
-	FString FileName;
-	FScriptStoppedDelegate Delegate;
-	
 	explicit FRunnableScript(FScript* Script);
 	
 	virtual uint32 Run() override;
 private:
+	FScript* Script;
 	lua_State* L;
 };
 
@@ -35,12 +54,18 @@ public:
 	explicit FScript(FString FileName);
 	
 	FString FileName;
-	EScriptStopState StopReason = EScriptStopState::Not;
+	FScriptState State = FScriptState::Running;
 	FLuaState L = FLuaState(nullptr);
 
+	FScriptStateDelegate StoppedDelegate;
+	FScriptStateDelegate CompletedDelegate;
+
 	void Start();
-	EScriptStopState WaitForStop();
+	FScriptState WaitForStop();
+	FScriptState WaitForCompletion();
 private:
+	void Completed(FScriptState EndState);
+	
 	FRunnableScript Script;
 	FRunnableThread* Thread = nullptr;
 };
