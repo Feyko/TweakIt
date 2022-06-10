@@ -10,6 +10,7 @@ FScript::FScript(FString FileName) : FileName(FileName)
 
 FScript::~FScript()
 {
+	Thread->Kill();
 	delete Script;
 }
 
@@ -58,4 +59,9 @@ uint32 FRunnableScript::Run()
 	}
 	Script->Completed(StopReason);
 	return Returned;
+}
+
+void FRunnableScript::Stop()
+{
+	lua_close(L);
 }

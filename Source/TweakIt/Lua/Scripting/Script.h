@@ -37,6 +37,7 @@ public:
 	explicit FRunnableScript(FScript* Script);
 	
 	virtual uint32 Run() override;
+	virtual void Stop() override;
 private:
 	FScript* Script;
 	lua_State* L;
