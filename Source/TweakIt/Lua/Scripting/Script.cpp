@@ -5,7 +5,16 @@
 
 FScript::FScript(FString FileName) : FileName(FileName)
 {
+	StateChanged = FPlatformProcess::CreateSynchEvent();
 	Script = new FRunnableScript(this);
+	L.LifecycleNotifier->ScriptWaitingDelegate.AddLambda([this]
+	{
+		this->SetState(FScriptState::Waiting);
+	});
+	L.LifecycleNotifier->ScriptResumeDelegate.AddLambda([this]
+	{
+		this->SetState(FScriptState::Running);
+	});
 }
 
 FScript::~FScript()
@@ -21,27 +30,32 @@ void FScript::Start()
 
 FScriptState FScript::WaitForStop()
 {
+	LOGF("Waiting for stop %ls", *FileName)
 	while (State == FScriptState::Running)
 	{
-		FPlatformProcess::Sleep(0);
+		StateChanged->Wait();
+		LOGF("State changed %ls", *FileName)
 	}
+	LOGF("Stopped %ls", *FileName)
 	return State;
 }
 
 FScriptState FScript::WaitForCompletion()
 {
-	while (!State.IsCompleted())
-	{
-		FPlatformProcess::Sleep(0);
-	}
+	Thread->WaitForCompletion();
 	return State;
 }
 
-void FScript::Completed(FScriptState EndState)
+void FScript::SetState(FScriptState NewState)
 {
-	State = EndState;
-	CompletedDelegate.Broadcast(EndState);
-	StoppedDelegate.Broadcast(EndState);
+	LOG("Setting state")
+	this->State = NewState;
+	StateChanged->Trigger();
+}
+
+FScriptState FScript::GetState()
+{
+	return this->State;
 }
 
 FRunnableScript::FRunnableScript(FScript* Script) : Script(Script), L(Script->L.L) {}
@@ -57,7 +71,7 @@ uint32 FRunnableScript::Run()
 		StopReason = FScriptState::Errored;
 		StopReason.Payload = ErrorMsg;
 	}
-	Script->Completed(StopReason);
+	Script->SetState(StopReason);
 	return Returned;
 }
 

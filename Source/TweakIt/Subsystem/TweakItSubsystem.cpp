@@ -40,7 +40,7 @@ bool ATweakItSubsystem::RunAllScripts() {
 			delete Script;
 		}
 	}
-	return Errored;
+	return !Errored;
 }
 
 void ATweakItSubsystem::StartAllScripts()

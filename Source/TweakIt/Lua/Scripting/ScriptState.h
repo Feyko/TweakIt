@@ -12,13 +12,11 @@ public:
 	};
 
 	FString Payload;
-
-	bool IsCompleted();
-private:
 	EScriptState V;
 
+	bool IsCompleted();
+
 	// Bullshit needed for this to work as an enum
-	public:
 	FScriptState() = default;
 	FScriptState(EScriptState State) : V(State) { }
 	explicit constexpr operator EScriptState() const { return V; }

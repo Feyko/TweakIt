@@ -4,6 +4,7 @@
 #include "TweakIt/Lua/lib/lua.hpp"
 #include "FGRecipeManager.h"
 #include "IPlatformFilePak.h"
+#include "LuaLifecycleNotifier.h"
 #include "TweakIt/TweakItModule.h"
 #include "TweakIt/Helpers/TIReflection.h"
 #include "TweakIt/Helpers/TIContentRegistration.h"
@@ -305,5 +306,13 @@ lua_Number GetNumber(lua_State* L)
 
 int Lua_Test(lua_State* L)
 {
+	return 0;
+}
+
+int Lua_WaitForEvent(lua_State* L)
+{
+	FString Event = luaL_checkstring(L, 1);
+	FLuaLifecycleNotifier* Notifier = FLuaLifecycleNotifier::Get(L);
+	Notifier->WaitForEvent(Event);
 	return 0;
 }

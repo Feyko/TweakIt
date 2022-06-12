@@ -31,3 +31,5 @@ int Lua_LoadObject(lua_State* L);
 int Lua_Print(lua_State* L);
 
 int Lua_Test(lua_State* L);
+
+int Lua_WaitForEvent(lua_State* L);

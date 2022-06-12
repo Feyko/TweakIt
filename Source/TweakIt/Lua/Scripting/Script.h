@@ -15,17 +15,18 @@ public:
 	~FScript();
 	
 	FString FileName;
-	FScriptState State = FScriptState::Running;
 	FLuaState L = FLuaState(nullptr);
 
-	FScriptStateDelegate StoppedDelegate;
-	FScriptStateDelegate CompletedDelegate;
+	FEvent* StateChanged;
 
 	void Start();
 	FScriptState WaitForStop();
 	FScriptState WaitForCompletion();
+	
+	void SetState(FScriptState NewState);
+	FScriptState GetState();
 private:
-	void Completed(FScriptState EndState);
+	FScriptState State = FScriptState::Running;
 	
 	FRunnableScript* Script;
 	FRunnableThread* Thread = nullptr;
