@@ -26,19 +26,16 @@ FLuaLifecycleNotifier* FLuaLifecycleNotifier::Get(lua_State* L)
 
 void FLuaLifecycleNotifier::WaitForEvent(FString WantedEvent)
 {
-	bool Done = false;
+	FEvent* Done = FPlatformProcess::CreateSynchEvent();
 	EventDelegate.AddLambda([WantedEvent, &Done](FString Event)
 	{
 		if (Event == WantedEvent)
 		{
-			Done = true;
+			Done->Trigger();
 		}
 	});
 	ScriptWaitingDelegate.Broadcast();
-	while (!Done)
-	{
-		FPlatformProcess::Sleep(0);
-	}
+	Done->Wait();
 	ScriptResumeDelegate.Broadcast();
 }
 
