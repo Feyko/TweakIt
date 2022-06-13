@@ -1,6 +1,16 @@
 ﻿#include "LuaLifecycleNotifier.h"
 
+#include "ModuleDescriptor.h"
+#include "PluginManifest.h"
+#include "Interfaces/IPluginManager.h"
+#include "Interfaces/IProjectManager.h"
+#include "Patching/NativeHookManager.h"
 #include "TweakIt/TweakItModule.h"
+
+FLuaLifecycleNotifier::FLuaLifecycleNotifier()
+{
+	SetupHooks();
+}
 
 int FLuaLifecycleNotifier::Construct(lua_State* L)
 {
@@ -22,6 +32,12 @@ FLuaLifecycleNotifier* FLuaLifecycleNotifier::Get(lua_State* L)
 		return nullptr;
 	}
 	return static_cast<FLuaLifecycleNotifier*>(luaL_checkudata(L, -1, Name));
+}
+
+void FLuaLifecycleNotifier::BroadcastEvent(FString Event)
+{
+	LOG("Broadcasting event")
+	EventDelegate.Broadcast(Event);
 }
 
 void FLuaLifecycleNotifier::WaitForEvent(FString WantedEvent)
@@ -62,4 +78,24 @@ int FLuaLifecycleNotifier::Lua__index(lua_State* L)
 void FLuaLifecycleNotifier::RegisterMetadata(lua_State* L)
 {
 	RegisterMetatable(L, Name, Metadata);
+}
+
+void FLuaLifecycleNotifier::SetupHooks()
+{
+	EventDelegate.AddLambda([](FString Event)
+	{
+		LOGF("Received event %ls", *Event)
+	});
+	IPluginManager& Manager = IPluginManager::Get();
+	Manager.OnLoadingPhaseComplete().AddLambda([this](ELoadingPhase::Type Phase, bool Successful)
+	{
+		LOG("LOADING PHASE COMPLETED")
+		if (Successful)
+		{
+			LOG("SUCCESSFUL")
+			FString EventString = ToString(Phase);
+			LOGF("%ls", *EventString)
+			this->BroadcastEvent(FString(EventString));
+		}
+	});
 }

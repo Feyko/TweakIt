@@ -36,7 +36,7 @@ var factoryGamePchPath = new DirectoryReference(Path.Combine(Target.ProjectFile.
             PublicDependencyModuleNames.AddRange(new string[] {"OnlineBlueprintSupport", "AnimGraph"});
         }
 
-        PublicDependencyModuleNames.AddRange(new string[] {"FactoryGame", "SML"});
+        PublicDependencyModuleNames.AddRange(new string[] {"FactoryGame", "SML", "Projects"});
         PublicAdditionalLibraries.Add(Path.Combine(ModuleDirectory, "Lua/lib/lua54.lib"));
     }
 }

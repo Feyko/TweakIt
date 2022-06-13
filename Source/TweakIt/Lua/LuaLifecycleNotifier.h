@@ -8,9 +8,11 @@ DECLARE_MULTICAST_DELEGATE(FScriptResumeDelegate)
 class FLuaLifecycleNotifier
 {
 public:
+	FLuaLifecycleNotifier();
 	static int Construct(lua_State* L);
 	static FLuaLifecycleNotifier* Get(lua_State* L);
-	
+
+	void BroadcastEvent(FString Event);
 	void WaitForEvent(FString WantedEvent);
 	
 	static int Lua_WaitForEvent(lua_State* L);
@@ -25,6 +27,8 @@ public:
 	inline static const char* Name = "LifecycleNotifier";
 	
 private:
+	void SetupHooks();
+	
 	inline static TArray<luaL_Reg> Metadata = {
 		{"__index", Lua__index},
 	};
