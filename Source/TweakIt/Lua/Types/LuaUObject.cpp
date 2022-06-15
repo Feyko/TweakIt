@@ -3,9 +3,8 @@
 #include "LuaUClass.h"
 #include <string>
 
-#include "TweakIt/TweakItModule.h"
-#include "TweakIt/Helpers/TIReflection.h"
 #include "TweakIt/Logging/FTILog.h"
+#include "TweakIt/Helpers/TIReflection.h"
 using namespace std;
 
 FLuaUObject::FLuaUObject(UObject* Object) : Object(Object)
@@ -13,9 +12,11 @@ FLuaUObject::FLuaUObject(UObject* Object) : Object(Object)
 	CaptureObject();
 }
 
-int FLuaUObject::ConstructObject(lua_State* L, UObject* Object) {
+int FLuaUObject::ConstructObject(lua_State* L, UObject* Object)
+{
 	LOG("Constructing a LuaUObject")
-	if (!Object->IsValidLowLevel()) {
+	if (!Object->IsValidLowLevel())
+	{
 		LOG("Trying to construct a LuaUObject from an invalid object")
 		lua_pushnil(L);
 		return 1;
@@ -49,55 +50,65 @@ void FLuaUObject::ReleaseObject()
 	}
 }
 
-int FLuaUObject::Lua_DumpProperties(lua_State* L) {
+int FLuaUObject::Lua_DumpProperties(lua_State* L)
+{
 	FLuaUObject* Self = Get(L);
 	LOG("Dumping the properties for " + Self->Object->GetName())
-	if (Self->Object->IsA(AActor::StaticClass())) {
+	if (Self->Object->IsA(AActor::StaticClass()))
+	{
 		AActor* Actor = Cast<AActor>(Self->Object);
 		TArray<UActorComponent*> Components;
 		Actor->GetComponents(Components);
-		for (auto Component : Components) {
+		for (auto Component : Components)
+		{
 			LOG(Component->GetName())
 		}
 	}
 	for (UProperty* Property = Self->Object->GetClass()->PropertyLink; Property; Property = Property->PropertyLinkNext
-	) {
+	)
+	{
 		LOG(Property->GetName())
 	}
 	return 0;
 }
 
-int FLuaUObject::Lua_GetClass(lua_State* L) {
+int FLuaUObject::Lua_GetClass(lua_State* L)
+{
 	FLuaUObject* Self = Get(L);
 	FLuaUClass::ConstructClass(L, Self->Object->GetClass());
 	return 1;
 }
 
-int FLuaUObject::Lua__index(lua_State* L) {
+int FLuaUObject::Lua__index(lua_State* L)
+{
 	FLuaUObject* Self = Get(L);
 	FString Index = luaL_checkstring(L, 2);
 	LOGF("Indexing a LuaUObject with %s", *Index)
-	if(lua_CFunction* Method = Methods.Find(Index)) {
+	if (lua_CFunction* Method = Methods.Find(Index))
+	{
 		lua_pushcfunction(L, *Method);
 		return 1;
 	}
 	UProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *Index);
-	if (!Property->IsValidLowLevel()) {
+	if (!Property->IsValidLowLevel())
+	{
 		lua_pushnil(L);
-		return 1; 
+		return 1;
 	}
 	LOG("Found property")
 	PropertyToLua(L, Property, Self->Object);
 	return 1;
 }
 
-int FLuaUObject::Lua__newindex(lua_State* L) {
+int FLuaUObject::Lua__newindex(lua_State* L)
+{
 	{
 		FLuaUObject* Self = Get(L);
 		FString PropertyName = luaL_checkstring(L, 2);
-		LOGF("Newindexing a LuaUObject with %s",*PropertyName)
+		LOGF("Newindexing a LuaUObject with %s", *PropertyName)
 		UProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *PropertyName);
-		if (!Property->IsValidLowLevel()) {
+		if (!Property->IsValidLowLevel())
+		{
 			LOGF("No property '%s' found", *PropertyName)
 			return 0;
 		}
@@ -107,13 +118,15 @@ int FLuaUObject::Lua__newindex(lua_State* L) {
 	}
 }
 
-int FLuaUObject::Lua__tostring(lua_State* L) {
+int FLuaUObject::Lua__tostring(lua_State* L)
+{
 	FLuaUObject* Self = Get(L);
 	lua_pushstring(L, TCHAR_TO_UTF8(*Self->Object->GetName()));
 	return 1;
 }
 
-int FLuaUObject::Lua__gc(lua_State* L) {
+int FLuaUObject::Lua__gc(lua_State* L)
+{
 	FLuaUObject* Self = Get(L);
 	Self->ReleaseObject();
 	return 0;

@@ -7,22 +7,25 @@
 #include "Configuration/ConfigManager.h"
 #include "HAL/FileManagerGeneric.h"
 #include "SML/Public/Patching/NativeHookManager.h"
-#include "TweakIt/TweakItModule.h"
+#include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Lua/Scripting/Script.h"
 
-void ATweakItSubsystem::BeginPlay() {
+void ATweakItSubsystem::BeginPlay()
+{
 	LOG("TweakIt Version 0.6.0-dev is now loaded")
 	CreateDefaultScript();
 	RunAllScripts();
 }
 
 
-ATweakItSubsystem* ATweakItSubsystem::Get(UObject* WorldContext) {
+ATweakItSubsystem* ATweakItSubsystem::Get(UObject* WorldContext)
+{
 	if (!WorldContext->IsValidLowLevel()) { return nullptr; }
 	return WorldContext->GetWorld()->GetSubsystem<USubsystemActorManager>()->GetSubsystemActor<ATweakItSubsystem>();
 }
 
-bool ATweakItSubsystem::RunAllScripts() {
+bool ATweakItSubsystem::RunAllScripts()
+{
 	LOG("Running all scripts")
 	bool Errored = false;
 	StartAllScripts();
@@ -47,7 +50,8 @@ void ATweakItSubsystem::StartAllScripts()
 {
 	LOG("Starting all scripts")
 	TArray<FString> Scripts = GetAllScripts();
-	for (FString& Filename : Scripts) {
+	for (FString& Filename : Scripts)
+	{
 		StartScript(Filename);
 	}
 }
@@ -56,11 +60,12 @@ void ATweakItSubsystem::CreateDefaultScript()
 {
 	IFileManager& Manager = FFileManagerGeneric::Get();
 	FString ConfigDirectory = GetConfigDirectory();
-	
-	if (Manager.DirectoryExists(*ConfigDirectory)) {
+
+	if (Manager.DirectoryExists(*ConfigDirectory))
+	{
 		return;
 	}
-	
+
 	LOG("Creating the default directory and script")
 	Manager.MakeDirectory(*ConfigDirectory);
 	FArchive* file = Manager.CreateFileWriter(*ConfigDirectory.Append("script.lua"));
@@ -72,7 +77,8 @@ FString ATweakItSubsystem::GetConfigDirectory()
 	return UConfigManager::GetConfigurationFolderPath().Append("/TweakIt/");
 }
 
-bool ATweakItSubsystem::StartScript(FString Name) {
+bool ATweakItSubsystem::StartScript(FString Name)
+{
 	LOGF("Running script \"%s\"", *Name)
 	FString Path = GetConfigDirectory() + Name;
 	if (!FPaths::FileExists(Path))

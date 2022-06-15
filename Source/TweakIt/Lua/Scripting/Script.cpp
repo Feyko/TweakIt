@@ -1,7 +1,7 @@
 ﻿#include "Script.h"
 
 #include "ModuleDescriptor.h"
-#include "TweakIt/TweakItModule.h"
+#include "TweakIt/Logging/FTILog.h"
 
 FScript::FScript(FString FileName) : FileName(FileName)
 {
@@ -58,7 +58,9 @@ FScriptState FScript::GetState()
 	return this->State;
 }
 
-FRunnableScript::FRunnableScript(FScript* Script) : Script(Script), L(Script->L.L) {}
+FRunnableScript::FRunnableScript(FScript* Script) : Script(Script), L(Script->L.L)
+{
+}
 
 uint32 FRunnableScript::Run()
 {

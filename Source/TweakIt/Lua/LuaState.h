@@ -2,7 +2,7 @@
 #include "Lua.h"
 #include "LuaLifecycleNotifier.h"
 
-#include "TweakIt\Lua\Lua.h"
+#include "TweakIt/Lua/Lua.h"
 
 class FLuaState
 {

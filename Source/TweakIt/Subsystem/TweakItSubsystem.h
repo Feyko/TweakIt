@@ -11,7 +11,6 @@ class ATweakItSubsystem : public AModSubsystem
 {
 	GENERATED_BODY()
 public:
-	
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
@@ -19,7 +18,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void StartAllScripts();
-	
+
 	UFUNCTION(BlueprintCallable)
 	bool StartScript(FString Name);
 
@@ -27,7 +26,7 @@ public:
 
 	static void CreateDefaultScript();
 	static FString GetConfigDirectory();
-	
+
 	static ATweakItSubsystem* Get(UObject* WorldContext);
 
 	TArray<FScript*> RunningScripts;

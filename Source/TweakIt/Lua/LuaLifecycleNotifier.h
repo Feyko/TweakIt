@@ -14,21 +14,21 @@ public:
 
 	void BroadcastEvent(FString Event);
 	void WaitForEvent(FString WantedEvent);
-	
+
 	static int Lua_WaitForEvent(lua_State* L);
 
 	static int Lua__index(lua_State* L);
-	
+
 	FEventDelegate EventDelegate;
 	FScriptWaitingDelegate ScriptWaitingDelegate;
 	FScriptResumeDelegate ScriptResumeDelegate;
 
 	static void RegisterMetadata(lua_State* L);
 	inline static const char* Name = "LifecycleNotifier";
-	
+
 private:
 	void SetupHooks();
-	
+
 	inline static TArray<luaL_Reg> Metadata = {
 		{"__index", Lua__index},
 	};

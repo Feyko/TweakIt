@@ -2,7 +2,8 @@
 
 #include "LuaLifecycleNotifier.h"
 
-FLuaState::FLuaState(UObject* WorldContext) {
+FLuaState::FLuaState(UObject* WorldContext)
+{
 	L = luaL_newstate();
 	OpenLibs();
 	RegisterMetadatas();
@@ -39,7 +40,8 @@ void FLuaState::RegisterMetadatas()
 	FLuaLifecycleNotifier::RegisterMetadata(L);
 }
 
-void FLuaState::RegisterGlobalFunctions() {
+void FLuaState::RegisterGlobalFunctions()
+{
 	for (auto Function : GlobalFunctions)
 	{
 		lua_register(L, Function.name, Function.func);

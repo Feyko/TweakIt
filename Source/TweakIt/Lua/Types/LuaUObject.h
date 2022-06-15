@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
 
-#include "TweakIt\Lua\Lua.h"
+#include "TweakIt/Lua/Lua.h"
 
 struct FLuaUObject
 {
 	explicit FLuaUObject(UObject* Object);
-	
+
 	UObject* Object;
-	
+
 	static int ConstructObject(lua_State* L, UObject* Object);
 	static FLuaUObject* Get(lua_State* L, int Index = 1);
 
@@ -17,7 +17,7 @@ struct FLuaUObject
 
 	static int Lua_DumpProperties(lua_State* L);
 	static int Lua_GetClass(lua_State* L);
-	
+
 	static int Lua__index(lua_State* L);
 	static int Lua__newindex(lua_State* L);
 	static int Lua__tostring(lua_State* L);
@@ -31,7 +31,7 @@ private:
 		{"GetClass", Lua_GetClass},
 		{"DumpProperties", Lua_DumpProperties},
 	};
-	
+
 	inline static TArray<luaL_Reg> Metadata = {
 		{"__index", Lua__index},
 		{"__newindex", Lua__newindex},

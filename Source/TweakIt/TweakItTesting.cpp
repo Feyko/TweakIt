@@ -2,5 +2,6 @@
 
 using namespace std;
 
-void UTweakItTesting::Testing() {
+void UTweakItTesting::Testing()
+{
 }

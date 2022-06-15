@@ -1,14 +1,14 @@
 #pragma once
 #include "CoreMinimal.h"
 
-#include "TweakIt\Lua\Lua.h"
+#include "TweakIt/Lua/Lua.h"
 
 int Lua_MakeSubclass(lua_State* L); // Forward declaration. I hate C++
 
 struct FLuaUClass
 {
 	UClass* Class;
-	
+
 	static int ConstructClass(lua_State* L, UClass* Class);
 	static FLuaUClass* Get(lua_State* L, int Index = 1);
 

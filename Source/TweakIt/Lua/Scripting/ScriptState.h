@@ -18,9 +18,13 @@ public:
 
 	// Bullshit needed for this to work as an enum
 	FScriptState() = default;
-	FScriptState(EScriptState State) : V(State) { }
+
+	FScriptState(EScriptState State) : V(State)
+	{
+	}
+
 	explicit constexpr operator EScriptState() const { return V; }
-	explicit operator bool() const = delete;    
+	explicit operator bool() const = delete;
 	bool operator==(FScriptState Other) const { return V == Other.V; }
 	bool operator!=(FScriptState Other) const { return V != Other.V; }
 	bool operator==(EScriptState Other) const { return V == Other; }

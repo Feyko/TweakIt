@@ -2,23 +2,29 @@
 
 
 #include "Engine/SCS_Node.h"
-#include "TweakIt/TweakItModule.h"
+#include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Logging/FTILog.h"
 
-UProperty* FTIReflection::FindPropertyByName(UStruct* Class, const TCHAR* PropertyName) {
+UProperty* FTIReflection::FindPropertyByName(UStruct* Class, const TCHAR* PropertyName)
+{
 	FString lowered = FString(PropertyName).ToLower();
-	for (UProperty* Property = Class->PropertyLink; Property; Property = Property->PropertyLinkNext) {
-		if (Property->GetName().ToLower() == lowered) {
+	for (UProperty* Property = Class->PropertyLink; Property; Property = Property->PropertyLinkNext)
+	{
+		if (Property->GetName().ToLower() == lowered)
+		{
 			return Property;
 		}
 	}
 	return nullptr;
 }
 
-UClass* FTIReflection::FindBPUnreliable(FString ClassName) {
-	for (TObjectIterator<UBlueprintGeneratedClass> it; it; ++it) {
+UClass* FTIReflection::FindBPUnreliable(FString ClassName)
+{
+	for (TObjectIterator<UBlueprintGeneratedClass> it; it; ++it)
+	{
 		UClass* ItClass = *it;
-		if (ItClass->GetName() == ClassName) {
+		if (ItClass->GetName() == ClassName)
+		{
 			return ItClass;
 		}
 	}
@@ -26,41 +32,50 @@ UClass* FTIReflection::FindBPUnreliable(FString ClassName) {
 	return nullptr;
 }
 
-UStruct* FTIReflection::FindStructUnreliable(FString ClassName) {
-	for (TObjectIterator<UStruct> it; it; ++it) {
+UStruct* FTIReflection::FindStructUnreliable(FString ClassName)
+{
+	for (TObjectIterator<UStruct> it; it; ++it)
+	{
 		UStruct* ItClass = *it;
 		LOG(ItClass->GetFullName())
-		if (ItClass->GetName().ToLower() == ClassName.ToLower()) {
+		if (ItClass->GetName().ToLower() == ClassName.ToLower())
+		{
 			return ItClass;
 		}
 	}
 	LOGF("Was unable to find the BP class \"%s\" by iterating", *ClassName)
-    return nullptr;
+	return nullptr;
 }
 
-UClass* FTIReflection::FindClassByName(FString ClassName, FString Package = "FactoryGame") {
+UClass* FTIReflection::FindClassByName(FString ClassName, FString Package = "FactoryGame")
+{
 	LOGF("Trying to load %s", *ClassName)
 	UClass* LoadedClass = LoadObject<UClass>(nullptr, *ClassName);
-	if (!LoadedClass->IsValidLowLevel()) {
+	if (!LoadedClass->IsValidLowLevel())
+	{
 		LOGF("Trying to load /Script/%s.%s", *Package, *ClassName)
-        LoadedClass = LoadObject<UClass>(NULL, *("/Script/" + Package + "." + ClassName));
-		if (!LoadedClass->IsValidLowLevel()) {
+		LoadedClass = LoadObject<UClass>(nullptr, *("/Script/" + Package + "." + ClassName));
+		if (!LoadedClass->IsValidLowLevel())
+		{
 			LOG("Trying to find the class by iterating")
-            LoadedClass = FindBPUnreliable(ClassName);
+			LoadedClass = FindBPUnreliable(ClassName);
 		}
 	}
 	return LoadedClass;
 }
 
-UStruct* FTIReflection::FindStructByName(FString ClassName, FString Package = "FactoryGame") {
+UStruct* FTIReflection::FindStructByName(FString ClassName, FString Package = "FactoryGame")
+{
 	LOGF("Trying to load %s", *ClassName)
-    UStruct* LoadedClass = LoadObject<UStruct>(nullptr, *ClassName);
-	if (!LoadedClass->IsValidLowLevel()) {
+	UStruct* LoadedClass = LoadObject<UStruct>(nullptr, *ClassName);
+	if (!LoadedClass->IsValidLowLevel())
+	{
 		LOGF("Trying to load /Script/%s.%s", *Package, *ClassName)
-        LoadedClass = LoadObject<UStruct>(NULL, *("/Script/" + Package + "." + ClassName));
-		if (!LoadedClass->IsValidLowLevel()) {
+		LoadedClass = LoadObject<UStruct>(nullptr, *("/Script/" + Package + "." + ClassName));
+		if (!LoadedClass->IsValidLowLevel())
+		{
 			LOG("Trying to find the class by iterating")
-            LoadedClass = FindStructUnreliable(ClassName);
+			LoadedClass = FindStructUnreliable(ClassName);
 		}
 	}
 	return LoadedClass;
@@ -70,21 +85,25 @@ UActorComponent* FTIReflection::FindDefaultComponentByName(
 	UClass* InActorClass,
 	const TSubclassOf<UActorComponent> InComponentClass,
 	FString ComponentName
-) {
+)
+{
 	LOG("FindDefaultComponentByName")
 	FString GeneratedComponentName = ComponentName + "_GEN_VARIABLE";
-	if (!IsValid(InActorClass)) {
+	if (!IsValid(InActorClass))
+	{
 		LOG("Not valid")
 		return nullptr;
 	}
 	// Check CDO.
 	AActor* ActorCDO = InActorClass->GetDefaultObject<AActor>();
 	TArray<UActorComponent*> FoundComponents;
-	ActorCDO->GetComponents(InComponentClass,FoundComponents);
+	ActorCDO->GetComponents(InComponentClass, FoundComponents);
 
-	for (auto Component : FoundComponents) {
+	for (auto Component : FoundComponents)
+	{
 		LOG(Component->GetName())
-		if (Component->GetName() == ComponentName) {
+		if (Component->GetName() == ComponentName)
+		{
 			return Component;
 		}
 	}
@@ -95,10 +114,12 @@ UActorComponent* FTIReflection::FindDefaultComponentByName(
 	UClass* ActorClass = InActorClass;
 
 	// Go down the inheritance tree to find nodes that were added to parent blueprints of our blueprint graph.
-	do {
+	do
+	{
 		LOG(ActorClass->GetName())
 		UBlueprintGeneratedClass* ActorBlueprintGeneratedClass = Cast<UBlueprintGeneratedClass>(ActorClass);
-		if (!ActorBlueprintGeneratedClass) {
+		if (!ActorBlueprintGeneratedClass)
+		{
 			LOG("not BlueprintGenerated")
 			return nullptr;
 		}
@@ -106,30 +127,37 @@ UActorComponent* FTIReflection::FindDefaultComponentByName(
 		const TArray<USCS_Node*>& ActorBlueprintNodes =
 			ActorBlueprintGeneratedClass->SimpleConstructionScript->GetAllNodes();
 
-		for (USCS_Node* Node : ActorBlueprintNodes) {
+		for (USCS_Node* Node : ActorBlueprintNodes)
+		{
 			UClass* Class = Node->ComponentClass;
 			LOG(Class->GetName())
 			if (!Node->GetActualComponentTemplate(RootBlueprintGeneratedClass)->IsValidLowLevel()) { return nullptr; }
 			if (Class->IsChildOf(InComponentClass) && Node->GetActualComponentTemplate(RootBlueprintGeneratedClass)->
-															GetName() == GeneratedComponentName) {
+			                                                GetName() == GeneratedComponentName)
+			{
 				return Node->GetActualComponentTemplate(RootBlueprintGeneratedClass);
 			}
 		}
 
 		ActorClass = Cast<UClass>(ActorClass->GetSuperStruct());
-
-	} while (ActorClass != AActor::StaticClass());
+	}
+	while (ActorClass != AActor::StaticClass());
 
 	return nullptr;
 }
 
 //Yoinked from upcoming SML update, I needed it
-UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const TCHAR* ClassName, UClass* ParentClass) {
+UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const TCHAR* ClassName, UClass* ParentClass)
+{
 	LOGF("Creating subclass for %s", *ParentClass->GetFullName())
 	LOGF("%ls", *(FString(PackageName) + "." + ClassName))
 	UClass* LoadedClass = LoadObject<UClass>(nullptr, *(FString(PackageName) + "." + ClassName));
 	LOGF("%hhd", LoadedClass->IsValidLowLevel())
-	if(LoadedClass->IsValidLowLevel()) {LOG("A class with this path already exists") return LoadedClass;}
+	if (LoadedClass->IsValidLowLevel())
+	{
+		LOG("A class with this path already exists")
+		return LoadedClass;
+	}
 	//Flags to assign to newly created class
 	const EClassFlags ParamsClassFlags = CLASS_MatchedSerializers;
 	//Code below is taken from GetPrivateStaticClassBody
@@ -150,21 +178,22 @@ UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const
 	// 		nullptr));
 	// 	ConstructedClassObject->ClassAddReferencedObjects = ParentClass->ClassAddReferencedObjects;
 	// } else {
-		LOG("Creating UCLASS")
-		ConstructedClassObject = (UClass*)GUObjectAllocator.AllocateUObject(sizeof(UClass), alignof(UClass), true);
-		::new(ConstructedClassObject)UClass(
-            EC_StaticConstructor,
-            ClassName,
-            ParentClass->GetStructureSize(),
-            ParentClass->GetMinAlignment(),
-            CLASS_Intrinsic,
-            CASTCLASS_None,
-            UObject::StaticConfigName(),
-            EObjectFlags(RF_Public | RF_Standalone | RF_Transient | RF_MarkAsNative | RF_MarkAsRootSet),
-            ParentClass->ClassConstructor,
-            ParentClass->ClassVTableHelperCtorCaller,
-            ParentClass->ClassAddReferencedObjects);
-            ConstructedClassObject->SetSuperStruct(ParentClass);
+	LOG("Creating UCLASS")
+	ConstructedClassObject = static_cast<UClass*>(GUObjectAllocator.AllocateUObject(
+		sizeof(UClass), alignof(UClass), true));
+	::new(ConstructedClassObject)UClass(
+		EC_StaticConstructor,
+		ClassName,
+		ParentClass->GetStructureSize(),
+		ParentClass->GetMinAlignment(),
+		CLASS_Intrinsic,
+		CASTCLASS_None,
+		UObject::StaticConfigName(),
+		static_cast<EObjectFlags>(RF_Public | RF_Standalone | RF_Transient | RF_MarkAsNative | RF_MarkAsRootSet),
+		ParentClass->ClassConstructor,
+		ParentClass->ClassVTableHelperCtorCaller,
+		ParentClass->ClassAddReferencedObjects);
+	ConstructedClassObject->SetSuperStruct(ParentClass);
 	// }
 
 	LOG("out")
@@ -177,13 +206,14 @@ UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const
 	//Register pending object, apply class flags, set static type info and link it
 	ConstructedClassObject->RegisterDependencies();
 	LOG("Deps")
-	if(!ConstructedClassObject->GetClass()) {
+	if (!ConstructedClassObject->GetClass())
+	{
 		LOG("Registering")
 		ConstructedClassObject->DeferredRegister(UClass::StaticClass(), PackageName, ClassName);
 	}
 	LOG("Out")
 	//Mark class as Constructed and perform linking
-	ConstructedClassObject->ClassFlags |= (EClassFlags)(ParamsClassFlags | CLASS_Constructed);
+	ConstructedClassObject->ClassFlags |= ParamsClassFlags | CLASS_Constructed;
 	LOG("assembling")
 	ConstructedClassObject->AssembleReferenceTokenStream(true);
 	LOG("linking")
@@ -194,22 +224,26 @@ UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const
 	LOG("getting parent cdo")
 	UObject* ParentCDO = ParentClass->GetDefaultObject();
 	LOG("copying properties")
-	for(UProperty* Property = ConstructedClassObject->PropertyLink;Property;Property = Property->PropertyLinkNext) {
+	for (UProperty* Property = ConstructedClassObject->PropertyLink; Property; Property = Property->PropertyLinkNext)
+	{
 		Property->CopyCompleteValue_InContainer(CDO, ParentCDO);
 	}
-	
-	if(UBlueprintGeneratedClass* ClassAsBPGC = Cast<UBlueprintGeneratedClass>(ConstructedClassObject)) {
+
+	if (UBlueprintGeneratedClass* ClassAsBPGC = Cast<UBlueprintGeneratedClass>(ConstructedClassObject))
+	{
 		LOG("Dumping Construction Script")
-		for(USCS_Node* Node : ClassAsBPGC->SimpleConstructionScript->GetAllNodes()) {
+		for (USCS_Node* Node : ClassAsBPGC->SimpleConstructionScript->GetAllNodes())
+		{
 			LOG(Node->ComponentClass->GetName())
 		}
 	}
 
-	LOG(ConstructedClassObject->GetFullName())	
+	LOG(ConstructedClassObject->GetFullName())
 	return ConstructedClassObject;
 }
 
-void* FTIReflection::MakeStructInstance(UStruct* Struct) {
+void* FTIReflection::MakeStructInstance(UStruct* Struct)
+{
 	void* instance = FMemory::Malloc(Struct->GetStructureSize());
 	Struct->InitializeStruct(instance);
 	return instance;
@@ -218,7 +252,7 @@ void* FTIReflection::MakeStructInstance(UStruct* Struct) {
 void* FTIReflection::CopyStruct(UStruct* Struct, void* Values)
 {
 	void* Copy = MakeStructInstance(Struct);
-	for (FProperty* Property = Struct->PropertyLink;Property; Property = Property->PropertyLinkNext)
+	for (FProperty* Property = Struct->PropertyLink; Property; Property = Property->PropertyLinkNext)
 	{
 		Property->CopyCompleteValue_InContainer(Copy, Values);
 	}

@@ -5,7 +5,7 @@
 #include "FGRecipeManager.h"
 #include "IPlatformFilePak.h"
 #include "LuaLifecycleNotifier.h"
-#include "TweakIt/TweakItModule.h"
+#include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Helpers/TIReflection.h"
 #include "TweakIt/Helpers/TIContentRegistration.h"
 using namespace std;
@@ -131,12 +131,13 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 	uint64 Flags = Property->GetClass()->GetCastFlags();
 	if (Flags & CASTCLASS_FBoolProperty)
 	{
-		luaL_argexpected(L, lua_isboolean(L, Index),Index, "boolean");
+		luaL_argexpected(L, lua_isboolean(L, Index), Index, "boolean");
 		*Property->ContainerPtrToValuePtr<bool>(Container) = static_cast<bool>(lua_toboolean(L, Index));
 	}
 	else if (Flags & CASTCLASS_FIntProperty)
 	{
-		*Property->ContainerPtrToValuePtr<std::int32_t>(Container) = static_cast<std::int32_t>(luaL_checkinteger(L, Index));
+		*Property->ContainerPtrToValuePtr<std::int32_t>(Container) = static_cast<std::int32_t>(
+			luaL_checkinteger(L, Index));
 	}
 	else if (Flags & CASTCLASS_FInt64Property)
 	{
@@ -171,8 +172,8 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 		if (!Enum->IsValidEnumName(EnumValueName))
 		{
 			luaL_error(L, "invalid enum value %s for enum type %s. Example value: %s",
-				TCHAR_TO_UTF8(*EnumValueName.ToString()), TCHAR_TO_UTF8(*Enum->GetName()),
-				TCHAR_TO_UTF8(*Enum->GetNameByIndex(0).ToString()));
+			           TCHAR_TO_UTF8(*EnumValueName.ToString()), TCHAR_TO_UTF8(*Enum->GetName()),
+			           TCHAR_TO_UTF8(*Enum->GetNameByIndex(0).ToString()));
 			return;
 		}
 		int64 EnumValue = Enum->GetValueByName(EnumValueName);
@@ -185,7 +186,7 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 		if (!(StructProperty->Struct->GetFullName() == rStruct->Struct->GetFullName()))
 		{
 			luaL_error(L, "Mismatched struct types (%s <- %s)",
-				TCHAR_TO_UTF8(*StructProperty->Struct->GetName()), TCHAR_TO_UTF8(*rStruct->Struct->GetName()));
+			           TCHAR_TO_UTF8(*StructProperty->Struct->GetName()), TCHAR_TO_UTF8(*rStruct->Struct->GetName()));
 			return;
 		}
 		StructProperty->CopyCompleteValue(StructProperty, rStruct->Values);
@@ -198,18 +199,18 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 		luaL_argexpected(L, lua_istable(L, Index), Index, "array");
 		FArrayProperty* ArrayProperty = Cast<FArrayProperty>(Property);
 		FScriptArray* ArrayValue = ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(Container);
-		
+
 		int InputLen = luaL_len(L, Index);
 		int ElementSize = ArrayProperty->Inner->ElementSize;
 		ArrayValue->Empty(InputLen, ElementSize);
 		ArrayValue->AddZeroed(InputLen, ElementSize);
-		
+
 		uint8* Data = static_cast<uint8*>(ArrayValue->GetData());
 		for (int i = 0; i < InputLen; ++i)
 		{
-			lua_pushinteger(L, i+1);
+			lua_pushinteger(L, i + 1);
 			lua_gettable(L, Index);
-			LuaToProperty(L, ArrayProperty->Inner, Data + ElementSize * i, Index+1);
+			LuaToProperty(L, ArrayProperty->Inner, Data + ElementSize * i, Index + 1);
 			lua_pop(L, 1);
 		}
 	}

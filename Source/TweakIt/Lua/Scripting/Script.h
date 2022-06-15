@@ -13,7 +13,7 @@ class FScript
 public:
 	explicit FScript(FString FileName);
 	~FScript();
-	
+
 	FString FileName;
 	FLuaState L = FLuaState(nullptr);
 
@@ -22,12 +22,12 @@ public:
 	void Start();
 	FScriptState WaitForStop();
 	FScriptState WaitForCompletion();
-	
+
 	void SetState(FScriptState NewState);
 	FScriptState GetState();
 private:
 	FScriptState State = FScriptState::Running;
-	
+
 	FRunnableScript* Script;
 	FRunnableThread* Thread = nullptr;
 };
@@ -36,7 +36,7 @@ class FRunnableScript : public FRunnable
 {
 public:
 	explicit FRunnableScript(FScript* Script);
-	
+
 	virtual uint32 Run() override;
 	virtual void Stop() override;
 private:

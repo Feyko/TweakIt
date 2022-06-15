@@ -15,7 +15,7 @@ class UTweakItTesting : public UObject
 public:
 	UPROPERTY(EditAnywhere)
 	bool Boolean;
-	
+
 	UPROPERTY(EditAnywhere)
 	int number = 10;
 
@@ -27,31 +27,33 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	FString String = "henlo";
-	
+
 	UPROPERTY(EditAnywhere)
 	FName Name = "myname";
 
 	UPROPERTY(EditAnywhere)
 	FText Text = FText::FromString("sometext");
-	
+
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UFGRecipe> Recipe = UFGCustomizationRecipe::StaticClass();
 
 	UPROPERTY(EditAnywhere)
 	EHologramMaterialState Enum = EHologramMaterialState::HMS_OK;
-	
+
 	UPROPERTY(EditAnywhere)
 	FItemAmount Item = FItemAmount(UFGItemDescriptor::StaticClass(), 69);
 
 	UPROPERTY(EditAnywhere)
-	TArray<FItemAmount> Items = {FItemAmount(UFGItemDescriptor::StaticClass(), 69), FItemAmount(UFGItemDescriptor::StaticClass(), 47)};
+	TArray<FItemAmount> Items = {
+		FItemAmount(UFGItemDescriptor::StaticClass(), 69), FItemAmount(UFGItemDescriptor::StaticClass(), 47)
+	};
 
 	UPROPERTY(EditAnywhere)
-	TArray<int> Numbers = {54,12,154};
+	TArray<int> Numbers = {54, 12, 154};
 
 	UPROPERTY()
 	TArray<EBuildGunState> states = {EBuildGunState::BGS_MAX, EBuildGunState::BGS_MENU};
-	
+
 	UFUNCTION(BlueprintCallable)
 	static void Testing();
 };

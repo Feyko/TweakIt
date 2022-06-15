@@ -6,7 +6,7 @@ struct FLuaTArray
 {
 	UArrayProperty* ArrayProperty;
 	void* Container;
-	
+
 	static int ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container);
 	static FLuaTArray* Get(lua_State* L, int Index = 1);
 
