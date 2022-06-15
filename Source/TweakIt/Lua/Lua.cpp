@@ -31,7 +31,7 @@ bool CheckLua(lua_State* L, int Returned)
 	if (Returned != LUA_OK)
 	{
 		string ErrorMsg = lua_tostring(L, -1);
-		LOGS(ErrorMsg)
+		LOG(ErrorMsg)
 		return false;
 	}
 	return true;
@@ -44,7 +44,7 @@ void StackDump(lua_State* L)
 	{
 		int t = lua_type(L, i);
 		string s = lua_typename(L, t);
-		LOGS(s);
+		LOG(s);
 		LOG(""); // put a separator 
 	}
 }
@@ -295,7 +295,7 @@ int Lua_LoadObject(lua_State* L)
 int Lua_Print(lua_State* L)
 {
 	FString String = luaL_checkstring(L, 1);
-	LOGFS(String)
+	LOG(String)
 	return 0;
 }
 

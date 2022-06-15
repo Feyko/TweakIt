@@ -29,7 +29,7 @@ UClass* FTIReflection::FindBPUnreliable(FString ClassName) {
 UStruct* FTIReflection::FindStructUnreliable(FString ClassName) {
 	for (TObjectIterator<UStruct> it; it; ++it) {
 		UStruct* ItClass = *it;
-		LOGFS(ItClass->GetFullName())
+		LOG(ItClass->GetFullName())
 		if (ItClass->GetName().ToLower() == ClassName.ToLower()) {
 			return ItClass;
 		}
@@ -83,7 +83,7 @@ UActorComponent* FTIReflection::FindDefaultComponentByName(
 	ActorCDO->GetComponents(InComponentClass,FoundComponents);
 
 	for (auto Component : FoundComponents) {
-		LOGFS(Component->GetName())
+		LOG(Component->GetName())
 		if (Component->GetName() == ComponentName) {
 			return Component;
 		}
@@ -96,7 +96,7 @@ UActorComponent* FTIReflection::FindDefaultComponentByName(
 
 	// Go down the inheritance tree to find nodes that were added to parent blueprints of our blueprint graph.
 	do {
-		LOGFS(ActorClass->GetName())
+		LOG(ActorClass->GetName())
 		UBlueprintGeneratedClass* ActorBlueprintGeneratedClass = Cast<UBlueprintGeneratedClass>(ActorClass);
 		if (!ActorBlueprintGeneratedClass) {
 			LOG("not BlueprintGenerated")
@@ -108,7 +108,7 @@ UActorComponent* FTIReflection::FindDefaultComponentByName(
 
 		for (USCS_Node* Node : ActorBlueprintNodes) {
 			UClass* Class = Node->ComponentClass;
-			LOGFS(Class->GetName())
+			LOG(Class->GetName())
 			if (!Node->GetActualComponentTemplate(RootBlueprintGeneratedClass)->IsValidLowLevel()) { return nullptr; }
 			if (Class->IsChildOf(InComponentClass) && Node->GetActualComponentTemplate(RootBlueprintGeneratedClass)->
 															GetName() == GeneratedComponentName) {
@@ -201,11 +201,11 @@ UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const
 	if(UBlueprintGeneratedClass* ClassAsBPGC = Cast<UBlueprintGeneratedClass>(ConstructedClassObject)) {
 		LOG("Dumping Construction Script")
 		for(USCS_Node* Node : ClassAsBPGC->SimpleConstructionScript->GetAllNodes()) {
-			LOGFS(Node->ComponentClass->GetName())
+			LOG(Node->ComponentClass->GetName())
 		}
 	}
 
-	LOGFS(ConstructedClassObject->GetFullName())	
+	LOG(ConstructedClassObject->GetFullName())	
 	return ConstructedClassObject;
 }
 

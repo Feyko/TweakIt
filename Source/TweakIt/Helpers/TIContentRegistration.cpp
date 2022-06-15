@@ -22,7 +22,7 @@ void FTIContentRegistration::UnlockRecipe(UClass* Recipe, UObject* WorldContext)
 		LOG("WorldContext isn't valid")
         return;
 	}
-	LOGFS(WorldContext->GetFullName())
+	LOG(WorldContext->GetFullName())
 	UWorld* world = WorldContext->GetWorld();
 	if(!world->IsValidLowLevel()) {
 		LOG("World isn't valid")

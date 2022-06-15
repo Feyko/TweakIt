@@ -5,6 +5,7 @@
 
 #include "TweakIt/TweakItModule.h"
 #include "TweakIt/Helpers/TIReflection.h"
+#include "TweakIt/Logging/FTILog.h"
 using namespace std;
 
 FLuaUObject::FLuaUObject(UObject* Object) : Object(Object)
@@ -50,18 +51,18 @@ void FLuaUObject::ReleaseObject()
 
 int FLuaUObject::Lua_DumpProperties(lua_State* L) {
 	FLuaUObject* Self = Get(L);
-	LOGFS(FString("Dumping the properties for " + Self->Object->GetName()))
+	LOG("Dumping the properties for " + Self->Object->GetName())
 	if (Self->Object->IsA(AActor::StaticClass())) {
 		AActor* Actor = Cast<AActor>(Self->Object);
 		TArray<UActorComponent*> Components;
 		Actor->GetComponents(Components);
 		for (auto Component : Components) {
-			LOGFS(Component->GetName())
+			LOG(Component->GetName())
 		}
 	}
 	for (UProperty* Property = Self->Object->GetClass()->PropertyLink; Property; Property = Property->PropertyLinkNext
 	) {
-		LOGFS(Property->GetName())
+		LOG(Property->GetName())
 	}
 	return 0;
 }
@@ -75,7 +76,7 @@ int FLuaUObject::Lua_GetClass(lua_State* L) {
 int FLuaUObject::Lua__index(lua_State* L) {
 	FLuaUObject* Self = Get(L);
 	FString Index = luaL_checkstring(L, 2);
-	LOGF("Indexing a LuaUObject with %s",*Index)
+	LOGF("Indexing a LuaUObject with %s", *Index)
 	if(lua_CFunction* Method = Methods.Find(Index)) {
 		lua_pushcfunction(L, *Method);
 		return 1;

@@ -150,7 +150,7 @@ int FLuaUClass::Lua_DumpProperties(lua_State* L) {
 	FLuaUClass* Self = Get(L);
 	LOGF("Dumping the properties for %s", *Self->Class->GetName())
 	for (UProperty* Property = Self->Class->PropertyLink; Property; Property = Property->PropertyLinkNext) {
-		LOGFS(Property->GetName())
+		LOG(Property->GetName())
 	}
 	return 0;
 }
