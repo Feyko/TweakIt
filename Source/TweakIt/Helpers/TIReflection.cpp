@@ -3,6 +3,7 @@
 
 #include "Engine/SCS_Node.h"
 #include "TweakIt/TweakItModule.h"
+#include "TweakIt/Logging/FTILog.h"
 
 UProperty* FTIReflection::FindPropertyByName(UStruct* Class, const TCHAR* PropertyName) {
 	FString lowered = FString(PropertyName).ToLower();

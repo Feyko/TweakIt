@@ -6,6 +6,7 @@
 #include "Interfaces/IProjectManager.h"
 #include "Patching/NativeHookManager.h"
 #include "TweakIt/TweakItModule.h"
+#include "TweakIt/Logging/FTILog.h"
 
 FLuaLifecycleNotifier::FLuaLifecycleNotifier()
 {
