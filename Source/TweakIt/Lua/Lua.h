@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "lib/lua.hpp"
+#include "lib/lua.h"
 #include "Types/include.h"
 
 void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg>);

@@ -1,11 +1,8 @@
 ﻿#include "LuaLifecycleNotifier.h"
 
 #include "ModuleDescriptor.h"
-#include "PluginManifest.h"
 #include "Interfaces/IPluginManager.h"
-#include "Interfaces/IProjectManager.h"
 #include "Patching/NativeHookManager.h"
-#include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Logging/FTILog.h"
 
 FLuaLifecycleNotifier::FLuaLifecycleNotifier()
