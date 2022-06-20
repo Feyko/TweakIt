@@ -48,7 +48,6 @@ FScriptState FScript::WaitForCompletion()
 
 void FScript::SetState(FScriptState NewState)
 {
-	LOG("Setting state")
 	this->State = NewState;
 	StateChanged->Trigger();
 }
@@ -60,6 +59,7 @@ FScriptState FScript::GetState()
 
 FRunnableScript::FRunnableScript(FScript* Script) : Script(Script), L(Script->L.L)
 {
+	FTILog::CurrentScript = Script->FileName;
 }
 
 uint32 FRunnableScript::Run()
