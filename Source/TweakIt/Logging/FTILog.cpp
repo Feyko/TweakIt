@@ -1,31 +1,25 @@
 ﻿#include "FTILog.h"
 
+#include "FGAnimNotify_AkEventCurrentPotential.h"
 #include "Developer/AITestSuite/Public/TestLogger.h"
 #include "TweakIt/Subsystem/TweakItSubsystem.h"
 
 DEFINE_LOG_CATEGORY(LogTweakIt)
 
-thread_local FString FTILog::CurrentScript = "";
+thread_local FString FTILog::CurrentScript = "TweakIt";
 TMap<FString, FOutputDeviceFile*> FTILog::Files = {};
+FOutputDeviceFile* FTILog::TweakItLog = new FOutputDeviceFile(*(ATweakItSubsystem::GetConfigDirectory() + "TweakIt.log"));
 
-void FTILog::AddScriptToLog(FString ScriptName)
+void FTILog::LogForScript(FString String, FString ScriptName, ELogVerbosity::Type Level)
 {
-	if (ScriptName == "")
+	if (ScriptName == "TweakIt")
 	{
+		TweakItLog->Log(LogTweakIt.GetCategoryName(), Level, String);
 		return;
 	}
+	TweakItLog->Log(LogTweakIt.GetCategoryName(), Level, WrapStringWithScript(String, ScriptName));
 	FOutputDeviceFile* LogFile = GetLogFileForScript(ScriptName);
-	GLog->AddOutputDevice(LogFile);
-}
-
-void FTILog::RemoveScriptFromLog(FString ScriptName)
-{
-	if (ScriptName == "")
-	{
-		return;
-	}
-	FOutputDeviceFile* LogFile = GetLogFileForScript(ScriptName);
-	GLog->RemoveOutputDevice(LogFile);
+	LogFile->Log(LogTweakIt.GetCategoryName(), Level, String);
 }
 
 FOutputDeviceFile* FTILog::GetLogFileForScript(FString ScriptName)
@@ -42,13 +36,16 @@ FOutputDeviceFile* FTILog::GetLogFileForScript(FString ScriptName)
 
 FString FTILog::WrapStringWithScript(FString String, FString ScriptName)
 {
-	LOGF("Wrapping %ls", *String)
-	LOG(ScriptName)
 	if (ScriptName != "" && ScriptName != "TweakIt")
 	{
 		String = ScriptName + ": " + String;
 	}
 	return String;
+}
+
+FString FTILog::ToFString(int Int)
+{
+	return FString::FromInt(Int);
 }
 
 FString FTILog::ToFString(const char* String)

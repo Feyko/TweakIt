@@ -3,23 +3,23 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTweakIt, Log, Log);   
 
-#define LOG(str) LOGL(str, Log);
-#define LOGL(str, level) RedirectLogForScript(UE_LOG(LogTweakIt, level, TEXT("%s"), *FTILog::WrapStringWithScript(FTILog::ToFString(str), FTILog::CurrentScript)));
+#define LOG(str) LOGL(str, Log)
+#define LOGL(str, level)\
+	UE_LOG(LogTweakIt, level, TEXT("%s"), *FTILog::WrapStringWithScript(FTILog::ToFString(str), FTILog::CurrentScript));\
+	FTILog::LogForScript(FTILog::ToFString(str), FTILog::CurrentScript, ELogVerbosity::level);
 
 #define LOGF(str, ...) LOGFL(str, Log, __VA_ARGS__);
-#define LOGFL(str, level, ...) LOGL(FString::Printf(TEXT(str), __VA_ARGS__), level);
-
-#define RedirectLogForScript(code) FTILog::AddScriptToLog(FTILog::CurrentScript); code; FTILog::RemoveScriptFromLog(FTILog::CurrentScript);
+#define LOGFL(str, level, ...) LOGL(FString::Printf(TEXT(str), __VA_ARGS__), level)
 
 struct FTILog
 {
-	static void AddScriptToLog(FString ScriptName);
-	static void RemoveScriptFromLog(FString ScriptName);
+	static void LogForScript(FString String, FString ScriptName, ELogVerbosity::Type Level);
 
 	static FOutputDeviceFile* GetLogFileForScript(FString ScriptName);
 
-	static FString WrapStringWithScript(FString String, FString ScriptName); 
-
+	static FString WrapStringWithScript(FString String, FString ScriptName);
+	static FString ToFString(int Int);
+	
 	static thread_local FString CurrentScript;
 	
 	static FString ToFString(const char* String);
@@ -28,4 +28,5 @@ struct FTILog
 	static FString ToFString(std::string String);
 private:
 	static TMap<FString, FOutputDeviceFile*> Files;
+	static FOutputDeviceFile* TweakItLog;
 };

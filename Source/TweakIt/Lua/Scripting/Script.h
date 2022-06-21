@@ -15,7 +15,8 @@ public:
 	~FScript();
 
 	FString FileName;
-	FLuaState L = FLuaState(nullptr);
+	FString PrettyName;
+	FLuaState* L = nullptr;
 
 	FEvent* StateChanged;
 
@@ -25,7 +26,13 @@ public:
 
 	void SetState(FScriptState NewState);
 	FScriptState GetState();
+
+	static FString FormatFilename(FString ScriptFilename);
 private:
+	void SetLuaState(FLuaState* State);
+	void SetCallbacks();
+	FEvent* Ready;
+	
 	FScriptState State = FScriptState::Running;
 
 	FRunnableScript* Script;
@@ -37,9 +44,12 @@ class FRunnableScript : public FRunnable
 public:
 	explicit FRunnableScript(FScript* Script);
 
+	void InitState();
+
+	virtual bool Init() override;
 	virtual uint32 Run() override;
 	virtual void Stop() override;
 private:
 	FScript* Script;
-	lua_State* L;
+	FLuaState* L = nullptr;
 };

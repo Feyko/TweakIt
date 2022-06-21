@@ -12,7 +12,6 @@ FLuaLifecycleNotifier::FLuaLifecycleNotifier()
 
 int FLuaLifecycleNotifier::Construct(lua_State* L)
 {
-	LOG("Constructing a Lifecycle Notifier")
 	FLuaLifecycleNotifier* ReturnedInstance = static_cast<FLuaLifecycleNotifier*>(lua_newuserdata(
 		L, sizeof(FLuaLifecycleNotifier)));
 	new(ReturnedInstance) FLuaLifecycleNotifier();
@@ -35,7 +34,6 @@ FLuaLifecycleNotifier* FLuaLifecycleNotifier::Get(lua_State* L)
 
 void FLuaLifecycleNotifier::BroadcastEvent(FString Event)
 {
-	LOG("Broadcasting event")
 	EventDelegate.Broadcast(Event);
 }
 
@@ -81,19 +79,12 @@ void FLuaLifecycleNotifier::RegisterMetadata(lua_State* L)
 
 void FLuaLifecycleNotifier::SetupHooks()
 {
-	EventDelegate.AddLambda([](FString Event)
-	{
-		LOGF("Received event %ls", *Event)
-	});
 	IPluginManager& Manager = IPluginManager::Get();
 	Manager.OnLoadingPhaseComplete().AddLambda([this](ELoadingPhase::Type Phase, bool Successful)
 	{
-		LOG("LOADING PHASE COMPLETED")
 		if (Successful)
 		{
-			LOG("SUCCESSFUL")
 			FString EventString = ToString(Phase);
-			LOGF("%ls", *EventString)
 			this->BroadcastEvent(FString(EventString));
 		}
 	});
