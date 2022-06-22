@@ -10,3 +10,5 @@ Changes may be missed because of heavy refactoring after a long time away from t
 - New command to run all scripts: /runallscripts | /ras
 - Struct copying
 - Array assignment + length operator
+- WaitForEvent function to.. wait for an event! TweakIt also loads much earlier now
+- Independent log files for every script & a main TweakIt log file, located next to the scripts
