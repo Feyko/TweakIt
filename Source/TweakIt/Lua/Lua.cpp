@@ -189,7 +189,7 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 			           TCHAR_TO_UTF8(*StructProperty->Struct->GetName()), TCHAR_TO_UTF8(*rStruct->Struct->GetName()));
 			return;
 		}
-		StructProperty->CopyCompleteValue(StructProperty, rStruct->Values);
+		StructProperty->CopyCompleteValue_InContainer(Container, rStruct->Values);
 		void* NewValue = StructProperty->ContainerPtrToValuePtr<void>(Container);
 		rStruct->Values = NewValue;
 		rStruct->Owning = false;
