@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "TweakIt/Lua/lib/lua.hpp"
 #include "FGRecipeManager.h"
+#include "FTILuaFuncManager.h"
 #include "IPlatformFilePak.h"
 #include "LuaLifecycleNotifier.h"
 #include "TweakIt/Logging/FTILog.h"
@@ -315,5 +316,31 @@ int Lua_WaitForEvent(lua_State* L)
 	FString Event = luaL_checkstring(L, 1);
 	FLuaLifecycleNotifier* Notifier = FLuaLifecycleNotifier::Get(L);
 	Notifier->WaitForEvent(Event);
+	return 0;
+}
+
+int Lua_DumpFunction(lua_State* L)
+{
+	FString Name = luaL_checkstring(L, 1);
+	LOGF("Dumping %s", *Name)
+	FTILuaFuncManager::DumpFunction(L, Name, 2);
+	LOG("Dump finished!")
+	return 0;
+}
+
+int Lua_LoadFunction(lua_State* L)
+{
+	FString Name = luaL_checkstring(L, 1);
+	LOGF("Loading %s", *Name)
+	FLuaFunc* Func = FTILuaFuncManager::Funcs.Find(Name);
+	LOGF("Found %s", *Name)
+	if (!Func)
+	{
+		luaL_error(L, "Function %s not previously dumped", TCHAR_TO_UTF8(*Name));
+	}
+	FTILuaFuncManager::LoadFunction(L, *Func, Name);
+	LOG(luaL_typename(L, -1))
+	lua_setglobal(L, TCHAR_TO_UTF8(*Name));
+	LOG("Load finished!")
 	return 0;
 }

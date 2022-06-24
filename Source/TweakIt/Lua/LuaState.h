@@ -26,6 +26,8 @@ private:
 		{"MakeSubclass", Lua_MakeSubclass},
 		{"MakeStructInstance", Lua_MakeStructInstance},
 		{"Test", Lua_Test},
-		{"WaitForEvent", Lua_WaitForEvent}
+		{"WaitForEvent", Lua_WaitForEvent},
+		{"DumpFunction", Lua_DumpFunction},
+		{"LoadFunction", Lua_LoadFunction}
 	};
 };

@@ -5,6 +5,8 @@
 #include "lib/lua.h"
 #include "Types/include.h"
 
+
+
 void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg>);
 
 void RegisterMethod(lua_State* L, luaL_Reg Reg);
@@ -34,3 +36,7 @@ int Lua_Print(lua_State* L);
 int Lua_Test(lua_State* L);
 
 int Lua_WaitForEvent(lua_State* L);
+
+int Lua_DumpFunction(lua_State* L);
+
+int Lua_LoadFunction(lua_State* L);

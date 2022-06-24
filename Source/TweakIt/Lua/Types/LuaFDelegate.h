@@ -3,8 +3,6 @@
 
 #include "TweakIt/Lua/Lua.h"
 
-int Lua_MakeSubclass(lua_State* L); // Forward declaration. I hate C++
-
 struct FLuaFDelegate
 {
 	UFunction* SignatureFunction;

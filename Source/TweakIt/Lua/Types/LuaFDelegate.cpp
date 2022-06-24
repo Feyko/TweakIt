@@ -1,5 +1,6 @@
 #include "LuaFDelegate.h"
 #include <string>
+
 #include "TweakIt/Logging/FTILog.h"
 using namespace std;
 
@@ -11,7 +12,7 @@ int FLuaFDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FScript
 		lua_pushnil(L);
 		return 1;
 	}
-	LOGF("Constructing a LuaFDelegate from %s", *Delegate->ToString<UObject>)
+	// LOGF("Constructing a LuaFDelegate from %s", *Delegate->ToString<UObject>)
 	FLuaFDelegate* ReturnedInstance = static_cast<FLuaFDelegate*>(lua_newuserdata(L, sizeof(FLuaFDelegate)));
 	new(ReturnedInstance) FLuaFDelegate{SignatureFunction, Delegate};
 	luaL_getmetatable(L, FLuaFDelegate::Name);
@@ -31,6 +32,7 @@ FString FLuaFDelegate::ToString() const
 
 int FLuaFDelegate::Lua_Bind(lua_State* L)
 {
+    luaL_error(L, "Bind is WIP");
 	return 0;
 }
 
@@ -50,12 +52,13 @@ int FLuaFDelegate::Lua_Unbind(lua_State* L)
 
 int FLuaFDelegate::Lua_Wait(lua_State* L)
 {
+
 	return 0;
 }
 
 int FLuaFDelegate::Lua_Trigger(lua_State* L)
 {
-	FLuaFDelegate* Self = Get(L);
+	luaL_error(L, "Trigger is WIP");
 	return 0;
 }
 
