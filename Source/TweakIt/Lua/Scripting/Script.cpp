@@ -7,7 +7,7 @@
 
 FScript::FScript(FString FileName) : FileName(FileName)
 {
-	PrettyName = FormatFilename(FileName);
+	PrettyName = PrettyFilename(FileName);
 	StateChanged = FPlatformProcess::CreateSynchEvent();
 	Ready = FPlatformProcess::CreateSynchEvent();
 	Script = new FRunnableScript(this);
@@ -70,7 +70,7 @@ FScriptState FScript::GetState()
 	return this->State;
 }
 
-FString FScript::FormatFilename(FString ScriptFilename)
+FString FScript::PrettyFilename(FString ScriptFilename)
 {
 	FPaths::NormalizeFilename(ScriptFilename);
 	FPaths::MakePathRelativeTo(ScriptFilename, *ATweakItSubsystem::GetConfigDirectory());
@@ -110,6 +110,7 @@ uint32 FRunnableScript::Run()
 		FString ErrorMsg = lua_tostring(L->L, -1);
 		StopReason = FScriptState::Errored;
 		StopReason.Payload = ErrorMsg;
+		LOGL(ErrorMsg, Error)
 	}
 	Script->SetState(StopReason);
 	return Returned;

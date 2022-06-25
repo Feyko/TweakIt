@@ -27,7 +27,7 @@ public:
 	void SetState(FScriptState NewState);
 	FScriptState GetState();
 
-	static FString FormatFilename(FString ScriptFilename);
+	static FString PrettyFilename(FString ScriptFilename);
 private:
 	void SetLuaState(FLuaState* State);
 	void SetCallbacks();

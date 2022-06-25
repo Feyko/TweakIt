@@ -35,7 +35,6 @@ bool ATweakItSubsystem::RunAllScripts()
 		if (State == FScriptState::Errored)
 		{
 			Errored = true;
-			LOGL(State.Payload, Error)
 		}
 		if (State.IsCompleted())
 		{

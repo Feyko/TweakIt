@@ -322,16 +322,14 @@ int Lua_WaitForEvent(lua_State* L)
 int Lua_DumpFunction(lua_State* L)
 {
 	FString Name = luaL_checkstring(L, 1);
-	LOGF("Dumping %s", *Name)
 	FTILuaFuncManager::DumpFunction(L, Name, 2);
-	LOG("Dump finished!")
 	return 0;
 }
 
 int Lua_LoadFunction(lua_State* L)
 {
 	FString Name = luaL_checkstring(L, 1);
-	LOGF("Loading %s", *Name)
+	LOGF("Trying to load %s", *Name)
 	FLuaFunc* Func = FTILuaFuncManager::Funcs.Find(Name);
 	LOGF("Found %s", *Name)
 	if (!Func)
@@ -342,5 +340,5 @@ int Lua_LoadFunction(lua_State* L)
 	LOG(luaL_typename(L, -1))
 	lua_setglobal(L, TCHAR_TO_UTF8(*Name));
 	LOG("Load finished!")
-	return 0;
+	return 1;
 }
