@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "FGCentralStorageSubsystem.h"
 #include "FGCustomizationRecipe.h"
 #include "FactoryGame/Public/Equipment/FGBuildGun.h"
 #include "FGRecipe.h"
@@ -7,12 +8,17 @@
 
 #include "TweakItTesting.generated.h"
 
-enum class EHologramMaterialState : uint8;
+DECLARE_DYNAMIC_DELEGATE(FTITestingDelegate);
+
 UCLASS(Blueprintable)
 class UTweakItTesting : public UObject
 {
 	GENERATED_BODY()
 public:
+	UTweakItTesting();
+	
+	static UTweakItTesting* Get();
+	
 	UPROPERTY(EditAnywhere)
 	bool Boolean;
 
@@ -56,4 +62,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	static void Testing();
+
+	UPROPERTY()
+	FTITestingDelegate Delegate;
 };

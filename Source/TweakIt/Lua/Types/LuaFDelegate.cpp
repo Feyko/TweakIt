@@ -1,6 +1,7 @@
 #include "LuaFDelegate.h"
 #include <string>
 
+#include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
 using namespace std;
 
@@ -12,7 +13,7 @@ int FLuaFDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FScript
 		lua_pushnil(L);
 		return 1;
 	}
-	// LOGF("Constructing a LuaFDelegate from %s", *Delegate->ToString<UObject>)
+	LOG("Constructing a LuaFDelegate")
 	FLuaFDelegate* ReturnedInstance = static_cast<FLuaFDelegate*>(lua_newuserdata(L, sizeof(FLuaFDelegate)));
 	new(ReturnedInstance) FLuaFDelegate{SignatureFunction, Delegate};
 	luaL_getmetatable(L, FLuaFDelegate::Name);
@@ -32,7 +33,30 @@ FString FLuaFDelegate::ToString() const
 
 int FLuaFDelegate::Lua_Bind(lua_State* L)
 {
-    luaL_error(L, "Bind is WIP");
+	LOG("Binding")
+    FLuaFDelegate* Self = Get(L);
+	luaT_CheckLuaFunction(L, 2);
+	UFunction* Function;
+	UE4CodeGen_Private::FFunctionParams Params = UE4CodeGen_Private::FFunctionParams();
+	LOG("Setting class name")
+	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
+	LOG("Setting name")
+	Params.NameUTF8 = TCHAR_TO_UTF8(*UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName()));
+	LOG("Constructing")
+	ConstructUFunction(Function, Params);
+	LOG("Setting func")
+	LOG(Function->IsValidLowLevel())
+	LOG(Function->GetFullName())
+	Function->SetNativeFunc([](UObject* Context, FFrame& TheStack, RESULT_DECL)
+	{
+		LOG("BROOOOO I CAN'T BELIEVE IT BRO")
+	});
+	LOG("Adding function")
+	FString FunctionName = UTIUFunctionBinder::AddFunction(Function, FTILog::CurrentScript, Self->SignatureFunction->GetName());
+	LOG("Binding function")
+	LOG(Self->Delegate->GetUObject()->GetFullName())
+	Self->Delegate->BindUFunction(UTIUFunctionBinder::Get(), FName(FunctionName));
+	LOG("Finished")
 	return 0;
 }
 

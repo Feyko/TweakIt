@@ -6,10 +6,16 @@
 #include "FTILuaFuncManager.h"
 #include "IPlatformFilePak.h"
 #include "LuaLifecycleNotifier.h"
+#include "TweakIt/TweakItTesting.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Helpers/TIReflection.h"
 #include "TweakIt/Helpers/TIContentRegistration.h"
 using namespace std;
+
+void luaT_CheckLuaFunction(lua_State* L, int Index)
+{
+	luaL_argexpected(L, lua_isfunction(L, Index) && !lua_iscfunction(L, Index), Index, "Lua Function");
+}
 
 void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg> Regs)
 {
@@ -118,6 +124,12 @@ void PropertyToLua(lua_State* L, UProperty* Property, void* Container)
 		UArrayProperty* Prop = Cast<UArrayProperty>(Property);
 		FLuaTArray::ConstructArray(L, Prop, Container);
 	}
+	else if (c & CASTCLASS_FDelegateProperty)
+	{
+		FDelegateProperty* DelegateProperty = Cast<FDelegateProperty>(Property);
+		FScriptDelegate* Value = DelegateProperty->ContainerPtrToValuePtr<FScriptDelegate>(Container);
+		FLuaFDelegate::Construct(L, DelegateProperty->SignatureFunction, Value);
+	}
 	else
 	{
 		LOG("DIDN'T MATCH ANY CAST FLAGS")
@@ -215,6 +227,10 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 			lua_pop(L, 1);
 		}
 	}
+	else if (Flags & CASTCLASS_FDelegateProperty)
+	{
+		luaL_error(L, "Delegate assignment is not yet supported");
+	}
 	else
 	{
 		luaL_error(L, "Property type not supported. Please report this to Feyko");
@@ -308,6 +324,8 @@ lua_Number GetNumber(lua_State* L)
 
 int Lua_Test(lua_State* L)
 {
+	LOG("Test ran")
+	UTweakItTesting::Get()->Delegate.Execute();
 	return 0;
 }
 

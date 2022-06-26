@@ -38,6 +38,7 @@ void FLuaState::RegisterMetadatas()
 	FLuaTArray::RegisterMetadata(L);
 	FLuaUStruct::RegisterMetadata(L);
 	FLuaLifecycleNotifier::RegisterMetadata(L);
+	FLuaFDelegate::RegisterMetadata(L);
 }
 
 void FLuaState::RegisterGlobalFunctions()

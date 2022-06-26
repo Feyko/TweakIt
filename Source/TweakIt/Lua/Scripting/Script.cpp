@@ -101,6 +101,7 @@ bool FRunnableScript::Init()
 
 uint32 FRunnableScript::Run()
 {
+	LOG("Running")
 	InitState();
 	int Returned = luaL_dofile(L->L, TCHAR_TO_UTF8(*Script->FileName));
 

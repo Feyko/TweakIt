@@ -5,7 +5,7 @@
 #include "lib/lua.h"
 #include "Types/include.h"
 
-
+void luaT_CheckLuaFunction(lua_State* L, int Index);
 
 void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg>);
 
