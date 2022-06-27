@@ -1,6 +1,7 @@
 #include "LuaFDelegate.h"
 #include <string>
 
+#include "TweakIt/TweakItTesting.h"
 #include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
 using namespace std;
@@ -36,26 +37,38 @@ int FLuaFDelegate::Lua_Bind(lua_State* L)
 	LOG("Binding")
     FLuaFDelegate* Self = Get(L);
 	luaT_CheckLuaFunction(L, 2);
-	UFunction* Function;
+	UFunction* Function = nullptr;
 	UE4CodeGen_Private::FFunctionParams Params = UE4CodeGen_Private::FFunctionParams();
-	LOG("Setting class name")
 	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
-	LOG("Setting name")
 	Params.NameUTF8 = TCHAR_TO_UTF8(*UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName()));
-	LOG("Constructing")
+	Params.OuterFunc = []()->UObject*{return UTIUFunctionBinder::StaticClass();};
 	ConstructUFunction(Function, Params);
-	LOG("Setting func")
-	LOG(Function->IsValidLowLevel())
-	LOG(Function->GetFullName())
 	Function->SetNativeFunc([](UObject* Context, FFrame& TheStack, RESULT_DECL)
 	{
 		LOG("BROOOOO I CAN'T BELIEVE IT BRO")
 	});
-	LOG("Adding function")
 	FString FunctionName = UTIUFunctionBinder::AddFunction(Function, FTILog::CurrentScript, Self->SignatureFunction->GetName());
-	LOG("Binding function")
 	LOG(Self->Delegate->GetUObject()->GetFullName())
+	LOG(Self->Delegate->GetFunctionName())
+	LOG("EXECUTING CURRENT DELEGATE")
+	LOG(UTweakItTesting::Get()->Delegate.GetUObject()->GetFullName())
+	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
+	UTweakItTesting::Get()->Delegate.Execute();
 	Self->Delegate->BindUFunction(UTIUFunctionBinder::Get(), FName(FunctionName));
+	LOG(Self->Delegate->GetUObject()->GetFullName())
+	LOG(Self->Delegate->GetFunctionName())
+	LOG(FunctionName)
+	LOG("CALLING FUNC")
+	UObject* Context = UTIUFunctionBinder::Get();
+	FFrame Frame = FFrame(Context, Function, nullptr);
+	LOG("Invocation")
+	Function->Invoke(Context, Frame, nullptr);
+	LOG("Finished invocation")
+	Self->Delegate->ProcessDelegate<UObject>(nullptr);
+	LOG("EXECUTING TWEAKITTESTING NEW DELEGATE")
+	LOG(UTweakItTesting::Get()->Delegate.GetUObject()->GetFullName())
+	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
+	UTweakItTesting::Get()->Delegate.Execute();
 	LOG("Finished")
 	return 0;
 }

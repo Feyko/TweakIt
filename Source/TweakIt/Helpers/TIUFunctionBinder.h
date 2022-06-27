@@ -6,6 +6,8 @@ class UTIUFunctionBinder : public UObject
 {
 	GENERATED_BODY()
 public:
+	template <class ... T>
+	FString AddNativeFunction(FNativeFuncPtr Function, T ... Namespace);
 	template<typename... T>
 	static FString AddFunction(UFunction* Function, T... Namespace);
 	

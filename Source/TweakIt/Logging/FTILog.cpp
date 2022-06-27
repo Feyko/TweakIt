@@ -50,6 +50,11 @@ FString FTILog::ToFString(int Int)
 	return FString::FromInt(Int);
 }
 
+FString FTILog::ToFString(size_t Size)
+{
+	return FString::Printf(TEXT("%llu"), Size);
+}
+
 FString FTILog::ToFString(const char* String)
 {
 	return FString(String);
@@ -68,4 +73,9 @@ FString FTILog::ToFString(const TCHAR* String)
 FString FTILog::ToFString(std::string String)
 {
 	return FString(String.c_str());
+}
+
+FString FTILog::ToFString(FName Name)
+{
+	return Name.ToString();
 }

@@ -18,7 +18,6 @@ struct FTILog
 	static FOutputDeviceFile* GetLogFileForScript(FString ScriptName);
 
 	static FString WrapStringWithScript(FString String, FString ScriptName);
-	static FString ToFString(int Int);
 	
 	static thread_local FString CurrentScript;
 	
@@ -26,6 +25,9 @@ struct FTILog
 	static FString ToFString(FString String);
 	static FString ToFString(const TCHAR* String);
 	static FString ToFString(std::string String);
+	static FString ToFString(FName Name);
+	static FString ToFString(int Int);
+	static FString ToFString(size_t Size);
 private:
 	static TMap<FString, FOutputDeviceFile*> Files;
 	static FOutputDeviceFile* TweakItLog;

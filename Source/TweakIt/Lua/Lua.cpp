@@ -10,6 +10,7 @@
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Helpers/TIReflection.h"
 #include "TweakIt/Helpers/TIContentRegistration.h"
+#include "TweakIt/Helpers/TIUFunctionBinder.h"
 using namespace std;
 
 void luaT_CheckLuaFunction(lua_State* L, int Index)
@@ -325,7 +326,19 @@ lua_Number GetNumber(lua_State* L)
 int Lua_Test(lua_State* L)
 {
 	LOG("Test ran")
+	LOG(UTweakItTesting::Get()->Delegate.GetUObject()->GetFullName())
+	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
+	UFunction* Func = UTIUFunctionBinder::StaticClass()->FindFunctionByName("script.lua/TITestingDelegate__DelegateSignature");
+	if (Func)
+	{
+		LOG("CALLING FUNCTION IN TEST")
+		FFrame Frame = FFrame(UTIUFunctionBinder::Get(), Func, nullptr);
+		Func->Invoke(UTIUFunctionBinder::Get(), Frame, nullptr);
+		LOG("Finished invocation")
+	}
+	LOG("EXECUTING IF BOUND")
 	UTweakItTesting::Get()->Delegate.Execute();
+	LOG("YEPOOOOOOOOOOOOO")
 	return 0;
 }
 

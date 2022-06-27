@@ -6,16 +6,15 @@ using namespace std;
 
 UTweakItTesting::UTweakItTesting()
 {
-	LOG("Constructing TITesting")
+	// LOG("Constructing TITesting")
 	Delegate.BindUFunction(this, "Testing");
-	Delegate.Execute();
-	LOG("Done")
+	// Delegate.Execute();
+	// LOG("Done")
 }
 
 UTweakItTesting* UTweakItTesting::Get()
 {
-	static UTweakItTesting* Self = NewObject<UTweakItTesting>(GetTransientPackage(), StaticClass(), "TweakItTesting", RF_MarkAsRootSet);
-	return Self;
+	return Cast<UTweakItTesting>(StaticClass()->ClassDefaultObject);
 }
 
 void UTweakItTesting::Testing()
