@@ -2,6 +2,8 @@
 
 #include "TweakIt/Logging/FTILog.h"
 
+int UTIUFunctionBinder::I = 0;
+
 template<typename... T>
 FString UTIUFunctionBinder::AddNativeFunction(FNativeFuncPtr Function, T... Namespace)
 {
@@ -40,8 +42,12 @@ void UTIUFunctionBinder::RemoveFunction(T... Namespace)
 
 UTIUFunctionBinder* UTIUFunctionBinder::Get()
 {
-	static UTIUFunctionBinder* Self = NewObject<UTIUFunctionBinder>(GetTransientPackage(), "TweakItFunctionBinder", RF_MarkAsRootSet);
-	return Self;
+	return Cast<UTIUFunctionBinder>(StaticClass()->ClassDefaultObject);
+}
+
+void UTIUFunctionBinder::Laug()
+{
+	LOG("LAUGGGGGGGGG")
 }
 
 template<typename... T>
