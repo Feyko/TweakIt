@@ -326,25 +326,7 @@ lua_Number GetNumber(lua_State* L)
 int Lua_Test(lua_State* L)
 {
 	LOG("Running Lua_Test")
-	LOG(UTIUFunctionBinder::I)
-	LOG(UTweakItTesting::Get()->Delegate.GetUObject()->GetFullName())
-	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
-	UFunction* Func = UTIUFunctionBinder::StaticClass()->FindFunctionByName(UTweakItTesting::Get()->Delegate.GetFunctionName());
-	if (Func)
-	{
-		LOG("CALLING FUNCTION IN TEST")
-		FFrame Frame = FFrame(UTIUFunctionBinder::Get(), Func, nullptr);
-		Func->Invoke(UTIUFunctionBinder::Get(), Frame, nullptr);
-		LOG("Finished invocation")
-	} else
-	{
-		LOG("INVALOD FICVDFGDDGD?..?.......???????")
-	}
-	LOG("EXECUTING IF BOUND")
-	LOG(UTIUFunctionBinder::I)
 	UTweakItTesting::Get()->Delegate.Execute();
-	LOG(UTIUFunctionBinder::I)
-	LOG("YEPOOOOOOOOOOOOO")
 	return 0;
 }
 

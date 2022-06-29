@@ -42,56 +42,14 @@ int FLuaFDelegate::Lua_Bind(lua_State* L)
 	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
 	Params.NameUTF8 = TCHAR_TO_UTF8(*UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName()));
 	Params.OuterFunc = []()->UObject*{return UTIUFunctionBinder::StaticClass();};
+	Params.FunctionFlags = FUNC_Native|FUNC_Static|FUNC_Public;
 	ConstructUFunction(Function, Params);
-	LOG(Self->SignatureFunction->ParmsSize)
-	LOG(Self->SignatureFunction->PropertiesSize)
-	for (FProperty* Prop = Self->SignatureFunction->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
-	{
-		LOG(Prop->GetFullName())
-		LOG(Prop->ElementSize)
-	}
 	Function->SetNativeFunc([](UObject* Context, FFrame& TheStack, RESULT_DECL)
 	{
-		LOG("BROOOOO I CAN'T BELIEVE IT BRO")
-		UTIUFunctionBinder::I += 1;
-		LOG(UTIUFunctionBinder::I)
+		LOG("<TEMP> Delegate Called")
 	});
 	FString FunctionName = UTIUFunctionBinder::AddFunction(Function, FTILog::CurrentScript, Self->SignatureFunction->GetName());
-	LOG(Self->Delegate->GetUObject()->GetFullName())
-	LOG(Self->Delegate->GetFunctionName())
-	LOG("EXECUTING CURRENT DELEGATE")
-	LOG(UTweakItTesting::Get()->Delegate.GetUObject()->GetFullName())
-	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
-	UTweakItTesting::Get()->Delegate.Execute();
 	Self->Delegate->BindUFunction(UTIUFunctionBinder::Get(), FName(FunctionName));
-	LOG(Self->Delegate->GetUObject()->GetFullName())
-	LOG(Self->Delegate->GetFunctionName())
-	LOG(FunctionName)
-	LOG("CALLING FUNC")
-	UObject* Context = UTIUFunctionBinder::Get();
-	Function = Context->FindFunction(FName(FunctionName));
-	FFrame Frame = FFrame(Context, Function, nullptr);
-	LOG("Invocation")
-	Function->Invoke(Context, Frame, nullptr);
-	LOG("Finished invocation")
-	Self->Delegate->ProcessDelegate<UObject>(nullptr);
-	LOG("EXECUTING TWEAKITTESTING NEW DELEGATE")
-	LOG(UTweakItTesting::Get()->Delegate.GetUObject()->GetFullName())
-	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
-	UTweakItTesting::Get()->Delegate.Execute();
-	LOG("CHANGING TWEAKITTESTING DELEGATE MANUALLY")
-	UTweakItTesting::Get()->Delegate.BindUFunction(UTIUFunctionBinder::Get(), FName(FunctionName));
-	LOG("EXECUTING TWEAKITTESTING NEW NEW DELEGATE")
-	LOG(UTweakItTesting::Get()->Delegate.GetUObject()->GetFullName())
-	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
-	UTweakItTesting::Get()->Delegate.Execute();
-	LOG("CHANGING TWEAKITTESTING DELEGATE TO STATIC FUNCTION")
-	UTweakItTesting::Get()->Delegate.BindUFunction(UTIUFunctionBinder::Get(), "Laug");
-	LOG("EXECUTING TWEAKITTESTING DELEGATE WITH LAUG")
-	LOG(UTweakItTesting::Get()->Delegate.GetUObject()->GetFullName())
-	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
-	UTweakItTesting::Get()->Delegate.Execute();
-	LOG("Finished")
 	return 0;
 }
 
