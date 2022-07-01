@@ -4,6 +4,7 @@
 #include "TweakIt/TweakItTesting.h"
 #include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
+#include "TweakIt/Lua/FTILuaFuncManager.h"
 using namespace std;
 
 int FLuaFDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FScriptDelegate* Delegate)
@@ -34,21 +35,27 @@ FString FLuaFDelegate::ToString() const
 
 int FLuaFDelegate::Lua_Bind(lua_State* L)
 {
-	LOG("Binding")
+	LOG("LuaFDelegate::Bind")
     FLuaFDelegate* Self = Get(L);
 	luaT_CheckLuaFunction(L, 2);
+	FString FunctionName = UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName());
+	LOG("Dumping")
+	FTILuaFuncManager::DumpFunction(L, FunctionName, 2);
 	UFunction* Function = nullptr;
 	UE4CodeGen_Private::FFunctionParams Params = UE4CodeGen_Private::FFunctionParams();
 	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
-	Params.NameUTF8 = TCHAR_TO_UTF8(*UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName()));
+	Params.NameUTF8 = TCHAR_TO_UTF8(*FunctionName);
+	UTIUFunctionBinder::SignatureBuffer = Self->SignatureFunction;
+	Params.SuperFunc = []()->UFunction*{return UTIUFunctionBinder::SignatureBuffer;};
 	Params.OuterFunc = []()->UObject*{return UTIUFunctionBinder::StaticClass();};
 	Params.FunctionFlags = FUNC_Native|FUNC_Static|FUNC_Public;
+	LOG("Constructiong")
 	ConstructUFunction(Function, Params);
-	Function->SetNativeFunc([](UObject* Context, FFrame& TheStack, RESULT_DECL)
-	{
-		LOG("<TEMP> Delegate Called")
-	});
-	FString FunctionName = UTIUFunctionBinder::AddFunction(Function, FTILog::CurrentScript, Self->SignatureFunction->GetName());
+	LOG("Making and setting")
+	Function->SetNativeFunc(FTILuaFuncManager::SavedLuaFuncToNativeFunc(L, FunctionName));
+	LOG("Adding")
+	UTIUFunctionBinder::AddFunction(Function, FunctionName);
+	LOG("Binding")
 	Self->Delegate->BindUFunction(UTIUFunctionBinder::Get(), FName(FunctionName));
 	return 0;
 }

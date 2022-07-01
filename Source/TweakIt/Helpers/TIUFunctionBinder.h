@@ -22,8 +22,5 @@ public:
 	template<typename... T>
 	static FString MakeFunctionName(T... Namespace);
 
-	UFUNCTION()
-	static void Laug();
-	
-	static int I;
+	static UFunction* SignatureBuffer;
 };

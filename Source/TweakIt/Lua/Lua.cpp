@@ -326,7 +326,7 @@ lua_Number GetNumber(lua_State* L)
 int Lua_Test(lua_State* L)
 {
 	LOG("Running Lua_Test")
-	UTweakItTesting::Get()->Delegate.Execute();
+	UTweakItTesting::Get()->Delegate.Execute("Ayo");
 	return 0;
 }
 
@@ -349,12 +349,12 @@ int Lua_LoadFunction(lua_State* L)
 {
 	FString Name = luaL_checkstring(L, 1);
 	LOGF("Trying to load %s", *Name)
-	FLuaFunc* Func = FTILuaFuncManager::Funcs.Find(Name);
-	LOGF("Found %s", *Name)
+	FLuaFunc* Func = FTILuaFuncManager::GetSavedFunction(Name);
 	if (!Func)
 	{
 		luaL_error(L, "Function %s not previously dumped", TCHAR_TO_UTF8(*Name));
 	}
+	LOGF("Found %s", *Name)
 	FTILuaFuncManager::LoadFunction(L, *Func, Name);
 	LOG(luaL_typename(L, -1))
 	lua_setglobal(L, TCHAR_TO_UTF8(*Name));

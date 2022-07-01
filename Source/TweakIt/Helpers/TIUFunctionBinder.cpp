@@ -2,7 +2,7 @@
 
 #include "TweakIt/Logging/FTILog.h"
 
-int UTIUFunctionBinder::I = 0;
+UFunction* UTIUFunctionBinder::SignatureBuffer = nullptr;
 
 template<typename... T>
 FString UTIUFunctionBinder::AddNativeFunction(FNativeFuncPtr Function, T... Namespace)
@@ -43,11 +43,6 @@ void UTIUFunctionBinder::RemoveFunction(T... Namespace)
 UTIUFunctionBinder* UTIUFunctionBinder::Get()
 {
 	return Cast<UTIUFunctionBinder>(StaticClass()->ClassDefaultObject);
-}
-
-void UTIUFunctionBinder::Laug()
-{
-	LOG("LAUGGGGGGGGG")
 }
 
 template<typename... T>

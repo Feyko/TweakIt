@@ -8,7 +8,7 @@
 
 #include "TweakItTesting.generated.h"
 
-DECLARE_DYNAMIC_DELEGATE(FTITestingDelegate);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FTITestingDelegate, FString, String);
 
 UCLASS(Blueprintable)
 class UTweakItTesting : public UObject
