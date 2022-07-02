@@ -2,6 +2,8 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
+using namespace UE4CodeGen_Private;
+
 class FTIReflection
 {
 public:
@@ -19,4 +21,6 @@ public:
 	static UClass* GenerateUniqueSimpleClass(const TCHAR* PackageName, const TCHAR* ClassName, UClass* ParentClass);
 	static void* MakeStructInstance(UStruct* Struct);
 	static void* CopyStruct(UStruct* Struct, void* Values);
+
+	static FProperty* CopyProperty(FFieldVariant Outer, FProperty* Prop);
 };
