@@ -3,6 +3,8 @@
 #include <functional>
 
 
+#include "TIUFunctionBinder.h"
+#include "Editor/KismetCompiler/Public/KismetCompilerMisc.h"
 #include "Engine/SCS_Node.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Logging/FTILog.h"
@@ -261,517 +263,196 @@ void* FTIReflection::CopyStruct(UStruct* Struct, void* Values)
 	return Copy;
 }
 
-FPropertyParamsBase MakeGenericParams(FProperty* Prop, EPropertyGenFlags Type)
+UFunction* FTIReflection::CopyFunction(UFunction* ToCopy, FString FunctionName)
 {
-	FGenericPropertyParams Generic = FGenericPropertyParams{
-		TCHAR_TO_UTF8(*Prop->GetName()),
-		TCHAR_TO_UTF8(*Prop->RepNotifyFunc.ToString()),
-		Prop->PropertyFlags, Type,
-		Prop->GetFlags(),
-		Prop->ArrayDim,
-		0};
-	return *reinterpret_cast<FPropertyParamsBase*>(&Generic);
+	UFunction* Function;
+	FFunctionParams Params = FFunctionParams();
+	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
+	Params.NameUTF8 = TCHAR_TO_UTF8(*FunctionName);
+	Params.OuterFunc = []()->UObject*{return UTIUFunctionBinder::StaticClass();};
+	Params.FunctionFlags = FUNC_Native|FUNC_Static|FUNC_Public;
+	ConstructUFunction(Function, Params);
+	for (auto Prop = ToCopy->PropertyLink; Prop; Prop->PropertyLinkNext)
+	{
+		FProperty* NewProperty = CopyProperty(Function, Prop);
+		// FKismetCompilerUtilities::LinkAddedProperty(Function, NewProperty);
+	}
+	FArchiveUObject Dummy;
+	Function->Link(Dummy, true);
+	return Function;
 }
 
 FProperty* FTIReflection::CopyProperty(FFieldVariant Outer, FProperty* Prop)
 {
 	if (FByteProperty* TypedProp = CastField<FByteProperty>(Prop))
 	{
-		// TODO: Support Enum
-		FBytePropertyParams Params = {
-			TCHAR_TO_UTF8(*Prop->GetName()),
-			TCHAR_TO_UTF8(*Prop->RepNotifyFunc.ToString()),
-			Prop->PropertyFlags,
-			EPropertyGenFlags::Byte,
-			Prop->GetFlags(),
-			Prop->ArrayDim,
-			0,
-			nullptr,
-			};
-		NewProp = new FByteProperty(Outer, *Prop->GetName(), Prop->GetFlags(), Prop->Offset, Prop->PropertyFlags, Prop->EnumFunc ? Prop->EnumFunc() : nullptr);
+		//TODO Test Enum
+		return new FByteProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->Enum);
 	}
 
 	if (FInt8Property* TypedProp = CastField<FInt8Property>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::Int8);
+		return new FInt8Property(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FInt16Property* TypedProp = CastField<FInt16Property>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::Int16);
+		return new FInt16Property(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FIntProperty* TypedProp = CastField<FIntProperty>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::Int);
+		return new FIntProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FInt64Property* TypedProp = CastField<FInt64Property>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::Int64);
+		return new FInt64Property(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FUInt16Property* TypedProp = CastField<FUInt16Property>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::UInt16);
+		return new FUInt16Property(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FUInt32Property* TypedProp = CastField<FUInt32Property>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::UInt32);
+		return new FUInt32Property(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FUInt64Property* TypedProp = CastField<FUInt64Property>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::UInt64);
+		return new FUInt64Property(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FFloatProperty* TypedProp = CastField<FFloatProperty>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::Float);
+		return new FFloatProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FDoubleProperty* TypedProp = CastField<FDoubleProperty>(Prop))
 	{
-		return MakeGenericParams(Prop, EPropertyGenFlags::Double);
+		return new FDoubleProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FBoolProperty* TypedProp = CastField<FBoolProperty>(Prop))
 	{
-		FString OuterSize;
-		FString Setter;
-		if (!Prop->GetOwner<UObject>())
-		{
-			OuterSize = TEXT("0");
-			Setter    = TEXT("nullptr");
-		}
-		else
-		{
-			OuterSize = FString::Printf(TEXT("sizeof(%s)"), SourceStruct);
-
-			DeclOut.Logf(TEXT("%sstatic void %s_SetBit(void* Obj);\r\n"), DeclSpaces, *NameWithoutScope);
-
-			Out.Logf(TEXT("%svoid %s_SetBit(void* Obj)\r\n"), Spaces, Name);
-			Out.Logf(TEXT("%s{\r\n"), Spaces);
-			Out.Logf(TEXT("%s\t((%s*)Obj)->%s%s = 1;\r\n"), Spaces, SourceStruct, *Prop->GetName(), Prop->HasAllPropertyFlags(CPF_Deprecated) ? TEXT("_DEPRECATED") : TEXT(""));
-			Out.Logf(TEXT("%s}\r\n"), Spaces);
-
-			Setter = FString::Printf(TEXT("&%s_SetBit"), Name);
-		}
-
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FBoolPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FBoolPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Bool %s, %s, %s, sizeof(%s), %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			TypedProp->IsNativeBool() ? TEXT("| UE4CodeGen_Private::EPropertyGenFlags::NativeBool") : TEXT(""),
-			FPropertyObjectFlags,
-			*ArrayDim,
-			*TypedProp->GetCPPType(nullptr, 0),
-			*OuterSize,
-			*Setter,
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FBoolProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, GetBoolPropertyBitmask(TypedProp), Prop->ElementSize, Prop->IsNative());
 	}
 
 	if (FSoftClassProperty* TypedProp = CastField<FSoftClassProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FSoftClassPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FSoftClassPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::SoftClass, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->MetaClass, OutReferenceGatherers.UniqueCrossModuleReferences, false),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FSoftClassProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->MetaClass);
 	}
 
 	if (FWeakObjectProperty* TypedProp = CastField<FWeakObjectProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FWeakObjectPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FWeakObjectPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::WeakObject, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->PropertyClass, OutReferenceGatherers.UniqueCrossModuleReferences, false),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FWeakObjectProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->PropertyClass);
 	}
 
 	if (FLazyObjectProperty* TypedProp = CastField<FLazyObjectProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FLazyObjectPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FLazyObjectPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::LazyObject, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->PropertyClass, OutReferenceGatherers.UniqueCrossModuleReferences, false),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FLazyObjectProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->PropertyClass);
 	}
 
 	if (FSoftObjectProperty* TypedProp = CastField<FSoftObjectProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FSoftObjectPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FSoftObjectPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::SoftObject, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->PropertyClass, OutReferenceGatherers.UniqueCrossModuleReferences, false),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FSoftObjectProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->PropertyClass);
 	}
 
 	if (FClassProperty* TypedProp = CastField<FClassProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FClassPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FClassPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Class, %s, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->MetaClass, OutReferenceGatherers.UniqueCrossModuleReferences, false),
-			*GetSingletonNameFuncAddr(TypedProp->PropertyClass, OutReferenceGatherers.UniqueCrossModuleReferences, false),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		//TODO Test
+		return new FClassProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->MetaClass, TypedProp->PropertyClass);
 	}
 
 	if (FObjectProperty* TypedProp = CastField<FObjectProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FObjectPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FObjectPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Object, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->PropertyClass, OutReferenceGatherers.UniqueCrossModuleReferences, false),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FObjectProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->PropertyClass);
 	}
 
 	if (FInterfaceProperty* TypedProp = CastField<FInterfaceProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FInterfacePropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FInterfacePropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Interface, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->InterfaceClass, OutReferenceGatherers.UniqueCrossModuleReferences, false),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FInterfaceProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->InterfaceClass);
 	}
 
 	if (FNameProperty* TypedProp = CastField<FNameProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FNamePropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FNamePropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Name, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FNameProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FStrProperty* TypedProp = CastField<FStrProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FStrPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FStrPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Str, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FStrProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FArrayProperty* TypedProp = CastField<FArrayProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FArrayPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FArrayPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Array, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			GPropertyUsesMemoryImageAllocator.Contains(TypedProp) ? TEXT("EArrayPropertyFlags::UsesMemoryImageAllocator") : TEXT("EArrayPropertyFlags::None"),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		//TODO Inner property
+		return new FArrayProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->ArrayFlags);
 	}
 
 	if (FMapProperty* TypedProp = CastField<FMapProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FMapPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FMapPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Map, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			GPropertyUsesMemoryImageAllocator.Contains(TypedProp) ? TEXT("EMapPropertyFlags::UsesMemoryImageAllocator") : TEXT("EMapPropertyFlags::None"),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		//TODO Inner properties
+		return new FMapProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->MapFlags);
 	}
 
 	if (FSetProperty* TypedProp = CastField<FSetProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FSetPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FSetPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Set, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		//TODO Inner property
+		return new FSetProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FStructProperty* TypedProp = CastField<FStructProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FStructPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FStructPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Struct, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->Struct, OutReferenceGatherers.UniqueCrossModuleReferences),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		//TODO Inner property?
+		//TODO Test (inner struct)
+		return new FStructProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->Struct);
 	}
 
 	if (FDelegateProperty* TypedProp = CastField<FDelegateProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FDelegatePropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FDelegatePropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Delegate, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->SignatureFunction, OutReferenceGatherers.UniqueCrossModuleReferences),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FDelegateProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FMulticastDelegateProperty* TypedProp = CastField<FMulticastDelegateProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FMulticastDelegatePropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FMulticastDelegatePropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::%sMulticastDelegate, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			(TypedProp->IsA<FMulticastInlineDelegateProperty>() ? TEXT("Inline") : TEXT("Sparse")),
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->SignatureFunction, OutReferenceGatherers.UniqueCrossModuleReferences),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FMulticastDelegateProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FTextProperty* TypedProp = CastField<FTextProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FTextPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FTextPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Text, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FTextProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FEnumProperty* TypedProp = CastField<FEnumProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FEnumPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FEnumPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::Enum, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*GetSingletonNameFuncAddr(TypedProp->Enum, OutReferenceGatherers.UniqueCrossModuleReferences),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FEnumProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->GetEnum());
 	}
 
 	if (FFieldPathProperty* TypedProp = CastField<FFieldPathProperty>(Prop))
 	{
-		DeclOut.Logf(TEXT("%sstatic const UE4CodeGen_Private::FFieldPathPropertyParams %s;\r\n"), DeclSpaces, *NameWithoutScope);
-
-		Out.Logf(
-			TEXT("%sconst UE4CodeGen_Private::FFieldPathPropertyParams %s = { %s, %s, (EPropertyFlags)0x%016llx, UE4CodeGen_Private::EPropertyGenFlags::FieldPath, %s, %s, %s, %s, %s };%s\r\n"),
-			Spaces,
-			Name,
-			*PropName,
-			*PropNotifyFunc,
-			PropFlags,
-			FPropertyObjectFlags,
-			*ArrayDim,
-			OffsetStr,
-			*FString::Printf(TEXT("&F%s::StaticClass"), *TypedProp->PropertyClass->GetName()),
-			*MetaDataParams,
-			*PropTag
-		);
-
-		return;
+		return new FFieldPathProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags, TypedProp->PropertyClass);
 	}
+	return nullptr;
+}
+
+uint8 FTIReflection::GetBoolPropertyBitmask(FBoolProperty* Prop)
+{
+	TArray<uint8> Buf;
+	Buf.Reserve(Prop->ElementSize);
+	for (int i = 0; i < Prop->ElementSize; ++i)
+	{
+		Buf.Add(true);
+	}
+	Prop->SetPropertyValue(Buf.GetData(),true);
+	for (auto Byte : Buf)
+	{
+		if (Byte > 0)
+		{
+			return Byte;
+		}
+	}
+	return 0;
 }

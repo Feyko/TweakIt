@@ -45,8 +45,6 @@ int FLuaFDelegate::Lua_Bind(lua_State* L)
 	UE4CodeGen_Private::FFunctionParams Params = UE4CodeGen_Private::FFunctionParams();
 	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
 	Params.NameUTF8 = TCHAR_TO_UTF8(*FunctionName);
-	UTIUFunctionBinder::SignatureBuffer = Self->SignatureFunction;
-	Params.SuperFunc = []()->UFunction*{return UTIUFunctionBinder::SignatureBuffer;};
 	Params.OuterFunc = []()->UObject*{return UTIUFunctionBinder::StaticClass();};
 	Params.FunctionFlags = FUNC_Native|FUNC_Static|FUNC_Public;
 	LOG("Constructiong")
