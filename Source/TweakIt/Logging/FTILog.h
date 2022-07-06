@@ -27,6 +27,8 @@ struct FTILog
 	static FString ToFString(std::string String);
 	static FString ToFString(FName Name);
 	static FString ToFString(EFunctionFlags Flags);
+	static FString ToFString(EPropertyFlags Flags);
+	static FString ToFString(EObjectFlags Flags);
 	static FString ToFString(int Int);
 	static FString ToFString(size_t Size);
 private:

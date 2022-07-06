@@ -2,6 +2,7 @@
 #include <string>
 
 #include "TweakIt/TweakItTesting.h"
+#include "TweakIt/Helpers/TIReflection.h"
 #include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Lua/FTILuaFuncManager.h"
@@ -41,14 +42,8 @@ int FLuaFDelegate::Lua_Bind(lua_State* L)
 	FString FunctionName = UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName());
 	LOG("Dumping")
 	FTILuaFuncManager::DumpFunction(L, FunctionName, 2);
-	UFunction* Function = nullptr;
-	UE4CodeGen_Private::FFunctionParams Params = UE4CodeGen_Private::FFunctionParams();
-	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
-	Params.NameUTF8 = TCHAR_TO_UTF8(*FunctionName);
-	Params.OuterFunc = []()->UObject*{return UTIUFunctionBinder::StaticClass();};
-	Params.FunctionFlags = FUNC_Native|FUNC_Static|FUNC_Public;
-	LOG("Constructiong")
-	ConstructUFunction(Function, Params);
+	LOG("Copying function")
+	UFunction* Function = FTIReflection::CopyFunction(Self->SignatureFunction, FunctionName);
 	LOG("Making and setting")
 	Function->SetNativeFunc(FTILuaFuncManager::SavedLuaFuncToNativeFunc(L, FunctionName));
 	LOG("Adding")

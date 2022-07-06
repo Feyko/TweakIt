@@ -131,3 +131,68 @@ FString FTILog::ToFString(EFunctionFlags Flags)
 	Out.RemoveFromEnd("|");
 	return Out;
 }
+
+FString FTILog::ToFString(EPropertyFlags Flags)
+{
+	FString Out;
+	TArray<const TCHAR*> FlagStrings = ParsePropertyFlags(Flags);
+	for (auto String : FlagStrings)
+	{
+		Out += String;
+		Out += "|";
+	}
+	Out.RemoveFromEnd("|");
+	return Out;
+}
+
+FString FTILog::ToFString(EObjectFlags Flags)
+{
+	FString Out;
+	const TCHAR* ObjectFlags[32] =
+	{
+		TEXT("Final"),
+		TEXT("0x00000002"),
+		TEXT("BlueprintAuthorityOnly"),
+		TEXT("BlueprintCosmetic"),
+		TEXT("CheatBoard"),
+		TEXT("0x00000020"),
+		TEXT("Net"),
+		TEXT("NetReliable"),
+		TEXT("NetRequest"),
+		TEXT("Exec"),
+		TEXT("Native"),
+		TEXT("Event"),
+		TEXT("NetResponse"),
+		TEXT("Static"),
+		TEXT("NetMulticast"),
+		TEXT("UbergraphFunction"),
+		TEXT("MulticastDelegate"),
+		TEXT("Public"),
+		TEXT("Private"),
+		TEXT("Protected"),
+		TEXT("Delegate"),
+		TEXT("NetServer"),
+		TEXT("HasOutParms"),
+		TEXT("HasDefaults"),
+		TEXT("NetClient"),
+		TEXT("DLLImport"),
+		TEXT("BlueprintCallable"),
+		TEXT("BlueprintEvent"),		
+		TEXT("BlueprintPure"),			
+		TEXT("EditorOnly"),
+		TEXT("Const"),
+		TEXT("NetValidate"),
+	};
+	
+	for (int32 i = 0; i < 32; ++i)
+	{
+		const uint32 Mask = 1U << i;
+		if ((Flags & Mask) != 0)
+		{
+			Out += ObjectFlags[i];
+			Out += "|";
+		}
+	}
+	Out.RemoveFromEnd("|");
+	return Out;
+}

@@ -82,14 +82,13 @@ FNativeFuncPtr FTILuaFuncManager::SavedLuaFuncToNativeFunc(lua_State* L, FString
 	{
 		LOG("CALLING MADE NATIVE FUNC")
 		LOG(Frame.Node->GetFullName())
-		LOG(Frame.Node->GetSuperFunction()->GetFullName())
-		LOG(Frame.Node->GetSuperFunction()->NumParms)
+		LOG(Frame.Node->NumParms)
+		LOG(Frame.Node->ParmsSize)
 		if (Frame.Node == nullptr)
 		{
 			LOG("Node was null")
 			return;
 		}
-		LOG(Frame.Node->NumParms)
 		for (auto Prop = Frame.Node->PropertyLink; Prop; Prop->PropertyLinkNext)
 		{
 			LOG(Prop->GetFullName())

@@ -4,7 +4,7 @@
 
 
 #include "TIUFunctionBinder.h"
-#include "Editor/KismetCompiler/Public/KismetCompilerMisc.h"
+// #include "Editor/KismetCompiler/Public/KismetCompilerMisc.h"
 #include "Engine/SCS_Node.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Logging/FTILog.h"
@@ -271,13 +271,18 @@ UFunction* FTIReflection::CopyFunction(UFunction* ToCopy, FString FunctionName)
 	Params.NameUTF8 = TCHAR_TO_UTF8(*FunctionName);
 	Params.OuterFunc = []()->UObject*{return UTIUFunctionBinder::StaticClass();};
 	Params.FunctionFlags = FUNC_Native|FUNC_Static|FUNC_Public;
+	LOG("Constructing function")
 	ConstructUFunction(Function, Params);
+	LOG("Copying properties")
 	for (auto Prop = ToCopy->PropertyLink; Prop; Prop->PropertyLinkNext)
 	{
+		LOG("Copying...")
 		FProperty* NewProperty = CopyProperty(Function, Prop);
-		// FKismetCompilerUtilities::LinkAddedProperty(Function, NewProperty);
+		LOG("Linking...")
+		LinkProperty(NewProperty, Function);
 	}
 	FArchiveUObject Dummy;
+	LOG("Linking function")
 	Function->Link(Dummy, true);
 	return Function;
 }
@@ -383,7 +388,17 @@ FProperty* FTIReflection::CopyProperty(FFieldVariant Outer, FProperty* Prop)
 
 	if (FStrProperty* TypedProp = CastField<FStrProperty>(Prop))
 	{
-		return new FStrProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
+		LOG("Is a String Property")
+		if (!Prop->IsValidLowLevel())
+		{
+			LOG("bruh")
+		}
+		LOG(Prop->GetFullName())
+		LOG(Prop->PropertyFlags)
+		LOG(Prop->GetFlags())
+		FProperty* ret = new FStrProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
+		LOG("Returning")
+		return ret;
 	}
 
 	if (FArrayProperty* TypedProp = CastField<FArrayProperty>(Prop))
@@ -438,6 +453,7 @@ FProperty* FTIReflection::CopyProperty(FFieldVariant Outer, FProperty* Prop)
 	return nullptr;
 }
 
+// TODO: Test
 uint8 FTIReflection::GetBoolPropertyBitmask(FBoolProperty* Prop)
 {
 	TArray<uint8> Buf;
@@ -455,4 +471,13 @@ uint8 FTIReflection::GetBoolPropertyBitmask(FBoolProperty* Prop)
 		}
 	}
 	return 0;
+}
+
+void FTIReflection::LinkProperty(FProperty* Prop, UStruct* To)
+{
+	check(Prop->Next == NULL);
+	check(To->ChildProperties != Prop);
+
+	Prop->Next = To->ChildProperties;
+	To->ChildProperties = Prop;
 }
