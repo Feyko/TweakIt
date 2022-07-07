@@ -2,13 +2,16 @@
 #include "Lua.h"
 
 struct FLuaFunc {
-	FLuaFunc();
+	FLuaFunc() = delete;
+	explicit FLuaFunc(lua_State* L);
 	
 	void Free();
 	bool AddData(const void* NewData, size_t DataSize);
 
 	const char* GetData();
 	size_t Size();
+
+	lua_State* L;
 private:
 	TArray<uint8>* Buf;
 };

@@ -1,11 +1,12 @@
 ﻿#include "FTILuaFuncManager.h"
 
 #include "Buildables/FGBuildableFactoryBuilding.h"
+#include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
 
 TMap<FString, FLuaFunc> FTILuaFuncManager::Funcs = {};
 
-FLuaFunc::FLuaFunc()
+FLuaFunc::FLuaFunc(lua_State* L) : L(L)
 {
 	Buf = new TArray<uint8>;
 }
@@ -41,7 +42,7 @@ FLuaFunc FTILuaFuncManager::DumpFunction(lua_State* L, FString Name, int Index, 
 	LOG("Proceeding with dumping")
 	lua_settop(L, lua_gettop(L) + 1);
 	lua_copy(L, Index, -1);
-	FLuaFunc Desc;
+	FLuaFunc Desc = FLuaFunc(L);
 	lua_dump(L, WriterFunc, &Desc, Strip);
 	lua_settop(L, -2);
 	Funcs.Add(Name, Desc);
@@ -77,22 +78,28 @@ FNativeFuncPtr FTILuaFuncManager::SavedLuaFuncToNativeFunc(lua_State* L, FString
 	{
 		return nullptr;
 	}
-	LOG("Did find the lua func")
 	return [](UObject* Context, FFrame& Frame, void* const)
 	{
-		LOG("CALLING MADE NATIVE FUNC")
-		LOG(Frame.Node->GetFullName())
-		LOG(Frame.Node->NumParms)
-		LOG(Frame.Node->ParmsSize)
 		if (Frame.Node == nullptr)
 		{
-			LOG("Node was null")
+			LOGL("Node was null", Error)
 			return;
 		}
-		for (auto Prop = Frame.Node->PropertyLink; Prop; Prop->PropertyLinkNext)
+		FLuaFunc* LuaFunc = GetSavedFunction(Frame.Node->GetName());
+		if (LuaFunc == nullptr)
 		{
-			LOG(Prop->GetFullName())
-			LOG(Prop->ElementSize)
+			LOGFL("Could not find Lua func %s", Error, *Frame.Node->GetName())
+			return;
+		}
+		LoadFunction(LuaFunc->L, *LuaFunc, Frame.Node->GetName());
+		for (auto Prop = Frame.Node->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
+		{
+			PropertyToLua(LuaFunc->L, Prop, Frame.Locals);
+		}
+		int r = lua_pcall(LuaFunc->L, Frame.Node->NumParms, Frame.Node->GetReturnProperty() != nullptr, 0);
+		if (r != LUA_OK)
+		{
+			LOGFL("Errored when calling func %s", Error, *Frame.Node->GetName())
 		}
 	};
 }

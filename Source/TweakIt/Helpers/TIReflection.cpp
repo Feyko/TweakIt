@@ -265,7 +265,7 @@ void* FTIReflection::CopyStruct(UStruct* Struct, void* Values)
 
 UFunction* FTIReflection::CopyFunction(UFunction* ToCopy, FString FunctionName)
 {
-	UFunction* Function;
+	UFunction* Function = nullptr;
 	FFunctionParams Params = FFunctionParams();
 	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
 	Params.NameUTF8 = TCHAR_TO_UTF8(*FunctionName);
@@ -274,12 +274,10 @@ UFunction* FTIReflection::CopyFunction(UFunction* ToCopy, FString FunctionName)
 	LOG("Constructing function")
 	ConstructUFunction(Function, Params);
 	LOG("Copying properties")
-	for (auto Prop = ToCopy->PropertyLink; Prop; Prop->PropertyLinkNext)
+	for (auto Prop = ToCopy->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
 		LOG("Copying...")
-		FProperty* NewProperty = CopyProperty(Function, Prop);
-		LOG("Linking...")
-		LinkProperty(NewProperty, Function);
+		CopyProperty(Function, Prop);
 	}
 	FArchiveUObject Dummy;
 	LOG("Linking function")
@@ -388,17 +386,7 @@ FProperty* FTIReflection::CopyProperty(FFieldVariant Outer, FProperty* Prop)
 
 	if (FStrProperty* TypedProp = CastField<FStrProperty>(Prop))
 	{
-		LOG("Is a String Property")
-		if (!Prop->IsValidLowLevel())
-		{
-			LOG("bruh")
-		}
-		LOG(Prop->GetFullName())
-		LOG(Prop->PropertyFlags)
-		LOG(Prop->GetFlags())
-		FProperty* ret = new FStrProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
-		LOG("Returning")
-		return ret;
+		return new FStrProperty(Outer, *Prop->GetName(), Prop->GetFlags(), 0, Prop->PropertyFlags);
 	}
 
 	if (FArrayProperty* TypedProp = CastField<FArrayProperty>(Prop))
