@@ -276,9 +276,11 @@ UFunction* FTIReflection::CopyFunction(UFunction* ToCopy, FString FunctionName)
 	LOG("Copying properties")
 	for (auto Prop = ToCopy->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
-		LOG("Copying...")
 		CopyProperty(Function, Prop);
 	}
+	LOG("Reversing properties")
+	// Properties are added to the front of the linked list. We reverse it to make sure the properties are in the same order as they were in the input function
+	ReverseChildProperties(&Function->ChildProperties);
 	FArchiveUObject Dummy;
 	LOG("Linking function")
 	Function->Link(Dummy, true);
@@ -461,11 +463,17 @@ uint8 FTIReflection::GetBoolPropertyBitmask(FBoolProperty* Prop)
 	return 0;
 }
 
-void FTIReflection::LinkProperty(FProperty* Prop, UStruct* To)
+void FTIReflection::ReverseChildProperties(FField** Head)
 {
-	check(Prop->Next == NULL);
-	check(To->ChildProperties != Prop);
-
-	Prop->Next = To->ChildProperties;
-	To->ChildProperties = Prop;
+	FField* Temp = nullptr;
+	FField* Previous = nullptr;
+	FField* Current = *Head;
+	while (Current != nullptr)
+	{
+		Temp = Current->Next;
+		Current->Next = Previous;
+		Previous = Current;
+		Current = Temp;
+	}
+	*Head = Previous;
 }

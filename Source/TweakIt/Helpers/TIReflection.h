@@ -26,5 +26,5 @@ public:
 	static FProperty* CopyProperty(FFieldVariant Outer, FProperty* Prop);
 
 	static uint8 GetBoolPropertyBitmask(FBoolProperty* Prop);
-	static void LinkProperty(FProperty* Prop, UStruct* To);
+	static void ReverseChildProperties(FField** Head);
 };

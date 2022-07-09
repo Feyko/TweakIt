@@ -8,7 +8,7 @@
 
 #include "TweakItTesting.generated.h"
 
-DECLARE_DYNAMIC_DELEGATE_OneParam(FTITestingDelegate, FString, String);
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FTITestingDelegate, FString, String, int, Otherstring);
 
 UCLASS(Blueprintable)
 class UTweakItTesting : public UObject
@@ -20,16 +20,16 @@ public:
 	static UTweakItTesting* Get();
 	
 	UPROPERTY(EditAnywhere)
-	bool Boolean;
+	bool Bool;
 
 	UPROPERTY(EditAnywhere)
-	int number = 10;
+	int Int = 10;
 
 	UPROPERTY(EditAnywhere)
-	uint16 ayo = 40;
+	uint16 Uint16 = 40;
 
 	UPROPERTY(EditAnywhere)
-	float bro = 1.22;
+	float Float = 1.22;
 
 	UPROPERTY(EditAnywhere)
 	FString String = "henlo";

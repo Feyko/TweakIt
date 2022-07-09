@@ -10,7 +10,7 @@
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Helpers/TIReflection.h"
 #include "TweakIt/Helpers/TIContentRegistration.h"
-#include "TweakIt/Helpers/TIUFunctionBinder.h"
+
 using namespace std;
 
 void luaT_CheckLuaFunction(lua_State* L, int Index)
@@ -318,15 +318,10 @@ int Lua_Print(lua_State* L)
 	return 0;
 }
 
-lua_Number GetNumber(lua_State* L)
-{
-	return luaL_checknumber(L, 1);
-}
-
 int Lua_Test(lua_State* L)
 {
 	LOG("Running Lua_Test")
-	UTweakItTesting::Get()->Delegate.Execute("Ayo");
+	UTweakItTesting::Get()->Delegate.Execute("Ayo", 69);
 	return 0;
 }
 
