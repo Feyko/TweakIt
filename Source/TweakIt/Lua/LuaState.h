@@ -18,16 +18,16 @@ private:
 	void RegisterLifecycleNotifier();
 
 	inline static TArray<luaL_Reg> GlobalFunctions = {
-		{"GetClass", Lua_GetClass},
-		{"LoadObject", Lua_LoadObject},
-		{"UnlockRecipe", Lua_UnlockRecipe},
-		{"Log", Lua_Print},
-		{"print", Lua_Print},
-		{"MakeSubclass", Lua_MakeSubclass},
-		{"MakeStructInstance", Lua_MakeStructInstance},
-		{"Test", Lua_Test},
-		{"WaitForEvent", Lua_WaitForEvent},
-		{"DumpFunction", Lua_DumpFunction},
-		{"LoadFunction", Lua_LoadFunction}
+		{"GetClass", FTILua::Lua_GetClass},
+		{"LoadObject", FTILua::Lua_LoadObject},
+		{"UnlockRecipe", FTILua::Lua_UnlockRecipe},
+		{"Log", FTILua::Lua_Print},
+		{"print", FTILua::Lua_Print},
+		{"MakeSubclass", FTILua::Lua_MakeSubclass},
+		{"MakeStructInstance", FTILua::Lua_MakeStructInstance},
+		{"Test", FTILua::Lua_Test},
+		{"WaitForEvent", FTILua::Lua_WaitForEvent},
+		{"DumpFunction", FTILua::Lua_DumpFunction},
+		{"LoadFunction", FTILua::Lua_LoadFunction}
 	};
 };

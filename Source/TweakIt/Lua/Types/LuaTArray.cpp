@@ -38,7 +38,7 @@ int FLuaTArray::Lua__index(lua_State* L)
 		lua_pushnil(L);
 		return 1;
 	}
-	PropertyToLua(L, Self->ArrayProperty->Inner,
+	FTILua::PropertyToLua(L, Self->ArrayProperty->Inner,
 	              static_cast<uint8*>(ArrayValue->GetData()) + Self->ArrayProperty->Inner->ElementSize * Index);
 	return 1;
 }
@@ -55,7 +55,7 @@ int FLuaTArray::Lua__newindex(lua_State* L)
 		LOGF("Creating %d values", appendCount)
 		ArrayValue->Add(appendCount, Self->ArrayProperty->Inner->ElementSize);
 	}
-	LuaToProperty(L, Self->ArrayProperty->Inner,
+	FTILua::LuaToProperty(L, Self->ArrayProperty->Inner,
 	              static_cast<uint8*>(ArrayValue->GetData()) + Self->ArrayProperty->Inner->ElementSize * Index, 3);
 	return 0;
 }
@@ -77,5 +77,5 @@ int FLuaTArray::Lua__len(lua_State* L)
 
 void FLuaTArray::RegisterMetadata(lua_State* L)
 {
-	RegisterMetatable(L, Name, Metadata);
+	FTILua::RegisterMetatable(L, Name, Metadata);
 }

@@ -74,7 +74,7 @@ int FLuaLifecycleNotifier::Lua__index(lua_State* L)
 
 void FLuaLifecycleNotifier::RegisterMetadata(lua_State* L)
 {
-	RegisterMetatable(L, Name, Metadata);
+	FTILua::RegisterMetatable(L, Name, Metadata);
 }
 
 void FLuaLifecycleNotifier::SetupHooks()

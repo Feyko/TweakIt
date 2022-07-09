@@ -94,7 +94,7 @@ FNativeFuncPtr FTILuaFuncManager::SavedLuaFuncToNativeFunc(lua_State* L, FString
 		LoadFunction(LuaFunc->L, *LuaFunc, Frame.Node->GetName());
 		for (auto Prop = Frame.Node->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 		{
-			PropertyToLua(LuaFunc->L, Prop, Frame.Locals);
+			FTILua::PropertyToLua(LuaFunc->L, Prop, Frame.Locals);
 		}
 		int r = lua_pcall(LuaFunc->L, Frame.Node->NumParms, Frame.Node->GetReturnProperty() != nullptr, 0);
 		if (r != LUA_OK)

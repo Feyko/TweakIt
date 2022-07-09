@@ -32,6 +32,11 @@ int FLuaUStruct::Lua_Copy(lua_State* L)
 	return ConstructStruct(L, Self->Struct, Copy);
 }
 
+int FLuaUStruct::Lua_MakeStructInstance(lua_State* L)
+{
+	return FTILua::Lua_MakeStructInstance(L);
+}
+
 int FLuaUStruct::Lua__index(lua_State* L)
 {
 	FLuaUStruct* Self = Get(L);
@@ -49,7 +54,7 @@ int FLuaUStruct::Lua__index(lua_State* L)
 		lua_pushnil(L);
 		return 1;
 	}
-	PropertyToLua(L, NestedProperty, Self->Values);
+	FTILua::PropertyToLua(L, NestedProperty, Self->Values);
 	return 1;
 }
 
@@ -65,7 +70,7 @@ int FLuaUStruct::Lua__newindex(lua_State* L)
 		lua_pushnil(L);
 		return 1;
 	}
-	LuaToProperty(L, NestedProperty, Self->Values, 3);
+	FTILua::LuaToProperty(L, NestedProperty, Self->Values, 3);
 	return 1;
 }
 
@@ -88,5 +93,5 @@ int FLuaUStruct::Lua__gc(lua_State* L)
 
 void FLuaUStruct::RegisterMetadata(lua_State* L)
 {
-	RegisterMetatable(L, Name, Metadata);
+	FTILua::RegisterMetatable(L, Name, Metadata);
 }

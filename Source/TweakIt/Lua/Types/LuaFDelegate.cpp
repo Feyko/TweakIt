@@ -38,7 +38,7 @@ int FLuaFDelegate::Lua_Bind(lua_State* L)
 {
 	LOG("LuaFDelegate::Bind")
     FLuaFDelegate* Self = Get(L);
-	luaT_CheckLuaFunction(L, 2);
+	FTILua::luaT_CheckLuaFunction(L, 2);
 	FString FunctionName = UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName());
 	LOG("Dumping")
 	FTILuaFuncManager::DumpFunction(L, FunctionName, 2);
@@ -69,14 +69,26 @@ int FLuaFDelegate::Lua_Unbind(lua_State* L)
 
 int FLuaFDelegate::Lua_Wait(lua_State* L)
 {
-
+	FLuaFDelegate* Self = Get(L);
 	return 0;
 }
 
 int FLuaFDelegate::Lua_Trigger(lua_State* L)
 {
-	luaL_error(L, "Trigger is WIP");
-	return 0;
+	FLuaFDelegate* Self = Get(L);
+	if (!Self->Delegate->IsBound())
+	{
+		LOGL("Tried to trigger unbound delegate", Warning)
+		return 0;
+	}
+	UObject* Object = Self->Delegate->GetUObject();
+	UFunction* Function = Object->FindFunction(Self->Delegate->GetFunctionName());
+	if (!Function->IsValidLowLevel())
+	{
+		LOGL("Tried to trigger delegate bound to an invalid UFunction", Warning)
+		return 0;
+	}
+	return FTILua::CallUFunction(L, Object, Function);
 }
 
 int FLuaFDelegate::Lua__index(lua_State* L)
@@ -107,5 +119,5 @@ int FLuaFDelegate::Lua__tostring(lua_State* L)
 
 void FLuaFDelegate::RegisterMetadata(lua_State* L)
 {
-	RegisterMetatable(L, Name, Metadata);
+	FTILua::RegisterMetatable(L, Name, Metadata);
 }

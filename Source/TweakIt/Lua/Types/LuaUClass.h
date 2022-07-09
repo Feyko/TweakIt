@@ -3,8 +3,6 @@
 
 #include "TweakIt/Lua/Lua.h"
 
-int Lua_MakeSubclass(lua_State* L); // Forward declaration. I hate C++
-
 struct FLuaUClass
 {
 	UClass* Class;
@@ -19,6 +17,7 @@ struct FLuaUClass
 	static int Lua_GetChildClasses(lua_State* L);
 	static int Lua_GetObjects(lua_State* L);
 	static int Lua_DumpProperties(lua_State* L);
+	static int Lua_MakeSubclass(lua_State* L);
 
 	static int Lua__index(lua_State* L);
 	static int Lua__newindex(lua_State* L);

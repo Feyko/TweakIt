@@ -3,8 +3,6 @@
 
 #include "TweakIt/Lua/Lua.h"
 
-int Lua_MakeStructInstance(lua_State* L); // Forward declaration. I hate C++
-
 struct FLuaUStruct
 {
 	UStruct* Struct;
@@ -15,6 +13,7 @@ struct FLuaUStruct
 	static FLuaUStruct* Get(lua_State* L, int Index = 1);
 
 	static int Lua_Copy(lua_State* L);
+	static int Lua_MakeStructInstance(lua_State* L);
 
 	static int Lua__index(lua_State* L);
 	static int Lua__newindex(lua_State* L);

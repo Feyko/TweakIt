@@ -54,7 +54,7 @@ int FLuaUClass::Lua_GetDefaultValue(lua_State* L)
 		return 1;
 	}
 	LOGF("Found property %s", *Property->GetName())
-	PropertyToLua(L, Property, Self->Class->GetDefaultObject());
+	FTILua::PropertyToLua(L, Property, Self->Class->GetDefaultObject());
 	return 1;
 }
 
@@ -80,11 +80,11 @@ int FLuaUClass::Lua_ChangeDefaultValue(lua_State* L)
 			LOG("Couldn't find the property")
 			return 0;
 		}
-		LuaToProperty(L, Property, Class->GetDefaultObject(), 3);
+		FTILua::LuaToProperty(L, Property, Class->GetDefaultObject(), 3);
 		LOG("Changed the class's CDO. Iterating over objects...")
 		for (FObjectIterator It = FObjectIterator(Class); It; ++It)
 		{
-			LuaToProperty(L, Property, *It, 3);
+			FTILua::LuaToProperty(L, Property, *It, 3);
 		}
 		LOG("Finished iteration over objects")
 	}
@@ -181,6 +181,11 @@ int FLuaUClass::Lua_DumpProperties(lua_State* L)
 	return 0;
 }
 
+int FLuaUClass::Lua_MakeSubclass(lua_State* L)
+{
+	return FTILua::Lua_MakeSubclass(L);
+}
+
 int FLuaUClass::Lua__index(lua_State* L)
 {
 	FLuaUClass* Self = Get(L);
@@ -220,5 +225,5 @@ int FLuaUClass::Lua__tostring(lua_State* L)
 
 void FLuaUClass::RegisterMetadata(lua_State* L)
 {
-	RegisterMetatable(L, Name, Metadata);
+	FTILua::RegisterMetatable(L, Name, Metadata);
 }

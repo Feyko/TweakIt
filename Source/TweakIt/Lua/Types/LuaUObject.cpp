@@ -96,7 +96,7 @@ int FLuaUObject::Lua__index(lua_State* L)
 		return 1;
 	}
 	LOG("Found property")
-	PropertyToLua(L, Property, Self->Object);
+	FTILua::PropertyToLua(L, Property, Self->Object);
 	return 1;
 }
 
@@ -113,7 +113,7 @@ int FLuaUObject::Lua__newindex(lua_State* L)
 			return 0;
 		}
 		LOG("Found property")
-		LuaToProperty(L, Property, Self->Object, 3);
+		FTILua::LuaToProperty(L, Property, Self->Object, 3);
 		return 0;
 	}
 }
@@ -134,5 +134,5 @@ int FLuaUObject::Lua__gc(lua_State* L)
 
 void FLuaUObject::RegisterMetadata(lua_State* L)
 {
-	RegisterMetatable(L, Name, Metadata);
+	FTILua::RegisterMetatable(L, Name, Metadata);
 }

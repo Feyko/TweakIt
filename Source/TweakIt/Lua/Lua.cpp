@@ -13,12 +13,12 @@
 
 using namespace std;
 
-void luaT_CheckLuaFunction(lua_State* L, int Index)
+void FTILua::luaT_CheckLuaFunction(lua_State* L, int Index)
 {
 	luaL_argexpected(L, lua_isfunction(L, Index) && !lua_iscfunction(L, Index), Index, "Lua Function");
 }
 
-void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg> Regs)
+void FTILua::RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg> Regs)
 {
 	luaL_newmetatable(L, Name);
 	for (auto Reg : Regs)
@@ -27,14 +27,14 @@ void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg> Regs)
 	}
 }
 
-void RegisterMethod(lua_State* L, luaL_Reg Reg)
+void FTILua::RegisterMethod(lua_State* L, luaL_Reg Reg)
 {
 	lua_pushstring(L, Reg.name);
 	lua_pushcfunction(L, Reg.func);
 	lua_settable(L, -3);
 }
 
-bool CheckLua(lua_State* L, int Returned)
+bool FTILua::CheckLua(lua_State* L, int Returned)
 {
 	if (Returned != LUA_OK)
 	{
@@ -45,7 +45,7 @@ bool CheckLua(lua_State* L, int Returned)
 	return true;
 }
 
-void StackDump(lua_State* L)
+void FTILua::StackDump(lua_State* L)
 {
 	int Top = lua_gettop(L);
 	for (int i = 1; i <= Top; i++)
@@ -57,8 +57,34 @@ void StackDump(lua_State* L)
 	}
 }
 
+int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function)
+{
+	check(Function->IsValidLowLevel())
+	TArray<uint8> Params;
+	Params.Reserve(Function->ParmsSize);
+	TArray<uint8> Return;
+	FProperty* ReturnProperty = Function->GetReturnProperty();
+	if (ReturnProperty)
+	{
+		Return.Reserve(ReturnProperty->ElementSize);
+	}
+	FFrame Frame = FFrame(Object, Function, Params.GetData());
+	int i = 2;
+	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
+	{
+		LuaToProperty(L, Prop, Params.GetData(), i);
+		i++;
+	}
+	Function->Invoke(Object, Frame, Return.GetData());
+	if (ReturnProperty)
+	{
+		PropertyToLua(L, ReturnProperty, Return.GetData());
+	}
+	return ReturnProperty->IsValidLowLevel();
+}
+
 // Mostly borrowed from FIN's source. Thanks Pana !
-void PropertyToLua(lua_State* L, UProperty* Property, void* Container)
+void FTILua::PropertyToLua(lua_State* L, UProperty* Property, void* Container)
 {
 	LOGF("Transforming from Property %s to Lua", *Property->GetName());
 	auto c = Property->GetClass()->GetCastFlags();
@@ -139,7 +165,7 @@ void PropertyToLua(lua_State* L, UProperty* Property, void* Container)
 }
 
 // Mostly borrowed from FIN's source. Thanks Pana !
-void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index)
+void FTILua::LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index)
 {
 	LOGF("Transforming from Lua to Property %s", *Property->GetName());
 	uint64 Flags = Property->GetClass()->GetCastFlags();
@@ -239,7 +265,7 @@ void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index
 }
 
 
-int Lua_GetClass(lua_State* L)
+int FTILua::Lua_GetClass(lua_State* L)
 {
 	LOG("Getting a class");
 	FString ClassName = luaL_checkstring(L, 1);
@@ -249,7 +275,7 @@ int Lua_GetClass(lua_State* L)
 	return 1;
 }
 
-int Lua_MakeStructInstance(lua_State* L)
+int FTILua::Lua_MakeStructInstance(lua_State* L)
 {
 	LOG("Making a struct instance")
 	UStruct* BaseStruct;
@@ -280,7 +306,7 @@ int Lua_MakeStructInstance(lua_State* L)
 	return 1;
 }
 
-int Lua_MakeSubclass(lua_State* L)
+int FTILua::Lua_MakeSubclass(lua_State* L)
 {
 	UClass* ParentClass = FLuaUClass::Get(L)->Class;
 	FString Name = luaL_checkstring(L, 2);
@@ -289,7 +315,7 @@ int Lua_MakeSubclass(lua_State* L)
 	return 1;
 }
 
-int Lua_UnlockRecipe(lua_State* L)
+int FTILua::Lua_UnlockRecipe(lua_State* L)
 {
 	UClass* Class = FLuaUClass::Get(L)->Class;
 	if (!lua_isuserdata(L, 2))
@@ -301,7 +327,7 @@ int Lua_UnlockRecipe(lua_State* L)
 	return 0;
 }
 
-int Lua_LoadObject(lua_State* L)
+int FTILua::Lua_LoadObject(lua_State* L)
 {
 	LOG("Loading an object")
 	FString Path = lua_tostring(L, 1);
@@ -311,21 +337,21 @@ int Lua_LoadObject(lua_State* L)
 	return 1;
 }
 
-int Lua_Print(lua_State* L)
+int FTILua::Lua_Print(lua_State* L)
 {
 	FString String = luaL_checkstring(L, 1);
 	LOG(String)
 	return 0;
 }
 
-int Lua_Test(lua_State* L)
+int FTILua::Lua_Test(lua_State* L)
 {
 	LOG("Running Lua_Test")
 	UTweakItTesting::Get()->Delegate.Execute("Ayo", 69);
 	return 0;
 }
 
-int Lua_WaitForEvent(lua_State* L)
+int FTILua::Lua_WaitForEvent(lua_State* L)
 {
 	FString Event = luaL_checkstring(L, 1);
 	FLuaLifecycleNotifier* Notifier = FLuaLifecycleNotifier::Get(L);
@@ -333,14 +359,14 @@ int Lua_WaitForEvent(lua_State* L)
 	return 0;
 }
 
-int Lua_DumpFunction(lua_State* L)
+int FTILua::Lua_DumpFunction(lua_State* L)
 {
 	FString Name = luaL_checkstring(L, 1);
 	FTILuaFuncManager::DumpFunction(L, Name, 2);
 	return 0;
 }
 
-int Lua_LoadFunction(lua_State* L)
+int FTILua::Lua_LoadFunction(lua_State* L)
 {
 	FString Name = luaL_checkstring(L, 1);
 	LOGF("Trying to load %s", *Name)
