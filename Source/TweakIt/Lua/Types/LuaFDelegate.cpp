@@ -36,19 +36,23 @@ FString FLuaFDelegate::ToString() const
 
 int FLuaFDelegate::Lua_Bind(lua_State* L)
 {
-	LOG("LuaFDelegate::Bind")
+	LOG("Binding a LuaFDelegate")
     FLuaFDelegate* Self = Get(L);
-	FTILua::luaT_CheckLuaFunction(L, 2);
+	FTILua::LuaT_CheckLuaFunction(L, 2);
+
+	// TODO: Extract the following into function
 	FString FunctionName = UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName());
-	LOG("Dumping")
+	LOG("Dumping Lua func")
 	FTILuaFuncManager::DumpFunction(L, FunctionName, 2);
-	LOG("Copying function")
-	UFunction* Function = FTIReflection::CopyFunction(Self->SignatureFunction, FunctionName);
-	LOG("Making and setting")
-	Function->SetNativeFunc(FTILuaFuncManager::SavedLuaFuncToNativeFunc(L, FunctionName));
-	LOG("Adding")
+	LOG("Copying UFunction")
+	UFunction* Function = FTIReflection::CopyUFunction(Self->SignatureFunction, FunctionName);
+	LOG("Making native func from lua func")
+	FNativeFuncPtr Func = FTILuaFuncManager::SavedLuaFuncToNativeFunc(L, FunctionName);
+	LOG("Setting native func")
+	Function->SetNativeFunc(Func);
+	LOG("Adding function")
 	UTIUFunctionBinder::AddFunction(Function, FunctionName);
-	LOG("Binding")
+	LOG("Binding function")
 	Self->Delegate->BindUFunction(UTIUFunctionBinder::Get(), FName(FunctionName));
 	return 0;
 }
@@ -69,12 +73,14 @@ int FLuaFDelegate::Lua_Unbind(lua_State* L)
 
 int FLuaFDelegate::Lua_Wait(lua_State* L)
 {
+	luaL_error(L, "WIP");
 	FLuaFDelegate* Self = Get(L);
 	return 0;
 }
 
 int FLuaFDelegate::Lua_Trigger(lua_State* L)
 {
+	LOG("Triggering LuaFDelegate")
 	FLuaFDelegate* Self = Get(L);
 	if (!Self->Delegate->IsBound())
 	{

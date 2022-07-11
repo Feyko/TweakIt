@@ -22,7 +22,7 @@ public:
 	static void* MakeStructInstance(UStruct* Struct);
 	static void* CopyStruct(UStruct* Struct, void* Values);
 
-	static UFunction* CopyFunction(UFunction* ToCopy, FString FunctionName);
+	static UFunction* CopyUFunction(UFunction* ToCopy, FString FunctionName);
 	static FProperty* CopyProperty(FFieldVariant Outer, FProperty* Prop);
 
 	static uint8 GetBoolPropertyBitmask(FBoolProperty* Prop);

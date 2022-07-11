@@ -1,6 +1,6 @@
-﻿#include "LuaState.h"
+#include "LuaState.h"
 
-#include "LuaLifecycleNotifier.h"
+#include "TweakIt/Logging/FTILog.h"
 
 FLuaState::FLuaState(UObject* WorldContext)
 {
@@ -9,7 +9,11 @@ FLuaState::FLuaState(UObject* WorldContext)
 	RegisterMetadatas();
 	RegisterGlobalFunctions();
 	RegisterWorldContext(WorldContext);
-	RegisterLifecycleNotifier();
+}
+
+FLuaState::~FLuaState()
+{
+	lua_close(L);
 }
 
 void FLuaState::OpenLibs()
@@ -37,7 +41,6 @@ void FLuaState::RegisterMetadatas()
 	FLuaUObject::RegisterMetadata(L);
 	FLuaTArray::RegisterMetadata(L);
 	FLuaUStruct::RegisterMetadata(L);
-	FLuaLifecycleNotifier::RegisterMetadata(L);
 	FLuaFDelegate::RegisterMetadata(L);
 }
 
@@ -53,10 +56,4 @@ void FLuaState::RegisterWorldContext(UObject* Context)
 {
 	FLuaUObject::ConstructObject(L, Context);
 	lua_setglobal(L, "WorldContext");
-}
-
-void FLuaState::RegisterLifecycleNotifier()
-{
-	FLuaLifecycleNotifier::Construct(L);
-	LifecycleNotifier = FLuaLifecycleNotifier::Get(L);
 }

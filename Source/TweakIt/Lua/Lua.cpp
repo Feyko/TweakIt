@@ -5,7 +5,6 @@
 #include "FGRecipeManager.h"
 #include "FTILuaFuncManager.h"
 #include "IPlatformFilePak.h"
-#include "LuaLifecycleNotifier.h"
 #include "TweakIt/TweakItTesting.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Helpers/TIReflection.h"
@@ -13,7 +12,7 @@
 
 using namespace std;
 
-void FTILua::luaT_CheckLuaFunction(lua_State* L, int Index)
+void FTILua::LuaT_CheckLuaFunction(lua_State* L, int Index)
 {
 	luaL_argexpected(L, lua_isfunction(L, Index) && !lua_iscfunction(L, Index), Index, "Lua Function");
 }
@@ -57,16 +56,19 @@ void FTILua::StackDump(lua_State* L)
 	}
 }
 
+// TODO: Test return value
 int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function)
 {
+	LOG("Calling UFunction")
 	check(Function->IsValidLowLevel())
+	check(Object->IsValidLowLevel())
 	TArray<uint8> Params;
-	Params.Reserve(Function->ParmsSize);
+	Params.SetNumZeroed(Function->ParmsSize);
 	TArray<uint8> Return;
 	FProperty* ReturnProperty = Function->GetReturnProperty();
 	if (ReturnProperty)
 	{
-		Return.Reserve(ReturnProperty->ElementSize);
+		Return.SetNumZeroed(ReturnProperty->ElementSize);
 	}
 	FFrame Frame = FFrame(Object, Function, Params.GetData());
 	int i = 2;
@@ -353,9 +355,8 @@ int FTILua::Lua_Test(lua_State* L)
 
 int FTILua::Lua_WaitForEvent(lua_State* L)
 {
-	FString Event = luaL_checkstring(L, 1);
-	FLuaLifecycleNotifier* Notifier = FLuaLifecycleNotifier::Get(L);
-	Notifier->WaitForEvent(Event);
+	luaL_error(L, "WIP");
+	// FString Event = luaL_checkstring(L, 1);
 	return 0;
 }
 

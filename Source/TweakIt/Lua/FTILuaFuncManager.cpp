@@ -11,6 +11,7 @@ FLuaFunc::FLuaFunc(lua_State* L) : L(L)
 	Buf = new TArray<uint8>;
 }
 
+// TODO: Properly manage script lifecycle and ownership
 void FLuaFunc::Free()
 {
 	delete Buf;
@@ -70,14 +71,17 @@ FLuaFunc* FTILuaFuncManager::GetSavedFunction(FString Name)
 	return Funcs.Find(Name);
 }
 
+// TODO: Extract Lua->UFunc func
 FNativeFuncPtr FTILuaFuncManager::SavedLuaFuncToNativeFunc(lua_State* L, FString Name)
 {
 	LOG("Making a native func out of a saved lua func")
 	FLuaFunc* LuaFunc = GetSavedFunction(Name);
 	if (LuaFunc == nullptr)
 	{
+		LOG("Could not find the saved function")
 		return nullptr;
 	}
+	LOG("could find")
 	return [](UObject* Context, FFrame& Frame, void* const)
 	{
 		if (Frame.Node == nullptr)
@@ -85,6 +89,7 @@ FNativeFuncPtr FTILuaFuncManager::SavedLuaFuncToNativeFunc(lua_State* L, FString
 			LOGL("Node was null", Error)
 			return;
 		}
+		LOG("Calling wrapper function around Lua function")
 		FLuaFunc* LuaFunc = GetSavedFunction(Frame.Node->GetName());
 		if (LuaFunc == nullptr)
 		{

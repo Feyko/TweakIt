@@ -3,6 +3,7 @@
 #include "TweakIt/Logging/FTILog.h"
 
 UFunction* UTIUFunctionBinder::SignatureBuffer = nullptr;
+TMap<FGuid, FEvent*> UTIUFunctionBinder::Awaitables = {};
 
 template<typename... T>
 FString UTIUFunctionBinder::AddNativeFunction(FNativeFuncPtr Function, T... Namespace)
@@ -43,6 +44,28 @@ void UTIUFunctionBinder::RemoveFunction(T... Namespace)
 UTIUFunctionBinder* UTIUFunctionBinder::Get()
 {
 	return Cast<UTIUFunctionBinder>(StaticClass()->ClassDefaultObject);
+}
+
+// TODO: Make this non-destructive
+// TODO: Make sure the Event won't block or crash when triggering multiple times without waiting
+FEvent* UTIUFunctionBinder::MakeAwaitableFunction(FName& FunctionNameOut)
+{
+	FGuid Guid = FGuid();
+	FEvent* Event = FPlatformProcess::CreateSynchEvent();
+	Awaitables.Add(Guid, Event);
+	Get()->AddNativeFunction([](UObject* Object, FFrame& Frame, void* Result)
+	{
+		FGuid Guid = FGuid();
+		FGuid::Parse(FPaths::GetPathLeaf(Frame.Node->GetName()), Guid);
+		FEvent** Event = Get()->Awaitables.Find(Guid);
+		if (Event == nullptr)
+		{
+			LOGL("Tried to trigger unknown event", Error)
+		}
+		(*Event)->Trigger();
+	}, "Awaitable", Guid.ToString());
+	FunctionNameOut = FName(MakeFunctionName("Awaitable", Guid.ToString()));
+	return Event;
 }
 
 template<typename... T>

@@ -29,19 +29,6 @@ bool ATweakItSubsystem::RunAllScripts()
 	LOG("Running all scripts")
 	bool Errored = false;
 	StartAllScripts();
-	for (auto Script : RunningScripts)
-	{
-		FScriptState State = Script->WaitForStop();
-		if (State == FScriptState::Errored)
-		{
-			Errored = true;
-		}
-		if (State.IsCompleted())
-		{
-			RunningScripts.Remove(Script);
-			delete Script;
-		}
-	}
 	return !Errored;
 }
 
@@ -78,7 +65,7 @@ FString ATweakItSubsystem::GetConfigDirectory()
 
 bool ATweakItSubsystem::StartScript(FString Name)
 {
-	LOGF("Running script \"%s\"", *Name)
+	LOGF("Starting script \"%s\"", *Name)
 	FString Path = GetConfigDirectory() + Name;
 	if (!FPaths::FileExists(Path))
 	{
@@ -86,7 +73,6 @@ bool ATweakItSubsystem::StartScript(FString Name)
 	}
 	FScript* Script = new FScript(Path);
 	Script->Start();
-	RunningScripts.Add(Script);
 	return true;
 }
 

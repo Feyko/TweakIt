@@ -263,7 +263,8 @@ void* FTIReflection::CopyStruct(UStruct* Struct, void* Values)
 	return Copy;
 }
 
-UFunction* FTIReflection::CopyFunction(UFunction* ToCopy, FString FunctionName)
+// TODO: Pass in Outer
+UFunction* FTIReflection::CopyUFunction(UFunction* ToCopy, FString FunctionName)
 {
 	UFunction* Function = nullptr;
 	FFunctionParams Params = FFunctionParams();

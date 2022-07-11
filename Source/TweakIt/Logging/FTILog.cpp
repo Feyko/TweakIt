@@ -6,7 +6,7 @@
 
 DEFINE_LOG_CATEGORY(LogTweakIt)
 
-thread_local FString FTILog::CurrentScript = "TweakIt";
+FString FTILog::CurrentScript = "TweakIt";
 TMap<FString, FOutputDeviceFile*> FTILog::Files = {};
 FOutputDeviceFile* FTILog::TweakItLog = new FOutputDeviceFile(*(ATweakItSubsystem::GetConfigDirectory() + "TweakIt.log"));
 

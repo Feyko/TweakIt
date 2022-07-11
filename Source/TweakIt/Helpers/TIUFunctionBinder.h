@@ -18,9 +18,12 @@ public:
 	static void RemoveFunction(T... Namespace);
 	
 	static UTIUFunctionBinder* Get();
-	
+	static FEvent* MakeAwaitableFunction(FName& FunctionNameOut);
+
 	template<typename... T>
 	static FString MakeFunctionName(T... Namespace);
 
 	static UFunction* SignatureBuffer;
+
+	static TMap<FGuid, FEvent*> Awaitables;
 };

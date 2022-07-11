@@ -19,7 +19,7 @@ struct FTILog
 
 	static FString WrapStringWithScript(FString String, FString ScriptName);
 	
-	static thread_local FString CurrentScript;
+	static FString CurrentScript;
 	
 	static FString ToFString(const char* String);
 	static FString ToFString(FString String);

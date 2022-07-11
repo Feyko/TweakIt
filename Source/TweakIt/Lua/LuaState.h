@@ -1,6 +1,5 @@
-﻿#pragma once
+#pragma once
 #include "Lua.h"
-#include "LuaLifecycleNotifier.h"
 
 #include "TweakIt/Lua/Lua.h"
 
@@ -8,14 +7,13 @@ class FLuaState
 {
 public:
 	explicit FLuaState(UObject* WorldContext);
+	~FLuaState();
 	lua_State* L;
-	FLuaLifecycleNotifier* LifecycleNotifier;
 private:
 	void OpenLibs();
 	void RegisterMetadatas();
 	void RegisterGlobalFunctions();
 	void RegisterWorldContext(UObject* Context);
-	void RegisterLifecycleNotifier();
 
 	inline static TArray<luaL_Reg> GlobalFunctions = {
 		{"GetClass", FTILua::Lua_GetClass},

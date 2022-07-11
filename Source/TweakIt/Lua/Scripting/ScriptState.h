@@ -5,6 +5,7 @@ class FScriptState
 public:
 	enum EScriptState
 	{
+		NotRan,
 		Running,
 		Waiting,
 		Successful,

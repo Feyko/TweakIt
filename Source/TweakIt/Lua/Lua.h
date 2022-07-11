@@ -8,7 +8,7 @@
 class FTILua
 {
 public:
-	static void luaT_CheckLuaFunction(lua_State* L, int Index);
+	static void LuaT_CheckLuaFunction(lua_State* L, int Index);
 
 	static void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg>);
 	static void RegisterMethod(lua_State* L, luaL_Reg Reg);
