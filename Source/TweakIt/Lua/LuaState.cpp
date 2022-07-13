@@ -2,7 +2,7 @@
 
 #include "TweakIt/Logging/FTILog.h"
 
-FLuaState::FLuaState(UObject* WorldContext)
+FLuaState::FLuaState()
 {
 	L = luaL_newstate();
 	OpenLibs();

@@ -1,4 +1,4 @@
-#include "TweakItSubsystem.h"
+#include "TIScriptOrchestrator.h"
 
 #include <Subsystem/SubsystemActorManager.h>
 
@@ -7,42 +7,36 @@
 #include "Configuration/ConfigManager.h"
 #include "HAL/FileManagerGeneric.h"
 #include "SML/Public/Patching/NativeHookManager.h"
+#include "TweakIt/TweakItModule.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Lua/Scripting/Script.h"
 
-void ATweakItSubsystem::BeginPlay()
+FTIScriptOrchestrator::FTIScriptOrchestrator()
 {
-	LOG("TweakIt Version 0.6.0-dev is now loaded")
 	CreateDefaultScript();
-	RunAllScripts();
 }
 
-
-ATweakItSubsystem* ATweakItSubsystem::Get(UObject* WorldContext)
+FTIScriptOrchestrator::~FTIScriptOrchestrator()
 {
-	if (!WorldContext->IsValidLowLevel()) { return nullptr; }
-	return WorldContext->GetWorld()->GetSubsystem<USubsystemActorManager>()->GetSubsystemActor<ATweakItSubsystem>();
-}
-
-bool ATweakItSubsystem::RunAllScripts()
-{
-	LOG("Running all scripts")
-	bool Errored = false;
-	StartAllScripts();
-	return !Errored;
-}
-
-void ATweakItSubsystem::StartAllScripts()
-{
-	LOG("Starting all scripts")
-	TArray<FString> Scripts = GetAllScripts();
-	for (FString& Filename : Scripts)
+	for (auto Script : RunningScripts)
 	{
-		StartScript(Filename);
+		delete Script;
 	}
 }
 
-void ATweakItSubsystem::CreateDefaultScript()
+bool FTIScriptOrchestrator::StartAllScripts()
+{
+	LOG("Running all scripts")
+	bool Errored = false;
+	TArray<FString> Scripts = GetAllScripts();
+	for (FString& Filename : Scripts)
+	{
+		FScriptState State = StartScript(Filename);
+	}
+	return !Errored;
+}
+
+void FTIScriptOrchestrator::CreateDefaultScript()
 {
 	IFileManager& Manager = FFileManagerGeneric::Get();
 	FString ConfigDirectory = GetConfigDirectory();
@@ -58,25 +52,37 @@ void ATweakItSubsystem::CreateDefaultScript()
 	file->Close();
 }
 
-FString ATweakItSubsystem::GetConfigDirectory()
+FString FTIScriptOrchestrator::GetConfigDirectory()
 {
 	return UConfigManager::GetConfigurationFolderPath().Append("/TweakIt/");
 }
 
-bool ATweakItSubsystem::StartScript(FString Name)
+FTIScriptOrchestrator* FTIScriptOrchestrator::Get()
+{
+	return FModuleManager::GetModuleChecked<FTweakItModule>("TweakIt").Orchestrator;
+}
+
+FScriptState FTIScriptOrchestrator::StartScript(FString Name)
 {
 	LOGF("Starting script \"%s\"", *Name)
 	FString Path = GetConfigDirectory() + Name;
 	if (!FPaths::FileExists(Path))
 	{
-		return false;
+		FScriptState Error = FScriptState::Errored;
+		Error.Payload = "File does not exist";
+		return Error;
 	}
 	FScript* Script = new FScript(Path);
-	Script->Start();
-	return true;
+	FScriptState State = Script->Start();
+	if (State.IsCompleted())
+	{
+		delete Script;
+	}
+	RunningScripts.Emplace(Script);
+	return State;
 }
 
-TArray<FString> ATweakItSubsystem::GetAllScripts()
+TArray<FString> FTIScriptOrchestrator::GetAllScripts()
 {
 	IFileManager& Manager = FFileManagerGeneric::Get();
 	FString ConfigDirectory = GetConfigDirectory();

@@ -2,13 +2,13 @@
 
 #include "FGAnimNotify_AkEventCurrentPotential.h"
 #include "Developer/AITestSuite/Public/TestLogger.h"
-#include "TweakIt/Subsystem/TweakItSubsystem.h"
+#include "TweakIt/Subsystem/TIScriptOrchestrator.h"
 
 DEFINE_LOG_CATEGORY(LogTweakIt)
 
 FString FTILog::CurrentScript = "TweakIt";
 TMap<FString, FOutputDeviceFile*> FTILog::Files = {};
-FOutputDeviceFile* FTILog::TweakItLog = new FOutputDeviceFile(*(ATweakItSubsystem::GetConfigDirectory() + "TweakIt.log"));
+FOutputDeviceFile* FTILog::TweakItLog = new FOutputDeviceFile(*(FTIScriptOrchestrator::GetConfigDirectory() + "TweakIt.log"));
 
 void FTILog::LogForScript(FString String, FString ScriptName, ELogVerbosity::Type Level)
 {
@@ -31,7 +31,7 @@ FOutputDeviceFile* FTILog::GetLogFileForScript(FString ScriptName)
 	{
 		return *ExistingFile;
 	}
-	FOutputDeviceFile* NewFile = new FOutputDeviceFile(*(ATweakItSubsystem::GetConfigDirectory() + ScriptName + ".log"));
+	FOutputDeviceFile* NewFile = new FOutputDeviceFile(*(FTIScriptOrchestrator::GetConfigDirectory() + ScriptName + ".log"));
 	Files.Add(ScriptName, NewFile);
 	return NewFile;
 }

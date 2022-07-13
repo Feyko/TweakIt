@@ -5,7 +5,7 @@
 
 #include "FGPlayerController.h"
 #include "Command/CommandSender.h"
-#include "TweakIt/Subsystem/TweakItSubsystem.h"
+#include "TweakIt/Subsystem/TIScriptOrchestrator.h"
 
 ATIRunAllScriptsCommand::ATIRunAllScriptsCommand()
 {
@@ -26,7 +26,7 @@ EExecutionStatus ATIRunAllScriptsCommand::ExecuteCommand_Implementation(
 		Sender->SendChatMessage("You do not have the sufficient rights to do this.");
 		return EExecutionStatus::INSUFFICIENT_PERMISSIONS;
 	}
-	bool OK = ATweakItSubsystem::Get(this)->RunAllScripts();
+	bool OK = FTIScriptOrchestrator::Get()->StartAllScripts();
 	if (!OK)
 	{
 		Sender->SendChatMessage("Failed to run the scripts. Check the log for more info");

@@ -3,9 +3,9 @@
 #include "FGAnimNotify_AkEventCurrentPotential.h"
 #include "ModuleDescriptor.h"
 #include "TweakIt/Logging/FTILog.h"
-#include "TweakIt/Subsystem/TweakItSubsystem.h"
+#include "TweakIt/Subsystem/TIScriptOrchestrator.h"
 
-FScript::FScript(FString FileName) : FileName(FileName), L(FLuaState(nullptr)), State(FScriptState::NotRan)
+FScript::FScript(FString FileName) : FileName(FileName), State(FScriptState::NotRan), L(FLuaState())
 {
 	PrettyName = PrettyFilename(FileName);
 }
@@ -33,6 +33,6 @@ FScriptState FScript::Start()
 FString FScript::PrettyFilename(FString ScriptFilename)
 {
 	FPaths::NormalizeFilename(ScriptFilename);
-	FPaths::MakePathRelativeTo(ScriptFilename, *ATweakItSubsystem::GetConfigDirectory());
+	FPaths::MakePathRelativeTo(ScriptFilename, *FTIScriptOrchestrator::GetConfigDirectory());
 	return ScriptFilename;
 }
