@@ -2,7 +2,7 @@
 
 #include "Commands/TIRunAllScriptsCommand.h"
 #include "Commands/TIRunScriptCommand.h"
-#include "Subsystem/TIScriptOrchestrator.h"
+#include "Lua/Scripting/TIScriptOrchestrator.h"
 
 UTIInitGameWorldModule::UTIInitGameWorldModule()
 {

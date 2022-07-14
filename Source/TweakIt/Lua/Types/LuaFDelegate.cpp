@@ -38,7 +38,7 @@ int FLuaFDelegate::Lua_Bind(lua_State* L)
 {
 	LOG("Binding a LuaFDelegate")
     FLuaFDelegate* Self = Get(L);
-	FTILua::LuaT_CheckLuaFunction(L, 2);
+	FTILua::LuaT_ExpectLuaFunction(L, 2);
 
 	// TODO: Extract the following into function
 	FString FunctionName = UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName());

@@ -10,6 +10,14 @@
 
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FTITestingDelegate, FString, String, int, Otherstring);
 
+UENUM()
+enum class ETIEnum
+{
+	SomeValue,
+	AnotherValue,
+	IncredibleValue
+};
+
 UCLASS(Blueprintable)
 class UTweakItTesting : public UObject
 {

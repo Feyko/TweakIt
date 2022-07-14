@@ -8,7 +8,8 @@ FLuaState::FLuaState()
 	OpenLibs();
 	RegisterMetadatas();
 	RegisterGlobalFunctions();
-	RegisterWorldContext(WorldContext);
+	lua_pushlightuserdata(L, this);
+	lua_setfield(L, LUA_REGISTRYINDEX, "State");
 }
 
 FLuaState::~FLuaState()

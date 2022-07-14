@@ -2,7 +2,7 @@
 
 #include "FGAnimNotify_AkEventCurrentPotential.h"
 #include "Developer/AITestSuite/Public/TestLogger.h"
-#include "TweakIt/Subsystem/TIScriptOrchestrator.h"
+#include "TweakIt/Lua/Scripting/TIScriptOrchestrator.h"
 
 DEFINE_LOG_CATEGORY(LogTweakIt)
 
@@ -48,6 +48,11 @@ FString FTILog::WrapStringWithScript(FString String, FString ScriptName)
 FString FTILog::ToFString(int Int)
 {
 	return FString::FromInt(Int);
+}
+
+FString FTILog::ToFString(int64 Int)
+{
+	return FString::Printf(TEXT("%lld"), Int);
 }
 
 FString FTILog::ToFString(size_t Size)

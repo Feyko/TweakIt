@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "FGSubsystem.h"
-#include "Subsystem/ModSubsystem.h"
 #include "TweakIt/Lua/LuaState.h"
 #include "TweakIt/Lua/Scripting/Script.h"
 

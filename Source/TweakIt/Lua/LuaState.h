@@ -6,14 +6,18 @@
 class FLuaState
 {
 public:
-	explicit FLuaState(UObject* WorldContext);
+	FLuaState();
 	~FLuaState();
+
+	void RegisterWorldContext(UObject* Context);
+
+	FString EventWaitedFor;
+	
 	lua_State* L;
 private:
 	void OpenLibs();
 	void RegisterMetadatas();
 	void RegisterGlobalFunctions();
-	void RegisterWorldContext(UObject* Context);
 
 	inline static TArray<luaL_Reg> GlobalFunctions = {
 		{"GetClass", FTILua::Lua_GetClass},

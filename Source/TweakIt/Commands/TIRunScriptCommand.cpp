@@ -3,7 +3,7 @@
 
 #include "FGPlayerController.h"
 #include "Command/CommandSender.h"
-#include "TweakIt/Subsystem/TIScriptOrchestrator.h"
+#include "TweakIt/Lua/Scripting/TIScriptOrchestrator.h"
 
 ATIRunScriptCommand::ATIRunScriptCommand()
 {

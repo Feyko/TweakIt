@@ -30,6 +30,7 @@ struct FTILog
 	static FString ToFString(EPropertyFlags Flags);
 	static FString ToFString(EObjectFlags Flags);
 	static FString ToFString(int Int);
+	static FString ToFString(int64 Int);
 	static FString ToFString(size_t Size);
 private:
 	static TMap<FString, FOutputDeviceFile*> Files;

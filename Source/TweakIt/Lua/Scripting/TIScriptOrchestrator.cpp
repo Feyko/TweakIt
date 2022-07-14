@@ -1,11 +1,10 @@
 #include "TIScriptOrchestrator.h"
 
-#include <Subsystem/SubsystemActorManager.h>
-
 #include "FGGameInstance.h"
 #include "TweakIt/Lua/Lua.h"
 #include "Configuration/ConfigManager.h"
 #include "HAL/FileManagerGeneric.h"
+#include "ModLoading/ModLoadingLibrary.h"
 #include "SML/Public/Patching/NativeHookManager.h"
 #include "TweakIt/TweakItModule.h"
 #include "TweakIt/Logging/FTILog.h"
@@ -13,6 +12,11 @@
 
 FTIScriptOrchestrator::FTIScriptOrchestrator()
 {
+	UModLoadingLibrary* ModLoadingLibrary = GEngine->GetEngineSubsystem<UModLoadingLibrary>();
+	for (auto Mod : ModLoadingLibrary->GetLoadedMods())
+	{
+		LOG(Mod.Name)
+	}
 	CreateDefaultScript();
 }
 
