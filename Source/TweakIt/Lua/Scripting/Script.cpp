@@ -13,22 +13,45 @@ FScript::FScript(FString FileName) : FileName(FileName), State(FScriptState::Not
 
 FScriptState FScript::Start()
 {
-	LOG("Starting script")
+	if (State != FScriptState::NotRan)
+	{
+		return State;
+	}
+	luaL_loadfile(L.L, TCHAR_TO_UTF8(*FileName));
+	return Run();
+}
+
+FScriptState FScript::Resume()
+{
+	if (State != FScriptState::Waiting)
+	{
+		return State;
+	}
+	return Run();
+}
+
+FString FScript::PrettyFilename(FString ScriptFilename)
+{
+	FPaths::NormalizeFilename(ScriptFilename);
+	FPaths::MakePathRelativeTo(ScriptFilename, *FTIScriptOrchestrator::GetConfigDirectory());
+	return ScriptFilename;
+}
+
+FScriptState FScript::Run()
+{
 	FTILog::CurrentScript = PrettyName;
 	State = FScriptState::Running;
-	luaL_loadfile(L.L, TCHAR_TO_UTF8(*FileName));
-	lua_KFunction K = [](lua_State* L, int status, lua_KContext ctx) -> int
-	{
-		LOG("CONTINUING")
-		return 0;
-	};
 	
-	// int Returned = lua_pcallk(L.L, 0, LUA_MULTRET, 0, 0, K);
-	int results = 0;
-	int Returned = lua_resume(L.L, nullptr, 0, &results);
+	int NResults = 0;
+	int Returned = lua_resume(L.L, nullptr, 0, &NResults);
 	FScriptState NewState = FScriptState::Successful;
 	if (Returned == LUA_YIELD)
 	{
+		lua_pop(L.L, NResults);
+		if (NResults != 0)
+		{
+			LOGFL("Discarded %d results that were yielded", Warning, NResults)
+		}
 		NewState = FScriptState::Waiting;
 		NewState.Payload = L.EventWaitedFor;
 		LOGF("Waiting on %s", *L.EventWaitedFor)
@@ -43,11 +66,4 @@ FScriptState FScript::Start()
 	FTILog::CurrentScript = "";
 	State = NewState;
 	return NewState;
-}
-
-FString FScript::PrettyFilename(FString ScriptFilename)
-{
-	FPaths::NormalizeFilename(ScriptFilename);
-	FPaths::MakePathRelativeTo(ScriptFilename, *FTIScriptOrchestrator::GetConfigDirectory());
-	return ScriptFilename;
 }

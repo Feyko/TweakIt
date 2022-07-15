@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Modules/ModuleManager.h"
-#include "Subsystem/TIScriptOrchestrator.h"
+#include "Lua/Scripting/TIScriptOrchestrator.h"
 
 
 class FTweakItModule : public FDefaultGameModuleImpl

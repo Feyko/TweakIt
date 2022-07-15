@@ -6,6 +6,7 @@
 #include "FTILuaFuncManager.h"
 #include "IPlatformFilePak.h"
 #include "LuaState.h"
+#include "Scripting/TIScriptOrchestrator.h"
 #include "TweakIt/TweakItTesting.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Helpers/TIReflection.h"
@@ -23,6 +24,15 @@ T* FTILua::LuaT_CheckLightUserdata(lua_State* L, int Index)
 {
 	luaL_argexpected(L, lua_isuserdata(L, Index), Index, "light userdata");
 	return static_cast<T*>(lua_touserdata(L, Index));
+}
+
+bool FTILua::LuaT_OptBoolean(lua_State* L, int Index, bool Default)
+{
+	if (lua_isboolean(L, Index))
+	{
+		return static_cast<bool>(lua_toboolean(L, Index));
+	}
+	return Default;
 }
 
 void FTILua::RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg> Regs)
@@ -363,10 +373,30 @@ int FTILua::Lua_Test(lua_State* L)
 int FTILua::Lua_WaitForEvent(lua_State* L)
 {
 	FString Event = luaL_checkstring(L, 1);
+	bool Unique = LuaT_OptBoolean(L, 2, true);
+	if (Unique && FTIScriptOrchestrator::Get()->HasEventPassed(Event))
+	{
+		return 0;
+	}
 	lua_getfield(L, LUA_REGISTRYINDEX, "State");
 	FLuaState* State = LuaT_CheckLightUserdata<FLuaState>(L, -1);
 	State->EventWaitedFor = Event;
 	lua_yield(L, 0);
+	return 0;
+}
+
+int FTILua::Lua_WaitForMod(lua_State* L)
+{
+	FString Event = luaL_checkstring(L, 1);
+	FString Lifecycle = "Module";
+	if (lua_isstring(L, 2))
+	{
+		Lifecycle = luaL_checkstring(L, 2);
+		lua_pop(L, 1);
+	}
+	lua_pop(L, 1);
+	lua_pushstring(L, TCHAR_TO_UTF8(*FTIScriptOrchestrator::MakeEventForMod(Event, Lifecycle)));
+	Lua_WaitForEvent(L);
 	return 0;
 }
 

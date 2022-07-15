@@ -29,6 +29,7 @@ private:
 		{"MakeStructInstance", FTILua::Lua_MakeStructInstance},
 		{"Test", FTILua::Lua_Test},
 		{"WaitForEvent", FTILua::Lua_WaitForEvent},
+		{"WaitForMod", FTILua::Lua_WaitForMod},
 		{"DumpFunction", FTILua::Lua_DumpFunction},
 		{"LoadFunction", FTILua::Lua_LoadFunction}
 	};

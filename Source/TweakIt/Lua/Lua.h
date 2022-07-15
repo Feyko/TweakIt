@@ -11,6 +11,7 @@ public:
 	static void LuaT_ExpectLuaFunction(lua_State* L, int Index);
 	template<typename T>
 	static T* LuaT_CheckLightUserdata(lua_State* L, int Index);
+	static bool LuaT_OptBoolean(lua_State* L, int Index, bool Default);
 
 	static void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg>);
 	static void RegisterMethod(lua_State* L, luaL_Reg Reg);
@@ -31,6 +32,7 @@ public:
 	static int Lua_Print(lua_State* L);
 	static int Lua_Test(lua_State* L);
 	static int Lua_WaitForEvent(lua_State* L);
+	static int Lua_WaitForMod(lua_State* L);
 	static int Lua_DumpFunction(lua_State* L);
 	static int Lua_LoadFunction(lua_State* L);
 };

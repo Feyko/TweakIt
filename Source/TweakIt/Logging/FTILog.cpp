@@ -20,8 +20,6 @@ void FTILog::LogForScript(FString String, FString ScriptName, ELogVerbosity::Typ
 	TweakItLog->Log(LogTweakIt.GetCategoryName(), Level, WrapStringWithScript(String, ScriptName));
 	FOutputDeviceFile* LogFile = GetLogFileForScript(ScriptName);
 	LogFile->Log(LogTweakIt.GetCategoryName(), Level, String);
-	TweakItLog->Flush();
-	LogFile->Flush();
 }
 
 FOutputDeviceFile* FTILog::GetLogFileForScript(FString ScriptName)

@@ -4,6 +4,7 @@
 #include "TweakIt/Lua/Lua.h"
 #include "Configuration/ConfigManager.h"
 #include "HAL/FileManagerGeneric.h"
+#include "Interfaces/IPluginManager.h"
 #include "ModLoading/ModLoadingLibrary.h"
 #include "SML/Public/Patching/NativeHookManager.h"
 #include "TweakIt/TweakItModule.h"
@@ -12,12 +13,8 @@
 
 FTIScriptOrchestrator::FTIScriptOrchestrator()
 {
-	UModLoadingLibrary* ModLoadingLibrary = GEngine->GetEngineSubsystem<UModLoadingLibrary>();
-	for (auto Mod : ModLoadingLibrary->GetLoadedMods())
-	{
-		LOG(Mod.Name)
-	}
 	CreateDefaultScript();
+	SetupModEvents();
 }
 
 FTIScriptOrchestrator::~FTIScriptOrchestrator()
@@ -56,6 +53,17 @@ void FTIScriptOrchestrator::CreateDefaultScript()
 	file->Close();
 }
 
+void FTIScriptOrchestrator::SetupModEvents()
+{
+	FModuleManager::Get().OnModulesChanged().AddLambda([this](FName ModuleName, EModuleChangeReason Reason)
+	{
+		if (Reason == EModuleChangeReason::ModuleLoaded)
+		{
+			ResumeForMod(ModuleName.ToString());
+		}
+	});
+}
+
 FString FTIScriptOrchestrator::GetConfigDirectory()
 {
 	return UConfigManager::GetConfigurationFolderPath().Append("/TweakIt/");
@@ -82,8 +90,66 @@ FScriptState FTIScriptOrchestrator::StartScript(FString Name)
 	{
 		delete Script;
 	}
+	// if (State == FScriptState::Waiting)
+	// {
+	// 	LOG("Resuming waiting script")
+	// 	Script->Resume();
+	// }
 	RunningScripts.Emplace(Script);
 	return State;
+}
+
+FString FTIScriptOrchestrator::MakeEventForMod(FString ModReference, FString Lifecycle)
+{
+	return MakeEventString("Mod", ModReference, Lifecycle);
+}
+
+bool FTIScriptOrchestrator::ResumeForMod(FString ModReference, FString Lifecycle /* = "Module"*/)
+{
+	FString Event = MakeEventForMod(ModReference, Lifecycle);
+	PassedUniqueEvents.Emplace(Event);
+	return ResumeScriptsWaitingForEvent(Event);
+}
+
+template <typename ... T>
+FString FTIScriptOrchestrator::MakeEventString(T... EventParts)
+{
+	FString init[] = {EventParts...};
+	TArray<FString> Array;
+	Array.Append(init, ARRAY_COUNT(init));
+	return FString::Join(Array, TEXT(":"));
+}
+
+template <typename ... T>
+bool FTIScriptOrchestrator::HasEventPassed(T... EventParts)
+{
+	FString Event = MakeEventString(EventParts...);
+	return PassedUniqueEvents.Find(Event) != INDEX_NONE;
+}
+
+bool FTIScriptOrchestrator::HasModPassed(FString ModReference, FString Lifecycle)
+{
+	return HasEventPassed(MakeEventForMod(ModReference, Lifecycle));
+}
+
+template <typename ... T>
+bool FTIScriptOrchestrator::ResumeScriptsWaitingForEvent(T... EventParts)
+{
+	FString Event = MakeEventString(EventParts...);
+	LOG(Event)
+	bool OK = true;
+	for (auto Script : RunningScripts)
+	{
+		if (Script->L.EventWaitedFor == Event)
+		{
+			FScriptState State = Script->Resume();
+			if (State == FScriptState::Errored)
+			{
+				OK = false;
+			}
+		}
+	}
+	return OK;
 }
 
 TArray<FString> FTIScriptOrchestrator::GetAllScripts()

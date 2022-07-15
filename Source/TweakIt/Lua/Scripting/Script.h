@@ -16,9 +16,11 @@ public:
 	FLuaState L;
 
 	FScriptState Start();
+	FScriptState Resume();
 
 	static FString PrettyFilename(FString ScriptFilename);
 private:
+	FScriptState Run();
 	
 	FScriptState State;
 };
