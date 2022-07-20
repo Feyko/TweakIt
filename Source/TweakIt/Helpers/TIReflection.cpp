@@ -478,3 +478,41 @@ void FTIReflection::ReverseChildProperties(FField** Head)
 	}
 	*Head = Previous;
 }
+
+template <typename T>
+int FTIReflection::AddValueToEnum(FName NewName)
+{
+	UEnum* Enum = StaticEnum<T>();
+	FString EnumName = Enum->GetName();
+	if (!NewName.ToString().StartsWith(EnumName))
+	{
+		NewName = FName(FString::Printf(TEXT("%s::%s"), *EnumName, *NewName.ToString()));
+	}
+	if (Enum->IsValidEnumName(NewName))
+	{
+		return -1;
+	}
+	bool HasMax = Enum->ContainsExistingMax();
+	int64 NewValue = HasMax ? Enum->GetMaxEnumValue() : Enum->NumEnums();
+	TArray<TPair<FName, int64>> Names;
+	int EnumNum = Enum->NumEnums();
+	if (HasMax)
+	{
+		EnumNum--;
+	}
+	for (int i = 0; i < EnumNum; ++i)
+	{
+		FName Name = Enum->GetNameByIndex(i);
+		int64 Value = Enum->GetValueByIndex(i);
+		Names.Emplace(TPair<FName, int64>(Name, Value));
+	}
+	auto New = TPair<FName, int64>(NewName, NewValue);
+	Names.Emplace(New);
+	if (HasMax)
+	{
+		Names.Emplace(TPair<FName, int64>(Enum->GetNameByValue(Enum->GetMaxEnumValue()), Names.Num()));
+	}
+	EEnumFlags Flag = Enum->HasAnyEnumFlags(EEnumFlags::Flags) ? EEnumFlags::Flags : EEnumFlags::None;
+	Enum->SetEnums(Names, Enum->GetCppForm(), Flag);
+	return EnumNum;
+}

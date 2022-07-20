@@ -27,4 +27,6 @@ public:
 
 	static uint8 GetBoolPropertyBitmask(FBoolProperty* Prop);
 	static void ReverseChildProperties(FField** Head);
+	template <class T>
+	static int AddValueToEnum(FName NewName);
 };
