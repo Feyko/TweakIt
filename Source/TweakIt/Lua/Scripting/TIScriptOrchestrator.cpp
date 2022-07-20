@@ -6,6 +6,7 @@
 #include "HAL/FileManagerGeneric.h"
 #include "Interfaces/IPluginManager.h"
 #include "ModLoading/ModLoadingLibrary.h"
+#include "Module/ModModule.h"
 #include "SML/Public/Patching/NativeHookManager.h"
 #include "TweakIt/TweakItModule.h"
 #include "TweakIt/Logging/FTILog.h"
@@ -62,6 +63,13 @@ void FTIScriptOrchestrator::SetupModEvents()
 			ResumeForMod(ModuleName.ToString());
 		}
 	});
+
+	UModModule* Module = const_cast<UModModule*>(GetDefault<UModModule>());
+	SUBSCRIBE_METHOD_VIRTUAL_AFTER(UModModule::DispatchLifecycleEvent, Module, [this](UModModule* Self, ELifecyclePhase Phase)
+	{
+		FString PhaseString = StaticEnum<ELifecyclePhase>()->GetNameStringByValue(int64(Phase));
+		ResumeForMod(Self->GetOwnerModReference().ToString(), PhaseString);
+	})
 }
 
 FString FTIScriptOrchestrator::GetConfigDirectory()
@@ -89,13 +97,10 @@ FScriptState FTIScriptOrchestrator::StartScript(FString Name)
 	if (State.IsCompleted())
 	{
 		delete Script;
+	} else
+	{
+		RunningScripts.Emplace(Script);
 	}
-	// if (State == FScriptState::Waiting)
-	// {
-	// 	LOG("Resuming waiting script")
-	// 	Script->Resume();
-	// }
-	RunningScripts.Emplace(Script);
 	return State;
 }
 
@@ -107,8 +112,7 @@ FString FTIScriptOrchestrator::MakeEventForMod(FString ModReference, FString Lif
 bool FTIScriptOrchestrator::ResumeForMod(FString ModReference, FString Lifecycle /* = "Module"*/)
 {
 	FString Event = MakeEventForMod(ModReference, Lifecycle);
-	PassedUniqueEvents.Emplace(Event);
-	return ResumeScriptsWaitingForEvent(Event);
+	return ResumeScriptsWaitingForEvent(true, Event);
 }
 
 template <typename ... T>
@@ -133,10 +137,14 @@ bool FTIScriptOrchestrator::HasModPassed(FString ModReference, FString Lifecycle
 }
 
 template <typename ... T>
-bool FTIScriptOrchestrator::ResumeScriptsWaitingForEvent(T... EventParts)
+bool FTIScriptOrchestrator::ResumeScriptsWaitingForEvent(bool Unique, T... EventParts)
 {
 	FString Event = MakeEventString(EventParts...);
 	LOG(Event)
+	if (Unique)
+	{
+		PassedUniqueEvents.Emplace(Event);
+	}
 	bool OK = true;
 	for (auto Script : RunningScripts)
 	{

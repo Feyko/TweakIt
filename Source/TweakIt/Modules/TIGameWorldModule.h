@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Module/GameWorldModule.h"
-#include "TIInitGameWorldModule.generated.h"
+#include "TIGameWorldModule.generated.h"
 
 UCLASS()
-class TWEAKIT_API UTIInitGameWorldModule : public UGameWorldModule
+class TWEAKIT_API UTIGameWorldModule : public UGameWorldModule
 {
 	GENERATED_BODY()
-	UTIInitGameWorldModule();
+	UTIGameWorldModule();
 };

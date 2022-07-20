@@ -24,7 +24,7 @@ public:
 	bool ResumeForMod(FString ModReference, FString Lifecycle = "Module");
 
 	template<typename... T>
-	bool ResumeScriptsWaitingForEvent(T... EventParts);
+	bool ResumeScriptsWaitingForEvent(bool Unique, T... EventParts);
 
 	static TArray<FString> GetAllScripts();
 	
