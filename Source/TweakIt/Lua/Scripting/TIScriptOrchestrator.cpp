@@ -109,6 +109,7 @@ FString FTIScriptOrchestrator::MakeEventForMod(FString ModReference, FString Lif
 	return MakeEventString("Mod", ModReference, Lifecycle);
 }
 
+// TODO: Make lifecycle events non-unique
 bool FTIScriptOrchestrator::ResumeForMod(FString ModReference, FString Lifecycle /* = "Module"*/)
 {
 	FString Event = MakeEventForMod(ModReference, Lifecycle);

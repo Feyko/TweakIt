@@ -2,6 +2,8 @@
 
 #include "AssetRegistryModule.h"
 #include "FactoryGame/Public/Equipment/FGBuildGunDismantle.h"
+#include "Helpers/Error.h"
+#include "Helpers/Result.h"
 #include "Logging/FTILog.h"
 #include "Patching/NativeHookManager.h"
 

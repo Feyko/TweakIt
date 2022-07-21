@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <string>
 
+#include "TweakIt/Helpers/Result.h"
+
 DECLARE_LOG_CATEGORY_EXTERN(LogTweakIt, Log, Log);   
 
 #define LOG(str) LOGL(str, Log)
@@ -32,6 +34,8 @@ struct FTILog
 	static FString ToFString(int Int);
 	static FString ToFString(int64 Int);
 	static FString ToFString(size_t Size);
+	template<typename V, typename E>
+	static FString ToFString(TResult<V, E> Result);
 private:
 	static TMap<FString, FOutputDeviceFile*> Files;
 	static FOutputDeviceFile* TweakItLog;

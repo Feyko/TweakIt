@@ -199,3 +199,13 @@ FString FTILog::ToFString(EObjectFlags Flags)
 	Out.RemoveFromEnd("|");
 	return Out;
 }
+
+template <typename V, typename E>
+FString FTILog::ToFString(TResult<V, E> Result)
+{
+	if(Result)
+	{
+		return FTILog::ToFString(*Result);
+	}
+	return "Error: " + Result.UnwrapErr()->Error();
+}
