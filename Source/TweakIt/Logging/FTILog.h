@@ -1,14 +1,13 @@
 ﻿#pragma once
-#include <string>
 
-#include "TweakIt/Helpers/Result.h"
+#include "../Helpers/StringConv.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTweakIt, Log, Log);   
 
 #define LOG(str) LOGL(str, Log)
 #define LOGL(str, level)\
-	UE_LOG(LogTweakIt, level, TEXT("%s"), *FTILog::WrapStringWithScript(FTILog::ToFString(str), FTILog::CurrentScript));\
-	FTILog::LogForScript(FTILog::ToFString(str), FTILog::CurrentScript, ELogVerbosity::level);
+	UE_LOG(LogTweakIt, level, TEXT("%s"), *FTILog::WrapStringWithScript(FStringConv::ToFString(str), FTILog::CurrentScript));\
+	FTILog::LogForScript(FStringConv::ToFString(str), FTILog::CurrentScript, ELogVerbosity::level);
 
 #define LOGF(str, ...) LOGFL(str, Log, __VA_ARGS__);
 #define LOGFL(str, level, ...) LOGL(FString::Printf(TEXT(str), __VA_ARGS__), level)
@@ -22,20 +21,6 @@ struct FTILog
 	static FString WrapStringWithScript(FString String, FString ScriptName);
 	
 	static FString CurrentScript;
-	
-	static FString ToFString(const char* String);
-	static FString ToFString(FString String);
-	static FString ToFString(const TCHAR* String);
-	static FString ToFString(std::string String);
-	static FString ToFString(FName Name);
-	static FString ToFString(EFunctionFlags Flags);
-	static FString ToFString(EPropertyFlags Flags);
-	static FString ToFString(EObjectFlags Flags);
-	static FString ToFString(int Int);
-	static FString ToFString(int64 Int);
-	static FString ToFString(size_t Size);
-	template<typename V, typename E>
-	static FString ToFString(TResult<V, E> Result);
 private:
 	static TMap<FString, FOutputDeviceFile*> Files;
 	static FOutputDeviceFile* TweakItLog;
