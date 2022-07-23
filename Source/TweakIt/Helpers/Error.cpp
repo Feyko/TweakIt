@@ -1,5 +1,7 @@
 ﻿#include "Error.h"
 
+#include "TweakIt/Logging/FTILog.h"
+
 FStringError::~FStringError()
 {}
 
@@ -22,12 +24,14 @@ FString FWrapError::Error()
 	return With->Error() + ": " + Wrapped->Error();
 }
 
-Err Errors::New(FString Error)
+template<typename... T>
+Err Errors::Newf(FString Error, T... Args)
 {
-	return MakeShared<FStringError>(Error);
+	return MakeShared<FStringError>(FStringConv::Printf(Error, Args...));
 }
 
-Err Errors::Wrap(Err Wrapping, FString With)
+template<typename... T>
+Err Errors::Wrapf(Err Wrapping, FString With, T... Args)
 {
-	return MakeShared<FWrapError>(Wrapping, New(With));
+	return MakeShared<FWrapError>(Wrapping, Newf(With, Args...));
 }

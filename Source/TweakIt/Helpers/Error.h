@@ -33,6 +33,8 @@ private:
 
 namespace Errors
 {
-	Err New(FString Error);
-	Err Wrap(Err Wrapping, FString With);
+	template<typename... T>
+	Err Newf(FString Error, T... Args);
+	template<typename... T>
+	Err Wrapf(Err Wrapping, FString With, T... Args);
 }
