@@ -410,7 +410,7 @@ int FTILua::Lua_DumpFunction(lua_State* L)
 int FTILua::Lua_LoadFunction(lua_State* L)
 {
 	FString Name = luaL_checkstring(L, 1);
-	FLuaFunc* Func = FTILuaFuncManager::GetSavedLuaFunc(Name);
+	TResult<FLuaFunc> Func = FTILuaFuncManager::GetSavedLuaFunc(Name);
 	if (!Func)
 	{
 		luaL_error(L, "Function %s not previously dumped", TCHAR_TO_UTF8(*Name));
