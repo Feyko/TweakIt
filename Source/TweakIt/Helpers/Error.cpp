@@ -5,6 +5,11 @@
 FStringError::~FStringError()
 {}
 
+FString IError::operator*()
+{
+	return Error();
+}
+
 FStringError::FStringError(FString Error) : ErrorString(Error)
 {}
 
@@ -13,7 +18,7 @@ FString FStringError::Error()
 	return ErrorString;
 }
 
-FWrapError::FWrapError(Err Wrapping, Err With) : Wrapped(Wrapping), With(With)
+FWrapError::FWrapError(FError Wrapping, FError With) : Wrapped(Wrapping), With(With)
 {}
 
 FWrapError::~FWrapError()
@@ -25,13 +30,13 @@ FString FWrapError::Error()
 }
 
 template<typename... T>
-Err Errors::Newf(FString Error, T... Args)
+FError Errors::Newf(FString Error, T... Args)
 {
 	return MakeShared<FStringError>(FStringConv::Printf(Error, Args...));
 }
 
 template<typename... T>
-Err Errors::Wrapf(Err Wrapping, FString With, T... Args)
+FError Errors::Wrapf(FError Wrapping, FString With, T... Args)
 {
 	return MakeShared<FWrapError>(Wrapping, Newf(With, Args...));
 }

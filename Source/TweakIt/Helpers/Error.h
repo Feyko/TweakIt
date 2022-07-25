@@ -5,9 +5,11 @@ class IError
 public:
 	virtual ~IError(){};
 	virtual FString Error() = 0;
+
+	FString operator*();
 };
 
-using Err = TSharedPtr<IError> ;
+using FError = TSharedPtr<IError> ;
 
 class FStringError : public IError
 {
@@ -23,18 +25,18 @@ private:
 class FWrapError : public IError
 {
 public:
-	explicit FWrapError(Err Wrapping, Err With);
+	explicit FWrapError(FError Wrapping, FError With);
 	virtual ~FWrapError() override;
 	virtual FString Error() override;
 private:
-	Err Wrapped;
-	Err With;
+	FError Wrapped;
+	FError With;
 };
 
 namespace Errors
 {
 	template<typename... T>
-	Err Newf(FString Error, T... Args);
+	FError Newf(FString Error, T... Args);
 	template<typename... T>
-	Err Wrapf(Err Wrapping, FString With, T... Args);
+	FError Wrapf(FError Wrapping, FString With, T... Args);
 }

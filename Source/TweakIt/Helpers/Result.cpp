@@ -1,66 +1,71 @@
 ﻿#include "Result.h"
 
-template <typename Val, typename Err>
-bool TResult<Val, Err>::IsOk()
+#include "TweakIt/Logging/FTILog.h"
+#include "TweakIt/Lua/FTILuaFuncManager.h"
+
+template <typename Val, typename ErrType>
+bool TResult<Val, ErrType>::IsOk()
 {
 	Checked = true;
 	return Ok;
 }
 
-template <typename Val, typename Err>
-bool TResult<Val, Err>::IsErr()
+template <typename Val, typename ErrType>
+bool TResult<Val, ErrType>::IsErr()
 {
 	return !IsOk();
 }
 
-template <typename Val, typename Err>
-TResult<Val, Err>::TResult(Val InValue) : Value(InValue), Ok(true), Checked(false)
+template <typename Val, typename ErrType>
+TResult<Val, ErrType>::TResult(Val Value) : Value(Value), Ok(true), Checked(false)
+{
+
+}
+
+template <typename Val, typename ErrType>
+TResult<Val, ErrType>::TResult(ErrType Error) : Error(Error), Ok(false), Checked(false), Value(nullptr)
 {
 	
 }
 
-template <typename Val, typename Err>
-TResult<Val, Err>::TResult(Err InError) : Error(InError), Ok(false), Checked(false)
-{
-	
-}
-
-template <typename Val, typename Err>
-TResult<Val, Err>::operator bool()
+template <typename Val, typename ErrType>
+TResult<Val, ErrType>::operator bool()
 {
 	return IsOk();
 }
 
-template <typename Val, typename Err>
-Val TResult<Val, Err>::Unwrap()
+template <typename Val, typename ErrType>
+Val TResult<Val, ErrType>::Unwrap()
 {
 	checkf(Checked, TEXT("Trying to unwrap an unchecked FResult"))
-	checkf(Ok, TEXT("Trying to get the value of an errored TResult"))
+	checkf(Ok, TEXT("Trying to get the value of an ErrTypeored TResult"))
 	return Value;
 }
 
-template <typename Val, typename Err>
-Val TResult<Val, Err>::operator*()
+template <typename Val, typename ErrType>
+Val TResult<Val, ErrType>::operator*()
 {
 	return Unwrap();
 }
 
-template <typename Val, typename Err>
-Val TResult<Val, Err>::operator->()
-{
-	return Unwrap();
-}
-
-template <typename Val, typename Err>
-Err TResult<Val, Err>::UnwrapErr()
+template <typename Val, typename ErrType>
+Val* TResult<Val, ErrType>::operator->()
 {
 	checkf(Checked, TEXT("Trying to unwrap an unchecked FResult"))
-	checkf(IsErr(), TEXT("Trying to get the error of a valid TResult"))
+	checkf(Ok, TEXT("Trying to get the value of an ErrTypeored TResult"))
+	return &Value;
+}
+
+template <typename Val, typename ErrType>
+ErrType TResult<Val, ErrType>::Err()
+{
+	checkf(Checked, TEXT("Trying to unwrap an unchecked FResult"))
+	checkf(IsErr(), TEXT("Trying to get the ErrTypeor of a valid TResult"))
 	return Error;
 }
 
-template <typename Val, typename Err>
-bool TResult<Val, Err>::operator==(TResult<Val, Err> Other)
+template <typename Val, typename ErrType>
+bool TResult<Val, ErrType>::operator==(TResult<Val, ErrType> Other)
 {
-	return Ok && Other.Ok && Value == Other.Value || !Ok && !Other.Ok && Error == Other.Error;
+	return Ok && Other.Ok && Value == Other.Value || !Ok && !Other.Ok && ErrTypeor == Other.ErrTypeor;
 }

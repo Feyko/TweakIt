@@ -2,27 +2,27 @@
 
 #include "Error.h"
 
-template<typename Val, typename Err = Err>
+template<typename ValType, typename ErrType = FError>
 struct TResult
 {
 	TResult() = delete;
-	TResult(Val InValue);
-	TResult(Err InError);
+	TResult(ValType InValue);
+	TResult(ErrType InError);
 
 	bool IsOk();
 	bool IsErr();
 	operator bool();
 
-	Val Unwrap();
-	Val operator*();
-	Val operator->();
+	ValType Unwrap();
+	ValType operator*();
+	ValType* operator->();
 
-	Err UnwrapErr();
+	ErrType Err();
 	
-	bool operator==(TResult<Val, Err> Other);
-
+	bool operator==(TResult<ValType, ErrType> Other);
+private:
 	bool Ok;
 	bool Checked;
-	Val Value;
-	Err Error;
+	ValType Value;
+	ErrType Error;
 };
