@@ -508,11 +508,7 @@ int FTIReflection::AddValueToEnum(FName NewName)
 	}
 	auto New = TPair<FName, int64>(NewName, NewValue);
 	Names.Emplace(New);
-	if (HasMax)
-	{
-		Names.Emplace(TPair<FName, int64>(Enum->GetNameByValue(Enum->GetMaxEnumValue()), Names.Num()));
-	}
 	EEnumFlags Flag = Enum->HasAnyEnumFlags(EEnumFlags::Flags) ? EEnumFlags::Flags : EEnumFlags::None;
-	Enum->SetEnums(Names, Enum->GetCppForm(), Flag);
+	Enum->SetEnums(Names, Enum->GetCppForm(), Flag, HasMax);
 	return EnumNum;
 }
