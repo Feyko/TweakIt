@@ -6,8 +6,8 @@ class UTIUFunctionBinder : public UObject
 {
 	GENERATED_BODY()
 public:
-	template <class ... T>
-	FString AddNativeFunction(FNativeFuncPtr Function, T ... Namespace);
+	static void AddNativeFunction(FNativeFuncPtr Function, FName Name);
+	
 	template<typename... T>
 	static FString AddFunction(UFunction* Function, T... Namespace);
 	
@@ -24,6 +24,5 @@ public:
 	static FString MakeFunctionName(T... Namespace);
 
 	static UFunction* SignatureBuffer;
-
 	static TMap<FGuid, FEvent*> Awaitables;
 };
