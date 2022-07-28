@@ -12,7 +12,7 @@ FOutputDeviceFile* FTILog::TweakItLog = new FOutputDeviceFile(*(FTIScriptOrchest
 
 void FTILog::LogForScript(FString String, FString ScriptName, ELogVerbosity::Type Level)
 {
-	if (ScriptName == "TweakIt")
+	if (ScriptName == "TweakIt" || ScriptName == "")
 	{
 		TweakItLog->Log(LogTweakIt.GetCategoryName(), Level, String);
 		return;
