@@ -22,11 +22,13 @@ public:
 	static void* MakeStructInstance(UStruct* Struct);
 	static void* CopyStruct(UStruct* Struct, void* Values);
 
-	static UFunction* CopyUFunction(UFunction* ToCopy, FString FunctionName);
+	static UFunction* CopyUFunction(UFunction* ToCopy, FString FunctionName, UClass* Outer = nullptr);
 	static FProperty* CopyProperty(FFieldVariant Outer, FProperty* Prop);
 
 	static uint8 GetBoolPropertyBitmask(FBoolProperty* Prop);
 	static void ReverseChildProperties(FField** Head);
 	template <class T>
 	static int AddValueToEnum(FName NewName);
+private:
+	static UClass* UFunctionOuterBuffer;
 };

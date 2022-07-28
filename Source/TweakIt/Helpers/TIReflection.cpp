@@ -7,7 +7,8 @@
 // #include "Editor/KismetCompiler/Public/KismetCompilerMisc.h"
 #include "Engine/SCS_Node.h"
 #include "TweakIt/Logging/FTILog.h"
-#include "TweakIt/Logging/FTILog.h"
+
+UClass* FTIReflection::UFunctionOuterBuffer = nullptr;
 
 UProperty* FTIReflection::FindPropertyByName(UStruct* Class, const TCHAR* PropertyName)
 {
@@ -263,14 +264,14 @@ void* FTIReflection::CopyStruct(UStruct* Struct, void* Values)
 	return Copy;
 }
 
-// TODO: Pass in Outer
-UFunction* FTIReflection::CopyUFunction(UFunction* ToCopy, FString FunctionName)
+UFunction* FTIReflection::CopyUFunction(UFunction* ToCopy, FString FunctionName, UClass* Outer /*= nullptr*/)
 {
 	UFunction* Function = nullptr;
 	FFunctionParams Params = FFunctionParams();
 	Params.OwningClassName = TCHAR_TO_UTF8(*UTIUFunctionBinder::StaticClass()->GetName());
 	Params.NameUTF8 = TCHAR_TO_UTF8(*FunctionName);
-	Params.OuterFunc = []()->UObject*{return UTIUFunctionBinder::StaticClass();};
+	UFunctionOuterBuffer = Outer ? Outer : UTIUFunctionBinder::StaticClass();
+	Params.OuterFunc = []()->UObject*{return UFunctionOuterBuffer;};
 	Params.FunctionFlags = FUNC_Native|FUNC_Static|FUNC_Public;
 	LOG("Constructing function")
 	ConstructUFunction(Function, Params);
