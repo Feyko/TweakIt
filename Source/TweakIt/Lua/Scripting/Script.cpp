@@ -53,8 +53,14 @@ FScriptState FScript::Run()
 			LOGFL("Discarded %d results that were yielded", Warning, NResults)
 		}
 		NewState = FScriptState::Waiting;
-		NewState.Payload = L.EventWaitedFor;
-		LOGF("Waiting on %s", *L.EventWaitedFor)
+		if (L.PlatformEventWaitedFor)
+		{
+			LOG("Waiting on platform event")
+		} else
+		{
+			NewState.Payload = L.EventWaitedFor;
+			LOGF("Waiting on %s", *L.EventWaitedFor)
+		}
 	}
 	else if (Returned != LUA_OK)
 	{

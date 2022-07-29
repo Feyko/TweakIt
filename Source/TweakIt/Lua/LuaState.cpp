@@ -2,7 +2,7 @@
 
 #include "TweakIt/Logging/FTILog.h"
 
-FLuaState::FLuaState()
+FLuaState::FLuaState() : PlatformEventWaitedFor(nullptr)
 {
 	L = luaL_newstate();
 	OpenLibs();
@@ -57,4 +57,10 @@ void FLuaState::RegisterWorldContext(UObject* Context)
 {
 	FLuaUObject::ConstructObject(L, Context);
 	lua_setglobal(L, "WorldContext");
+}
+
+FLuaState* FLuaState::Get(lua_State* L)
+{
+	lua_getfield(L, LUA_REGISTRYINDEX, "State");
+	return FTILua::LuaT_CheckLightUserdata<FLuaState>(L, -1);
 }

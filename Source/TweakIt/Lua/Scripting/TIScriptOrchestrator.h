@@ -12,6 +12,9 @@ public:
 	
 	bool StartAllScripts();
 	FScriptState StartScript(FString Name);
+	FScriptState ResumeScript(FScript* Script);
+	void CheckAfterScriptStop(FScript* Script);
+	
 	
 	static FString MakeEventForMod(FString ModReference, FString Lifecycle = "Module");
 	template<typename... T>

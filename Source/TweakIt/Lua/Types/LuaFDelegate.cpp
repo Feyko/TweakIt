@@ -6,6 +6,7 @@
 #include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Lua/FTILuaFuncManager.h"
+#include "TweakIt/Lua/LuaState.h"
 using namespace std;
 
 int FLuaFDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FScriptDelegate* Delegate)
@@ -73,8 +74,12 @@ int FLuaFDelegate::Lua_Unbind(lua_State* L)
 
 int FLuaFDelegate::Lua_Wait(lua_State* L)
 {
-	luaL_error(L, "WIP");
 	FLuaFDelegate* Self = Get(L);
+	FName FunctionName = "";
+	FEvent* Event =  UTIUFunctionBinder::MakeAwaitableFunction(FunctionName);
+	Self->Delegate->BindUFunction(UTIUFunctionBinder::Get(), FunctionName);
+	FLuaState::Get(L)->PlatformEventWaitedFor = Event;
+	lua_yield(L, 0);
 	return 0;
 }
 

@@ -10,8 +10,10 @@ public:
 	~FLuaState();
 
 	void RegisterWorldContext(UObject* Context);
+	static FLuaState* Get(lua_State* L);
 
 	FString EventWaitedFor;
+	FEvent* PlatformEventWaitedFor;
 	
 	lua_State* L;
 private:

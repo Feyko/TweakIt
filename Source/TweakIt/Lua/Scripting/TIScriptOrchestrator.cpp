@@ -94,14 +94,43 @@ FScriptState FTIScriptOrchestrator::StartScript(FString Name)
 	}
 	FScript* Script = new FScript(Path);
 	FScriptState State = Script->Start();
-	if (State.IsCompleted())
+	CheckAfterScriptStop(Script);
+	return State;
+}
+
+FScriptState FTIScriptOrchestrator::ResumeScript(FScript* Script)
+{
+	FScriptState State = Script->Resume();
+	CheckAfterScriptStop(Script);
+	return State;
+}
+
+void FTIScriptOrchestrator::CheckAfterScriptStop(FScript* Script)
+{
+	if (Script->GetState().IsCompleted())
 	{
 		delete Script;
 	} else
 	{
 		RunningScripts.Emplace(Script);
+		FEvent* Event = Script->L.PlatformEventWaitedFor;
+		if (Event != nullptr)
+		{
+			FEvent* ReadyCallback = FPlatformProcess::CreateSynchEvent();
+			AsyncTask(ENamedThreads::AnyBackgroundHiPriTask, [Event, Script, this, ReadyCallback]
+			{
+				ReadyCallback->Trigger();
+				Event->Wait();
+				AsyncTask(ENamedThreads::GameThread, [Script, this]
+				{
+					delete Script->L.PlatformEventWaitedFor;
+					Script->L.PlatformEventWaitedFor = nullptr;
+					ResumeScript(Script);
+				});
+			});
+			ReadyCallback->Wait();
+		}
 	}
-	return State;
 }
 
 FString FTIScriptOrchestrator::MakeEventForMod(FString ModReference, FString Lifecycle)
@@ -141,7 +170,7 @@ template <typename ... T>
 bool FTIScriptOrchestrator::ResumeScriptsWaitingForEvent(bool Unique, T... EventParts)
 {
 	FString Event = MakeEventString(EventParts...);
-	LOG(Event)
+	// LOG(Event)
 	if (Unique)
 	{
 		PassedUniqueEvents.Emplace(Event);
@@ -151,7 +180,8 @@ bool FTIScriptOrchestrator::ResumeScriptsWaitingForEvent(bool Unique, T... Event
 	{
 		if (Script->L.EventWaitedFor == Event)
 		{
-			FScriptState State = Script->Resume();
+			Script->L.EventWaitedFor = "";
+			FScriptState State = ResumeScript(Script);
 			if (State == FScriptState::Errored)
 			{
 				OK = false;

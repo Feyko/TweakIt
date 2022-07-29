@@ -19,6 +19,8 @@ public:
 	FScriptState Resume();
 
 	static FString PrettyFilename(FString ScriptFilename);
+
+	FScriptState GetState() { return State;}
 private:
 	FScriptState Run();
 	

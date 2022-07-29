@@ -367,6 +367,11 @@ int FTILua::Lua_Print(lua_State* L)
 int FTILua::Lua_Test(lua_State* L)
 {
 	LOG("Running Lua_Test")
+	// FPlatformProcess::Sleep(4);
+	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
+	LOG(UTweakItTesting::Get()->Delegate.IsBound())
+	LOG("Executing")
+	UTweakItTesting::Get()->Delegate.Execute("String", 42);
 	return 0;
 }
 
@@ -378,8 +383,7 @@ int FTILua::Lua_WaitForEvent(lua_State* L)
 	{
 		return 0;
 	}
-	lua_getfield(L, LUA_REGISTRYINDEX, "State");
-	FLuaState* State = LuaT_CheckLightUserdata<FLuaState>(L, -1);
+	FLuaState* State = FLuaState::Get(L);
 	State->EventWaitedFor = Event;
 	lua_yield(L, 0);
 	return 0;
