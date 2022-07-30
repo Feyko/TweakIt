@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "FGCentralStorageSubsystem.h"
 #include "FGCustomizationRecipe.h"
 #include "FactoryGame/Public/Equipment/FGBuildGun.h"
@@ -28,16 +28,22 @@ public:
 	static UTweakItTesting* Get();
 	
 	UPROPERTY(EditAnywhere)
-	bool Bool;
+	bool Bool = true;
 
 	UPROPERTY(EditAnywhere)
 	int Int = 10;
+
+	UPROPERTY(EditAnywhere)
+	int16 Int16 = -10;
 
 	UPROPERTY(EditAnywhere)
 	uint16 Uint16 = 40;
 
 	UPROPERTY(EditAnywhere)
 	float Float = 1.22;
+
+	UPROPERTY(EditAnywhere)
+	double Double = 6.9;
 
 	UPROPERTY(EditAnywhere)
 	FString String = "henlo";
@@ -47,6 +53,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	FText Text = FText::FromString("sometext");
+
+	UPROPERTY(EditAnywhere)
+	UObject* Object = GetMutableDefault<UTweakItTesting>();
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UFGRecipe> Recipe = UFGCustomizationRecipe::StaticClass();

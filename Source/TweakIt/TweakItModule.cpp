@@ -9,7 +9,7 @@
 
 void FTweakItModule::StartupModule()
 {
-	LOG("TweakIt 0.6.0-dev starting")
+	LOG("TweakIt 0.6.0 starting")
 	Orchestrator = new FTIScriptOrchestrator();
 	Orchestrator->StartAllScripts();
 }

@@ -150,7 +150,7 @@ FString FTIScriptOrchestrator::MakeEventString(T... EventParts)
 {
 	FString init[] = {EventParts...};
 	TArray<FString> Array;
-	Array.Append(init, ARRAY_COUNT(init));
+	Array.Append(init, UE_ARRAY_COUNT(init));
 	return FString::Join(Array, TEXT(":"));
 }
 

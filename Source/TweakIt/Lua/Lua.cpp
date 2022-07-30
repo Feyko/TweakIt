@@ -104,50 +104,72 @@ int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function)
 }
 
 // Mostly borrowed from FIN's source. Thanks Pana !
-void FTILua::PropertyToLua(lua_State* L, UProperty* Property, void* Container)
+void FTILua::PropertyToLua(lua_State* L, FField* Field, void* Container)
 {
-	LOGF("Transforming from Property %s to Lua", *Property->GetName());
-	auto c = Property->GetClass()->GetCastFlags();
-	if (c & CASTCLASS_FBoolProperty)
+	LOGF("Transforming from Property %s to Lua", *Field->GetName());
+	if (FBoolProperty* BoolProp = CastField<FBoolProperty>(Field))
 	{
-		lua_pushboolean(L, *Property->ContainerPtrToValuePtr<bool>(Container));
+		lua_pushboolean(L, BoolProp->GetPropertyValue_InContainer(Container));
 	}
-	else if (c & CASTCLASS_FIntProperty)
+	else if (FInt8Property* Int8Prop = CastField<FInt8Property>(Field))
 	{
-		lua_pushinteger(L, *Property->ContainerPtrToValuePtr<std::int32_t>(Container));
+		lua_pushinteger(L, Int8Prop->GetPropertyValue_InContainer(Container));
 	}
-	else if (c & CASTCLASS_FInt64Property)
+	else if (FInt16Property* Int16Prop = CastField<FInt16Property>(Field))
 	{
-		lua_pushinteger(L, *Property->ContainerPtrToValuePtr<std::int64_t>(Container));
+		lua_pushinteger(L, Int16Prop->GetPropertyValue_InContainer(Container));
 	}
-	else if (c & CASTCLASS_FFloatProperty)
+	else if (FIntProperty* IntProp = CastField<FIntProperty>(Field))
 	{
-		lua_pushnumber(L, *Property->ContainerPtrToValuePtr<float>(Container));
+		lua_pushinteger(L, IntProp->GetPropertyValue_InContainer(Container));
 	}
-	else if (c & CASTCLASS_FStrProperty)
+	else if (FInt64Property* Int64Prop = CastField<FInt64Property>(Field))
 	{
-		FString String = *Property->ContainerPtrToValuePtr<FString>(Container);
+		lua_pushinteger(L, Int64Prop->GetPropertyValue_InContainer(Container));
+	}
+	else if (FUInt16Property* UInt16Prop = CastField<FUInt16Property>(Field))
+	{
+		lua_pushinteger(L, UInt16Prop->GetPropertyValue_InContainer(Container));
+	}
+	else if (FUInt32Property* UInt32Prop = CastField<FUInt32Property>(Field))
+	{
+		lua_pushinteger(L, UInt32Prop->GetPropertyValue_InContainer(Container));
+	}
+	else if (FUInt64Property* UInt64Prop = CastField<FUInt64Property>(Field))
+	{
+		lua_pushinteger(L, UInt64Prop->GetPropertyValue_InContainer(Container));
+	}
+	else if (FFloatProperty* FloatProp = CastField<FFloatProperty>(Field))
+	{
+		lua_pushnumber(L, FloatProp->GetPropertyValue_InContainer(Container));
+	}
+	else if (FDoubleProperty* DoubleProp = CastField<FDoubleProperty>(Field))
+	{
+		lua_pushnumber(L, DoubleProp->GetPropertyValue_InContainer(Container));
+	}
+	else if (FStrProperty* StrProp = CastField<FStrProperty>(Field))
+	{
+		FString String = StrProp->GetPropertyValue_InContainer(Container);
 		lua_pushstring(L, TCHAR_TO_UTF8(*String));
 	}
-	else if (c & CASTCLASS_FNameProperty)
+	else if (FNameProperty* NameProp = CastField<FNameProperty>(Field))
 	{
-		FString String = Property->ContainerPtrToValuePtr<FName>(Container)->ToString();
+		FString String = NameProp->ContainerPtrToValuePtr<FName>(Container)->ToString();
 		lua_pushstring(L, TCHAR_TO_UTF8(*String));
 	}
-	else if (c & CASTCLASS_FTextProperty)
+	else if (FTextProperty* TextProp = CastField<FTextProperty>(Field))
 	{
-		FString String = Property->ContainerPtrToValuePtr<FText>(Container)->ToString();
+		FString String = TextProp->ContainerPtrToValuePtr<FText>(Container)->ToString();
 		lua_pushstring(L, TCHAR_TO_UTF8(*String));
 	}
-	else if (c & CASTCLASS_FClassProperty)
+	else if (FClassProperty* ClassProp = CastField<FClassProperty>(Field))
 	{
-		FLuaUClass::ConstructClass(L, *Property->ContainerPtrToValuePtr<UClass*>(Container));
+		FLuaUClass::ConstructClass(L, *ClassProp->ContainerPtrToValuePtr<UClass*>(Container));
 	}
-	else if (c & CASTCLASS_FEnumProperty)
+	else if (FEnumProperty* EnumProp = CastField<FEnumProperty>(Field))
 	{
-		UEnumProperty* EnumProperty = Cast<UEnumProperty>(Property);
-		int64 EnumValue = *EnumProperty->ContainerPtrToValuePtr<uint8>(Container);
-		UEnum* Enum = EnumProperty->GetEnum();
+		int64 EnumValue = *EnumProp->ContainerPtrToValuePtr<uint8>(Container);
+		UEnum* Enum = EnumProp->GetEnum();
 		if (!Enum->IsValidEnumValue(EnumValue))
 		{
 			luaL_error(L, "Enum value wasn't valid. Please report this to Feyko");
@@ -156,26 +178,23 @@ void FTILua::PropertyToLua(lua_State* L, UProperty* Property, void* Container)
 		FString StringName = Name.ToString();
 		lua_pushstring(L, TCHAR_TO_UTF8(*StringName));
 	}
-	else if (c & CASTCLASS_FStructProperty)
+	else if (FStructProperty* StructProp = CastField<FStructProperty>(Field))
 	{
-		UStructProperty* StructProperty = Cast<UStructProperty>(Property);
-		void* StructValue = StructProperty->ContainerPtrToValuePtr<void>(Container);
-		FLuaUStruct::ConstructStruct(L, StructProperty->Struct, StructValue);
+		void* StructValue = StructProp->ContainerPtrToValuePtr<void>(Container);
+		FLuaUStruct::ConstructStruct(L, StructProp->Struct, StructValue);
 	}
-	else if (c & CASTCLASS_FObjectProperty)
+	else if (FObjectProperty* ObjectProp = CastField<FObjectProperty>(Field))
 	{
-		FLuaUObject::ConstructObject(L, Property->ContainerPtrToValuePtr<UObject>(Container));
+		FLuaUObject::ConstructObject(L, ObjectProp->GetPropertyValue_InContainer(Container));
 	}
-	else if (c & CASTCLASS_FArrayProperty)
+	else if (FArrayProperty* ArrayProp = CastField<FArrayProperty>(Field))
 	{
-		UArrayProperty* Prop = Cast<UArrayProperty>(Property);
-		FLuaTArray::ConstructArray(L, Prop, Container);
+		FLuaTArray::ConstructArray(L, ArrayProp, Container);
 	}
-	else if (c & CASTCLASS_FDelegateProperty)
+	else if (FDelegateProperty* DelegateProp = CastField<FDelegateProperty>(Field))
 	{
-		FDelegateProperty* DelegateProperty = Cast<FDelegateProperty>(Property);
-		FScriptDelegate* Value = DelegateProperty->ContainerPtrToValuePtr<FScriptDelegate>(Container);
-		FLuaFDelegate::Construct(L, DelegateProperty->SignatureFunction, Value);
+		FScriptDelegate* Value = DelegateProp->ContainerPtrToValuePtr<FScriptDelegate>(Container);
+		FLuaFDelegate::Construct(L, DelegateProp->SignatureFunction, Value);
 	}
 	else
 	{
@@ -185,50 +204,72 @@ void FTILua::PropertyToLua(lua_State* L, UProperty* Property, void* Container)
 }
 
 // Mostly borrowed from FIN's source. Thanks Pana !
-void FTILua::LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index)
+void FTILua::LuaToProperty(lua_State* L, FField* Field, void* Container, int Index)
 {
-	LOGF("Transforming from Lua to Property %s", *Property->GetName());
-	uint64 Flags = Property->GetClass()->GetCastFlags();
-	if (Flags & CASTCLASS_FBoolProperty)
+	LOGF("Transforming from Lua to Property %s", *Field->GetName());
+	if (FBoolProperty* BoolProp = CastField<FBoolProperty>(Field))
 	{
 		luaL_argexpected(L, lua_isboolean(L, Index), Index, "boolean");
-		*Property->ContainerPtrToValuePtr<bool>(Container) = static_cast<bool>(lua_toboolean(L, Index));
+		BoolProp->SetPropertyValue_InContainer(Container, static_cast<bool>(lua_toboolean(L, Index)));
 	}
-	else if (Flags & CASTCLASS_FIntProperty)
+	
+	else if (FInt8Property* Int8Prop = CastField<FInt8Property>(Field))
 	{
-		*Property->ContainerPtrToValuePtr<std::int32_t>(Container) = static_cast<std::int32_t>(
-			luaL_checkinteger(L, Index));
+		Int8Prop->SetPropertyValue_InContainer(Container, luaL_checkinteger(L, Index));
 	}
-	else if (Flags & CASTCLASS_FInt64Property)
+	else if (FInt16Property* Int16Prop = CastField<FInt16Property>(Field))
 	{
-		*Property->ContainerPtrToValuePtr<std::int64_t>(Container) = luaL_checkinteger(L, Index);
+		Int16Prop->SetPropertyValue_InContainer(Container, luaL_checkinteger(L, Index));
 	}
-	else if (Flags & CASTCLASS_FFloatProperty)
+	else if (FIntProperty* IntProp = CastField<FIntProperty>(Field))
 	{
-		*Property->ContainerPtrToValuePtr<float>(Container) = static_cast<float>(luaL_checknumber(L, Index));
+		IntProp->SetPropertyValue_InContainer(Container, luaL_checkinteger(L, Index));
 	}
-	else if (Flags & CASTCLASS_FStrProperty)
+	else if (FInt64Property* Int64Prop = CastField<FInt64Property>(Field))
 	{
-		FString String = luaL_checkstring(L, Index);
-		*Property->ContainerPtrToValuePtr<FString>(Container) = String;
+		*Int64Prop->ContainerPtrToValuePtr<std::int64_t>(Container) = luaL_checkinteger(L, Index);
 	}
-	else if (Flags & CASTCLASS_FNameProperty)
+	else if (FUInt16Property* UInt16Prop = CastField<FUInt16Property>(Field))
 	{
-		*Property->ContainerPtrToValuePtr<FName>(Container) = luaL_checkstring(L, Index);
+		UInt16Prop->SetPropertyValue_InContainer(Container, luaL_checkinteger(L, Index));
 	}
-	else if (Flags & CASTCLASS_FTextProperty)
+	else if (FUInt32Property* UInt32Prop = CastField<FUInt32Property>(Field))
 	{
-		*Property->ContainerPtrToValuePtr<FText>(Container) = FText::FromString(luaL_checkstring(L, Index));
+		UInt32Prop->SetPropertyValue_InContainer(Container, luaL_checkinteger(L, Index));
 	}
-	else if (Flags & CASTCLASS_FClassProperty)
+	else if (FUInt64Property* UInt64Prop = CastField<FUInt64Property>(Field))
+	{
+		UInt64Prop->SetPropertyValue_InContainer(Container, luaL_checkinteger(L, Index));
+	}
+	else if (FFloatProperty* FloatProp = CastField<FFloatProperty>(Field))
+	{
+		FloatProp->SetPropertyValue_InContainer(Container, luaL_checknumber(L, Index));
+	}
+	else if (FDoubleProperty* DoubleProp = CastField<FDoubleProperty>(Field))
+	{
+		DoubleProp->SetPropertyValue_InContainer(Container, luaL_checknumber(L, Index));
+	}
+	else if (FStrProperty* StrProp = CastField<FStrProperty>(Field))
+	{
+		StrProp->SetPropertyValue_InContainer(Container, luaL_checkstring(L, Index));
+	}
+	else if (FNameProperty* NameProp = CastField<FNameProperty>(Field))
+	{
+		NameProp->SetPropertyValue_InContainer(Container, luaL_checkstring(L, Index));
+	}
+	else if (FTextProperty* TextProp = CastField<FTextProperty>(Field))
+	{
+		TextProp->SetPropertyValue_InContainer(Container, FText::FromString(luaL_checkstring(L, Index)));
+	}
+	else if (FClassProperty* ClassProp = CastField<FClassProperty>(Field))
 	{
 		FLuaUClass* LuaUClass = FLuaUClass::Get(L, Index);
-		*Property->ContainerPtrToValuePtr<UClass*>(Container) = LuaUClass->Class;
+		ClassProp->SetPropertyValue_InContainer(Container, LuaUClass->Class);
 	}
-	else if (Flags & CASTCLASS_FEnumProperty)
+	else if (FEnumProperty* EnumProp = CastField<FEnumProperty>(Field))
 	{
 		FName EnumValueName = luaL_checkstring(L, Index);
-		UEnum* Enum = Cast<UEnumProperty>(Property)->GetEnum();
+		UEnum* Enum = EnumProp->GetEnum();
 		if (!Enum->IsValidEnumName(EnumValueName))
 		{
 			luaL_error(L, "invalid enum value %s for enum type %s. Example value: %s",
@@ -237,31 +278,34 @@ void FTILua::LuaToProperty(lua_State* L, UProperty* Property, void* Container, i
 			return;
 		}
 		int64 EnumValue = Enum->GetValueByName(EnumValueName);
-		*Property->ContainerPtrToValuePtr<uint8>(Container) = static_cast<uint8>(EnumValue);
+		*EnumProp->ContainerPtrToValuePtr<uint8>(Container) = static_cast<uint8>(EnumValue);
 	}
-	else if (Flags & CASTCLASS_FStructProperty)
+	else if (FStructProperty* StructProp = CastField<FStructProperty>(Field))
 	{
-		UStructProperty* StructProperty = Cast<UStructProperty>(Property);
 		FLuaUStruct* rStruct = FLuaUStruct::Get(L, Index);
-		if (!(StructProperty->Struct->GetFullName() == rStruct->Struct->GetFullName()))
+		if (!(StructProp->Struct->GetFullName() == rStruct->Struct->GetFullName()))
 		{
 			luaL_error(L, "Mismatched struct types (%s <- %s)",
-			           TCHAR_TO_UTF8(*StructProperty->Struct->GetName()), TCHAR_TO_UTF8(*rStruct->Struct->GetName()));
+			           TCHAR_TO_UTF8(*StructProp->Struct->GetName()), TCHAR_TO_UTF8(*rStruct->Struct->GetName()));
 			return;
 		}
-		StructProperty->CopyCompleteValue_InContainer(Container, rStruct->Values);
-		void* NewValue = StructProperty->ContainerPtrToValuePtr<void>(Container);
+		StructProp->CopyCompleteValue_InContainer(Container, rStruct->Values);
+		void* NewValue = StructProp->ContainerPtrToValuePtr<void>(Container);
 		rStruct->Values = NewValue;
 		rStruct->Owning = false;
 	}
-	else if (Flags & CASTCLASS_FArrayProperty)
+	else if (FObjectProperty* ObjectProp = CastField<FObjectProperty>(Field))
+	{
+		UObject* Object = lua_isnil(L, Index) ? nullptr : FLuaUObject::Get(L, Index)->Object;
+		ObjectProp->SetPropertyValue_InContainer(Container, Object);
+	}
+	else if (FArrayProperty* ArrayProp = CastField<FArrayProperty>(Field))
 	{
 		luaL_argexpected(L, lua_istable(L, Index), Index, "array");
-		FArrayProperty* ArrayProperty = Cast<FArrayProperty>(Property);
-		FScriptArray* ArrayValue = ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(Container);
+		FScriptArray* ArrayValue = ArrayProp->ContainerPtrToValuePtr<FScriptArray>(Container);
 
 		int InputLen = luaL_len(L, Index);
-		int ElementSize = ArrayProperty->Inner->ElementSize;
+		int ElementSize = ArrayProp->Inner->ElementSize;
 		ArrayValue->Empty(InputLen, ElementSize);
 		ArrayValue->AddZeroed(InputLen, ElementSize);
 
@@ -270,11 +314,11 @@ void FTILua::LuaToProperty(lua_State* L, UProperty* Property, void* Container, i
 		{
 			lua_pushinteger(L, i + 1);
 			lua_gettable(L, Index);
-			LuaToProperty(L, ArrayProperty->Inner, Data + ElementSize * i, Index + 1);
+			LuaToProperty(L, ArrayProp->Inner, Data + ElementSize * i, Index + 1);
 			lua_pop(L, 1);
 		}
 	}
-	else if (Flags & CASTCLASS_FDelegateProperty)
+	else if (FDelegateProperty* DelegateProp = CastField<FDelegateProperty>(Field))
 	{
 		luaL_error(L, "Delegate assignment is not yet supported");
 	}

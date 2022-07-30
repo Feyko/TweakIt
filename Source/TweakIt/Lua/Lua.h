@@ -21,8 +21,8 @@ public:
 	static int CallUFunction(lua_State* L, UObject* Object, UFunction* Function);
 
 	// Mostly borrowed from FIN's source. Thanks Pana !
-	static void PropertyToLua(lua_State* L, UProperty* Property, void* Container);
-	static void LuaToProperty(lua_State* L, UProperty* Property, void* Container, int Index);
+	static void PropertyToLua(lua_State* L, FField* Prop, void* Container);
+	static void LuaToProperty(lua_State* L, FField* Field, void* Container, int Index);
 
 	static int Lua_GetClass(lua_State* L);
 	static int Lua_MakeStructInstance(lua_State* L);
