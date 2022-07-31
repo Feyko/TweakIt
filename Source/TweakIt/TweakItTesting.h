@@ -77,9 +77,12 @@ public:
 	UPROPERTY()
 	TArray<EBuildGunState> states = {EBuildGunState::BGS_MAX, EBuildGunState::BGS_MENU};
 
-	UFUNCTION(BlueprintCallable)
-	static void Testing();
+	UFUNCTION()
+	static void Testing(int I);
 
 	UPROPERTY()
 	FTITestingDelegate Delegate;
+
+	UPROPERTY()
+	UTweakItTesting* This;
 };

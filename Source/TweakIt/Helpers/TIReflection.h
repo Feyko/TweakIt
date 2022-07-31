@@ -17,6 +17,7 @@ public:
 	static UClass* FindClassByName(FString ClassName, FString Package);
 	static UStruct* FindStructByName(FString ClassName, FString Package);
 	static UProperty* FindPropertyByName(UStruct* Class, const TCHAR* PropertyName);
+	static UFunction* FindFunctionByName(UStruct* Class, const TCHAR* PropertyName);
 
 	static UClass* GenerateUniqueSimpleClass(const TCHAR* PackageName, const TCHAR* ClassName, UClass* ParentClass);
 	static void* MakeStructInstance(UStruct* Struct);

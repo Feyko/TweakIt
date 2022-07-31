@@ -1,6 +1,7 @@
 #include "Lua.h"
 #include <string>
 #include "CoreMinimal.h"
+#include "FGBlueprintFunctionLibrary.h"
 #include "TweakIt/Lua/lib/lua.hpp"
 #include "FGRecipeManager.h"
 #include "FTILuaFuncManager.h"
@@ -75,32 +76,50 @@ void FTILua::StackDump(lua_State* L)
 }
 
 // TODO: Test return value
-int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function)
+int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, int StartIndex)
 {
 	LOG("Calling UFunction")
 	check(Function->IsValidLowLevel())
 	check(Object->IsValidLowLevel())
-	TArray<uint8> Params;
-	Params.SetNumZeroed(Function->ParmsSize);
 	TArray<uint8> Return;
 	FProperty* ReturnProperty = Function->GetReturnProperty();
-	if (ReturnProperty)
-	{
-		Return.SetNumZeroed(ReturnProperty->ElementSize);
-	}
+	int ReturnSize = ReturnProperty ? ReturnProperty->ElementSize : 0;
+	int ParmsSize = Function->ParmsSize;
+	Return.SetNumZeroed(ReturnSize + 50);
+	TArray<uint8> Params;
+	Params.SetNumZeroed(ParmsSize + 50);
+	LOGF("Params %d/%d | Return %d/%d", Params.Num(), ParmsSize, Return.Num(), ReturnSize)
 	FFrame Frame = FFrame(Object, Function, Params.GetData());
-	int i = 2;
+	int i = StartIndex;
+	LOG(Function->FunctionFlags)
 	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
+		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm))
+		{
+			continue;
+		}
 		LuaToProperty(L, Prop, Params.GetData(), i);
 		i++;
 	}
+	// LOG(**Function->PropertyLink->ContainerPtrToValuePtr<FString>(Params.GetData()))
+	LOG(Function->GetFullName())
+	LOG(Object->GetFullName())
+	// LOG("Invoking raw")
+	// Function->GetNativeFunc()(Object, Frame, Return.GetData());
+	LOG("Invoking")
 	Function->Invoke(Object, Frame, Return.GetData());
+	LOG("Finished invocation")
 	if (ReturnProperty)
 	{
 		PropertyToLua(L, ReturnProperty, Return.GetData());
 	}
 	return ReturnProperty->IsValidLowLevel();
+}
+
+void FTILua::UFunctionToLua(lua_State* L, UFunction* Function, UObject* Object)
+{
+	checkf(Object->IsValidLowLevel(), TEXT("Invalid UObject passed for LuaUFunction creation"))
+	FLuaUFunction::Construct(L, Function, Object);
 }
 
 // Mostly borrowed from FIN's source. Thanks Pana !

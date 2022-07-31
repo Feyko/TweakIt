@@ -92,7 +92,13 @@ int FLuaUObject::Lua__index(lua_State* L)
 	UProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *Index);
 	if (!Property->IsValidLowLevel())
 	{
-		lua_pushnil(L);
+		UFunction* Function = FTIReflection::FindFunctionByName(Self->Object->GetClass(), *Index);
+		if (!Function)
+		{
+			lua_pushnil(L);
+			return 1;
+		}
+		FTILua::UFunctionToLua(L, Function, Self->Object);
 		return 1;
 	}
 	LOG("Found property")

@@ -23,6 +23,19 @@ UProperty* FTIReflection::FindPropertyByName(UStruct* Class, const TCHAR* Proper
 	return nullptr;
 }
 
+UFunction* FTIReflection::FindFunctionByName(UStruct* Class, const TCHAR* PropertyName)
+{
+	FString lowered = FString(PropertyName).ToLower();
+	for (auto Iterator = TFieldIterator<UFunction>(Class); Iterator; ++Iterator)
+	{
+		if (*Iterator->GetName().ToLower() == lowered)
+		{
+			return *Iterator;
+		}
+	}
+	return nullptr;
+}
+
 UClass* FTIReflection::FindBPUnreliable(FString ClassName)
 {
 	for (TObjectIterator<UBlueprintGeneratedClass> it; it; ++it)

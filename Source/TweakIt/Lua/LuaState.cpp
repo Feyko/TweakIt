@@ -43,6 +43,7 @@ void FLuaState::RegisterMetadatas()
 	FLuaTArray::RegisterMetadata(L);
 	FLuaUStruct::RegisterMetadata(L);
 	FLuaFDelegate::RegisterMetadata(L);
+	FLuaUFunction::RegisterMetadata(L);
 }
 
 void FLuaState::RegisterGlobalFunctions()

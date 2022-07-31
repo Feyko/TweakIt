@@ -99,7 +99,7 @@ int FLuaFDelegate::Lua_Trigger(lua_State* L)
 		LOGL("Tried to trigger delegate bound to an invalid UFunction", Warning)
 		return 0;
 	}
-	return FTILua::CallUFunction(L, Object, Function);
+	return FTILua::CallUFunction(L, Object, Function,2);
 }
 
 int FLuaFDelegate::Lua__index(lua_State* L)

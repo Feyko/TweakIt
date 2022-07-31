@@ -196,6 +196,12 @@ int FLuaUClass::Lua__index(lua_State* L)
 		lua_pushcfunction(L, *Method);
 		return 1;
 	}
+	UFunction* Function = FTIReflection::FindFunctionByName(Self->Class, *Index);
+	if (Function && Function->HasAllFunctionFlags(FUNC_Static))
+	{
+		FTILua::UFunctionToLua(L, Function, Self->Class->GetDefaultObject());
+		return 1;
+	}
 	return Lua_GetDefaultValue(L);
 }
 
