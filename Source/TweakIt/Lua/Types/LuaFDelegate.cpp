@@ -9,6 +9,11 @@
 #include "TweakIt/Lua/LuaState.h"
 using namespace std;
 
+FLuaFDelegate::FLuaFDelegate(UFunction* Signature, FScriptDelegate* Delegate) : SignatureFunction(Signature), Delegate(Delegate)
+{
+	
+}
+
 int FLuaFDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FScriptDelegate* Delegate)
 {
 	if (!SignatureFunction->IsValidLowLevel() || !Delegate)
@@ -18,8 +23,8 @@ int FLuaFDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FScript
 		return 1;
 	}
 	LOG("Constructing a LuaFDelegate")
-	FLuaFDelegate* ReturnedInstance = static_cast<FLuaFDelegate*>(lua_newuserdata(L, sizeof(FLuaFDelegate)));
-	new(ReturnedInstance) FLuaFDelegate{SignatureFunction, Delegate};
+	FLuaFDelegate** ReturnedInstance = static_cast<FLuaFDelegate**>(lua_newuserdata(L, sizeof(FLuaFDelegate*)));
+	*ReturnedInstance = new FLuaFDelegate(SignatureFunction, Delegate);
 	luaL_getmetatable(L, FLuaFDelegate::Name);
 	lua_setmetatable(L, -2);
 	return 1;
@@ -28,6 +33,11 @@ int FLuaFDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FScript
 FLuaFDelegate* FLuaFDelegate::Get(lua_State* L, int Index)
 {
 	return static_cast<FLuaFDelegate*>(luaL_checkudata(L, Index, Name));
+}
+
+void FLuaFDelegate::AddReferencedObjects(FReferenceCollector& Collector)
+{
+	Collector.AddReferencedObject(SignatureFunction);
 }
 
 FString FLuaFDelegate::ToString() const
@@ -123,9 +133,16 @@ int FLuaFDelegate::Lua__call(lua_State* L)
 
 int FLuaFDelegate::Lua__tostring(lua_State* L)
 {
-	FLuaFDelegate* Self = static_cast<FLuaFDelegate*>(lua_touserdata(L, 1));
+	FLuaFDelegate* Self = Get(L);
 	lua_pushstring(L, TCHAR_TO_UTF8(*Self->Delegate->ToString<UObject>()));
 	return 1;
+}
+
+int FLuaFDelegate::Lua__gc(lua_State* L)
+{
+	FLuaFDelegate* Self = Get(L);
+	delete Self;
+	return 0;
 }
 
 void FLuaFDelegate::RegisterMetadata(lua_State* L)

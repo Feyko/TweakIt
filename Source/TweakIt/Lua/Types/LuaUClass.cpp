@@ -6,6 +6,11 @@
 #include "TweakIt/Logging/FTILog.h"
 using namespace std;
 
+FLuaUClass::FLuaUClass(UClass* Class) : Class(Class)
+{
+	
+}
+
 int FLuaUClass::ConstructClass(lua_State* L, UClass* Class)
 {
 	if (!Class->IsValidLowLevel())
@@ -15,8 +20,8 @@ int FLuaUClass::ConstructClass(lua_State* L, UClass* Class)
 		return 1;
 	}
 	LOGF("Constructing a LuaUClass from %s", *Class->GetName())
-	FLuaUClass* ReturnedInstance = static_cast<FLuaUClass*>(lua_newuserdata(L, sizeof(FLuaUClass)));
-	new(ReturnedInstance) FLuaUClass{Class};
+	FLuaUClass** ReturnedInstance = static_cast<FLuaUClass**>(lua_newuserdata(L, sizeof(FLuaUClass*)));
+	*ReturnedInstance = new FLuaUClass(Class);
 	luaL_getmetatable(L, FLuaUClass::Name);
 	lua_setmetatable(L, -2);
 	return 1;
@@ -24,7 +29,12 @@ int FLuaUClass::ConstructClass(lua_State* L, UClass* Class)
 
 FLuaUClass* FLuaUClass::Get(lua_State* L, int Index)
 {
-	return static_cast<FLuaUClass*>(luaL_checkudata(L, Index, Name));
+	return *static_cast<FLuaUClass**>(luaL_checkudata(L, Index, Name));
+}
+
+void FLuaUClass::AddReferencedObjects(FReferenceCollector& Collector)
+{
+	Collector.AddReferencedObject(Class);
 }
 
 int FLuaUClass::Lua_GetDefaultValue(lua_State* L)
@@ -224,9 +234,16 @@ int FLuaUClass::Lua__call(lua_State* L)
 
 int FLuaUClass::Lua__tostring(lua_State* L)
 {
-	FLuaUClass* Self = static_cast<FLuaUClass*>(lua_touserdata(L, 1));
+	FLuaUClass* Self = Get(L);
 	lua_pushstring(L, TCHAR_TO_UTF8(*Self->Class->GetName()));
 	return 1;
+}
+
+int FLuaUClass::Lua__gc(lua_State* L)
+{
+	FLuaUClass* Self = Get(L);
+	delete Self;
+	return 0;
 }
 
 void FLuaUClass::RegisterMetadata(lua_State* L)

@@ -5,6 +5,11 @@
 #include "TweakIt/Logging/FTILog.h"
 using namespace std;
 
+FLuaTArray::FLuaTArray(FArrayProperty* Property, void* Container) : ArrayProperty(Property), Container(Container)
+{
+	
+}
+
 int FLuaTArray::ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container)
 {
 	if (!ArrayProperty->IsValidLowLevel())
@@ -14,8 +19,8 @@ int FLuaTArray::ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void
 		return 1;
 	}
 	LOGF("Constructing a LuaTArray from %s", *ArrayProperty->GetName())
-	FLuaTArray* ReturnedInstance = static_cast<FLuaTArray*>(lua_newuserdata(L, sizeof(FLuaTArray)));
-	new(ReturnedInstance) FLuaTArray{ArrayProperty, Container};
+	FLuaTArray** ReturnedInstance = static_cast<FLuaTArray**>(lua_newuserdata(L, sizeof(FLuaTArray*)));
+	*ReturnedInstance = new FLuaTArray(ArrayProperty, Container);
 	luaL_getmetatable(L, FLuaTArray::Name);
 	lua_setmetatable(L, -2);
 	return 1;
@@ -24,6 +29,11 @@ int FLuaTArray::ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void
 FLuaTArray* FLuaTArray::Get(lua_State* L, int Index)
 {
 	return static_cast<FLuaTArray*>(luaL_checkudata(L, Index, Name));
+}
+
+void FLuaTArray::AddReferencedObjects(FReferenceCollector& Collector)
+{
+	Collector.AddReferencedObject(ArrayProperty);
 }
 
 int FLuaTArray::Lua__index(lua_State* L)
@@ -73,6 +83,13 @@ int FLuaTArray::Lua__len(lua_State* L)
 	FScriptArray* Value = Self->ArrayProperty->ContainerPtrToValuePtr<FScriptArray>(Self->Container);
 	lua_pushinteger(L, Value->Num());
 	return 1;
+}
+
+int FLuaTArray::Lua__gc(lua_State* L)
+{
+	FLuaTArray* Self = Get(L);
+	delete Self;
+	return 0;
 }
 
 void FLuaTArray::RegisterMetadata(lua_State* L)

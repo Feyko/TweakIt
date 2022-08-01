@@ -5,7 +5,6 @@
 struct FLuaUFunction : FGCObject
 {
 	explicit FLuaUFunction(UFunction* Function, UObject* Object);
-	virtual ~FLuaUFunction() override;
 	
 	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;
 
@@ -15,6 +14,7 @@ struct FLuaUFunction : FGCObject
 	static int Lua__index(lua_State* L);
 	static int Lua__call(lua_State* L);
 	static int Lua__tostring(lua_State* L);
+	static int Lua__gc(lua_State* L);
 
 	static void RegisterMetadata(lua_State* L);
 	inline static const char* Name = "UFunction";
@@ -27,6 +27,7 @@ private:
 		{"__index", Lua__index},
 		{"__call", Lua__call},
 		{"__tostring", Lua__tostring},
+		{"__gc",	Lua__gc},
 	};
 
 	inline static TMap<FString, lua_CFunction> Methods = {

@@ -4,6 +4,11 @@
 #include "TweakIt/Logging/FTILog.h"
 using namespace std;
 
+FLuaUStruct::FLuaUStruct(UStruct* Struct, void* Values) : Struct(Struct), Values(Values)
+{
+	
+}
+
 int FLuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bool Owning)
 {
 	if (!Struct->IsValidLowLevel())
@@ -13,8 +18,8 @@ int FLuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bo
 		return 1;
 	}
 	LOGF("Constructing a LuaUStruct from %s", *Struct->GetName())
-	FLuaUStruct* ReturnedInstance = static_cast<FLuaUStruct*>(lua_newuserdata(L, sizeof(FLuaUStruct)));
-	new(ReturnedInstance) FLuaUStruct{Struct, Values, Owning};
+	FLuaUStruct** ReturnedInstance = static_cast<FLuaUStruct**>(lua_newuserdata(L, sizeof(FLuaUStruct*)));
+	*ReturnedInstance = new FLuaUStruct(Struct, Values);
 	luaL_getmetatable(L, Name);
 	lua_setmetatable(L, -2);
 	return 1;
@@ -22,7 +27,12 @@ int FLuaUStruct::ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bo
 
 FLuaUStruct* FLuaUStruct::Get(lua_State* L, int Index)
 {
-	return static_cast<FLuaUStruct*>(luaL_checkudata(L, Index, Name));
+	return *static_cast<FLuaUStruct**>(luaL_checkudata(L, Index, Name));
+}
+
+void FLuaUStruct::AddReferencedObjects(FReferenceCollector& Collector)
+{
+	Collector.AddReferencedObject(Struct);
 }
 
 int FLuaUStruct::Lua_Copy(lua_State* L)
@@ -84,10 +94,7 @@ int FLuaUStruct::Lua__tostring(lua_State* L)
 int FLuaUStruct::Lua__gc(lua_State* L)
 {
 	FLuaUStruct* Self = Get(L);
-	if (Self->Owning)
-	{
-		Self->Struct->DestroyStruct(Self->Values);
-	}
+	delete Self;
 	return 0;
 }
 

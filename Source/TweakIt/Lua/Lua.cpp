@@ -311,7 +311,6 @@ void FTILua::LuaToProperty(lua_State* L, FField* Field, void* Container, int Ind
 		StructProp->CopyCompleteValue_InContainer(Container, rStruct->Values);
 		void* NewValue = StructProp->ContainerPtrToValuePtr<void>(Container);
 		rStruct->Values = NewValue;
-		rStruct->Owning = false;
 	}
 	else if (FObjectProperty* ObjectProp = CastField<FObjectProperty>(Field))
 	{

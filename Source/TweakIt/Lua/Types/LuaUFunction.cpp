@@ -9,14 +9,10 @@ FLuaUFunction::FLuaUFunction(UFunction* Function, UObject* Object) : Function(Fu
 	
 }
 
-FLuaUFunction::~FLuaUFunction()
-{
-	LOG("DESTROYING FUNCTION")
-}
-
 void FLuaUFunction::AddReferencedObjects(FReferenceCollector& Collector)
 {
 	Collector.AddReferencedObject(Object);
+	Collector.AddReferencedObject(Function);
 }
 
 int FLuaUFunction::Construct(lua_State* L, UFunction* Function, UObject* Object)
@@ -28,8 +24,8 @@ int FLuaUFunction::Construct(lua_State* L, UFunction* Function, UObject* Object)
 		lua_pushnil(L);
 		return 1;
 	}
-	FLuaUFunction* ReturnedInstance = static_cast<FLuaUFunction*>(lua_newuserdata(L, sizeof(FLuaUFunction)));
-	new(ReturnedInstance) FLuaUFunction(Function, Object);
+	FLuaUFunction** ReturnedInstance = static_cast<FLuaUFunction**>(lua_newuserdata(L, sizeof(FLuaUFunction*)));
+	*ReturnedInstance = new FLuaUFunction(Function, Object);
 	luaL_getmetatable(L, FLuaUFunction::Name);
 	lua_setmetatable(L, -2);
 	return 1;
@@ -37,7 +33,7 @@ int FLuaUFunction::Construct(lua_State* L, UFunction* Function, UObject* Object)
 
 FLuaUFunction* FLuaUFunction::Get(lua_State* L, int Index)
 {
-	return static_cast<FLuaUFunction*>(luaL_checkudata(L, Index, Name));
+	return *static_cast<FLuaUFunction**>(luaL_checkudata(L, Index, Name));
 }
 
 int FLuaUFunction::Lua__index(lua_State* L)
@@ -64,6 +60,13 @@ int FLuaUFunction::Lua__tostring(lua_State* L)
 	FLuaUFunction* Self = Get(L);
 	lua_pushstring(L, TCHAR_TO_UTF8(*Self->Function->GetName()));
 	return 1;
+}
+
+int FLuaUFunction::Lua__gc(lua_State* L)
+{
+	FLuaUFunction* Self = Get(L);
+	delete Self;
+	return 0;
 }
 
 void FLuaUFunction::RegisterMetadata(lua_State* L)

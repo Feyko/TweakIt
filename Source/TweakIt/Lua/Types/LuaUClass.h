@@ -3,12 +3,15 @@
 
 #include "TweakIt/Lua/Lua.h"
 
-struct FLuaUClass
+struct FLuaUClass : FGCObject
 {
+	FLuaUClass(UClass* Class);
 	UClass* Class;
 
 	static int ConstructClass(lua_State* L, UClass* Class);
 	static FLuaUClass* Get(lua_State* L, int Index = 1);
+
+	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;
 
 	static int Lua_GetDefaultValue(lua_State* L);
 	static int Lua_ChangeDefaultValue(lua_State* L);
@@ -23,6 +26,7 @@ struct FLuaUClass
 	static int Lua__newindex(lua_State* L);
 	static int Lua__call(lua_State* L);
 	static int Lua__tostring(lua_State* L);
+	static int Lua__gc(lua_State* L);
 
 	static void RegisterMetadata(lua_State* L);
 	inline static const char* Name = "UClass";
@@ -33,6 +37,7 @@ private:
 		{"__newindex", Lua__newindex},
 		{"__call", Lua__call},
 		{"__tostring", Lua__tostring},
+		{"__gc", Lua__gc},
 	};
 
 	inline static TMap<FString, lua_CFunction> Methods = {

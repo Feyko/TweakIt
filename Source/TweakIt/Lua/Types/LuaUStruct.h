@@ -3,14 +3,17 @@
 
 #include "TweakIt/Lua/Lua.h"
 
-struct FLuaUStruct
+struct FLuaUStruct : FGCObject
 {
+	FLuaUStruct(UStruct* Struct, void* Values);
+	
 	UStruct* Struct;
 	void* Values;
-	bool Owning;
-
+	
 	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bool Owning = false);
 	static FLuaUStruct* Get(lua_State* L, int Index = 1);
+
+	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;
 
 	static int Lua_Copy(lua_State* L);
 	static int Lua_MakeStructInstance(lua_State* L);

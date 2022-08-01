@@ -3,7 +3,7 @@
 
 #include "TweakIt/Lua/Lua.h"
 
-struct FLuaUObject
+struct FLuaUObject : FGCObject
 {
 	explicit FLuaUObject(UObject* Object);
 
@@ -12,8 +12,7 @@ struct FLuaUObject
 	static int ConstructObject(lua_State* L, UObject* Object);
 	static FLuaUObject* Get(lua_State* L, int Index = 1);
 
-	void CaptureObject();
-	void ReleaseObject();
+	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;
 
 	static int Lua_DumpProperties(lua_State* L);
 	static int Lua_GetClass(lua_State* L);
