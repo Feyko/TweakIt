@@ -14,7 +14,11 @@
 
 FTIScriptOrchestrator::FTIScriptOrchestrator()
 {
-	CreateDefaultScript();
+	if(GetAllScripts().Num() == 0)
+	{
+		LOGFL("No scripts were found in %s. Creating the default script", Warning, *FPaths::ConvertRelativePathToFull(GetConfigDirectory()));
+		CreateDefaultScript();
+	}
 	SetupModEvents();
 }
 
@@ -42,15 +46,8 @@ void FTIScriptOrchestrator::CreateDefaultScript()
 {
 	IFileManager& Manager = FFileManagerGeneric::Get();
 	FString ConfigDirectory = GetConfigDirectory();
-
-	if (Manager.DirectoryExists(*ConfigDirectory))
-	{
-		return;
-	}
-
-	LOG("Creating the default directory and script")
-	Manager.MakeDirectory(*ConfigDirectory);
-	FArchive* file = Manager.CreateFileWriter(*ConfigDirectory.Append("script.lua"));
+	FArchive* file = Manager.CreateFileWriter(*FPaths::Combine(ConfigDirectory, TEXT("script.lua")));
+	file->Logf(TEXT("print('Hello World!')"));
 	file->Close();
 }
 
@@ -74,7 +71,7 @@ void FTIScriptOrchestrator::SetupModEvents()
 
 FString FTIScriptOrchestrator::GetConfigDirectory()
 {
-	return UConfigManager::GetConfigurationFolderPath().Append("/TweakIt/");
+	return FPaths::Combine(UConfigManager::GetConfigurationFolderPath(), TEXT("TweakIt/"));
 }
 
 FTIScriptOrchestrator* FTIScriptOrchestrator::Get()
@@ -85,7 +82,7 @@ FTIScriptOrchestrator* FTIScriptOrchestrator::Get()
 FScriptState FTIScriptOrchestrator::StartScript(FString Name)
 {
 	LOGF("Starting script \"%s\"", *Name)
-	FString Path = GetConfigDirectory() + Name;
+	FString Path = FPaths::Combine(GetConfigDirectory(), Name);
 	if (!FPaths::FileExists(Path))
 	{
 		FScriptState Error = FScriptState::Errored;

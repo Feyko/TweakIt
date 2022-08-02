@@ -17,6 +17,7 @@ struct FTILog
 	static void LogForScript(FString String, FString ScriptName, ELogVerbosity::Type Level);
 
 	static FOutputDeviceFile* GetLogFileForScript(FString ScriptName);
+	static FString GetLogFilenameForScript(FString ScriptName);
 
 	static FString WrapStringWithScript(FString String, FString ScriptName);
 	

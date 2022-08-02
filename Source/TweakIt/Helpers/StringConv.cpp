@@ -5,6 +5,15 @@ FString FStringConv::ToFString(int Int)
 	return FString::FromInt(Int);
 }
 
+FString FStringConv::ToFString(bool Bool)
+{
+	if(Bool)
+	{
+		return "true";
+	}
+	return "false";
+}
+
 FString FStringConv::ToFString(int64 Int)
 {
 	return FString::Printf(TEXT("%lld"), Int);
