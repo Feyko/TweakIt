@@ -275,7 +275,13 @@ void FTILua::LuaToProperty(lua_State* L, FField* Field, void* Container, int Ind
 	else if (FEnumProperty* EnumProp = CastField<FEnumProperty>(Field))
 	{
 		FName EnumValueName = luaL_checkstring(L, Index);
+		FString EnumValueString = EnumValueName.ToString();
 		UEnum* Enum = EnumProp->GetEnum();
+		if (!EnumValueString.StartsWith(Enum->GetName()))
+		{
+			EnumValueString = Enum->GetName() + "::" + EnumValueString;
+			EnumValueName = FName(EnumValueString);
+		}
 		if (!Enum->IsValidEnumName(EnumValueName))
 		{
 			luaL_error(L, "invalid enum value %s for enum type %s. Example value: %s",
