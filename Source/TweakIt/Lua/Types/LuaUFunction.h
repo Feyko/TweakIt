@@ -11,6 +11,8 @@ struct FLuaUFunction : FGCObject
 	static int Construct(lua_State* L, UFunction* Function, UObject* Object);
 	static FLuaUFunction* Get(lua_State* L, int Index = 1);
 
+	static int Lua_On(lua_State* L);
+	
 	static int Lua__index(lua_State* L);
 	static int Lua__call(lua_State* L);
 	static int Lua__tostring(lua_State* L);
@@ -31,5 +33,6 @@ private:
 	};
 
 	inline static TMap<FString, lua_CFunction> Methods = {
+		{"On", Lua_On},
 	};
 };

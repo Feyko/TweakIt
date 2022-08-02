@@ -8,6 +8,7 @@ struct FLuaFDelegate : FGCObject
 	FLuaFDelegate(UFunction* Signature, FScriptDelegate* Delegate);
 	
 	UFunction* SignatureFunction;
+	// TODO: Handle possible collection/removal
 	FScriptDelegate* Delegate;
 	
 	static int Construct(lua_State* L, UFunction* SignatureFunction, FScriptDelegate* Delegate);

@@ -36,6 +36,22 @@ FLuaUFunction* FLuaUFunction::Get(lua_State* L, int Index)
 	return *static_cast<FLuaUFunction**>(luaL_checkudata(L, Index, Name));
 }
 
+int FLuaUFunction::Lua_On(lua_State* L)
+{
+	FLuaUFunction* Self = Get(L);
+	UObject* Object = FLuaUObject::Get(L, 2)->Object;
+	UFunction* Function = Object->FindFunction(FName(Self->Function->GetName()));
+	if (Self->Function != Function)
+	{
+		luaL_error(L, TCHAR_TO_UTF8(
+			*FString::Printf(TEXT("Tried to assign object %s to function %s but its class does not have the function"),
+			*Object->GetName(), *Function->GetName())));
+		return 0;
+	}
+	lua_settop(L, 1); // We set the top to 1 and return 1 to return Self
+	return 1;
+}
+
 int FLuaUFunction::Lua__index(lua_State* L)
 {
 	FString Index = luaL_checkstring(L, 2);

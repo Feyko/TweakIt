@@ -7,6 +7,7 @@ struct FLuaTArray : FGCObject
 	FLuaTArray(FArrayProperty* Property, void* Container);
 	
 	FArrayProperty* ArrayProperty;
+	// TODO: Handle possible collection/removal
 	void* Container;
 
 	static int ConstructArray(lua_State* L, FArrayProperty* ArrayProperty, void* Container);

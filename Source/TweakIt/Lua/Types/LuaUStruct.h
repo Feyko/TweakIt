@@ -8,6 +8,7 @@ struct FLuaUStruct : FGCObject
 	FLuaUStruct(UStruct* Struct, void* Values);
 	
 	UStruct* Struct;
+	// TODO: Handle possible collection/removal
 	void* Values;
 	
 	static int ConstructStruct(lua_State* L, UStruct* Struct, void* Values, bool Owning = false);
