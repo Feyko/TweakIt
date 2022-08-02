@@ -3,7 +3,6 @@
 #include "CoreMinimal.h"
 #include "FGBlueprintFunctionLibrary.h"
 #include "TweakIt/Lua/lib/lua.hpp"
-#include "FGRecipeManager.h"
 #include "FTILuaFuncManager.h"
 #include "IPlatformFilePak.h"
 #include "LuaState.h"

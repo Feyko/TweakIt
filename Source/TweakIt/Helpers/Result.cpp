@@ -1,6 +1,5 @@
 ﻿#include "Result.h"
 
-#include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Lua/FTILuaFuncManager.h"
 
 template <typename Val, typename ErrType>
@@ -17,13 +16,13 @@ bool TResult<Val, ErrType>::IsErr()
 }
 
 template <typename Val, typename ErrType>
-TResult<Val, ErrType>::TResult(Val Value) : Value(Value), Ok(true), Checked(false)
+TResult<Val, ErrType>::TResult(Val Value) : Ok(true), Checked(false), Value(Value)
 {
 
 }
 
 template <typename Val, typename ErrType>
-TResult<Val, ErrType>::TResult(ErrType Error) : Error(Error), Ok(false), Checked(false), Value(nullptr)
+TResult<Val, ErrType>::TResult(ErrType Error) : Ok(false), Checked(false), Value(nullptr), Error(Error)
 {
 	
 }
@@ -67,5 +66,5 @@ ErrType TResult<Val, ErrType>::Err()
 template <typename Val, typename ErrType>
 bool TResult<Val, ErrType>::operator==(TResult<Val, ErrType> Other)
 {
-	return Ok && Other.Ok && Value == Other.Value || !Ok && !Other.Ok && ErrTypeor == Other.ErrTypeor;
+	return Ok && Other.Ok && Value == Other.Value || !Ok && !Other.Ok && Error == Other.Error;
 }

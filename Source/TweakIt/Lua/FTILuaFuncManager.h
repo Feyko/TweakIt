@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "FTILuaFuncManager.h"
-#include "FTILuaFuncManager.h"
 #include "Lua.h"
 #include "TweakIt/Helpers/Result.h"
 

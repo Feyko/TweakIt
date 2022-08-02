@@ -10,10 +10,10 @@
 
 UClass* FTIReflection::UFunctionOuterBuffer = nullptr;
 
-UProperty* FTIReflection::FindPropertyByName(UStruct* Class, const TCHAR* PropertyName)
+FProperty* FTIReflection::FindPropertyByName(UStruct* Class, const TCHAR* PropertyName)
 {
 	FString lowered = FString(PropertyName).ToLower();
-	for (UProperty* Property = Class->PropertyLink; Property; Property = Property->PropertyLinkNext)
+	for (FProperty* Property = Class->PropertyLink; Property; Property = Property->PropertyLinkNext)
 	{
 		if (Property->GetName().ToLower() == lowered)
 		{
@@ -242,7 +242,7 @@ UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const
 	LOG("getting parent cdo")
 	UObject* ParentCDO = ParentClass->GetDefaultObject();
 	LOG("copying properties")
-	for (UProperty* Property = ConstructedClassObject->PropertyLink; Property; Property = Property->PropertyLinkNext)
+	for (FProperty* Property = ConstructedClassObject->PropertyLink; Property; Property = Property->PropertyLinkNext)
 	{
 		Property->CopyCompleteValue_InContainer(CDO, ParentCDO);
 	}
@@ -512,7 +512,7 @@ int FTIReflection::AddValueToEnum(FName NewName)
 	int EnumNum = Enum->NumEnums();
 	if (HasMax)
 	{
-		EnumNum--;
+		--EnumNum;
 	}
 	for (int i = 0; i < EnumNum; ++i)
 	{

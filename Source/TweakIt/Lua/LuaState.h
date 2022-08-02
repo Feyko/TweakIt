@@ -1,8 +1,6 @@
 #pragma once
 #include "Lua.h"
 
-#include "TweakIt/Lua/Lua.h"
-
 class FLuaState
 {
 public:

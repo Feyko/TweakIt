@@ -1,7 +1,6 @@
 ﻿#include "FTILuaFuncManager.h"
 
 #include "Buildables/FGBuildableFactoryBuilding.h"
-#include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
 
 TMap<FString, FLuaFunc> FTILuaFuncManager::SavedLuaFuncs = {};

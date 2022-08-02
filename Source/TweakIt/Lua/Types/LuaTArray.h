@@ -6,10 +6,10 @@ struct FLuaTArray : FGCObject
 {
 	FLuaTArray(FArrayProperty* Property, void* Container);
 	
-	UArrayProperty* ArrayProperty;
+	FArrayProperty* ArrayProperty;
 	void* Container;
 
-	static int ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container);
+	static int ConstructArray(lua_State* L, FArrayProperty* ArrayProperty, void* Container);
 	static FLuaTArray* Get(lua_State* L, int Index = 1);
 
 	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;

@@ -57,7 +57,7 @@ int FLuaUStruct::Lua__index(lua_State* L)
 		lua_pushcfunction(L, *Method);
 		return 1;
 	}
-	UProperty* NestedProperty = FTIReflection::FindPropertyByName(Self->Struct, *Index);
+	FProperty* NestedProperty = FTIReflection::FindPropertyByName(Self->Struct, *Index);
 	if (!NestedProperty->IsValidLowLevel())
 	{
 		LOGF("The struct doesn't have a %s field", *Index)
@@ -73,7 +73,7 @@ int FLuaUStruct::Lua__newindex(lua_State* L)
 	FLuaUStruct* Self = Get(L);
 	FString Index = luaL_checkstring(L, 2);
 	LOGF("Newindexing a LuaUStruct with %s", *Index)
-	UProperty* NestedProperty = FTIReflection::FindPropertyByName(Self->Struct, *Index);
+	FProperty* NestedProperty = FTIReflection::FindPropertyByName(Self->Struct, *Index);
 	if (!NestedProperty->IsValidLowLevel())
 	{
 		LOGF("The struct doesn't have a %s field", *Index)

@@ -1,12 +1,9 @@
 #include "Script.h"
 
-#include "FGAnimNotify_AkEventCurrentPotential.h"
-#include "ModuleDescriptor.h"
-#include "Interfaces/IPluginManager.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Lua/Scripting/TIScriptOrchestrator.h"
 
-FScript::FScript(FString FileName) : FileName(FileName), State(FScriptState::NotRan), L(FLuaState())
+FScript::FScript(FString FileName) : FileName(FileName), L(FLuaState()), State(FScriptState::NotRan)
 {
 	PrettyName = PrettyFilename(FileName);
 }

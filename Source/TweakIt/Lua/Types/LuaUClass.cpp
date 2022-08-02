@@ -57,7 +57,7 @@ int FLuaUClass::Lua_GetDefaultValue(lua_State* L)
 			return 1;
 		}
 	}
-	UProperty* Property = FTIReflection::FindPropertyByName(Self->Class, *PropertyName);
+	FProperty* Property = FTIReflection::FindPropertyByName(Self->Class, *PropertyName);
 	if (!Property->IsValidLowLevel())
 	{
 		lua_pushnil(L);
@@ -84,7 +84,7 @@ int FLuaUClass::Lua_ChangeDefaultValue(lua_State* L)
 	for (auto Class : Classes)
 	{
 		LOG("Changing the default value of a class")
-		UProperty* Property = FTIReflection::FindPropertyByName(Class, *PropertyName);
+		FProperty* Property = FTIReflection::FindPropertyByName(Class, *PropertyName);
 		if (!Property->IsValidLowLevel())
 		{
 			LOG("Couldn't find the property")
@@ -184,7 +184,7 @@ int FLuaUClass::Lua_DumpProperties(lua_State* L)
 {
 	FLuaUClass* Self = Get(L);
 	LOGF("Dumping the properties for %s", *Self->Class->GetName())
-	for (UProperty* Property = Self->Class->PropertyLink; Property; Property = Property->PropertyLinkNext)
+	for (FProperty* Property = Self->Class->PropertyLink; Property; Property = Property->PropertyLinkNext)
 	{
 		LOG(Property->GetName())
 	}

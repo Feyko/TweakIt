@@ -3,7 +3,6 @@
 
 #include "FGRecipe.h"
 #include "TweakIt/Logging/FTILog.h"
-#include "TweakIt/Logging/FTILog.h"
 
 void FTIContentRegistration::UnlockRecipe(UClass* Recipe, UObject* WorldContext)
 {

@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "ScriptState.h"
 #include "TweakIt/Lua/LuaState.h"
-#include "TweakIt/Lua/lib/lua.h"
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FScriptStateDelegate, FScriptState)
 DECLARE_MULTICAST_DELEGATE(FScriptCompletedDelegate)

@@ -52,7 +52,7 @@ int FLuaUObject::Lua_DumpProperties(lua_State* L)
 			LOG(Component->GetName())
 		}
 	}
-	for (UProperty* Property = Self->Object->GetClass()->PropertyLink; Property; Property = Property->PropertyLinkNext
+	for (FProperty* Property = Self->Object->GetClass()->PropertyLink; Property; Property = Property->PropertyLinkNext
 	)
 	{
 		LOG(Property->GetName())
@@ -77,7 +77,7 @@ int FLuaUObject::Lua__index(lua_State* L)
 		lua_pushcfunction(L, *Method);
 		return 1;
 	}
-	UProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *Index);
+	FProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *Index);
 	if (!Property->IsValidLowLevel())
 	{
 		UFunction* Function = FTIReflection::FindFunctionByName(Self->Object->GetClass(), *Index);
@@ -100,7 +100,7 @@ int FLuaUObject::Lua__newindex(lua_State* L)
 		FLuaUObject* Self = Get(L);
 		FString PropertyName = luaL_checkstring(L, 2);
 		LOGF("Newindexing a LuaUObject with %s", *PropertyName)
-		UProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *PropertyName);
+		FProperty* Property = FTIReflection::FindPropertyByName(Self->Object->GetClass(), *PropertyName);
 		if (!Property->IsValidLowLevel())
 		{
 			LOGF("No property '%s' found", *PropertyName)

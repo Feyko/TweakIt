@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "FGSubsystem.h"
-#include "TweakIt/Lua/LuaState.h"
 #include "TweakIt/Lua/Scripting/Script.h"
 
 class FTIScriptOrchestrator

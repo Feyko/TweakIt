@@ -10,7 +10,7 @@ FLuaTArray::FLuaTArray(FArrayProperty* Property, void* Container) : ArrayPropert
 	
 }
 
-int FLuaTArray::ConstructArray(lua_State* L, UArrayProperty* ArrayProperty, void* Container)
+int FLuaTArray::ConstructArray(lua_State* L, FArrayProperty* ArrayProperty, void* Container)
 {
 	if (!ArrayProperty->IsValidLowLevel())
 	{

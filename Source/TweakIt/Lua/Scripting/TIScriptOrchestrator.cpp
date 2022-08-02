@@ -4,8 +4,6 @@
 #include "TweakIt/Lua/Lua.h"
 #include "Configuration/ConfigManager.h"
 #include "HAL/FileManagerGeneric.h"
-#include "Interfaces/IPluginManager.h"
-#include "ModLoading/ModLoadingLibrary.h"
 #include "Module/ModModule.h"
 #include "SML/Public/Patching/NativeHookManager.h"
 #include "TweakIt/TweakItModule.h"

@@ -78,7 +78,7 @@ public:
 	TArray<EBuildGunState> states = {EBuildGunState::BGS_MAX, EBuildGunState::BGS_MENU};
 
 	UFUNCTION()
-	static void Testing(int I);
+	static FString Testing(ETIEnum arg);
 
 	UPROPERTY()
 	FTITestingDelegate Delegate;

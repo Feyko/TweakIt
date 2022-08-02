@@ -1,7 +1,6 @@
 #include "FTILog.h"
 
 #include "FGAnimNotify_AkEventCurrentPotential.h"
-#include "Developer/AITestSuite/Public/TestLogger.h"
 #include "TweakIt/Lua/Scripting/TIScriptOrchestrator.h"
 
 DEFINE_LOG_CATEGORY(LogTweakIt)
@@ -24,8 +23,7 @@ void FTILog::LogForScript(FString String, FString ScriptName, ELogVerbosity::Typ
 
 FOutputDeviceFile* FTILog::GetLogFileForScript(FString ScriptName)
 {
-	FOutputDeviceFile** ExistingFile = Files.Find(ScriptName);
-	if (ExistingFile)
+	if (FOutputDeviceFile** ExistingFile = Files.Find(ScriptName))
 	{
 		return *ExistingFile;
 	}
