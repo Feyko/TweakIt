@@ -81,17 +81,10 @@ int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, in
 	LOG("Calling UFunction")
 	check(Function->IsValidLowLevel())
 	check(Object->IsValidLowLevel())
-	TArray<uint8> Return;
-	FProperty* ReturnProperty = Function->GetReturnProperty();
-	int ReturnSize = ReturnProperty ? ReturnProperty->ElementSize : 0;
-	int ParmsSize = Function->ParmsSize;
-	Return.SetNumZeroed(ReturnSize + 50);
 	TArray<uint8> Params;
-	Params.SetNumZeroed(ParmsSize + 50);
-	LOGF("Params %d/%d | Return %d/%d", Params.Num(), ParmsSize, Return.Num(), ReturnSize)
+	Params.AddZeroed(Function->ParmsSize);
 	FFrame Frame = FFrame(Object, Function, Params.GetData());
 	int i = StartIndex;
-	LOG(Function->FunctionFlags)
 	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
 		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm))
@@ -101,17 +94,12 @@ int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, in
 		LuaToProperty(L, Prop, Params.GetData(), i);
 		i++;
 	}
-	// LOG(**Function->PropertyLink->ContainerPtrToValuePtr<FString>(Params.GetData()))
-	LOG(Function->GetFullName())
-	LOG(Object->GetFullName())
-	// LOG("Invoking raw")
-	// Function->GetNativeFunc()(Object, Frame, Return.GetData());
 	LOG("Invoking")
-	Function->Invoke(Object, Frame, Return.GetData());
-	LOG("Finished invocation")
+	Function->ProcessEvent(Function, Params.GetData());
+	FProperty* ReturnProperty = Function->GetReturnProperty();
 	if (ReturnProperty)
 	{
-		PropertyToLua(L, ReturnProperty, Return.GetData());
+		PropertyToLua(L, ReturnProperty, Params.GetData());
 	}
 	return ReturnProperty->IsValidLowLevel();
 }
@@ -231,7 +219,6 @@ void FTILua::LuaToProperty(lua_State* L, FField* Field, void* Container, int Ind
 		luaL_argexpected(L, lua_isboolean(L, Index), Index, "boolean");
 		BoolProp->SetPropertyValue_InContainer(Container, static_cast<bool>(lua_toboolean(L, Index)));
 	}
-	
 	else if (FInt8Property* Int8Prop = CastField<FInt8Property>(Field))
 	{
 		Int8Prop->SetPropertyValue_InContainer(Container, luaL_checkinteger(L, Index));
