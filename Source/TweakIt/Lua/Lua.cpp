@@ -67,13 +67,35 @@ bool FTILua::CheckLua(lua_State* L, int Returned)
 void FTILua::StackDump(lua_State* L)
 {
 	int Top = lua_gettop(L);
+	FString String = "";
+	int BiggestName = 3;
+	TArray<FString> TypeNames;
 	for (int i = 1; i <= Top; i++)
 	{
-		int t = lua_type(L, i);
-		string s = lua_typename(L, t);
-		LOG(s);
-		LOG(""); // put a separator 
+		FString TypeName;
+		if (lua_isuserdata(L, i))
+		{
+			lua_getmetatable(L, i);
+			lua_getfield(L, -1, "__name");
+			TypeName = luaL_checkstring(L, -1);
+			lua_pop(L, 2);
+		} else
+		{
+			TypeName = lua_typename(L, lua_type(L, i));
+		}
+		if (TypeName.Len() > BiggestName)
+		{
+			BiggestName = TypeName.Len();
+		}
+		TypeNames.Emplace(TypeName);
 	}
+	FString Separator = "<" + FString::ChrN(BiggestName-2, '-') + ">";
+	LOG(Separator)
+	for (auto TypeName : TypeNames)
+	{
+		LOG(TypeName)
+	}
+	LOG(Separator)
 }
 
 int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, int StartIndex)
