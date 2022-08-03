@@ -103,25 +103,24 @@ int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, in
 	LOG("Calling UFunction")
 	check(Function->IsValidLowLevel())
 	check(Object->IsValidLowLevel())
-	TArray<uint8> Params;
-	Params.AddZeroed(Function->ParmsSize);
-	FFrame Frame = FFrame(Object, Function, Params.GetData());
+	void* Params = FMemory_Alloca(Function->ParmsSize);
+	FFrame Frame = FFrame(Object, Function, Params);
 	int i = StartIndex;
 	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
-		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm))
+		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm))
 		{
 			continue;
 		}
-		LuaToProperty(L, Prop, Params.GetData(), i);
+		LuaToProperty(L, Prop, Params, i);
 		i++;
 	}
 	LOG("Invoking")
-	Function->ProcessEvent(Function, Params.GetData());
+	Function->ProcessEvent(Function, Params);
 	FProperty* ReturnProperty = Function->GetReturnProperty();
 	if (ReturnProperty)
 	{
-		PropertyToLua(L, ReturnProperty, Params.GetData());
+		PropertyToLua(L, ReturnProperty, Params);
 	}
 	return ReturnProperty->IsValidLowLevel();
 }
