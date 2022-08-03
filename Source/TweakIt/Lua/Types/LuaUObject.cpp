@@ -17,7 +17,7 @@ int FLuaUObject::ConstructObject(lua_State* L, UObject* Object)
 	LOG("Constructing a LuaUObject")
 	if (!Object->IsValidLowLevel())
 	{
-		LOG("Trying to construct a LuaUObject from an invalid object")
+		LOGL("Trying to construct a LuaUObject from an invalid object", Warning)
 		lua_pushnil(L);
 		return 1;
 	}

@@ -18,3 +18,5 @@ Changes may be missed because of heavy refactoring after a long time away from t
   - Delegate
     - You can bind Lua code to be executed when the delegate gets called!!
     - You can also wait for the event to be called
+  - Interface
+    - Behaves as an object property, does not restrain what you can call like a real interface

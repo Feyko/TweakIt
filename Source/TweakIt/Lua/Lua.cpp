@@ -228,10 +228,15 @@ void FTILua::PropertyToLua(lua_State* L, FProperty* Property, void* Container, b
 		FScriptDelegate* Value = DelegateProp->ContainerPtrToValuePtr<FScriptDelegate>(Container);
 		FLuaFDelegate::Construct(L, DelegateProp->SignatureFunction, Value);
 	}
+	else if (FInterfaceProperty* InterfaceProp = CastField<FInterfaceProperty>(Property))
+	{
+		FScriptInterface* Interface = InterfaceProp->ContainerPtrToValuePtr<FScriptInterface>(Container);
+		FLuaUObject::ConstructObject(L, Interface->GetObject());
+	}
 	else
 	{
-		LOG("DIDN'T MATCH ANY CAST FLAGS")
-		lua_pushnil(L);
+		FString Error = FString::Printf(TEXT("Property type %s is unsupported. Please report this to Feyko"), *Property->GetCPPType());
+		luaL_error(L, TCHAR_TO_UTF8(*Error));
 	}
 }
 
@@ -362,9 +367,30 @@ void FTILua::LuaToProperty(lua_State* L, FProperty* Property, void* Container, i
 	{
 		luaL_error(L, "Delegate assignment is not yet supported");
 	}
+	else if (FInterfaceProperty* InterfaceProp = CastField<FInterfaceProperty>(Property))
+	{
+		UObject* Object = lua_isnil(L, Index) ? nullptr : FLuaUObject::Get(L, Index)->Object;
+		FScriptInterface* InterfacePtr = InterfaceProp->ContainerPtrToValuePtr<FScriptInterface>(Container);
+		void* ObjectInterface = nullptr;
+		if(Object)
+		{
+			UClass* InterfaceClass = InterfaceProp->InterfaceClass;
+			ObjectInterface = Object->GetInterfaceAddress(InterfaceClass);
+			if (!ObjectInterface)
+			{
+				FString Error = FString::Printf(
+					TEXT("Tried to assign object %s to interface of type %s but it does not implement said interface."),
+					*Object->GetName(), *InterfaceClass->GetName());
+				luaL_error(L, TCHAR_TO_UTF8(*Error));
+				return;
+			}
+		}
+		*InterfacePtr = FScriptInterface(Object, ObjectInterface);
+	}
 	else
 	{
-		luaL_error(L, "Property type not supported. Please report this to Feyko");
+		FString Error = FString::Printf(TEXT("Property type %s is unsupported. Please report this to Feyko"), *Property->GetCPPType());
+		luaL_error(L, TCHAR_TO_UTF8(*Error));
 	}
 }
 

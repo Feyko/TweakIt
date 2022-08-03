@@ -294,7 +294,8 @@ UFunction* FTIReflection::CopyUFunction(UFunction* ToCopy, FString FunctionName,
 		CopyProperty(Function, Prop);
 	}
 	LOG("Reversing properties")
-	// Properties are added to the front of the linked list. We reverse it to make sure the properties are in the same order as they were in the input function
+	// Properties are added to the front of the linked list.
+	// We reverse it to make sure the properties are in the same order as they were in the input function
 	ReverseChildProperties(&Function->ChildProperties);
 	FArchiveUObject Dummy;
 	LOG("Linking function")
