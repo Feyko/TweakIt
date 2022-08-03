@@ -23,8 +23,8 @@ public:
 	static void UFunctionToLua(lua_State* L, UFunction* Function, UObject* Object);
 
 	// Mostly borrowed from FIN's source. Thanks Pana !
-	static void PropertyToLua(lua_State* L, FField* Field, void* Container);
-	static void LuaToProperty(lua_State* L, FField* Field, void* Container, int Index);
+	static void PropertyToLua(lua_State* L, FProperty* Property, void* Container, bool Local = false);
+	static void LuaToProperty(lua_State* L, FProperty* Property, void* Container, int Index, bool Local = false);
 
 	static int Lua_GetClass(lua_State* L);
 	static int Lua_MakeStructInstance(lua_State* L);
