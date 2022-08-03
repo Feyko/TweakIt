@@ -233,6 +233,10 @@ void FTILua::PropertyToLua(lua_State* L, FProperty* Property, void* Container, b
 		FScriptInterface* Interface = InterfaceProp->ContainerPtrToValuePtr<FScriptInterface>(Container);
 		FLuaUObject::ConstructObject(L, Interface->GetObject());
 	}
+	else if (FFieldPathProperty* FieldPathProp = CastField<FFieldPathProperty>(Property))
+	{
+		lua_pushstring(L, TCHAR_TO_UTF8(*FieldPathProp->GetPropertyValuePtr_InContainer(Container)->ToString()));
+	}
 	else
 	{
 		FString Error = FString::Printf(TEXT("Property type %s is unsupported. Please report this to Feyko"), *Property->GetCPPType());
@@ -386,6 +390,13 @@ void FTILua::LuaToProperty(lua_State* L, FProperty* Property, void* Container, i
 			}
 		}
 		*InterfacePtr = FScriptInterface(Object, ObjectInterface);
+	}
+	else if (FFieldPathProperty* FieldPathProp = CastField<FFieldPathProperty>(Property))
+	{
+		FString PathString = luaL_checkstring(L, Index);
+		FFieldPath Path = FFieldPath();
+		Path.Generate(*PathString);
+		FieldPathProp->SetPropertyValue_InContainer(Container, Path);
 	}
 	else
 	{

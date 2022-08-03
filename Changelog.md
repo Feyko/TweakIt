@@ -20,3 +20,5 @@ Changes may be missed because of heavy refactoring after a long time away from t
     - You can also wait for the event to be called
   - Interface
     - Behaves as an object property, does not restrain what you can call like a real interface
+  - FieldPath
+    - Basically useless!
