@@ -53,10 +53,11 @@ int FLuaFDelegate::Lua_Bind(lua_State* L)
 
 	// TODO: Extract the following into function
 	FString FunctionName = UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName());
-	LOG("Dumping Lua func")
-	FTILuaFuncManager::DumpFunction(L, FunctionName, 2);
 	LOG("Copying UFunction")
 	UFunction* Function = FTIReflection::CopyUFunction(Self->SignatureFunction, FunctionName);
+	FunctionName = Function->GetFullName();
+	LOG("Dumping Lua func")
+	FTILuaFuncManager::DumpFunction(L, FunctionName, 2);
 	LOG("Making native func from lua func")
 	FNativeFuncPtr Func = FTILuaFuncManager::SavedLuaFuncToNativeFunc(L, FunctionName);
 	LOG("Setting native func")

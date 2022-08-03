@@ -1,4 +1,4 @@
-﻿#include "FTILuaFuncManager.h"
+#include "FTILuaFuncManager.h"
 
 #include "Buildables/FGBuildableFactoryBuilding.h"
 #include "TweakIt/Logging/FTILog.h"
@@ -96,22 +96,23 @@ void FTILuaFuncManager::LuaCallerFunc(UObject* Context, FFrame& Frame, void* con
 		return;
 	}
 	LOG("Calling wrapper function around Lua function")
-	TResult<FLuaFunc> LuaFunc = GetSavedLuaFunc(Frame.Node->GetName());
+	FString FunctionName = Frame.Node->GetFullName();
+	TResult<FLuaFunc> LuaFunc = GetSavedLuaFunc(FunctionName);
 	if (!LuaFunc)
 	{
-		LOGFL("Could not find Lua func %s", Error, *Frame.Node->GetName())
+		LOGFL("Could not find Lua func %s", Error, *FunctionName)
 		return;
 	}
 	lua_State* L = LuaFunc->L;
-	FTILua::StackDump(L);
-	
-	LoadFunction(L, *LuaFunc, Frame.Node->GetName());
+	LoadFunction(L, *LuaFunc, FunctionName);
 	LOG("Pushing context object")
 	FLuaUObject::ConstructObject(L, Context);
-	FTILua::StackDump(L);
 	for (auto Prop = Frame.Node->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
-		FTILua::PropertyToLua(L, Prop, Frame.Locals);
+		if (Prop->HasAllPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm))
+		{
+			continue;
+		}
 	}
 	FProperty* ReturnProperty = Frame.Node->GetReturnProperty();
 	LOG("Calling inner Lua func")
@@ -119,12 +120,14 @@ void FTILuaFuncManager::LuaCallerFunc(UObject* Context, FFrame& Frame, void* con
 	if (r != LUA_OK)
 	{
 		FString Error = lua_tostring(L, -1);
-		LOGFL("Errored when calling func %s: %s", Error, *Frame.Node->GetName(), *Error)
+		LOGFL("Errored when calling func %s: %s", Error, *FunctionName, *Error)
+		return;
 	}
 	if (ReturnProperty)
 	{
 		LOG("Copying return value")
-		FTILua::LuaToProperty(L, ReturnProperty, Result, -1);
+		FTILua::LuaToProperty(L, ReturnProperty, Result, -1, true);
+		lua_pop(L, 1);
 	}
 	LOG("Done")
 }

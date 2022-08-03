@@ -1,6 +1,7 @@
 ﻿#include "LuaUFunction.h"
 
 #include "TweakIt/Helpers/TIReflection.h"
+#include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
 #include "TweakIt/Lua/FTILuaFuncManager.h"
 
@@ -50,6 +51,19 @@ int FLuaUFunction::Lua_On(lua_State* L)
 	}
 	lua_settop(L, 1); // We set the top to 1 and return 1 to return Self
 	return 1;
+}
+
+int FLuaUFunction::Lua_Bind(lua_State* L)
+{
+	FLuaUFunction* Self = Get(L);
+	FTILua::LuaT_ExpectLuaFunction(L, 2);
+	FString FunctionName = Self->Function->GetFullName();
+	LOG(FunctionName)
+	FTILuaFuncManager::DumpFunction(L, FunctionName, 2);
+	LOG(FTILuaFuncManager::GetSavedLuaFunc(FunctionName).IsOk())
+	FNativeFuncPtr Func = FTILuaFuncManager::SavedLuaFuncToNativeFunc(L, FunctionName);
+	Self->Function->SetNativeFunc(Func);
+	return 0;
 }
 
 int FLuaUFunction::Lua__index(lua_State* L)

@@ -12,6 +12,7 @@ struct FLuaUFunction : FGCObject
 	static FLuaUFunction* Get(lua_State* L, int Index = 1);
 
 	static int Lua_On(lua_State* L);
+	static int Lua_Bind(lua_State* L);
 	
 	static int Lua__index(lua_State* L);
 	static int Lua__call(lua_State* L);
@@ -34,5 +35,6 @@ private:
 
 	inline static TMap<FString, lua_CFunction> Methods = {
 		{"On", Lua_On},
+		{"Bind", Lua_Bind}
 	};
 };
