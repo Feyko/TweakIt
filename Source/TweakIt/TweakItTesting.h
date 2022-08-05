@@ -3,6 +3,7 @@
 #include "FGCustomizationRecipe.h"
 #include "FactoryGame/Public/Equipment/FGBuildGun.h"
 #include "FGRecipe.h"
+#include "FGUseableInterface.h"
 #include "ItemAmount.h"
 #include "Hologram/FGHologram.h"
 
@@ -78,11 +79,14 @@ public:
 	TArray<EBuildGunState> states = {EBuildGunState::BGS_MAX, EBuildGunState::BGS_MENU};
 
 	UFUNCTION()
-	static FString Testing(ETIEnum arg);
+	static int Testing(ETIEnum arg);
 
 	UPROPERTY()
 	FTITestingDelegate Delegate;
 
 	UPROPERTY()
 	UTweakItTesting* This;
+
+	UPROPERTY()
+	TScriptInterface<IFGUseableInterface> Interface;
 };

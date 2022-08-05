@@ -105,16 +105,7 @@ int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, in
 	check(Object->IsValidLowLevel())
 	void* Params = FMemory_Alloca(Function->ParmsSize);
 	FFrame Frame = FFrame(Object, Function, Params);
-	int i = StartIndex;
-	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
-	{
-		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm))
-		{
-			continue;
-		}
-		LuaToProperty(L, Prop, Params, i);
-		i++;
-	}
+	PopulateUFunctionParams(L, Function, Params, StartIndex);
 	LOG("Invoking")
 	Function->ProcessEvent(Function, Params);
 	FProperty* ReturnProperty = Function->GetReturnProperty();
@@ -129,6 +120,20 @@ void FTILua::UFunctionToLua(lua_State* L, UFunction* Function, UObject* Object)
 {
 	checkf(Object->IsValidLowLevel(), TEXT("Invalid UObject passed for LuaUFunction creation"))
 	FLuaUFunction::Construct(L, Function, Object);
+}
+
+void FTILua::PopulateUFunctionParams(lua_State* L, UFunction* Function, void* Params, int StartIndex)
+{
+	int i = StartIndex;
+	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
+	{
+		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm))
+		{
+			continue;
+		}
+		LuaToProperty(L, Prop, Params, i);
+		i++;
+	}
 }
 
 // Mostly borrowed from FIN's source. Thanks Pana !

@@ -46,6 +46,7 @@ UTIUFunctionBinder* UTIUFunctionBinder::Get()
 }
 
 // TODO: Make this non-destructive
+// TODO: Remove function when done
 // TODO: Make sure the Event won't block or crash when triggering multiple times without waiting
 FEvent* UTIUFunctionBinder::MakeAwaitableFunction(FName& FunctionNameOut)
 {
@@ -71,5 +72,5 @@ FEvent* UTIUFunctionBinder::MakeAwaitableFunction(FName& FunctionNameOut)
 template<typename... T>
 FString UTIUFunctionBinder::MakeFunctionName(T... Namespace)
 {
-	return FPaths::Combine(Namespace...);
+	return FPaths::Combine(Namespace...) + "_" + FGuid::NewGuid().ToString();
 }

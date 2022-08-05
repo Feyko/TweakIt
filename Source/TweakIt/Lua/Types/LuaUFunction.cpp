@@ -68,11 +68,17 @@ int FLuaUFunction::Lua_Bind(lua_State* L)
 
 int FLuaUFunction::Lua__index(lua_State* L)
 {
+	FLuaUFunction* Self = Get(L);
 	FString Index = luaL_checkstring(L, 2);
 	LOGF("Indexing a LuaUFunction with %s", *Index)
 	if (lua_CFunction* Method = Methods.Find(Index))
 	{
 		lua_pushcfunction(L, *Method);
+		return 1;
+	}
+	if (Index == "Object")
+	{
+		FLuaUObject::ConstructObject(L, Self->Object);
 		return 1;
 	}
 	lua_pushnil(L);

@@ -21,6 +21,7 @@ public:
 
 	static int CallUFunction(lua_State* L, UObject* Object, UFunction* Function, int StartIndex);
 	static void UFunctionToLua(lua_State* L, UFunction* Function, UObject* Object);
+	static void PopulateUFunctionParams(lua_State* L, UFunction* Function, void* Params, int StartIndex);
 
 	// Mostly borrowed from FIN's source. Thanks Pana !
 	static void PropertyToLua(lua_State* L, FProperty* Property, void* Container, bool Local = false);

@@ -18,10 +18,10 @@ UTweakItTesting* UTweakItTesting::Get()
 	return Cast<UTweakItTesting>(StaticClass()->ClassDefaultObject);
 }
 
-FString UTweakItTesting::Testing(ETIEnum arg)
+int UTweakItTesting::Testing(ETIEnum arg)
 {
 	LOG("TweakItTesting::Testing ran")
-	FString out;
-	StaticEnum<ETIEnum>()->FindNameStringByValue(out, static_cast<int64>(arg));
-	return out;
+	// FString out;
+	// StaticEnum<ETIEnum>()->FindNameStringByValue(out, static_cast<int64>(arg));
+	return 0;
 }
