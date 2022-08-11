@@ -32,6 +32,14 @@ bool FTILua::LuaT_CheckBoolean(lua_State* L, int Index)
 	return static_cast<bool>(lua_toboolean(L, Index));
 }
 
+FString FTILua::LuaT_CheckStringable(lua_State* L, int Index)
+{
+	const char* str = luaL_tolstring(L, Index, nullptr);
+	luaL_argexpected(L, str, Index, "string or stringable");
+	lua_pop(L, 1);
+	return FString(str);
+}
+
 bool FTILua::LuaT_OptBoolean(lua_State* L, int Index, bool Default)
 {
 	return lua_isboolean(L, Index) ? static_cast<bool>(lua_toboolean(L, Index)) : Default;
@@ -485,19 +493,36 @@ int FTILua::Lua_LoadObject(lua_State* L)
 
 int FTILua::Lua_Print(lua_State* L)
 {
-	FString String = luaL_checkstring(L, 1);
-	LOG(String)
+	int Num = lua_gettop(L);
+	FString Out;
+	for (int i = 0; i < Num; ++i)
+	{
+		Out += LuaT_CheckStringable(L, i) + " ";
+	}
+	LOG(Out.TrimEnd())
+	return 0;
+}
+
+int Ayo(lua_State* L)
+{
+	LOG("AYOOOO")
 	return 0;
 }
 
 int FTILua::Lua_Test(lua_State* L)
 {
 	LOG("Running Lua_Test")
-	// FPlatformProcess::Sleep(4);
-	LOG(UTweakItTesting::Get()->Delegate.GetFunctionName())
-	LOG(UTweakItTesting::Get()->Delegate.IsBound())
-	LOG("Executing")
-	UTweakItTesting::Get()->Delegate.Execute("String", 42);
+	// LuaT_ExpectLuaFunction(L, 1);
+	luaL_checkinteger(L, 1);
+	RegisterMetatable(L, "custom", {
+		{"__index", Ayo}
+	});
+	StackDump(L);
+	// luaL_setmetatable(L, "custom");
+	StackDump(L);
+	int r = lua_getmetatable(L, 1);
+	LOG(r)
+	StackDump(L);
 	return 0;
 }
 

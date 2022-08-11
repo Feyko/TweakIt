@@ -12,6 +12,7 @@ public:
 	template<typename T>
 	static T* LuaT_CheckLightUserdata(lua_State* L, int Index);
 	static bool LuaT_CheckBoolean(lua_State* L, int Index);
+	static FString LuaT_CheckStringable(lua_State* L, int Index);
 	static bool LuaT_OptBoolean(lua_State* L, int Index, bool Default);
 
 	static void RegisterMetatable(lua_State* L, const char* Name, TArray<luaL_Reg>);
