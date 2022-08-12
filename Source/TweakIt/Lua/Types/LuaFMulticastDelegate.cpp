@@ -34,7 +34,7 @@ int FLuaFMulticastDelegate::Construct(lua_State* L, UFunction* SignatureFunction
 
 FLuaFMulticastDelegate* FLuaFMulticastDelegate::Get(lua_State* L, int Index)
 {
-	return static_cast<FLuaFMulticastDelegate*>(luaL_checkudata(L, Index, Name));
+	return *static_cast<FLuaFMulticastDelegate**>(luaL_checkudata(L, Index, Name));
 }
 
 void FLuaFMulticastDelegate::AddReferencedObjects(FReferenceCollector& Collector)

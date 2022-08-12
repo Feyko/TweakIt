@@ -28,7 +28,7 @@ int FLuaTArray::ConstructArray(lua_State* L, FArrayProperty* ArrayProperty, void
 
 FLuaTArray* FLuaTArray::Get(lua_State* L, int Index)
 {
-	return static_cast<FLuaTArray*>(luaL_checkudata(L, Index, Name));
+	return *static_cast<FLuaTArray**>(luaL_checkudata(L, Index, Name));
 }
 
 void FLuaTArray::AddReferencedObjects(FReferenceCollector& Collector)

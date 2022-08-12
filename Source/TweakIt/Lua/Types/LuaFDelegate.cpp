@@ -32,7 +32,7 @@ int FLuaFDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FScript
 
 FLuaFDelegate* FLuaFDelegate::Get(lua_State* L, int Index)
 {
-	return static_cast<FLuaFDelegate*>(luaL_checkudata(L, Index, Name));
+	return *static_cast<FLuaFDelegate**>(luaL_checkudata(L, Index, Name));
 }
 
 void FLuaFDelegate::AddReferencedObjects(FReferenceCollector& Collector)
