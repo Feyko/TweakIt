@@ -9,7 +9,7 @@
 
 #include "TweakItTesting.generated.h"
 
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FTITestingDelegate, FString, String, int, Otherstring);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FTITestingDelegate, FString, String);
 
 UENUM()
 enum class ETIEnum
@@ -79,10 +79,16 @@ public:
 	TArray<EBuildGunState> states = {EBuildGunState::BGS_MAX, EBuildGunState::BGS_MENU};
 
 	UFUNCTION()
-	static int Testing(ETIEnum arg);
+	static int Testing(ETIEnum arg, FText Textparm);
 
 	UPROPERTY()
 	FTITestingDelegate Delegate;
+
+	UFUNCTION()
+	static void TestingDelegate(FString ParmString);
+
+	UFUNCTION()
+	static void InvalidTestingDelegate(FText ParmString, int ParmInt);
 
 	UPROPERTY()
 	UTweakItTesting* This;

@@ -1,6 +1,8 @@
 #include "FTILuaFuncManager.h"
 
 #include "Buildables/FGBuildableFactoryBuilding.h"
+#include "TweakIt/Helpers/TIReflection.h"
+#include "TweakIt/Helpers/TIUFunctionBinder.h"
 #include "TweakIt/Logging/FTILog.h"
 
 TMap<FString, FLuaFunc> FTILuaFuncManager::SavedLuaFuncs = {};
@@ -80,6 +82,17 @@ FNativeFuncPtr FTILuaFuncManager::SavedLuaFuncToNativeFunc(lua_State* L, FString
 	}
 	LOG("could find")
 	return LuaCallerFunc;
+}
+
+TPair<UObject*, FName> FTILuaFuncManager::MakeGlobalLuaUFunction(lua_State* L, UFunction* Signature, int Index)
+{
+	FTILua::LuaT_ExpectLuaFunction(L, Index);
+	FString FunctionName = Signature->GetFullName() + FGuid::NewGuid().ToString();
+	DumpFunction(L, FunctionName, Index);
+	UFunction* Function = FTIReflection::CopyUFunction(Signature, FunctionName);
+	Function->SetNativeFunc(LuaCallerFunc);
+	UTIUFunctionBinder::AddFunction(Function, FName(FunctionName));
+	return TPair<UObject*, FName>(UTIUFunctionBinder::Get(), FName(FunctionName));
 }
 
 int FTILuaFuncManager::WriterFunc(lua_State* L, const void* NewData, size_t DataSize, void* Descriptor)

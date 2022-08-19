@@ -19,12 +19,9 @@ void UTIUFunctionBinder::AddNativeFunction(FNativeFuncPtr Function, FName Name)
 	StaticClass()->AddFunctionToFunctionMap(UFunc, Name);
 }
 
-template<typename... T>
-FString UTIUFunctionBinder::AddFunction(UFunction* Function, T... Namespace)
+void UTIUFunctionBinder::AddFunction(UFunction* Function, FName Name)
 {
-	FString Name = MakeFunctionName(Namespace ...);
-	StaticClass()->AddFunctionToFunctionMap(Function, FName(Name));
-	return Name;
+	StaticClass()->AddFunctionToFunctionMap(Function, Name);
 }
 
 template<typename... T>

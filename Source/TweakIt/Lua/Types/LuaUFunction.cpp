@@ -37,6 +37,11 @@ FLuaUFunction* FLuaUFunction::Get(lua_State* L, int Index)
 	return *static_cast<FLuaUFunction**>(luaL_checkudata(L, Index, Name));
 }
 
+bool FLuaUFunction::Is(lua_State* L, int Index)
+{
+	return luaL_testudata(L, Index, Name) != nullptr;
+}
+
 int FLuaUFunction::Lua_On(lua_State* L)
 {
 	FLuaUFunction* Self = Get(L);

@@ -1,5 +1,7 @@
 ﻿#include "StringConv.h"
 
+#include "TweakIt/Logging/FTILog.h"
+
 FString FStringConv::ToFString(int Int)
 {
 	return FString::FromInt(Int);
@@ -31,11 +33,19 @@ FString FStringConv::ToFString(const char* String)
 
 FString FStringConv::ToFString(FString String)
 {
+ 	// LOGF("%p", *String)
 	return String;
 }
 
 FString FStringConv::ToFString(const TCHAR* String)
 {
+	LOGF("%p", String)
+	return FString(String);
+}
+
+FString FStringConv::ToFString(TCHAR* String)
+{
+	LOGF("%p", String)
 	return FString(String);
 }
 
@@ -47,6 +57,11 @@ FString FStringConv::ToFString(std::string String)
 FString FStringConv::ToFString(FName Name)
 {
 	return Name.ToString();
+}
+
+FString FStringConv::ToFString(FText Text)
+{
+	return Text.ToString();
 }
 
 FString FStringConv::ToFString(EFunctionFlags Flags)
@@ -181,4 +196,10 @@ FString FStringConv::ToFString(TResult<V, E> Result)
 		return FStringConv::ToFString(*Result);
 	}
 	return "Error: " + Result.Err()->Error();
+}
+
+template <typename T>
+FString FStringConv::ToFString(T* Ptr)
+{
+	return FString::Printf(TEXT("%p"), Ptr);
 }

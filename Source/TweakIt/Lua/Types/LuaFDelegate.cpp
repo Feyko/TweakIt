@@ -38,6 +38,8 @@ FLuaFDelegate* FLuaFDelegate::Get(lua_State* L, int Index)
 void FLuaFDelegate::AddReferencedObjects(FReferenceCollector& Collector)
 {
 	Collector.AddReferencedObject(SignatureFunction);
+	UObject* Object = Delegate->GetUObject();
+	Collector.AddReferencedObject(Object);
 }
 
 FString FLuaFDelegate::ToString() const
@@ -49,23 +51,22 @@ int FLuaFDelegate::Lua_Bind(lua_State* L)
 {
 	LOG("Binding a LuaFDelegate")
     FLuaFDelegate* Self = Get(L);
+	if (FLuaUFunction::Is(L, 2))
+	{
+		FLuaUFunction* Function = FLuaUFunction::Get(L, 2);
+		if (!Function->Function->IsSignatureCompatibleWith(Self->SignatureFunction))
+		{
+			
+			luaL_error(L, TCHAR_TO_UTF8(*FString::Printf(TEXT(
+				"Tried to bind the UFunction %s to the delegate %s which does not have a compatible signature")
+				,*Function->Function->GetFullName(), *Self->SignatureFunction->GetFullName())));
+		} 
+		Self->Delegate->BindUFunction(Function->Object, Function->Function->GetFName());
+		return 0;
+	}
 	FTILua::LuaT_ExpectLuaFunction(L, 2);
-
-	// TODO: Extract the following into function
-	FString FunctionName = UTIUFunctionBinder::MakeFunctionName(FTILog::CurrentScript, Self->SignatureFunction->GetName());
-	LOG("Copying UFunction")
-	UFunction* Function = FTIReflection::CopyUFunction(Self->SignatureFunction, FunctionName);
-	FunctionName = Function->GetFullName();
-	LOG("Dumping Lua func")
-	FTILuaFuncManager::DumpFunction(L, FunctionName, 2);
-	LOG("Making native func from lua func")
-	FNativeFuncPtr Func = FTILuaFuncManager::SavedLuaFuncToNativeFunc(L, FunctionName);
-	LOG("Setting native func")
-	Function->SetNativeFunc(Func);
-	LOG("Adding function")
-	UTIUFunctionBinder::AddFunction(Function, FunctionName);
-	LOG("Binding function")
-	Self->Delegate->BindUFunction(UTIUFunctionBinder::Get(), FName(FunctionName));
+	TPair<UObject*, FName> BindInformation = FTILuaFuncManager::MakeGlobalLuaUFunction(L, Self->SignatureFunction, 2);
+	Self->Delegate->BindUFunction(BindInformation.Key, BindInformation.Value);
 	return 0;
 }
 

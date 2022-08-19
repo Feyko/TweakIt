@@ -8,8 +8,7 @@ class UTIUFunctionBinder : public UObject
 public:
 	static void AddNativeFunction(FNativeFuncPtr Function, FName Name);
 	
-	template<typename... T>
-	static FString AddFunction(UFunction* Function, T... Namespace);
+	static void AddFunction(UFunction* Function, FName Name);
 	
 	template<typename... T>
 	static UFunction* GetFunction(T... Namespace);

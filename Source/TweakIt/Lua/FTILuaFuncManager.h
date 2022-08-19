@@ -27,6 +27,8 @@ public:
 	
 	static FNativeFuncPtr SavedLuaFuncToNativeFunc(lua_State* L, FString Name);
 
+	static TPair<UObject*, FName> MakeGlobalLuaUFunction(lua_State* L, UFunction* Signature, int Index);
+
 private:
 	static int WriterFunc(lua_State* L, const void* NewData, size_t DataSize, void* Descriptor);
 	static void LuaCallerFunc(UObject* Context, FFrame& TheStack, void* const Z_Param__Result);

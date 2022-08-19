@@ -13,7 +13,7 @@ using namespace std;
 
 FLuaFMulticastDelegate::FLuaFMulticastDelegate(UFunction* Signature, FMulticastScriptDelegate* Delegate) : SignatureFunction(Signature), Delegate(Delegate)
 {
-	FMulticastDelegateProperty* Prop;
+	
 }
 
 int FLuaFMulticastDelegate::Construct(lua_State* L, UFunction* SignatureFunction, FMulticastScriptDelegate* Delegate)
@@ -66,7 +66,7 @@ int FLuaFMulticastDelegate::Lua_Add(lua_State* L)
 	LOG("Setting native func")
 	Function->SetNativeFunc(Func);
 	LOG("Adding function")
-	UTIUFunctionBinder::AddFunction(Function, FunctionName);
+	UTIUFunctionBinder::AddFunction(Function, FName(FunctionName));
 	LOG("Binding function")
 	// Self->Delegate->BindUFunction(UTIUFunctionBinder::Get(), FName(FunctionName));
 	return 0;

@@ -11,8 +11,10 @@ struct FStringConv
 	static FString ToFString(const char* String);
 	static FString ToFString(FString String);
 	static FString ToFString(const TCHAR* String);
+	static FString ToFString(TCHAR* String);
 	static FString ToFString(std::string String);
 	static FString ToFString(FName Name);
+	static FString ToFString(FText Text);
 	static FString ToFString(EFunctionFlags Flags);
 	static FString ToFString(EPropertyFlags Flags);
 	static FString ToFString(EObjectFlags Flags);
@@ -22,4 +24,6 @@ struct FStringConv
 	static FString ToFString(size_t Size);
 	template<typename V, typename E>
 	static FString ToFString(TResult<V, E> Result);
+	template<typename T>
+	static FString ToFString(T* Ptr);
 };

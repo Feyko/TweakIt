@@ -10,6 +10,7 @@ struct FLuaUFunction : FGCObject
 
 	static int Construct(lua_State* L, UFunction* Function, UObject* Object);
 	static FLuaUFunction* Get(lua_State* L, int Index = 1);
+	static bool Is(lua_State* L, int Index = 1);
 
 	static int Lua_On(lua_State* L);
 	static int Lua_Bind(lua_State* L);

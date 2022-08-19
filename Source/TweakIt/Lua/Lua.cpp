@@ -111,16 +111,24 @@ int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, in
 	LOG("Calling UFunction")
 	check(Function->IsValidLowLevel())
 	check(Object->IsValidLowLevel())
-	void* Params = FMemory_Alloca(Function->ParmsSize);
-	FFrame Frame = FFrame(Object, Function, Params);
+	void* Params = FMemory_Alloca(Function->ParmsSize * 8);
+	LOG(Function->ParmsSize)
+	LOG(sizeof FString)
+	// void* Params = FMemory::Malloc(Function->ParmsSize * 1);
+	// LOG(FMemory::GetAllocSize(Params))
 	PopulateUFunctionParams(L, Function, Params, StartIndex);
 	LOG("Invoking")
 	Function->ProcessEvent(Function, Params);
 	FProperty* ReturnProperty = Function->GetReturnProperty();
+	LOG("Returned")
 	if (ReturnProperty)
 	{
+		LOG("Returning value to Lua")
 		PropertyToLua(L, ReturnProperty, Params);
 	}
+	LOG("Freeing")
+	// FMemory::Free(Params);
+	LOG("Done")
 	return ReturnProperty->IsValidLowLevel();
 }
 
@@ -130,8 +138,7 @@ void FTILua::UFunctionToLua(lua_State* L, UFunction* Function, UObject* Object)
 	FLuaUFunction::Construct(L, Function, Object);
 }
 
-void FTILua::PopulateUFunctionParams(lua_State* L, UFunction* Function, void* Params, int StartIndex)
-{
+void FTILua::PopulateUFunctionParams(lua_State* L, UFunction* Function, void* Params, int StartIndex) {
 	int i = StartIndex;
 	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
@@ -140,8 +147,13 @@ void FTILua::PopulateUFunctionParams(lua_State* L, UFunction* Function, void* Pa
 			continue;
 		}
 		LuaToProperty(L, Prop, Params, i);
+		// LOG(Prop->ContainerPtrToValuePtr<void>(Params))
+		// FString uhm = CastFieldChecked<FStrProperty>(Prop)->GetPropertyValue_InContainer(Params);
+		LOG(**CastFieldChecked<FStrProperty>(Prop)->GetPropertyValuePtr_InContainer(Params))
+		// LOG(static_cast<void*>(const_cast<wchar_t*>(*uhm)))
 		i++;
 	}
+	
 }
 
 // Mostly borrowed from FIN's source. Thanks Pana !
@@ -150,6 +162,7 @@ void FTILua::PropertyToLua(lua_State* L, FProperty* Property, void* Container, b
 	LOGF("Transforming from Property %s to Lua", *Property->GetName());
 	if (Local)
 	{
+		LOG("Localising property container")
 		Container = static_cast<uint8*>(Container) - Property->GetOffset_ForDebug();
 	}
 	if (FBoolProperty* BoolProp = CastField<FBoolProperty>(Property))
@@ -263,6 +276,7 @@ void FTILua::LuaToProperty(lua_State* L, FProperty* Property, void* Container, i
 	LOGF("Transforming from Lua to Property %s", *Property->GetName());
 	if (Local)
 	{
+		LOG("Localising property container")
 		Container = static_cast<uint8*>(Container) - Property->GetOffset_ForDebug();
 	}
 	if (FBoolProperty* BoolProp = CastField<FBoolProperty>(Property))
@@ -280,7 +294,8 @@ void FTILua::LuaToProperty(lua_State* L, FProperty* Property, void* Container, i
 	}
 	else if (FIntProperty* IntProp = CastField<FIntProperty>(Property))
 	{
-		IntProp->SetPropertyValue_InContainer(Container, luaL_checkinteger(L, Index));
+		int Int = luaL_checkinteger(L, Index);
+		IntProp->SetPropertyValue_InContainer(Container, Int);
 	}
 	else if (FInt64Property* Int64Prop = CastField<FInt64Property>(Property))
 	{
@@ -308,7 +323,19 @@ void FTILua::LuaToProperty(lua_State* L, FProperty* Property, void* Container, i
 	}
 	else if (FStrProperty* StrProp = CastField<FStrProperty>(Property))
 	{
-		StrProp->SetPropertyValue_InContainer(Container, luaL_checkstring(L, Index));
+		FString String = luaL_checkstring(L, Index);
+		// LOG(static_cast<void*>(const_cast<wchar_t*>(*String)))
+		// LOG(String)
+		LOG(*String)
+		StrProp->SetPropertyValue_InContainer(Container, String);
+		// *StrProp->GetPropertyValuePtr_InContainer(Container) = String;
+		LOG(**StrProp->GetPropertyValuePtr_InContainer(Container))
+		// LOG(static_cast<void*>(const_cast<wchar_t*>(StrProp->GetPropertyValuePtr_InContainer(Container)->GetCharArray().GetData())))
+		// LOG(GetData(*StrProp->GetPropertyValuePtr_InContainer(Container)))
+		// LOG(StrProp->GetPropertyValue_InContainer(Container))
+		// LOG(*StrProp->GetPropertyValuePtr_InContainer(Container))
+		// LOG(*StrProp->GetPropertyValue_InContainer(Container))
+		// LOG(**StrProp->GetPropertyValuePtr_InContainer(Container))
 	}
 	else if (FNameProperty* NameProp = CastField<FNameProperty>(Property))
 	{
