@@ -122,7 +122,7 @@ void FTILuaFuncManager::LuaCallerFunc(UObject* Context, FFrame& Frame, void* con
 	FLuaUObject::ConstructObject(L, Context);
 	for (auto Prop = Frame.Node->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
-		if (Prop->HasAllPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm))
+		if (Prop->HasAllPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm) )
 		{
 			continue;
 		}

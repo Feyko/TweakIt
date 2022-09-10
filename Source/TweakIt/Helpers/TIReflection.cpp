@@ -459,6 +459,18 @@ FProperty* FTIReflection::CopyProperty(FFieldVariant Outer, FProperty* Prop)
 	return nullptr;
 }
 
+void FTIReflection::CleanUFunctionParams(UFunction* Function, void* Params)
+{
+	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
+	{
+		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm) || !Prop->HasAllPropertyFlags(CPF_ReferenceParm))
+		{
+			continue;
+		}
+		Prop->DestroyValue_InContainer(Params);
+	}
+}
+
 // TODO: Test
 uint8 FTIReflection::GetBoolPropertyBitmask(FBoolProperty* Prop)
 {

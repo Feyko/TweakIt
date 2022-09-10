@@ -111,7 +111,7 @@ int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, in
 	LOG("Calling UFunction")
 	check(Function->IsValidLowLevel())
 	check(Object->IsValidLowLevel())
-	void* Params = FMemory_Alloca(Function->ParmsSize * 8);
+	void* Params = FMemory_Alloca(Function->ParmsSize);
 	LOG(Function->ParmsSize)
 	LOG(sizeof FString)
 	// void* Params = FMemory::Malloc(Function->ParmsSize * 1);
@@ -126,9 +126,10 @@ int FTILua::CallUFunction(lua_State* L, UObject* Object, UFunction* Function, in
 		LOG("Returning value to Lua")
 		PropertyToLua(L, ReturnProperty, Params);
 	}
-	LOG("Freeing")
+	// LOG("Freeing")
 	// FMemory::Free(Params);
 	LOG("Done")
+	FTIReflection::CleanUFunctionParams(Function, Params);
 	return ReturnProperty->IsValidLowLevel();
 }
 
@@ -142,18 +143,14 @@ void FTILua::PopulateUFunctionParams(lua_State* L, UFunction* Function, void* Pa
 	int i = StartIndex;
 	for (FProperty* Prop = Function->PropertyLink; Prop; Prop = Prop->PropertyLinkNext)
 	{
-		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm))
+		if (Prop->HasAnyPropertyFlags(CPF_ReturnParm) || !Prop->HasAllPropertyFlags(CPF_Parm) || !Prop->HasAllPropertyFlags(CPF_ReferenceParm))
 		{
 			continue;
 		}
+		Prop->InitializeValue_InContainer(Params);
 		LuaToProperty(L, Prop, Params, i);
-		// LOG(Prop->ContainerPtrToValuePtr<void>(Params))
-		// FString uhm = CastFieldChecked<FStrProperty>(Prop)->GetPropertyValue_InContainer(Params);
-		LOG(**CastFieldChecked<FStrProperty>(Prop)->GetPropertyValuePtr_InContainer(Params))
-		// LOG(static_cast<void*>(const_cast<wchar_t*>(*uhm)))
 		i++;
 	}
-	
 }
 
 // Mostly borrowed from FIN's source. Thanks Pana !

@@ -26,6 +26,8 @@ public:
 	static UFunction* CopyUFunction(UFunction* ToCopy, FString FunctionName, UClass* Outer = nullptr);
 	static FProperty* CopyProperty(FFieldVariant Outer, FProperty* Prop);
 
+	static void CleanUFunctionParams(UFunction* Function, void* Params);
+
 	static uint8 GetBoolPropertyBitmask(FBoolProperty* Prop);
 	static void ReverseChildProperties(FField** Head);
 	template <class T>
