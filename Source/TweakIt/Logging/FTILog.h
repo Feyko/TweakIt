@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "TweakIt/Helpers/StringConv.h"
+#include "../Helpers/StringConv.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTweakIt, Log, Log);   
 
