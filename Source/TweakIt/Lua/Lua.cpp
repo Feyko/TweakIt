@@ -519,7 +519,7 @@ int FTILua::Lua_Print(lua_State* L)
 {
 	int Num = lua_gettop(L);
 	FString Out;
-	for (int i = 0; i < Num; ++i)
+	for (int i = 1; i < Num+1; ++i)
 	{
 		Out += LuaT_CheckStringable(L, i) + " ";
 	}
