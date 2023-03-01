@@ -1,7 +1,7 @@
 ﻿# Changelog
 
 ## 0.6.0
-Changes may be missed because of heavy refactoring after a long time away from the codebase. Future changelogs will be correct
+Changes may be missed because of heavy refactoring after a long time away from the codebase. Future changelogs will be 100% correct
 
 - Improved stability!
   - No (less) memory leaks
@@ -15,10 +15,15 @@ Changes may be missed because of heavy refactoring after a long time away from t
 - Newly supported property types:
   - Object
     - Useful for asset manipulation!
-  - Delegate
+  - Delegate (WIP)
     - You can bind Lua code to be executed when the delegate gets called!!
     - You can also wait for the event to be called
   - Interface
     - Behaves as an object property, does not restrain what you can call like a real interface
   - FieldPath
     - Basically useless!
+  - Function (WIP)
+    - Call game functions from Lua
+    - Change a function's code to call your Lua function
+    - Hook functions and run your Lua code before or after
+    - The possibilities are endless!!!
