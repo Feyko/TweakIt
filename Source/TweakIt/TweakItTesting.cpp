@@ -19,24 +19,17 @@ UTweakItTesting* UTweakItTesting::Get()
 	return Cast<UTweakItTesting>(StaticClass()->ClassDefaultObject);
 }
 
-int UTweakItTesting::Testing(ETIEnum arg, FText Textparm)
+int UTweakItTesting::Testing(ETIEnum EnumP, FString StringP)
 {
 	LOG("TweakItTesting::Testing ran")
-	LOG(int(arg))
-	LOG(Textparm.ToString())
-	
-	// FString out;
-	// StaticEnum<ETIEnum>()->FindNameStringByValue(out, static_cast<int64>(arg));
-	return 0;
+	LOG(StringP)
+	return int(EnumP);
 }
 
 void UTweakItTesting::TestingDelegate(FString ParmString)
 {
 	LOG("UTweakItTesting::TestingDelegate called")
 	LOG(ParmString)
-	// LOG(ParmInt)
-	// LOG(ParmText)
-	// LOG(ParmName)
 }
 
 void UTweakItTesting::InvalidTestingDelegate(FText ParmString, int ParmInt)

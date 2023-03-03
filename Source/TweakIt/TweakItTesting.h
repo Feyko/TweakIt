@@ -6,6 +6,7 @@
 #include "FGUseableInterface.h"
 #include "ItemAmount.h"
 #include "Hologram/FGHologram.h"
+#include "VisualLogger/VisualLoggerTypes.h"
 
 #include "TweakItTesting.generated.h"
 
@@ -18,6 +19,7 @@ enum class ETIEnum
 	AnotherValue,
 	IncredibleValue
 };
+DEFINE_ENUM_TO_STRING(ETIEnum)
 
 UCLASS(Blueprintable)
 class UTweakItTesting : public UObject
@@ -79,7 +81,7 @@ public:
 	TArray<EBuildGunState> states = {EBuildGunState::BGS_MAX, EBuildGunState::BGS_MENU};
 
 	UFUNCTION()
-	static int Testing(ETIEnum arg, FText Textparm);
+	static int Testing(ETIEnum EnumP, FString StringP);
 
 	UPROPERTY()
 	FTITestingDelegate Delegate;

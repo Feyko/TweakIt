@@ -93,7 +93,7 @@ int FLuaUFunction::Lua__index(lua_State* L)
 int FLuaUFunction::Lua__call(lua_State* L)
 {
 	FLuaUFunction* Self = Get(L);
-	return FTILua::CallUFunction(L, Self->Object, Self->Function, 2);
+	return FTILua::CallUFunction(L, Self->Object, Self->Function, 3);
 }
 
 int FLuaUFunction::Lua__tostring(lua_State* L)
