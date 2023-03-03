@@ -336,9 +336,21 @@ void FTILua::LuaToProperty(lua_State* L, FProperty* Property, void* Container, i
 		}
 		if (!Enum->IsValidEnumName(EnumValueName))
 		{
-			luaL_error(L, "invalid enum value %s for enum type %s. Example value: %s",
+			FString ValidValuesStr;
+			for (int i = 0; i < Enum->NumEnums(); ++i)
+			{
+				if (Enum->ContainsExistingMax() && Enum->GetIndexByValue(Enum->GetMaxEnumValue()) == i)
+				{
+					break;
+				}
+				ValidValuesStr += Enum->GetNameByIndex(i).ToString() + "\n";
+			}
+			ValidValuesStr = ValidValuesStr.TrimEnd();
+			
+			luaL_error(L, "invalid enum value %s for enum type %s. Valid values are:\n%s",
 			           TCHAR_TO_UTF8(*EnumValueName.ToString()), TCHAR_TO_UTF8(*Enum->GetName()),
-			           TCHAR_TO_UTF8(*Enum->GetNameByIndex(0).ToString()));
+			           TCHAR_TO_UTF8(*ValidValuesStr));
+			
 			return;
 		}
 		int64 EnumValue = Enum->GetValueByName(EnumValueName);
