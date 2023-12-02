@@ -19,7 +19,8 @@ enum class ETIEnum
 	AnotherValue,
 	IncredibleValue
 };
-DEFINE_ENUM_TO_STRING(ETIEnum)
+// TODOU8 is this the correct EnumPackage to feed it now?
+DEFINE_ENUM_TO_STRING(ETIEnum, "/Script/TweakIt")
 
 UCLASS(Blueprintable)
 class UTweakItTesting : public UObject

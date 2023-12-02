@@ -1,6 +1,7 @@
 #include "Lua.h"
 #include <string>
 #include "CoreMinimal.h"
+#include "Reflection/ClassGenerator.h"
 #include "FGBlueprintFunctionLibrary.h"
 #include "TweakIt/Lua/lib/lua.hpp"
 #include "FTILuaFuncManager.h"
@@ -381,8 +382,8 @@ void FTILua::LuaToProperty(lua_State* L, FProperty* Property, void* Container, i
 
 		int InputLen = luaL_len(L, Index);
 		int ElementSize = ArrayProp->Inner->ElementSize;
-		ArrayValue->Empty(InputLen, ElementSize);
-		ArrayValue->AddZeroed(InputLen, ElementSize);
+		ArrayValue->Empty(InputLen, ElementSize, 0); // TODOU8 need alignment argument, passed 0 for now
+		ArrayValue->AddZeroed(InputLen, ElementSize, 0); // TODOU8 need alignment argument, passed 0 for now
 
 		uint8* Data = static_cast<uint8*>(ArrayValue->GetData());
 		for (int i = 0; i < InputLen; ++i)
@@ -477,7 +478,8 @@ int FTILua::Lua_MakeSubclass(lua_State* L)
 {
 	UClass* ParentClass = FLuaUClass::Get(L)->Class;
 	FString Name = luaL_checkstring(L, 2);
-	UClass* GeneratedClass = FTIReflection::GenerateUniqueSimpleClass(*("/TweakIt/Generated/" + Name), *Name,ParentClass);
+	// UClass* GeneratedClass = FTIReflection::GenerateUniqueSimpleClass(*("/TweakIt/Generated/" + Name), *Name,ParentClass);
+	UClass* GeneratedClass = FClassGenerator::GenerateSimpleClass(*("/TweakIt/Generated/" + Name), *Name, ParentClass);
 	FLuaUClass::ConstructClass(L, GeneratedClass);
 	return 1;
 }

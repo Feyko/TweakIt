@@ -2,7 +2,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
-using namespace UE4CodeGen_Private;
+using namespace UECodeGen_Private;
 
 class FTIReflection
 {

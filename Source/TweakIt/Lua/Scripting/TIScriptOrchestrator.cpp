@@ -60,11 +60,10 @@ void FTIScriptOrchestrator::SetupModEvents()
 	});
 
 	UModModule* Module = const_cast<UModModule*>(GetDefault<UModModule>());
-	SUBSCRIBE_METHOD_VIRTUAL_AFTER(UModModule::DispatchLifecycleEvent, Module, [this](UModModule* Self, ELifecyclePhase Phase)
-	{
+	SUBSCRIBE_METHOD_VIRTUAL_AFTER(UModModule::DispatchLifecycleEvent, Module, [this](UModModule* Self, ELifecyclePhase Phase) {
 		FString PhaseString = StaticEnum<ELifecyclePhase>()->GetNameStringByValue(int64(Phase));
 		ResumeForMod(Self->GetOwnerModReference().ToString(), PhaseString);
-	})
+	});
 }
 
 FString FTIScriptOrchestrator::GetConfigDirectory()
