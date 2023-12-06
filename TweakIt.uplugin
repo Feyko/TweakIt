@@ -1,16 +1,16 @@
 {
 	"FileVersion": 3,
 	"Version": 0,
-	"VersionName": "0.6.0",
-	"SemVersion": "0.6.0",
+	"VersionName": "0.7.0",
+	"SemVersion": "0.7.0",
 	"FriendlyName": "TweakIt",
-	"Description": "Tweak your game to your liking !",
+	"Description": "Tweak your game to your liking with Lua!",
 	"Category": "Modding",
 	"CreatedBy": "Feyko",
 	"CreatedByURL": "",
-	"DocsURL": "",
+	"DocsURL": "https://docs.ficsit.app/tweakit/latest/index.html",
 	"MarketplaceURL": "",
-	"SupportURL": "",
+	"SupportURL": "https://discord.gg/FZPzq74",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
@@ -18,7 +18,7 @@
 		{
 			"Name": "SML",
 			"Enabled": true,
-			"SemVersion": "^3.1.0"
+			"SemVersion": "^3.6.0"
 		}
 	],
 	"Modules": [

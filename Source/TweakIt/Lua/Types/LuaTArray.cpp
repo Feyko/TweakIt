@@ -63,7 +63,7 @@ int FLuaTArray::Lua__newindex(lua_State* L)
 	{
 		int appendCount = (Index + 1) - ArrayValue->Num();
 		LOGF("Creating %d values", appendCount)
-		ArrayValue->Add(appendCount, Self->ArrayProperty->Inner->ElementSize);
+		ArrayValue->Add(appendCount, Self->ArrayProperty->Inner->ElementSize, 0); // TODOU8 need alignment argument, passed 0 for now
 	}
 	FTILua::LuaToProperty(L, Self->ArrayProperty->Inner,
 	              static_cast<uint8*>(ArrayValue->GetData()) + Self->ArrayProperty->Inner->ElementSize * Index, 3);

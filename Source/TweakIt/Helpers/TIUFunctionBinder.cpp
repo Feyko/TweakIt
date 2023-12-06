@@ -9,7 +9,7 @@ void UTIUFunctionBinder::AddNativeFunction(FNativeFuncPtr Function, FName Name)
 {
 	LOG("Adding a native function")
 	UFunction* UFunc = nullptr;
-	UE4CodeGen_Private::FFunctionParams Params = UE4CodeGen_Private::FFunctionParams();
+	UECodeGen_Private::FFunctionParams Params = UECodeGen_Private::FFunctionParams();
 	Params.OwningClassName = TCHAR_TO_UTF8(*StaticClass()->GetName());
 	Params.NameUTF8 = TCHAR_TO_UTF8(*Name.ToString());
 	Params.OuterFunc = []()->UObject*{return StaticClass();};

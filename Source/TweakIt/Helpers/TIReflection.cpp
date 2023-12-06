@@ -164,101 +164,103 @@ UActorComponent* FTIReflection::FindDefaultComponentByName(
 	return nullptr;
 }
 
+// TODOU8 replaced with the SML function
+
 //Yoinked from upcoming SML update, I needed it
-UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const TCHAR* ClassName, UClass* ParentClass)
-{
-	LOGF("Creating subclass for %s", *ParentClass->GetFullName())
-	LOGF("%ls", *(FString(PackageName) + "." + ClassName))
-	UClass* LoadedClass = LoadObject<UClass>(nullptr, *(FString(PackageName) + "." + ClassName));
-	LOGF("%hhd", LoadedClass->IsValidLowLevel())
-	if (LoadedClass->IsValidLowLevel())
-	{
-		LOG("A class with this path already exists")
-		return LoadedClass;
-	}
-	//Flags to assign to newly created class
-	const EClassFlags ParamsClassFlags = CLASS_MatchedSerializers;
-	//Code below is taken from GetPrivateStaticClassBody
-	//Allocate memory from ObjectAllocator for class object and call class constructor directly
-	// ConstructedClassObject = ConstructedBPClassObject;
-	// ConstructedClassObject->SetSuperStruct(ParentBPGC);
-	UClass* ConstructedClassObject = nullptr;
-	// if(UBlueprintGeneratedClass* ParentBPGC = Cast<UBlueprintGeneratedClass>(ParentClass)) {
-	// 	LOG("Creating BPGC")
-	// 	ConstructedClassObject = static_cast<UBlueprintGeneratedClass*>(
-	// 		StaticConstructObject_Internal(ParentBPGC,
-	// 		ParentBPGC,
-	// 		ClassName,
-	// 		RF_NoFlags,
-	// 		EInternalObjectFlags::None,
-	// 		ParentClass->GetDefaultObject(),
-	// 		false,
-	// 		nullptr));
-	// 	ConstructedClassObject->ClassAddReferencedObjects = ParentClass->ClassAddReferencedObjects;
-	// } else {
-	LOG("Creating UCLASS")
-	ConstructedClassObject = static_cast<UClass*>(GUObjectAllocator.AllocateUObject(
-		sizeof(UClass), alignof(UClass), true));
-	::new(ConstructedClassObject)UClass(
-		EC_StaticConstructor,
-		ClassName,
-		ParentClass->GetStructureSize(),
-		ParentClass->GetMinAlignment(),
-		CLASS_Intrinsic,
-		CASTCLASS_None,
-		UObject::StaticConfigName(),
-		static_cast<EObjectFlags>(RF_Public | RF_Standalone | RF_Transient | RF_MarkAsNative | RF_MarkAsRootSet),
-		ParentClass->ClassConstructor,
-		ParentClass->ClassVTableHelperCtorCaller,
-		ParentClass->ClassAddReferencedObjects);
-	ConstructedClassObject->SetSuperStruct(ParentClass);
-	// }
-
-	LOG("out")
-	//Set super structure and ClassWithin (they are required prior to registering)
-	ConstructedClassObject->ClassFlags |= (ParentClass->ClassFlags & CLASS_Inherit);
-	ConstructedClassObject->ClassFlags ^= CLASS_Native;
-	ConstructedClassObject->ClassCastFlags |= ParentClass->ClassCastFlags;
-	ConstructedClassObject->ClassWithin = UObject::StaticClass();
-	LOG("Flags")
-	//Register pending object, apply class flags, set static type info and link it
-	ConstructedClassObject->RegisterDependencies();
-	LOG("Deps")
-	if (!ConstructedClassObject->GetClass())
-	{
-		LOG("Registering")
-		ConstructedClassObject->DeferredRegister(UClass::StaticClass(), PackageName, ClassName);
-	}
-	LOG("Out")
-	//Mark class as Constructed and perform linking
-	ConstructedClassObject->ClassFlags |= ParamsClassFlags | CLASS_Constructed;
-	LOG("assembling")
-	ConstructedClassObject->AssembleReferenceTokenStream(true);
-	LOG("linking")
-	ConstructedClassObject->StaticLink();
-	//Make sure default class object is initialized and copy the values from parent CDO to handle values set by Blueprints
-	LOG("getting CDO")
-	UObject* CDO = ConstructedClassObject->GetDefaultObject();
-	LOG("getting parent cdo")
-	UObject* ParentCDO = ParentClass->GetDefaultObject();
-	LOG("copying properties")
-	for (FProperty* Property = ConstructedClassObject->PropertyLink; Property; Property = Property->PropertyLinkNext)
-	{
-		Property->CopyCompleteValue_InContainer(CDO, ParentCDO);
-	}
-
-	if (UBlueprintGeneratedClass* ClassAsBPGC = Cast<UBlueprintGeneratedClass>(ConstructedClassObject))
-	{
-		LOG("Dumping Construction Script")
-		for (USCS_Node* Node : ClassAsBPGC->SimpleConstructionScript->GetAllNodes())
-		{
-			LOG(Node->ComponentClass->GetName())
-		}
-	}
-
-	LOG(ConstructedClassObject->GetFullName())
-	return ConstructedClassObject;
-}
+//UClass* FTIReflection::GenerateUniqueSimpleClass(const TCHAR* PackageName, const TCHAR* ClassName, UClass* ParentClass)
+//{
+//	LOGF("Creating subclass for %s", *ParentClass->GetFullName())
+//	LOGF("%ls", *(FString(PackageName) + "." + ClassName))
+//	UClass* LoadedClass = LoadObject<UClass>(nullptr, *(FString(PackageName) + "." + ClassName));
+//	LOGF("%hhd", LoadedClass->IsValidLowLevel())
+//	if (LoadedClass->IsValidLowLevel())
+//	{
+//		LOG("A class with this path already exists")
+//		return LoadedClass;
+//	}
+//	//Flags to assign to newly created class
+//	const EClassFlags ParamsClassFlags = CLASS_MatchedSerializers;
+//	//Code below is taken from GetPrivateStaticClassBody
+//	//Allocate memory from ObjectAllocator for class object and call class constructor directly
+//	// ConstructedClassObject = ConstructedBPClassObject;
+//	// ConstructedClassObject->SetSuperStruct(ParentBPGC);
+//	UClass* ConstructedClassObject = nullptr;
+//	// if(UBlueprintGeneratedClass* ParentBPGC = Cast<UBlueprintGeneratedClass>(ParentClass)) {
+//	// 	LOG("Creating BPGC")
+//	// 	ConstructedClassObject = static_cast<UBlueprintGeneratedClass*>(
+//	// 		StaticConstructObject_Internal(ParentBPGC,
+//	// 		ParentBPGC,
+//	// 		ClassName,
+//	// 		RF_NoFlags,
+//	// 		EInternalObjectFlags::None,
+//	// 		ParentClass->GetDefaultObject(),
+//	// 		false,
+//	// 		nullptr));
+//	// 	ConstructedClassObject->ClassAddReferencedObjects = ParentClass->ClassAddReferencedObjects;
+//	// } else {
+//	LOG("Creating UCLASS")
+//	ConstructedClassObject = static_cast<UClass*>(GUObjectAllocator.AllocateUObject(
+//		sizeof(UClass), alignof(UClass), true));
+//	::new(ConstructedClassObject)UClass(
+//		EC_StaticConstructor,
+//		ClassName,
+//		ParentClass->GetStructureSize(),
+//		ParentClass->GetMinAlignment(),
+//		CLASS_Intrinsic,
+//		CASTCLASS_None,
+//		UObject::StaticConfigName(),
+//		static_cast<EObjectFlags>(RF_Public | RF_Standalone | RF_Transient | RF_MarkAsNative | RF_MarkAsRootSet),
+//		ParentClass->ClassConstructor,
+//		ParentClass->ClassVTableHelperCtorCaller,
+//		ParentClass->ClassAddReferencedObjects);
+//	ConstructedClassObject->SetSuperStruct(ParentClass);
+//	// }
+//
+//	LOG("out")
+//	//Set super structure and ClassWithin (they are required prior to registering)
+//	ConstructedClassObject->ClassFlags |= (ParentClass->ClassFlags & CLASS_Inherit);
+//	ConstructedClassObject->ClassFlags ^= CLASS_Native;
+//	ConstructedClassObject->ClassCastFlags |= ParentClass->ClassCastFlags;
+//	ConstructedClassObject->ClassWithin = UObject::StaticClass();
+//	LOG("Flags")
+//	//Register pending object, apply class flags, set static type info and link it
+//	ConstructedClassObject->RegisterDependencies();
+//	LOG("Deps")
+//	if (!ConstructedClassObject->GetClass())
+//	{
+//		LOG("Registering")
+//		ConstructedClassObject->DeferredRegister(UClass::StaticClass(), PackageName, ClassName);
+//	}
+//	LOG("Out")
+//	//Mark class as Constructed and perform linking
+//	ConstructedClassObject->ClassFlags |= ParamsClassFlags | CLASS_Constructed;
+//	LOG("assembling")
+//	ConstructedClassObject->AssembleReferenceTokenStream(true);
+//	LOG("linking")
+//	ConstructedClassObject->StaticLink();
+//	//Make sure default class object is initialized and copy the values from parent CDO to handle values set by Blueprints
+//	LOG("getting CDO")
+//	UObject* CDO = ConstructedClassObject->GetDefaultObject();
+//	LOG("getting parent cdo")
+//	UObject* ParentCDO = ParentClass->GetDefaultObject();
+//	LOG("copying properties")
+//	for (FProperty* Property = ConstructedClassObject->PropertyLink; Property; Property = Property->PropertyLinkNext)
+//	{
+//		Property->CopyCompleteValue_InContainer(CDO, ParentCDO);
+//	}
+//
+//	if (UBlueprintGeneratedClass* ClassAsBPGC = Cast<UBlueprintGeneratedClass>(ConstructedClassObject))
+//	{
+//		LOG("Dumping Construction Script")
+//		for (USCS_Node* Node : ClassAsBPGC->SimpleConstructionScript->GetAllNodes())
+//		{
+//			LOG(Node->ComponentClass->GetName())
+//		}
+//	}
+//
+//	LOG(ConstructedClassObject->GetFullName())
+//	return ConstructedClassObject;
+//}
 
 void* FTIReflection::MakeStructInstance(UStruct* Struct)
 {
